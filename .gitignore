@@ -1,0 +1,36 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# ---------- Secrets (never commit) ----------
+.env
+
+# ---------- Data (the full dataset is never committed) ----------
+data/*
+!data/sample/
+!data/README.md
+*.zip
+*.parquet
+*.csv
+# CSV files that ARE committed: development sample, reference config, test fixtures
+!data/sample/*.csv
+!config/*.csv
+!tests/fixtures/*.csv
+
+# ---------- Spark local mode ----------
+spark-warehouse/
+metastore_db/
+derby.log
+
+# ---------- Editors and OS ----------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
