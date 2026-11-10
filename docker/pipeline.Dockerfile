@@ -23,7 +23,10 @@ WORKDIR /app
 
 # Python dependencies (pinned versions)
 COPY requirements-pipeline.txt /tmp/requirements-pipeline.txt
-RUN pip install -r /tmp/requirements-pipeline.txt
+# Slow or unstable connections: PySpark is a 318 MB download. A newer pip resumes interrupted downloads
+# (--resume-retries) instead of failing with a hash mismatch; the long timeout and retries cover stalls.
+RUN pip install --default-timeout=300 --retries 10 pip==26.3 \
+ && pip install --default-timeout=300 --retries 10 --resume-retries 20 -r /tmp/requirements-pipeline.txt
 
 # S3A connector so Spark can read and write s3a://cfpb-lake/... on MinIO, downloaded at build time
 # so the container never downloads anything at runtime.
@@ -31,9 +34,9 @@ RUN pip install -r /tmp/requirements-pipeline.txt
 ARG HADOOP_AWS_VERSION=3.3.4
 ARG AWS_SDK_BUNDLE_VERSION=1.12.262
 RUN SPARK_JARS="$(python -c 'import os, pyspark; print(os.path.join(os.path.dirname(pyspark.__file__), "jars"))')" \
- && curl -fsSL -o "$SPARK_JARS/hadoop-aws-${HADOOP_AWS_VERSION}.jar" \
+ && curl -fsSL --retry 10 --retry-all-errors -C - -o "$SPARK_JARS/hadoop-aws-${HADOOP_AWS_VERSION}.jar" \
       "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/${HADOOP_AWS_VERSION}/hadoop-aws-${HADOOP_AWS_VERSION}.jar" \
- && curl -fsSL -o "$SPARK_JARS/aws-java-sdk-bundle-${AWS_SDK_BUNDLE_VERSION}.jar" \
+ && curl -fsSL --retry 10 --retry-all-errors -C - -o "$SPARK_JARS/aws-java-sdk-bundle-${AWS_SDK_BUNDLE_VERSION}.jar" \
       "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/${AWS_SDK_BUNDLE_VERSION}/aws-java-sdk-bundle-${AWS_SDK_BUNDLE_VERSION}.jar" \
  && ls -l "$SPARK_JARS" | grep -E "hadoop-aws|aws-java-sdk-bundle"
 
