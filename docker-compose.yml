@@ -1,0 +1,100 @@
+# Banking Complaints Data Platform - local stack.
+# Start: docker compose up -d      Stop: docker compose down      Reset (deletes data): docker compose down -v
+# All settings and secrets come from .env (copy .env.example to .env first).
+
+name: cfpb
+
+# The pipeline image is shared by the pipeline and minio-init services.
+x-pipeline-build: &pipeline-build
+  context: .
+  dockerfile: docker/pipeline.Dockerfile
+
+services:
+
+  # Object storage for the raw, curated, quarantine and quality zones (bucket cfpb-lake).
+  # MinIO stopped publishing official images in October 2025. This is a community rebuild of the
+  # last MinIO release, pinned to its exact tag. Ports are bound to 127.0.0.1 (this machine only).
+  minio:
+    image: alpine/minio:RELEASE.2025-10-15T17-29-55Z
+    user: "0:0"   # run as root: the image's default user cannot write to the Docker volume
+    entrypoint: ["minio"]
+    command: ["server", "/data", "--console-address", ":9001"]
+    env_file: .env
+    ports:
+      - "127.0.0.1:9000:9000"   # S3 API
+      - "127.0.0.1:9001:9001"   # web console
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # One-shot job: creates bucket cfpb-lake if it does not exist yet, then exits.
+  minio-init:
+    build: *pipeline-build
+    image: cfpb-pipeline:dev
+    env_file: .env
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: ["python", "docker/minio_init.py"]
+    depends_on:
+      minio:
+        condition: service_healthy
+    restart: "no"
+
+  # Serving layer: curated complaints and aggregates for the dashboard.
+  mongo:
+    image: mongo:7.0
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # Python 3.11 + Java 17 + PySpark: collectors, Spark job, MongoDB loader and the 24-hour scheduler.
+  # The repository is mounted at /app, so code changes do not need an image rebuild.
+  pipeline:
+    build: *pipeline-build
+    image: cfpb-pipeline:dev
+    env_file: .env
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: ["python", "-m", "ingestion.scheduler"]
+    depends_on:
+      minio:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+      mongo:
+        condition: service_healthy
+    restart: on-failure:5
+
+  # Streamlit dashboard (reads MongoDB only).
+  # Disabled until docker/dashboard.Dockerfile exists: remove the "profiles" line in the same
+  # Pull Request that adds that file.
+  dashboard:
+    profiles: ["dashboard"]
+    build:
+      context: .
+      dockerfile: docker/dashboard.Dockerfile
+    env_file: .env
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  minio_data:
+  mongo_data:
