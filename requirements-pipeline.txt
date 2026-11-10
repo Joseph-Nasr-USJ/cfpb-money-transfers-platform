@@ -1,0 +1,23 @@
+# Pipeline image (docker/pipeline.Dockerfile): ingestion, Spark processing, MongoDB loader, scheduler, tests.
+# Every version is pinned (==) so all machines build the same image.
+
+# Processing (Spark 3.5 runs on Java 17; bundles Hadoop 3.3.4)
+pyspark==3.5.9
+pyarrow==21.0.0
+pandas==2.3.3
+numpy==2.4.6
+
+# Ingestion
+requests==2.34.2
+minio==7.2.20
+
+# Serving layer
+pymongo==4.19.0
+
+# Configuration and scheduling
+pyyaml==6.0.3
+python-dotenv==1.2.4
+apscheduler==3.11.3
+
+# Tests
+pytest==9.2.0
