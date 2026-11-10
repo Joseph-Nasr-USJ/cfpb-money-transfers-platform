@@ -1,0 +1,12 @@
+# Keep secrets and data out of the Docker build context (faster builds, no secrets in images).
+.git
+.env
+data/
+*.zip
+*.parquet
+spark-warehouse/
+metastore_db/
+**/__pycache__/
+.pytest_cache/
+.venv/
+venv/
