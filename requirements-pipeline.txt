@@ -19,5 +19,10 @@ pyyaml==6.0.3
 python-dotenv==1.2.4
 apscheduler==3.11.3
 
-# Tests
+# Analysis charts (analytics/ scripts save PNG files)
+matplotlib==3.11.2
+
+# Tests (HTTP mocks for the API collector, in-memory MongoDB for unit tests)
 pytest==9.2.0
+responses==0.26.3
+mongomock==4.3.0
