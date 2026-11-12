@@ -1,0 +1,259 @@
+{
+  "_shards": {
+    "failed": 0,
+    "skipped": 0,
+    "successful": 1,
+    "total": 1
+  },
+  "hits": {
+    "hits": [
+      {
+        "_id": "9000101",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000101",
+          "date_received": "2024-06-20T12:00:00-05:00",
+          "date_sent_to_company": "2024-06-20T12:00:00-05:00",
+          "product": "Money transfer, virtual currency, or money service",
+          "sub_product": "Domestic (US) money transfer",
+          "issue": "Fraud or scam",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Example Pay Inc.",
+          "state": "CA",
+          "zip_code": "94105",
+          "tags": null,
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Web",
+          "company_response": "Closed with explanation",
+          "timely": "Yes",
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000000,
+          9000101
+        ]
+      },
+      {
+        "_id": "9000005",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000005",
+          "date_received": "2024-04-09T12:00:00-05:00",
+          "date_sent_to_company": "2024-04-09T12:00:00-05:00",
+          "product": "Money transfer, virtual currency, or money service",
+          "sub_product": "Domestic (US) money transfer",
+          "issue": "Other transaction problem",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Example Pay Inc.",
+          "state": "NJ",
+          "zip_code": "07030",
+          "tags": null,
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Web",
+          "company_response": "Closed with explanation",
+          "timely": "Yes",
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000001,
+          9000005
+        ]
+      },
+      {
+        "_id": "9000102",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000102",
+          "date_received": "2024-06-21T12:00:00-05:00",
+          "date_sent_to_company": "2024-06-21T12:00:00-05:00",
+          "product": "Money transfer, virtual currency, or money service",
+          "sub_product": "Virtual currency",
+          "issue": "Fraud or scam",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Coin Exchange Corp.",
+          "state": "FL",
+          "zip_code": null,
+          "tags": "Older American",
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Web",
+          "company_response": "In progress",
+          "timely": null,
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000002,
+          9000102
+        ]
+      },
+      {
+        "_id": "9000102",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000102",
+          "date_received": "2024-06-21T12:00:00-05:00",
+          "date_sent_to_company": "2024-06-21T12:00:00-05:00",
+          "product": "Money transfer, virtual currency, or money service",
+          "sub_product": "Virtual currency",
+          "issue": "Fraud or scam",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Coin Exchange Corp.",
+          "state": "FL",
+          "zip_code": null,
+          "tags": "Older American",
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Web",
+          "company_response": "Closed with explanation",
+          "timely": "Yes",
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000003,
+          9000102
+        ]
+      },
+      {
+        "_id": "9000103",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000103",
+          "date_received": "not-a-date",
+          "date_sent_to_company": "2024-06-24T12:00:00-05:00",
+          "product": "Money transfer, virtual currency, or money service",
+          "sub_product": "Mobile or digital wallet",
+          "issue": "Fraud or scam",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Example Wallet Co.",
+          "state": "NY",
+          "zip_code": "100XX",
+          "tags": null,
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Web",
+          "company_response": "Closed with explanation",
+          "timely": "Yes",
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000004,
+          9000103
+        ]
+      },
+      {
+        "_id": "9000104",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000104",
+          "date_received": "2024-06-25T12:00:00-05:00",
+          "date_sent_to_company": "2024-06-20T12:00:00-05:00",
+          "product": "Money transfer, virtual currency, or money service",
+          "sub_product": "International money transfer",
+          "issue": "Money was not received",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Global Remit LLC",
+          "state": "TX",
+          "zip_code": "750XX",
+          "tags": null,
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Phone",
+          "company_response": "Closed with explanation",
+          "timely": "Yes",
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000005,
+          9000104
+        ]
+      },
+      {
+        "_id": "9000105",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000105",
+          "date_received": "2016-09-14T12:00:00-05:00",
+          "date_sent_to_company": "2016-09-15T12:00:00-05:00",
+          "product": "Money transfers",
+          "sub_product": "Domestic (US) money transfer",
+          "issue": "Money was not received",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Example Pay Inc.",
+          "state": "IL",
+          "zip_code": "606XX",
+          "tags": null,
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Web",
+          "company_response": "Closed with explanation",
+          "timely": "Yes",
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000006,
+          9000105
+        ]
+      },
+      {
+        "_id": "9000106",
+        "_index": "complaint-public-v2",
+        "_score": null,
+        "_source": {
+          "complaint_id": "9000106",
+          "date_received": "2024-06-26T12:00:00-05:00",
+          "date_sent_to_company": "2024-06-26T12:00:00-05:00",
+          "product": "Credit card",
+          "sub_product": "General-purpose credit card or charge card",
+          "issue": "Fees or interest",
+          "sub_issue": null,
+          "complaint_what_happened": "",
+          "company_public_response": null,
+          "company": "Big Bank N.A.",
+          "state": "CA",
+          "zip_code": "94105",
+          "tags": null,
+          "consumer_consent_provided": "Consent not provided",
+          "submitted_via": "Web",
+          "company_response": "Closed with explanation",
+          "timely": "Yes",
+          "consumer_disputed": "N/A",
+          "has_narrative": false
+        },
+        "sort": [
+          1718900000007,
+          9000106
+        ]
+      }
+    ],
+    "max_score": null,
+    "total": {
+      "relation": "eq",
+      "value": 8
+    }
+  },
+  "timed_out": false,
+  "took": 7
+}
