@@ -23,6 +23,7 @@ data/*
 !data/sample/*.csv
 !config/*.csv
 !tests/fixtures/*.csv
+!analytics/output/*.csv
 
 # ---------- Spark local mode ----------
 spark-warehouse/
