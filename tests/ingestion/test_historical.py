@@ -189,3 +189,14 @@ def test_main_prints_run_id_last_and_returns_exit_code(env, capsys):
     assert historical.main() == 0
     last_line = capsys.readouterr().out.strip().splitlines()[-1]
     assert last_line.endswith("_full")
+
+
+@responses.activate
+def test_sends_the_default_requests_user_agent(env):
+    """The CFPB firewall (Akamai) blocks custom and fake-browser agents; it accepts the requests default."""
+    payload = make_zip()
+    responses.get(URL, body=payload, status=200)
+
+    historical.run()
+
+    assert responses.calls[0].request.headers["User-Agent"].startswith("python-requests/")

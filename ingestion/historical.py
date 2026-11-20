@@ -31,7 +31,9 @@ import requests
 
 from ingestion import minio_utils
 
-USER_AGENT = "cfpb-course-project/1.0"
+# No custom User-Agent: the CFPB sites sit behind the Akamai firewall, which answered 403 to a custom
+# agent ("cfpb-course-project/1.0") and to a browser imitation, but 200 to the requests library's own
+# default ("python-requests/<version>"), tested 20 Nov 2026. So we send the library default, honestly.
 CHUNK_SIZE = 1024 * 1024                       # 1 MiB per read
 BACKOFF_SECONDS = [2, 4, 8]                    # waits between attempts
 RETRY_STATUS = {429, 500, 502, 503, 504}
@@ -86,7 +88,7 @@ def download(url: str, target: Path, http_log: dict, timeout: float, max_retries
     while True:
         digest = hashlib.sha256()
         already = _hash_existing(target, digest) if target.exists() else 0
-        headers = {"User-Agent": USER_AGENT}
+        headers = {}
         if already:
             headers["Range"] = f"bytes={already}-"
             # If-Range: resume only if the server still has the SAME file (the CFPB republishes it
