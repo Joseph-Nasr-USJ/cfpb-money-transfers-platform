@@ -20,13 +20,7 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 - Used an AI assistant (Claude Code) to draft these documents from the repository and the official sources; I review the content and must be able to explain it.
 
 **Pull Requests**
-- Report skeleton, section 2 and checkpoint notes: branch `loutchiana/docs-skeleton`.
-- Architecture document, diagram and report section 4.1: branch `loutchiana/architecture`.
-- Report sections 1, 3, 7 and 8: branch `loutchiana/report-sections`.
-- Data dictionary: branch `loutchiana/data-dictionary`.
-- Dashboard texts: branch `loutchiana/dashboard-texts`.
-- Slides outline: branch `loutchiana/presentation`.
-(Pull Request numbers to be added when they are opened.)
+- One Pull Request from branch `loutchiana/delivery-docs` with all of the above: report skeleton and sections, architecture document, data dictionary, dashboard texts, slides outline and this log. Reviewed and merged by Joseph.
 
 **Problems**
 - I started late: the report skeleton and section 2 were due on Sat 14 Nov, and the architecture document, data dictionary and dashboard texts on Wed 18 Nov. Perla and the others could not use my texts before today.
