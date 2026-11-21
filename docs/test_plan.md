@@ -6,15 +6,15 @@ Owner: Charbel Mazraani. Each test is written by the owner of its component; thi
 
 **Status values:** `passing` (on `main`, green in the last run), `failing` (on `main`, red in the last run; a defect is open in [defect_log.md](defect_log.md)), `planned` (not written yet). Test names marked *proposed* are suggestions; the owner may rename them and this file is updated when the test is merged.
 
-Last update: Thu 12 Nov 2026.
+Last update: Sat 21 Nov 2026 (42 tests passing, brief V2 dimension names, machine-learning tests added).
 
 ## 1. Test levels required by the brief
 
 | Level | What the tests must show | Owner | Location | Status |
 |---|---|---|---|---|
 | Collector | Pagination, timeouts, bounded retries, date window with high-water mark and overlap, complete run log, raw files never overwritten, resume after failure | Marwa Zeineddine | `tests/ingestion/` | planned |
-| Transformation | Explicit schema, standard column names, trimmed strings, date parsing and invalid dates, Yes/No and missing values, domain filter, deduplication by Complaint ID with tie-break, derived fields, quarantine | Joseph Nasr | `tests/processing/` | passing (26 tests) |
-| Data quality | Six dimensions (uniqueness, completeness, validity, consistency, timeliness, integrity) with the fixed thresholds; the quality gate stops a bad run; **one test that intentionally fails during development** | Joseph Nasr | `tests/processing/test_quality.py` | planned |
+| Transformation | Explicit schema, standard column names, trimmed strings, date parsing and invalid dates, Yes/No and missing values, domain filter, deduplication by Complaint ID with tie-break, derived fields, quarantine | Joseph Nasr | `tests/processing/` | passing (26 tests in the transformation files, plus 6 for the Spark job) |
+| Data quality | Six dimensions (uniqueness, completeness, validity, consistency, freshness, reconciliation) with the fixed thresholds; the quality gate stops a bad run; the known bad fixture records are caught (defect D-005) | Joseph Nasr | `tests/processing/test_quality.py` | passing (10 tests) |
 | Database | Upsert or bulk load is idempotent, `_id` = complaint_id, native dates, indexes on the dashboard filters, aggregation queries return the expected result | Christopher Al Hassrouty | `tests/database/` | planned |
 | Dashboard | Query functions return aggregates only, empty selection, invalid date range, missing category, database unavailable | Perla Boustany | `tests/dashboard/` + manual checklist | planned |
 | End-to-end | A small sample goes raw → curated → MongoDB → query function and the counts reconcile at every layer; a repeated run creates no duplicates | Charbel Mazraani with Joseph Nasr | `tests/e2e/test_pipeline_sample.py` | planned |
@@ -65,21 +65,29 @@ Last update: Thu 12 Nov 2026.
 | T-24 | `test_api_counts_balance` | `tests/processing/test_transforms.py` | passing |
 | T-25 | `test_conform_to_curated_matches_schema` | `tests/processing/test_transforms.py` | passing |
 | T-26 | `test_product_mapping_has_no_ambiguous_rows` | `tests/processing/test_transforms.py` | passing |
+| T-27 | `test_parse_run_id` | `tests/processing/test_spark_job.py` | passing |
+| T-28 | `test_wrong_arguments_exit_with_code_2` | `tests/processing/test_spark_job.py` | passing |
+| T-29 | `test_quality_gate_failure_writes_evidence_but_no_curated_data` | `tests/processing/test_spark_job.py` | passing |
+| T-30 | `test_full_load_writes_curated_aggregates_and_report` | `tests/processing/test_spark_job.py` | passing |
+| T-31 | `test_api_run_merges_with_curated_and_rerun_changes_nothing` (idempotent rerun, demo step 5) | `tests/processing/test_spark_job.py` | passing |
+| T-32 | `test_missing_input` | `tests/processing/test_spark_job.py` | passing |
 
 ### Data quality (Joseph Nasr)
 
-Thresholds are fixed before any result is seen (uniqueness 0 nulls and 0 duplicates; required fields at least 99.5% filled; invalid values WARN above 0.5% and FAIL above 2%; unmapped combinations listed; latest record at most 3 days old; raw = curated + quarantined + out_of_domain + duplicates_removed, and curated = MongoDB count).
+Thresholds are fixed before any result is seen (uniqueness 0 nulls and 0 duplicates; required fields at least 99.5% filled; invalid values WARN above 0.5% and FAIL above 2%; unmapped combinations listed; latest record at most 3 days old; raw = curated + quarantined + out_of_domain + duplicates_removed, and curated = MongoDB count). The code still uses the older dimension names `timeliness` and `integrity` until Joseph's V2 change lands; they mean freshness and reconciliation.
 
 | ID | Test | File | Status |
 |---|---|---|---|
-| Q-01 | *proposed* `test_uniqueness_fails_on_duplicate_or_null_id` | `tests/processing/test_quality.py` | planned |
-| Q-02 | *proposed* `test_completeness_fails_below_threshold_for_required_fields` | `tests/processing/test_quality.py` | planned |
-| Q-03 | *proposed* `test_validity_warns_above_half_percent_and_fails_above_two_percent` | `tests/processing/test_quality.py` | planned |
-| Q-04 | *proposed* `test_consistency_lists_unmapped_combinations` | `tests/processing/test_quality.py` | planned |
-| Q-05 | *proposed* `test_timeliness_warns_when_latest_record_is_old` | `tests/processing/test_quality.py` | planned |
-| Q-06 | *proposed* `test_integrity_counts_reconcile` | `tests/processing/test_quality.py` | planned |
-| Q-07 | *proposed* `test_quality_gate_stops_the_job_with_exit_code_1` | `tests/processing/test_quality.py` | planned |
-| Q-08 | **Deliberate failing test** (section 3) | `tests/processing/test_quality.py` | planned |
+| Q-01 | `test_csv_fixture_fails_the_quality_gate` (known bad records: invalid date, invalid state, negative interval, missing ID; defect D-005) | `tests/processing/test_quality.py` | passing |
+| Q-02 | `test_api_fixture_counts_and_gate` | `tests/processing/test_quality.py` | passing |
+| Q-03 | `test_clean_records_pass` | `tests/processing/test_quality.py` | passing |
+| Q-04 | `test_duplicate_ids_fail_uniqueness` | `tests/processing/test_quality.py` | passing |
+| Q-05 | `test_integrity_fails_when_counts_do_not_reconcile` (reconciliation) | `tests/processing/test_quality.py` | passing |
+| Q-06 | `test_timeliness_warns_on_old_data` (freshness) | `tests/processing/test_quality.py` | passing |
+| Q-07 | `test_invalid_timely_value_is_counted` | `tests/processing/test_quality.py` | passing |
+| Q-08 | `test_unmapped_sub_product_warns_consistency` | `tests/processing/test_quality.py` | passing |
+| Q-09 | `test_threshold_rules` | `tests/processing/test_quality.py` | passing |
+| Q-10 | `test_report_is_valid_json` | `tests/processing/test_quality.py` | passing |
 
 ### Database (Christopher Al Hassrouty)
 
@@ -104,6 +112,17 @@ Unit tests use `mongomock` (in-memory MongoDB), so they run without the `mongo` 
 | B-04 | *proposed* `test_database_unavailable_shows_error` | `tests/dashboard/test_app.py` | planned |
 | B-05 | Manual checklist (section 4): empty selection, invalid date range, missing category, database stopped, mobile width | `docs/evidence/dashboard_checks.md` | planned |
 
+### Machine learning (Perla Boustany, Spark MLlib)
+
+The models only describe or diagnose past data; they never predict. Fixed rule for "emerging": slope of at least +0.2 points per month, R² of at least 0.5 and at least 50 complaints in the window.
+
+| ID | Test | File | Status |
+|---|---|---|---|
+| M-01 | *proposed* `test_rising_series_gives_positive_slope_and_emerging_flag` (rising fixture series) | `tests/analytics/test_ml_emerging_issues.py` | planned |
+| M-02 | *proposed* `test_flat_series_is_not_flagged_emerging` | `tests/analytics/test_ml_emerging_issues.py` | planned |
+| M-03 | *proposed* `test_same_seed_gives_same_clusters` (KMeans seed 42) | `tests/analytics/test_ml_state_clusters.py` | planned |
+| M-04 | *proposed* `test_states_below_100_complaints_are_listed_separately` | `tests/analytics/test_ml_state_clusters.py` | planned |
+
 ### End-to-end (Charbel Mazraani with Joseph Nasr)
 
 | ID | Test | File | Status |
@@ -113,14 +132,14 @@ Unit tests use `mongomock` (in-memory MongoDB), so they run without the `mongo` 
 
 ## 3. Deliberate failing test (brief requirement)
 
-The brief requires at least one test that intentionally fails during development, to prove that the quality gate works. The final submission must have passing tests.
+The brief requires a known bad test record to be shown caught by the intended check during development. The final submission must have passing tests. Joseph implemented this as fixture records with deliberate problems (an invalid date, an invalid state, a negative interval, a missing Complaint ID) and a test that proves the quality gate fails on them, so the test itself passes.
 
 | Step | What | Evidence | Status |
 |---|---|---|---|
-| 1 | Joseph injects duplicate Complaint IDs and a malformed date into a fixture, without the matching fix in the code | Pull Request link | planned |
-| 2 | `make test` fails; the failing output is saved | `docs/evidence/deliberate_failure_YYYY-MM-DD.txt` | planned |
-| 3 | A defect entry is added | [defect_log.md](defect_log.md) | planned |
-| 4 | The fix is merged; `make test` passes; the passing output is saved | `docs/evidence/test_results_YYYY-MM-DD.txt` | planned |
+| 1 | The fixtures contain the known bad records | `tests/fixtures/mini_complaints.csv` and `tests/fixtures/README.md` | passing |
+| 2 | The quality gate detects them: `overall_status` FAIL | `test_csv_fixture_fails_the_quality_gate` in [test_results_2026-11-21.txt](evidence/test_results_2026-11-21.txt) | passing |
+| 3 | The gate stops the run and publishes nothing | `test_quality_gate_failure_writes_evidence_but_no_curated_data` | passing |
+| 4 | A defect entry is recorded | D-005 in [defect_log.md](defect_log.md) | passing |
 
 ## 4. Manual checks
 
@@ -136,3 +155,4 @@ The brief requires at least one test that intentionally fails during development
 | Date | Command | Result | Evidence |
 |---|---|---|---|
 | Thu 12 Nov 2026 | `make test` | 26 passed | [test_results_2026-11-12.txt](evidence/test_results_2026-11-12.txt) |
+| Sat 21 Nov 2026 | `make test` | 42 passed | [test_results_2026-11-21.txt](evidence/test_results_2026-11-21.txt) |
