@@ -1,0 +1,15 @@
+# Defect log
+
+Owner: Charbel Mazraani. Short record of the defects found and corrected during development, as required by the brief. Every defect gets one row; the fix is linked to its Pull Request.
+
+**How to add a defect:** open a GitHub Issue for it (assigned to the component owner), then add a row here with the next ID. When the fix is merged, fill in the Pull Request and set the status to `fixed`.
+
+Status values: `open` (found, not fixed), `in progress` (fix in a Pull Request), `fixed` (fix merged on `main`), `won't fix` (accepted, with the reason in the description).
+
+| ID | Date | Found by | Component | Description | How detected | Fix PR | Status |
+|---|---|---|---|---|---|---|---|
+| D-001 | 10 Nov 2026 | Joseph Nasr | Docker / MinIO | The official `minio/minio` image can no longer be pulled (`pull access denied`): MinIO stopped publishing official Docker images in October 2025. | First `docker compose up`: the image pull failed. | [#2](https://github.com/Joseph-Nasr-USJ/cfpb-money-transfers-platform/pull/2): use `alpine/minio:RELEASE.2025-10-15T17-29-55Z`, a community rebuild of the last MinIO release, pinned to its exact tag | fixed |
+| D-002 | 10 Nov 2026 | Joseph Nasr | Docker / MinIO | MinIO failed to start with `file access denied`: the image's default user cannot write to the Docker volume. | MinIO container logs on first start; the container kept restarting. | [#2](https://github.com/Joseph-Nasr-USJ/cfpb-money-transfers-platform/pull/2): the MinIO container runs as root (`user: "0:0"`); acceptable because every port is bound to `127.0.0.1` | fixed |
+| D-003 | 10 Nov 2026 | Joseph Nasr | Docker / pipeline image | The image build failed with `Read timed out` while pip downloaded PySpark (318 MB) on a slow connection. | `make up` (first image build) on a slow connection. | [#4](https://github.com/Joseph-Nasr-USJ/cfpb-money-transfers-platform/pull/4): pip timeout raised to 300 s with 10 retries | fixed |
+| D-004 | 10 Nov 2026 | Joseph Nasr | Docker / pipeline image | The next build failed with a hash mismatch on a truncated PySpark download after the connection dropped. | `make up` rebuild after the D-003 change. | [#4](https://github.com/Joseph-Nasr-USJ/cfpb-money-transfers-platform/pull/4): pip 26.3 with resumable downloads (`--resume-retries 20`), resumable `curl -C -` for the S3A jars | fixed |
+| D-005 | 16 Nov 2026 | Joseph Nasr | Spark quality gate | Known bad test records (one per problem in 19 fixture rows: an invalid date, an invalid state, a negative receipt-to-referral interval and a missing Complaint ID) make the quality report end with `overall_status` FAIL. This is the intended behaviour (the brief's known bad test record), recorded as a defect to show the check detects them. | `tests/processing/test_quality.py::test_csv_fixture_fails_the_quality_gate`; output saved in [test_results_2026-11-21.txt](evidence/test_results_2026-11-21.txt). | [#13](https://github.com/Joseph-Nasr-USJ/cfpb-money-transfers-platform/pull/13): the quality gate stops the run (Spark exit code 1) and publishes nothing; proven by `test_quality_gate_failure_writes_evidence_but_no_curated_data` | fixed |

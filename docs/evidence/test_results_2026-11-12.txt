@@ -1,0 +1,39 @@
+Test results, Thu 12 Nov 2026
+Recorded by: Charbel Mazraani
+Machine: Windows 11, Docker Desktop (engine 29.8.2)
+Code tested: main at d40b600, inside the pipeline container (Python 3.11, Java 17, PySpark 3.5.9)
+
+Command: make test
+Summary:
+26 passed in 28.17s
+
+Per-test detail (python -m pytest -v, same container):
+platform linux -- Python 3.11.18, pytest-9.2.0, pluggy-1.7.0 -- /usr/local/bin/python
+rootdir: /app
+tests/processing/test_fixtures.py::test_csv_has_real_headers_and_22_rows PASSED [  3%]
+tests/processing/test_fixtures.py::test_csv_contains_the_deliberate_cases PASSED [  7%]
+tests/processing/test_fixtures.py::test_api_page_structure_and_cases PASSED [ 11%]
+tests/processing/test_schema.py::test_both_mappings_produce_the_same_standard_columns PASSED [ 15%]
+tests/processing/test_schema.py::test_csv_fixture_maps_to_standard_columns PASSED [ 19%]
+tests/processing/test_schema.py::test_api_fixture_maps_to_standard_columns PASSED [ 23%]
+tests/processing/test_schema.py::test_csv_and_api_give_identical_standard_schema PASSED [ 26%]
+tests/processing/test_schema.py::test_removed_and_missing_columns_do_not_fail PASSED [ 30%]
+tests/processing/test_schema.py::test_curated_schema_matches_the_shared_contract PASSED [ 34%]
+tests/processing/test_state_codes.py::test_columns PASSED                [ 38%]
+tests/processing/test_state_codes.py::test_expected_counts PASSED        [ 42%]
+tests/processing/test_state_codes.py::test_codes_are_unique_two_uppercase_letters PASSED [ 46%]
+tests/processing/test_state_codes.py::test_key_codes_present PASSED      [ 50%]
+tests/processing/test_transforms.py::test_standardise_trims_and_nulls_empty_values PASSED [ 53%]
+tests/processing/test_transforms.py::test_parse_dates_handles_both_formats_and_flags_invalid PASSED [ 57%]
+tests/processing/test_transforms.py::test_normalise_values_types_and_tags PASSED [ 61%]
+tests/processing/test_transforms.py::test_apply_domain_keeps_current_and_legacy_labels PASSED [ 65%]
+tests/processing/test_transforms.py::test_deduplicate_prefers_closed_record PASSED [ 69%]
+tests/processing/test_transforms.py::test_deduplicate_latest_ingestion_and_api_win PASSED [ 73%]
+tests/processing/test_transforms.py::test_derive_fields PASSED           [ 76%]
+tests/processing/test_transforms.py::test_split_quarantine_reasons PASSED [ 80%]
+tests/processing/test_transforms.py::test_empty_state_can_be_quarantined PASSED [ 84%]
+tests/processing/test_transforms.py::test_csv_counts_balance PASSED      [ 88%]
+tests/processing/test_transforms.py::test_api_counts_balance PASSED      [ 92%]
+tests/processing/test_transforms.py::test_conform_to_curated_matches_schema PASSED [ 96%]
+tests/processing/test_transforms.py::test_product_mapping_has_no_ambiguous_rows PASSED [100%]
+============================= 26 passed in 26.92s ==============================
