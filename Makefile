@@ -1,5 +1,6 @@
 # Banking Complaints Data Platform - common commands.
 # Run every target from the repository root, e.g. "make up". Settings and secrets come from .env.
+# NiFi web UI after make up: https://localhost:8443/nifi (allow 1 to 2 minutes to start).
 # Install make once:  Windows: winget install ezwinports.make    macOS: xcode-select --install
 
 COMPOSE = docker compose
@@ -10,7 +11,7 @@ SOURCE ?= full_load
 RUN_ID ?=
 
 .PHONY: help up down reset test ingest-full ingest-incremental process load \
-        pipeline-full pipeline-incremental sample benchmark analytics logs
+        pipeline-full pipeline-incremental sample benchmark analytics ml logs
 
 help:
 	@echo Stack:     make up / make down / make reset - deletes all data / make logs
@@ -18,7 +19,7 @@ help:
 	@echo Steps:     make ingest-full / make ingest-incremental / make sample
 	@echo            make process SOURCE=full_load RUN_ID=id   or   SOURCE=api RUN_ID=id
 	@echo            make load RUN_ID=id
-	@echo Serving:   make benchmark / make analytics
+	@echo Serving:   make benchmark / make analytics / make ml
 	@echo Tests:     make test
 
 # ---------- Stack ----------
@@ -69,3 +70,8 @@ benchmark:
 
 analytics:
 	$(RUN) python -m analytics.run_all
+
+# Spark MLlib analyses (descriptive and diagnostic): emerging issues and state clusters
+ml:
+	$(RUN) spark-submit analytics/ml_emerging_issues.py
+	$(RUN) spark-submit analytics/ml_state_clusters.py
