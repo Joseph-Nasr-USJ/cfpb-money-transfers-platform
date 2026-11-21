@@ -4,7 +4,13 @@ Technical report. Group 5, course 020IABDM2 Big Data Frameworks (Dr. Rafiqul Haq
 
 ## 1. Executive summary
 
-_Draft pending (Loutchiana, due Fri 27 Nov)._
+We built a batch data platform that turns the public CFPB Consumer Complaint Database into evidence for one financial domain, money transfers and digital payments (option 5). It loads the full historical file once and collects new complaints from the CFPB API every 24 hours with Apache NiFi, with a tested Python collector as the fallback. Raw files are kept unchanged in MinIO. Apache Spark validates, cleans and deduplicates the records, quarantines bad ones with a reason and stops a run when a quality threshold fixed in advance is breached. MongoDB serves the curated records and aggregates, indexed for the dashboard filters, and a Streamlit dashboard with a Redis cache presents them. Two Spark MLlib analyses describe emerging issues and groups of states. The whole stack starts with one Docker Compose command, and rerunning the same window does not create duplicates. [TO COMPLETE: number of automated tests passing and the full-load record counts from the quality report.]
+
+**What we found.** [TO COMPLETE: three or four principal findings from docs/findings.md, each with its number, its denominator, the period and its caution. Include the answer to Q1 (fastest-growing sub-products and issues, and the wallet share) and to Q2 (the fraud-or-scam share by core sub-product).]
+
+**What the findings do not show.** The CFPB database is not a statistical sample, so the results describe published complaints and not all consumers. A complaint is not confirmed fraud or harm, company figures are shares of complaints and not a quality ranking, and a trend is not a forecast: the analysis is descriptive and diagnostic only.
+
+**Implication for the user.** [TO COMPLETE: one or two sentences on what a payments policy analyst or an operations manager can do with these results, taken from the findings.]
 
 ## 2. Problem and scope
 
@@ -41,7 +47,17 @@ Q1 and Q5 use Spark MLlib descriptively (issue-share trends, K-means groups of s
 
 ## 3. Data source and limitations
 
-_Draft pending (Loutchiana (category changes with Joseph), due Sun 22 Nov)._
+**Source and usage basis.** The platform uses the CFPB Consumer Complaint Database: the full CSV ZIP for the history and the official API for daily updates (references in section 8). The CFPB states that the complaint data it publishes is "freely available for anyone to use, analyze, and build on", and the API metadata declares the licence CC0, public domain (tested on 20 November 2026).
+
+**Fields and coverage.** The CFPB publishes 15 fields: Complaint ID, Date received, Date sent to company, Product, Sub-product, Issue, Sub-issue, Company, Company public response, Company response to consumer, Timely response?, State, ZIP code, Tags and Submitted via. Not every product has sub-products and not every issue has sub-issues, so sub-issue is mostly empty in our domain. The database generally updates daily. Only complaints sent to companies for response are eligible, and they are published after the company responds or after 15 days, whichever comes first, so recent weeks are provisional. Complaints referred to other regulators are not published.
+
+**Current restrictions.** Complaint narratives were removed in September 2026 (release 24), which is why the project does no text analysis; the consumer-consent and consumer-disputed fields are also gone. Since July 2026 filtered exports are limited to 100,000 complaints, so we use the full ZIP for the history and narrow API windows for updates. ZIP codes are masked or suppressed for small areas. The data contains no transactions, balances, confirmed fraud labels or resolution durations.
+
+**Representativeness.** The CFPB states that the database "is not a statistical sample of consumers' experiences". Following Session 1, inference needs a random sample and correlation does not imply causation, so we describe the published complaints and neither generalise nor claim causes. The CFPB advises considering company size and market share when comparing companies; the data cannot provide them, so company figures are shares of complaints, never a quality ranking.
+
+**Category changes.** The CFPB updated its product and issue forms in August 2023 and 2026 but keeps the labels the consumer selected, so history is not re-coded. In our domain three legacy labels used before April 2017 (Money transfers, Virtual currency, and Prepaid card with the sub-product Mobile wallet) are mapped to the current domain by `config/product_mapping.csv`, and the original labels are kept next to the standard ones. The mapping is to be confirmed with the lecturer.
+
+**Responsible use and ethics.** The data is public, but the platform still limits its use. It never displays individual records or free text, makes no attempt to re-identify anyone and does not use ZIP codes. Company results carry a caution and are never rankings. No statement claims causality or confirmed fraud, and small groups are grouped or flagged. A quality failure stops a run, so bad data never reaches the dashboard. AI assistants were used for drafting and code support; every contribution was reviewed and tested by the team, who can explain it.
 
 ## 4. Architecture and implementation
 
@@ -103,8 +119,53 @@ _Draft pending (Perla, due Wed 25 Nov)._
 
 ## 7. Reflection and next steps
 
-_Draft pending (Loutchiana (with Charbel), due Wed 25 Nov)._
+**Team process.** Six members each own a folder, so most Pull Requests touch different files. The `main` branch is protected: every change goes through a branch, a Pull Request and a review by a named teammate, merged with a merge commit. Each member keeps a weekly contribution log, and the lecturer's checkpoints were written up as short notes. The brief was updated during the project (version 2) and the lecturer asked for course tools, so NiFi, Redis and Spark MLlib were added late; the shared plan, the contracts and the task files had to be revised in one day.
+
+**Design trade-offs.** We chose a daily batch over streaming, because the CFPB publishes daily and the brief rules streaming out. We chose MongoDB as the serving store and kept Parquet in MinIO as the trusted source. We kept the tested Python collector next to NiFi so that the demonstration does not depend on one tool. MinIO no longer publishes official images, so we pinned a community rebuild.
+
+**Unresolved issues.** [TO COMPLETE on Wed 25 Nov from the repository: for example whether NiFi and Redis are merged and verified, the curated path `option=5`, the quality dimension names of brief V2, the approval of the legacy product labels, and any open defect.]
+
+**Next improvement.** The improvement to prioritise is a MongoDB replica set with automatic primary election, majority writes and reads from the primary, so that the loss of one node no longer means rebuilding the database. Sharding is not needed at about 200,000 documents. After that, a Spark cluster would be needed only if the data grew by orders of magnitude.
+
+**What we would do differently.** [TO COMPLETE with Charbel after the rehearsals: one or two lessons about planning, integration and testing.]
 
 ## 8. References and appendices
 
-_Draft pending (Loutchiana (from every owner), due Fri 27 Nov)._
+### References
+
+**Official CFPB sources** (accessed 21 November 2026)
+
+1. Consumer Financial Protection Bureau. *Consumer Complaint Database.* https://www.consumerfinance.gov/data-research/consumer-complaints/ (page last modified 29 October 2026).
+2. Consumer Financial Protection Bureau. *Consumer Complaint Database API.* https://cfpb.github.io/api/ccdb/api.html
+3. Consumer Financial Protection Bureau. *Consumer Complaint Database field reference.* https://cfpb.github.io/api/ccdb/fields.html
+4. Consumer Financial Protection Bureau. *Consumer Complaint Database release notes* (releases 20 to 24, 2023 to 2026). https://cfpb.github.io/api/ccdb/release-notes.html
+5. Consumer Financial Protection Bureau. *Full complaint data, CSV ZIP.* https://files.consumerfinance.gov/ccdb/complaints.csv.zip
+
+**Other sources**
+
+6. United States Postal Service. *Publication 28, Postal Addressing Standards*, Appendix B, Two-Letter State and Possession Abbreviations. https://pe.usps.com/text/pub28/28apb.htm
+
+**Course and brief**
+
+7. Haque, R. *Session 1: Enterprise Data Science, methodologies, principles and practices.* 020IABDM2, ESIB, USJ. Value of big data; descriptive, diagnostic, predictive and prescriptive analytics; exploratory and inferential analytics.
+8. Haque, R. *Session 2: Building an end-to-end big data solution.* Conceptual Big Data Framework; data collection tools (Apache NiFi, Kafka, Flume, Sqoop).
+9. Haque, R. *Session 3.1: Data storage tools and storage formats.* Storage systems; compression; ORC and Parquet.
+10. Haque, R. *Session 4.1: NoSQL and MongoDB, Redis, Apache Spark.* Document model, CAP, indexes and aggregation, replication and sharding; Redis as a cache; Spark and its libraries.
+11. Haque, R. *Class project: Public Banking Complaints Data Platform*, version 2. 020IABDM2 Big Data Frameworks.
+
+### Appendices
+
+| ID | Appendix | Where | Owner |
+|---|---|---|---|
+| A | Architecture document and diagram | `docs/architecture.md`, `docs/images/architecture.png` | Loutchiana |
+| B | Data dictionary, product mapping and state list | `docs/data_dictionary.md`, `config/product_mapping.csv`, `config/state_codes.csv` | Loutchiana, Joseph |
+| C | Raw manifest of the historical load and a sample run log | `docs/evidence/` [TO COMPLETE: file names once Marwa's load exists] | Marwa |
+| D | Sample quality report and the reconciliation of one run | `docs/evidence/` [TO COMPLETE] | Joseph |
+| E | Sample curated output | `docs/evidence/` [TO COMPLETE] | Joseph |
+| F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py` | Christopher |
+| G | Index benchmark before and after | `docs/evidence/benchmark.md` [TO COMPLETE] | Christopher |
+| H | Metric definitions and findings | `docs/metrics.md`, `docs/findings.md` | Perla |
+| I | Test plan, test results and defect log | `docs/test_plan.md`, `docs/evidence/test_results_*.txt`, `docs/defect_log.md` | Charbel |
+| J | Rerun (idempotency) evidence | `docs/evidence/idempotency.md` [TO COMPLETE] | Joseph |
+| K | Demonstration script and runbook | `docs/demo_script.md`, `docs/runbook.md` | Charbel |
+| L | Checkpoint notes and contribution logs | `docs/checkpoints/`, `docs/contributions/` | Loutchiana, everyone |
