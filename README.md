@@ -7,12 +7,12 @@ A batch data platform built on the public **CFPB Consumer Complaint Database** (
 The platform:
 
 1. downloads the full historical CSV once (scripted and repeatable);
-2. collects new complaints from the CFPB API every 24 hours (bounded date window, pagination, bounded retries, high-water mark);
+2. collects new complaints from the CFPB API every 24 hours (bounded date window, pagination, bounded retries, high-water mark) with **Apache NiFi**; a tested Python collector is the fallback;
 3. keeps every raw file unchanged in **MinIO** object storage;
 4. cleans, validates and deduplicates the data with **Apache Spark**, with a data-quality gate and a quarantine zone;
 5. loads curated records and aggregates into **MongoDB** (the serving layer);
-6. answers five analytical questions with reproducible scripts;
-7. shows the results in a **Streamlit** dashboard that reads MongoDB only;
+6. answers five analytical questions with reproducible scripts, including two descriptive **Spark MLlib** analyses (emerging issues and groups of states); no forecasting;
+7. shows the results in a **Streamlit** dashboard that reads MongoDB only, with **Redis** caching the dashboard queries;
 8. starts with one Docker Compose command (`make up`).
 
 The analysis is descriptive and diagnostic only. CFPB complaints are not a random sample of consumers, so the results describe complaints, not the whole market.
@@ -48,6 +48,8 @@ flowchart LR
   MG --> DB["Streamlit dashboard<br/>port 8501"]
 ```
 
+The diagram shows the Python collectors. In the final design Apache NiFi (`ingestion/nifi/`) starts the collection every 24 hours and keeps the provenance of every run, and these Python collectors are the fallback; Redis sits between the dashboard and MongoDB as a cache. The `nifi` and `redis` services are being added (see [Project status](#project-status)).
+
 The layers follow the Conceptual Big Data Framework from the course: collection, storage, processing, serving, analytics and visualisation. The full architecture document, with the reason for every component, is [docs/architecture.md](docs/architecture.md) (Loutchiana Marie); the diagram image goes in `docs/images/architecture.png`.
 
 ## Prerequisites
@@ -59,7 +61,7 @@ The layers follow the Conceptual Big Data Framework from the course: collection,
 | make | `winget install ezwinports.make`, then close and reopen the terminal | `xcode-select --install` |
 | Python | not needed: everything runs inside the containers | not needed |
 
-- **Memory:** at least **8 GB of RAM** on the laptop; give Docker Desktop or Rancher Desktop at least **6 GB** of memory.
+- **Memory:** at least **8 GB of RAM** on the laptop; give Docker Desktop or Rancher Desktop at least **8 GB** of memory if your laptop allows it (Apache NiFi needs about 2 GB on top of Spark; 16 GB of laptop RAM is recommended).
 - **Disk:** at least **15 GB free** (images, the full CSV and the Docker volumes).
 - **Time:** the first `make up` downloads the MongoDB and MinIO images and builds the pipeline image (Python 3.11, Java 17, PySpark 3.5.9): about **10 minutes** on a fast connection, and **up to about an hour** on a slow one (64 minutes measured on Thu 12 Nov 2026, mostly downloading PySpark, 318 MB, and the S3A jars). Leave it running: interrupted downloads resume automatically. Later starts take a few seconds.
 
@@ -116,7 +118,7 @@ Expected: `minio` and `mongo` are `running (healthy)`, and `minio-init` has `exi
 ```
 make test
 ```
-Expected: a summary line ending in `passed` with no failures (`26 passed` on Thu 12 Nov 2026; the number grows as components are merged).
+Expected: a summary line ending in `passed` with no failures (`42 passed` on Sat 21 Nov 2026; the number grows as components are merged). It takes about 1 to 2 minutes. The dated results are saved in `docs/evidence/`.
 
 **7. See every command:** run `make` with no argument.
 
@@ -154,6 +156,8 @@ Run every command from the repository root. Commands that run Python start a tem
 | `minio-init` | One-shot job that creates the bucket `cfpb-lake`, then exits with code 0 | none |
 | `mongo` | MongoDB 7.0, the serving layer (database `cfpb_money_transfers`) | 27017 |
 | `pipeline` | Python 3.11 + Java 17 + PySpark 3.5.9 (Spark in local mode): collectors, Spark job, loader, 24-hour scheduler | none |
+| `nifi` | Apache NiFi: scheduled collection into MinIO, web UI, provenance of every run (**being added by Joseph**: the address and port will be given here) | see here when merged |
+| `redis` | Cache for the dashboard queries (**being added by Joseph**) | see here when merged |
 | `dashboard` | Streamlit dashboard, reads MongoDB only | 8501 |
 
 All ports are bound to `127.0.0.1`: only your own laptop can reach them. The repository is mounted into the `pipeline` container at `/app`, so code changes do not need an image rebuild; only a change to `requirements-pipeline.txt` or the Dockerfile does (`make up` rebuilds automatically).
@@ -162,23 +166,27 @@ All ports are bound to `127.0.0.1`: only your own laptop can reach them. The rep
 
 ## Project status
 
-Updated Thu 12 Nov 2026. This section changes as Pull Requests are merged.
+Updated Sat 21 Nov 2026. This section changes as Pull Requests are merged.
 
 | Component | Status |
 |---|---|
 | Docker stack (`minio`, `minio-init`, `mongo`, `pipeline` image), Makefile | ✅ on `main` |
 | Reference data: `config/state_codes.csv`, `config/product_mapping.csv` | ✅ on `main` |
 | Spark explicit schemas and transforms (`processing/schema.py`, `processing/transforms.py`) with tests and fixtures | ✅ on `main` |
-| Historical and incremental collectors, scheduler, sample script (`ingestion/`) | in progress (Marwa) |
-| Spark job and quality gate (`processing/spark_job.py`, `processing/quality.py`) | in progress (Joseph) |
-| MongoDB loader, indexes, queries, benchmark (`database/`) | in progress (Christopher) |
-| Analysis scripts and dashboard (`analytics/`, `dashboard/`) | in progress (Perla) |
+| Spark job and quality gate (`processing/spark_job.py`, `processing/quality.py`) | ✅ on `main` |
+| MongoDB loader, indexes, queries, benchmark, model document (`database/`, `docs/mongodb_model.md`) | ✅ on `main` |
+| Metric definitions (`docs/metrics.md`) | ✅ on `main` |
+| Historical and incremental Python collectors, scheduler, sample script (`ingestion/`, the fallback) | in progress (Marwa) |
+| Apache NiFi flow (`ingestion/nifi/`) | in progress (Marwa) |
+| `nifi` and `redis` services in `docker-compose.yml` | in progress (Joseph) |
+| Analysis scripts, Spark MLlib scripts and dashboard (`analytics/`, `dashboard/`) | in progress (Perla) |
 
 Expected today:
 
 - The `pipeline` container exits with code 1 and restarts up to 5 times with `No module named ingestion.scheduler`, until the scheduler is merged. This is normal.
 - The `dashboard` service is disabled (`profiles: ["dashboard"]` in `docker-compose.yml`) until `docker/dashboard.Dockerfile` exists.
-- The `make` commands for ingestion, processing, loading, benchmark and analytics fail with `No module named ...` until their component is merged.
+- The `make` commands for ingestion and analytics fail with `No module named ...` until their component is merged. The Spark job, the loader and the benchmark are on `main`, but they need a raw run in MinIO, which the collectors produce.
+- `docker compose exec redis ...` answers `service "redis" is not running` until the `redis` service is merged.
 
 ## Folder structure
 
@@ -189,7 +197,7 @@ cfpb-money-transfers-platform/
   database/         MongoDB loader (upserts), indexes, aggregation queries, benchmark
   analytics/        reproducible analysis scripts Q1 to Q5; results in output/
   dashboard/        Streamlit app: app.py, pages/, components/, content/ (texts)
-  tests/            ingestion/, processing/, database/, dashboard/, e2e/, fixtures/
+  tests/            ingestion/, processing/, database/, analytics/, dashboard/, e2e/, fixtures/
   config/           product_mapping.csv (domain definition), state_codes.csv, settings.yaml
   docs/             architecture, runbook, data dictionary, test plan, defect log, demo script,
                     findings, metrics, MongoDB model, API notes, report/, evidence/, contributions/
@@ -226,7 +234,9 @@ The brief lists five roles; with six members, the "Visualisation and delivery le
 | `pull access denied for cfpb-pipeline` during `make up` | Only a warning: Compose builds this image locally right after. |
 | First build seems stuck on the `pip install` or `curl` step for many minutes | Normal on a slow connection: PySpark (318 MB) and the S3A jars are downloading. Leave it running (see the build time in [Prerequisites](#prerequisites)). |
 | First build fails with `Read timed out` or a hash mismatch | The connection dropped while downloading PySpark (318 MB). Run `make up` again: downloads resume where they stopped. |
-| Docker runs out of memory, or Spark is killed | Give Docker Desktop or Rancher Desktop at least 6 GB of memory, then restart it. |
+| Docker runs out of memory, or Spark is killed | Give Docker Desktop or Rancher Desktop at least 8 GB of memory, then restart it. |
+| NiFi page does not open right after `make up` (once the `nifi` service is merged) | NiFi needs 1 to 2 minutes to start. Check `docker compose logs nifi` and wait for the started message. |
+| The browser warns about the NiFi certificate | Expected if NiFi uses https with its own self-signed certificate on localhost: continue to the page. |
 | Pushing gives `403 ... denied to <another account>` | Your computer used a different GitHub account. Run `git remote set-url origin https://<your-username>@github.com/Joseph-Nasr-USJ/cfpb-money-transfers-platform.git` and push again. |
 
 More recovery steps (failed run, resume, reset of the high-water mark, index rebuild) are in the runbook.
@@ -235,9 +245,11 @@ More recovery steps (failed run, resume, reset of the high-water mark, index reb
 
 | Document | Content | Owner |
 |---|---|---|
-| [docs/runbook.md](docs/runbook.md) | Start, stop, reset, run the loads, schedule, logs, data quality, recovery, troubleshooting (draft due Wed 18 Nov) | Charbel |
+| [docs/runbook.md](docs/runbook.md) | Start, stop, reset, run the loads, schedule, logs, data quality, NiFi, Redis, recovery, troubleshooting (draft) | Charbel |
 | [docs/test_plan.md](docs/test_plan.md) | Every test level, test, owner and status | Charbel |
 | [docs/defect_log.md](docs/defect_log.md) | Defects found and corrected | Charbel |
+| [docs/demo_script.md](docs/demo_script.md) | The 8-step, 15-minute demonstration: presenter, commands, what to say, expected result | Charbel |
+| [docs/evidence/](docs/evidence/) | Dated test results and other evidence | Charbel |
 | [docs/architecture.md](docs/architecture.md) | Components and the reason for each | Loutchiana |
 | [docs/data_dictionary.md](docs/data_dictionary.md) | Curated fields, types and rules | Loutchiana |
 | [docs/report/](docs/report/) | Technical report | Loutchiana (editor), every owner |
