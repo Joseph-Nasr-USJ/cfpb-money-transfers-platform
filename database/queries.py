@@ -440,9 +440,43 @@ def freshness(db) -> dict:
     }
 
 
+def ml_emerging_issues(db, filters: dict | None = None) -> list[dict]:
+    """Read precomputed emerging-issue results from MongoDB."""
+    filters = filters or {}
+
+    unsupported = [
+        key for key, value in filters.items()
+        if key not in ("sub_product_std", "issue")
+        and value not in (None, [], "")
+    ]
+    if unsupported:
+        raise ValueError(
+            f"Unsupported filters for precomputed ML results: {sorted(unsupported)}"
+        )
+
+    selected = {
+        key: filters[key]
+        for key in ("sub_product_std", "issue")
+        if key in filters and filters[key] is not None
+    }
+    query = build_match(selected)
+    return list(db.ml_emerging_issues.find(query, {"_id": 0}))
+
+
+def ml_state_clusters(db) -> list[dict]:
+    """Read precomputed state-clustering results from MongoDB."""
+    return list(
+        db.ml_state_clusters.find({}, {"_id": 0}).sort("state", 1)
+    )
+
+
+
 __all__ = [
-    "build_match", "a1_monthly_volume", "a2_issue_subissue_share", "a3_fraud_share",
-    "a4_channel_share_by_year", "a5_response_and_timeliness",
-    "a6_processing_lag_distribution", "a7_company_cumulative_share",
-    "a8_state_issue_profile", "kpi_summary", "freshness",
+    "build_match", "a1_monthly_volume", "a2_issue_subissue_share",
+    "a3_fraud_share", "a4_channel_share_by_year",
+    "a5_response_and_timeliness",
+    "a6_processing_lag_distribution",
+    "a7_company_cumulative_share", "a8_state_issue_profile",
+    "kpi_summary", "freshness",
+    "ml_emerging_issues", "ml_state_clusters",
 ]

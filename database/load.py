@@ -195,8 +195,8 @@ def load(run_id: str) -> None:
     quality = read_json_object(fs, f"quality/run_id={run_id}/quality_report.json")
     if run_log.get("run_id") != run_id or quality.get("run_id") != run_id:
         raise ValueError("Run ID in stored metadata does not match --run-id")
-    if quality.get("overall_status") == "FAIL":
-        raise ValueError("Spark quality report says FAIL; MongoDB load aborted")
+    if quality.get("quality_gate") == "stopped":
+        raise ValueError("Spark quality gate stopped; MongoDB load aborted")
     if run_log.get("outcome") not in ("success", "skipped_identical"):
         raise ValueError(f"Ingestion run outcome is not successful: {run_log.get('outcome')!r}")
 
