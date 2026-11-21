@@ -36,3 +36,20 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 - Agree the two contract differences with Joseph and Christopher, and the Redis decision with Perla.
 - Collect screenshots (MinIO, MongoDB Compass, dashboard, quality report) into `docs/images/` as they exist.
 - Update the executive summary, section 7 and the appendices when `docs/findings.md` (Tue 24 Nov) and the evidence files exist.
+
+## Update of Sun 22 Nov 2026
+
+**What I did**
+- Put all my work into one Pull Request (#26) from branch `loutchiana/delivery-docs`, for Joseph to review and merge, and closed the seven smaller Pull Requests I had opened first.
+- Installed `make` and `pandoc` (for the PDF and DOCX export of the report), started Docker Desktop and created my local `.env` (not committed).
+- Started `make up` to build the stack and check the MinIO console.
+
+**Problems**
+- Docker Desktop is limited to 2 GB of memory and 2 processors by my WSL configuration (laptop: 15.6 GB), while the project needs about 8 GB for Spark. It must be raised before `make test` and the Spark job can run on my machine.
+- Seven small Pull Requests sent many notifications to Joseph and Charbel; one Pull Request is clearer. Lesson: agree the number of Pull Requests before opening them.
+- No new work from the teammates is on `main` since Sat 21 Nov: Perla's dashboard and analysis code, Marwa's collectors and the NiFi and Redis services are still to be pushed.
+
+**Next step**
+- Raise the Docker memory, run `make test`, and take the MinIO and MongoDB screenshots.
+- Message the team about the section files and the Wed 25 Nov deadline, and ask Joseph to merge #26.
+- Remind the owners on Mon 23 Nov.
