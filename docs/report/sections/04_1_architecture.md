@@ -7,7 +7,7 @@ Redis are merged and running (they are marked target on 21 Nov), and the curated
 
 ### 4.1 Architecture and technology choices
 
-![Figure 1. Architecture of the platform](../images/architecture.png)
+![Figure 1. Architecture of the platform](../../images/architecture.png)
 
 The platform is a batch system of seven layers, following the Conceptual Big Data Framework of Session 2. Each layer has one purpose and the whole stack starts with one Docker Compose command.
 

@@ -62,6 +62,7 @@ def read_body(path: Path) -> str:
     if not path.exists():
         return ""
     text = COMMENT.sub("", path.read_text(encoding="utf-8"))
+    text = text.replace("](../../", "](../")  # links written for sections/ become links valid from docs/report/
     if PENDING.search(text) and len(HEADING.sub("", PENDING.sub("", text)).split()) == 0:
         return ""
     return text.strip()
