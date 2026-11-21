@@ -86,10 +86,16 @@ def parse_dates(df: DataFrame) -> DataFrame:
 
 
 def normalise_values(df: DataFrame) -> DataFrame:
-    """Typed values: numeric Complaint ID, timely Yes/No to boolean, tags to an array with two flags."""
+    """Typed values: numeric Complaint ID, timely Yes/No to boolean, tags to an array with two flags.
+
+    invalid_timely_flag marks a timely value that is present but is neither Yes nor No
+    (it becomes null, and the quality report counts it as a validity problem).
+    """
     tags = F.when(F.col("tags").isNull(), F.array().cast("array<string>")).otherwise(F.split(F.col("tags"), r",\s*"))
+    timely_known = F.lower(F.col("timely_response")).isin("yes", "no")
     return (
-        df.withColumn("complaint_id", F.expr("try_cast(complaint_id AS BIGINT)"))
+        df.withColumn("invalid_timely_flag", F.col("timely_response").isNotNull() & ~timely_known)
+        .withColumn("complaint_id", F.expr("try_cast(complaint_id AS BIGINT)"))
         .withColumn(
             "timely_response",
             F.when(F.lower("timely_response") == "yes", F.lit(True))
