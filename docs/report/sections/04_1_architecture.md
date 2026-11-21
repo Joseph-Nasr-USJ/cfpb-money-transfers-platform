@@ -1,14 +1,28 @@
 <!--
 Section 4.1 Architecture and technology choices
-Owner: Loutchiana
-Target: 300 words | Draft due: Wed 25 Nov
-To cover: Diagram, purpose of each layer, course tools (NiFi, MinIO, Spark, Spark MLlib, Parquet, MongoDB, Redis, Streamlit, Docker). Summarise docs/architecture.md.
-How to write it: replace the line starting with "_Draft pending_" below by your text and keep the heading.
-Use the same terms as the rest of the report ("processing lag", "share of complaints"). Descriptive and
-diagnostic language only: no causal claims, no company quality ranking. Never write secrets.
-Run "python docs/report/build_report.py --check" to see your word count.
+Owner: Loutchiana | Target: 300 words | Written: Sat 21 Nov
+Summary of docs/architecture.md (the full reasoning is there). Facts to confirm before submission: that NiFi and
+Redis are merged and running (they are marked target on 21 Nov), and the curated path (option=5).
 -->
 
 ### 4.1 Architecture and technology choices
 
-_Draft pending (Loutchiana, due Wed 25 Nov)._
+![Figure 1. Architecture of the platform](../images/architecture.png)
+
+The platform is a batch system of seven layers, following the Conceptual Big Data Framework of Session 2. Each layer has one purpose and the whole stack starts with one Docker Compose command.
+
+**Collection.** Apache NiFi starts the collection every 24 hours and keeps the provenance of every run; a tested Python collector is the fallback. NiFi was chosen from the course's ingestion tools for its scheduling and provenance. Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
+
+**Raw storage.** MinIO object storage keeps every file unchanged, by ingestion date and run, with manifests and run logs. HDFS and Ceph need a cluster that about 200,000 records do not justify.
+
+**Processing.** Spark DataFrames in local mode validate, clean, deduplicate and aggregate. A quality gate stops a failing run. Spark Streaming is not used because the CFPB publishes daily, so there is no live stream.
+
+**Curated storage.** Parquet is columnar, compressed and stores its schema, so the aggregates read only the columns they need. ORC would be an equivalent alternative; CSV is slower and compressed text cannot be split.
+
+**Serving.** MongoDB's document model fits complaint-shaped records filtered on several fields; key-value, wide-column and graph stores do not. The single node has no network partition, so the CAP choice does not arise; a replica set is the first improvement.
+
+**Analytics.** Spark MLlib describes the data with linear regression (emerging issues) and K-means (groups of states). It does not forecast, because the brief keeps predictive modelling out of scope.
+
+**Presentation.** Streamlit reads MongoDB only, with Redis as a cache-aside layer with a ten-minute time-to-live.
+
+**Trade-offs.** We accept data that is up to a day old, a single node and no horizontal scale, in return for a platform that is simple to test, replay and reproduce. MinIO no longer publishes official Docker images, so we pin a community rebuild of its last release to an exact tag.
