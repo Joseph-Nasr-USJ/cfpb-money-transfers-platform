@@ -407,7 +407,7 @@ table(s, 0.6, 1.4, 8.3, [2.3, 6.0], [
     ["Loutchiana Marie", "Report, architecture, data dictionary"],
     ["Charbel Mazraani", "README, runbook, tests, demo"],
 ], size=14, row_h=0.62)
-for index, (number, label) in enumerate([("42", "automated tests passing (21 Nov)"), ("5", "defects found and fixed, all logged"),
+for index, (number, label) in enumerate([("57", "automated tests passing (22 Nov)"), ("5", "defects found and fixed, all logged"),
                                           ("6", "members, each presenting one step")]):
     shape(s, MSO_SHAPE.ROUNDED_RECTANGLE, 9.3, 1.4 + index * 1.7, 3.45, 1.5, fill="14455A")
     text(s, 9.3, 1.4 + index * 1.7, 1.35, 1.5, number, size=40, bold=True, color=AMBER, font=HEAD, align=PP_ALIGN.CENTER,
