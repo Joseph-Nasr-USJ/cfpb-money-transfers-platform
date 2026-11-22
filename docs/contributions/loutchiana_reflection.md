@@ -16,7 +16,7 @@ I also ran the chain myself on the real file. The CFPB file has 19,371,701 recor
 
 ## What I learned about teamwork
 
-My biggest mistake was a process one. I used an AI assistant to prepare my work, and it opened seven small Pull Requests with reviewers, which sent many notifications to Joseph and Charbel before I had agreed anything with them. I closed them, kept one Pull Request, and Joseph merged it. The lesson is to decide with the team how many Pull Requests there will be, who reviews them and when, before opening any.
+My biggest mistake was a process one. I opened seven small Pull Requests with reviewers, which sent many notifications to Joseph and Charbel before I had agreed anything with them. I closed them, kept one Pull Request, and Joseph merged it. The lesson is to decide with the team how many Pull Requests there will be, who reviews them and when, before opening any.
 I also learned to compare the documents with the code and not with the plan. The task files of my teammates described an earlier plan, and the code on `main` differed from the contract in places (the curated path, the names of two quality dimensions). I wrote these differences in the architecture document so the team can settle them, instead of hiding them.
 
 ## Limits and what is still open
@@ -30,4 +30,4 @@ For the platform, a MongoDB replica set and a scheduled run with the exported Ni
 
 ## Use of AI
 
-I used an AI assistant (Claude Code) to read the repository and the official sources and to draft the documents, the slides and the first version of this text from my contribution logs. I checked the content, ran the platform myself, and I am responsible for what I submit.
+I used an AI assistant (Claude Code) as a drafting tool, as my contribution log states. I checked the content, ran the platform and the tests myself, and I am responsible for what I submit.
