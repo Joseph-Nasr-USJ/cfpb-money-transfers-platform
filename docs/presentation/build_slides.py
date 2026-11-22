@@ -21,6 +21,7 @@ from lxml import etree
 HERE = Path(__file__).resolve().parent
 OUT = HERE / "slides_draft.pptx"
 DIAGRAM = HERE.parent / "images" / "architecture.png"
+IMAGES = HERE.parent / "images"
 
 # Palette: deep petrol and teal (data and finance), one warm accent used sparingly.
 NAVY, TEAL, AMBER = "0B2A3A", "1B998B", "F4A259"
@@ -140,6 +141,34 @@ def placeholder(slide, x, y, w, h, label):
           name="Evidence placeholder")
     text(slide, x + 0.2, y, w - 0.4, h, label, size=15, color=MUTED, italic=True, align=PP_ALIGN.CENTER,
          anchor=MSO_ANCHOR.MIDDLE)
+
+
+def evidence_picture(slide, x, y, w, h, file_name, crop, caption):
+    """Place a cropped screenshot from docs/images inside the box x, y, w, h (inches), centred, with a caption."""
+    from io import BytesIO
+    from PIL import Image
+    image = Image.open(IMAGES / file_name).crop(crop)
+    buffer = BytesIO()
+    image.save(buffer, format="PNG")
+    buffer.seek(0)
+    ratio = image.width / image.height
+    pic_w, pic_h = w, w / ratio
+    if pic_h > h - 0.5:
+        pic_h = h - 0.5
+        pic_w = pic_h * ratio
+    left = x + (w - pic_w) / 2
+    top = y + (h - 0.5 - pic_h) / 2
+    shape(slide, MSO_SHAPE.RECTANGLE, left - 0.04, top - 0.04, pic_w + 0.08, pic_h + 0.08, fill=WHITE, line=TEAL, line_width=1)
+    slide.shapes.add_picture(buffer, Inches(left), Inches(top), width=Inches(pic_w), height=Inches(pic_h))
+    text(slide, x, y + h - 0.45, w, 0.4, caption, size=12, color=MUTED, italic=True, align=PP_ALIGN.CENTER)
+
+
+def stat_card(slide, x, y, w, h, title, lines):
+    """A navy card with a big word and short lines (used when the evidence is a few numbers)."""
+    shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, x, y, w, h, fill=NAVY)
+    text(slide, x + 0.2, y + 0.15, w - 0.4, 0.8, title, size=34, bold=True, color=AMBER, font=HEAD, align=PP_ALIGN.CENTER,
+         anchor=MSO_ANCHOR.MIDDLE)
+    bullets(slide, x + 0.25, y + 1.1, w - 0.5, h - 1.3, lines, size=15, gap=6, color=WHITE)
 
 
 def content_slide(title, step=None, presenter=None, notes=None, number=None):
@@ -283,7 +312,9 @@ bullets(s, 0.6, 1.55, 6.0, 4.8, [
     "manifest.json: source URL, start and end time, size, SHA-256, record count",
     "A second identical download is logged as skipped, not stored twice",
 ], size=18, gap=12)
-placeholder(s, 6.95, 1.55, 5.8, 4.8, "[TO COMPLETE: screenshot of manifest.json in the MinIO console (Marwa)]")
+stat_card(s, 6.95, 1.55, 5.8, 4.8, "19,371,701", ["records in the file of 22 Nov 2026", "complaints.csv.zip: 353.6 MiB",
+          "complaints.csv: 5.5 GiB", "manifest.json: 1.1 KiB", "SHA-256 786c59f0...3cee50",
+          "Screenshot: docs/images/minio_raw_full_load.png (my run; Marwa to confirm)"])
 
 # ---------- 7. step 3 ----------
 s = content_slide("A bounded incremental run", step=3, presenter="Marwa (2:30)", number=7, notes=(
@@ -318,7 +349,8 @@ bullets(s, 0.6, 5.2, 8.1, 1.7, [
     "A FAIL stops the run: Spark exits with code 1, nothing is published",
     "Known bad records are caught (defect D-005)",
 ], size=16, gap=6)
-placeholder(s, 9.0, 1.55, 3.75, 5.2, "[TO COMPLETE: quality report excerpt (Joseph)]")
+stat_card(s, 9.0, 1.55, 3.75, 5.2, "PASS", ["Full load of 22 Nov 2026", "19,371,701 raw records", "19,166,525 out of domain",
+          "112 quarantined", "205,064 curated", "0 duplicates removed", "(my run; Joseph to confirm)"])
 
 # ---------- 9. step 5 ----------
 s = content_slide("Rerun: the counts are not inflated", step=5, presenter="Joseph (1:30)", number=9, notes=(
@@ -343,7 +375,8 @@ card(s, 4.7, 1.55, 3.9, 4.9, "Five compound indexes", None)
 bullets(s, 4.9, 2.3, 3.5, 4.1, ["sub-product, date", "issue, date", "state, date", "company, date", "channel, date"],
         size=16, gap=5)
 text(s, 4.9, 5.05, 3.5, 1.3, "Equality field first, date last. Dates are native BSON Date values.", size=14, color=MUTED)
-placeholder(s, 8.9, 1.55, 3.85, 4.9, "[TO COMPLETE: index list and the aggregation result (Christopher)]")
+stat_card(s, 8.9, 1.55, 3.85, 4.9, "205,064", ["complaints in MongoDB", "73,545 monthly summaries", "8,074 company-year summaries",
+          "Query on state and date: index scan on state_date_idx", "(my run; Christopher to confirm)"])
 
 # ---------- 11. step 7 ----------
 s = content_slide("Dashboard: answering Q1 and Q2", step=7, presenter="Perla (2:00)", number=11, notes=(

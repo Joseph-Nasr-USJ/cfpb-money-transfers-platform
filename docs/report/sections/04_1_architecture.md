@@ -1,8 +1,8 @@
 <!--
 Section 4.1 Architecture and technology choices
 Owner: Loutchiana | Target: 300 words | Written: Sat 21 Nov
-Summary of docs/architecture.md (the full reasoning is there). Facts to confirm before submission: that NiFi and
-Redis are merged and running (they are marked target on 21 Nov), and the curated path (option=5).
+Summary of docs/architecture.md (the full reasoning is there). Facts to confirm before submission: that the NiFi flow is exported and
+running (the NiFi and Redis services were merged on 22 Nov, PR #27), and the curated path (domain= in code, option=5 in the brief).
 -->
 
 ### 4.1 Architecture and technology choices
@@ -11,7 +11,7 @@ Redis are merged and running (they are marked target on 21 Nov), and the curated
 
 The platform is a batch system of seven layers, following the Conceptual Big Data Framework of Session 2. Each layer has one purpose and the whole stack starts with one Docker Compose command.
 
-**Collection.** Apache NiFi starts the collection every 24 hours and keeps the provenance of every run; a tested Python collector is the fallback. NiFi was chosen from the course's ingestion tools for its scheduling and provenance. Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
+**Collection.** Apache NiFi is planned to start the collection every 24 hours and keep the provenance of every run (its service is in the Docker stack; its flow is still to be exported); the tested Python collector is the working path. NiFi was chosen from the course's ingestion tools for its scheduling and provenance. Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
 
 **Raw storage.** MinIO object storage keeps every file unchanged, by ingestion date and run, with manifests and run logs. HDFS and Ceph need a cluster that about 200,000 records do not justify.
 

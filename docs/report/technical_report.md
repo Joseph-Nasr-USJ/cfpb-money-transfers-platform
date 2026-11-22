@@ -29,7 +29,7 @@ We built a batch data platform that turns the public CFPB Consumer Complaint Dat
 | Virtual currency (legacy label) | all | Virtual currency |
 | Prepaid card | Mobile wallet only | Mobile or digital wallet |
 
-Four core sub-products are compared throughout: domestic (US) money transfer, international money transfer, mobile or digital wallet and virtual currency; the rest are grouped as "Other money services". The CFPB API returned 199,152 records for the current label on 20 November 2026.
+Four core sub-products are compared throughout: domestic (US) money transfer, international money transfer, mobile or digital wallet and virtual currency; the rest are grouped as "Other money services". The CFPB API returned 199,152 records for the current label on 20 November 2026. The full load of 22 November keeps 205,064 curated complaints: 199,354 under the current label and 5,710 under the legacy labels of the mapping.
 
 **Reporting period.** The full history in the CFPB file, kept current by a 24-hour incremental collection. Each question's window is fixed in advance, and the current year is labelled partial.
 
@@ -67,7 +67,7 @@ Q1 and Q5 use Spark MLlib descriptively (issue-share trends, K-means groups of s
 
 The platform is a batch system of seven layers, following the Conceptual Big Data Framework of Session 2. Each layer has one purpose and the whole stack starts with one Docker Compose command.
 
-**Collection.** Apache NiFi starts the collection every 24 hours and keeps the provenance of every run; a tested Python collector is the fallback. NiFi was chosen from the course's ingestion tools for its scheduling and provenance. Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
+**Collection.** Apache NiFi is planned to start the collection every 24 hours and keep the provenance of every run (its service is in the Docker stack; its flow is still to be exported); the tested Python collector is the working path. NiFi was chosen from the course's ingestion tools for its scheduling and provenance. Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
 
 **Raw storage.** MinIO object storage keeps every file unchanged, by ingestion date and run, with manifests and run logs. HDFS and Ceph need a cluster that about 200,000 records do not justify.
 
@@ -159,10 +159,10 @@ _Draft pending (Perla, due Wed 25 Nov)._
 |---|---|---|---|
 | A | Architecture document and diagram | `docs/architecture.md`, `docs/images/architecture.png` | Loutchiana |
 | B | Data dictionary, product mapping and state list | `docs/data_dictionary.md`, `config/product_mapping.csv`, `config/state_codes.csv` | Loutchiana, Joseph |
-| C | Raw manifest of the historical load and a sample run log | `docs/evidence/` [TO COMPLETE: file names once Marwa's load exists] | Marwa |
-| D | Sample quality report and the reconciliation of one run | `docs/evidence/` [TO COMPLETE] | Joseph |
-| E | Sample curated output | `docs/evidence/` [TO COMPLETE] | Joseph |
-| F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py` | Christopher |
+| C | Raw manifest of the historical load and a sample run log | `docs/images/minio_raw_full_load.png` (manifest in MinIO, 22 Nov); `docs/evidence/` [TO COMPLETE: manifest and run log files, Marwa] | Marwa |
+| D | Sample quality report and the reconciliation of one run | `docs/images/minio_quality_report.png`; `docs/evidence/` [TO COMPLETE: the JSON file, Joseph] | Joseph |
+| E | Sample curated output | `docs/images/minio_curated_parquet.png`; `docs/evidence/` [TO COMPLETE: sample file, Joseph] | Joseph |
+| F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py`, `docs/images/mongodb_collections_indexes.png` | Christopher |
 | G | Index benchmark before and after | `docs/evidence/benchmark.md` [TO COMPLETE] | Christopher |
 | H | Metric definitions and findings | `docs/metrics.md`, `docs/findings.md` | Perla |
 | I | Test plan, test results and defect log | `docs/test_plan.md`, `docs/evidence/test_results_*.txt`, `docs/defect_log.md` | Charbel |

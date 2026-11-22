@@ -2,8 +2,8 @@
 Section 2. Problem and scope
 Owner: Loutchiana (the questions with Perla)
 Target: 350 words | Written: Sat 21 Nov
-Facts to confirm before submission: the record count (199,152 for the current label, API test of 20 Nov 2026,
-Marwa's docs/api_notes.md) against the final quality report of the full load; the legacy product labels with the lecturer; the final wording of Q1
+Facts to confirm before submission: the record count (205,064 curated in the full load of 22 Nov 2026, of which 199,354 current label; the API test of 20 Nov gave 199,152;
+Marwa's docs/api_notes.md) against the final quality report; the legacy product labels with the lecturer; the final wording of Q1
 to Q5 with Perla.
 -->
 
@@ -24,7 +24,7 @@ to Q5 with Perla.
 | Virtual currency (legacy label) | all | Virtual currency |
 | Prepaid card | Mobile wallet only | Mobile or digital wallet |
 
-Four core sub-products are compared throughout: domestic (US) money transfer, international money transfer, mobile or digital wallet and virtual currency; the rest are grouped as "Other money services". The CFPB API returned 199,152 records for the current label on 20 November 2026.
+Four core sub-products are compared throughout: domestic (US) money transfer, international money transfer, mobile or digital wallet and virtual currency; the rest are grouped as "Other money services". The CFPB API returned 199,152 records for the current label on 20 November 2026. The full load of 22 November keeps 205,064 curated complaints: 199,354 under the current label and 5,710 under the legacy labels of the mapping.
 
 **Reporting period.** The full history in the CFPB file, kept current by a 24-hour incremental collection. Each question's window is fixed in advance, and the current year is labelled partial.
 

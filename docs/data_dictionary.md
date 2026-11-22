@@ -91,7 +91,7 @@ Required data artefact of the brief. Columns: `source_product`, `source_sub_prod
 
 | Source product | Sub-product | `product_std` | `sub_product_std` | Meaning |
 |---|---|---|---|---|
-| Money transfer, virtual currency, or money service | any | same label | original sub-product | current CFPB label (199,152 records on 20 Nov 2026 in the API) |
+| Money transfer, virtual currency, or money service | any | same label | original sub-product | current CFPB label (199,152 records on 20 Nov 2026 in the API; 199,354 in the full file of 22 Nov) |
 | Money transfers | any | `Money transfer, virtual currency, or money service` | original sub-product | legacy label used before April 2017 (**to confirm** with the lecturer) |
 | Virtual currency | any | `Money transfer, virtual currency, or money service` | `Virtual currency` | legacy label |
 | Prepaid card | Mobile wallet | `Money transfer, virtual currency, or money service` | `Mobile or digital wallet` | legacy label; other prepaid sub-products stay out of domain |
@@ -150,6 +150,8 @@ The rejected records with all their columns and a `reject_reason`. Several reaso
 | `consistency` | unmapped and mapped product combinations with counts |
 | `thresholds` | the thresholds used (fixed in advance) |
 | `overall_status` | PASS, WARN or FAIL; FAIL stops the run |
+
+Example, full run of 22 Nov 2026 (`20261122T183046Z_full`): `overall_status` PASS; `counts` raw_input 19,371,701, out_of_domain 19,166,525, duplicates_removed 0, quarantined 112, curated 205,064; `quarantine_reasons` invalid_state 32, negative_lag 80; `freshness` latest_date_received 2026-11-20, ingestion_lag_days 2.
 | `quality_gate` | `passed`, `stopped` or `overridden` (development only) |
 
 The six dimensions of brief V2 are uniqueness, completeness, validity, consistency, freshness and reconciliation. On 21 Nov the code still labels two of them `timeliness` and `integrity`; the rename is open with Joseph.

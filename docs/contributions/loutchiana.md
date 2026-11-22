@@ -53,3 +53,25 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 - Raise the Docker memory, run `make test`, and take the MinIO and MongoDB screenshots.
 - Message the team about the section files and the Wed 25 Nov deadline, and ask Joseph to merge #26.
 - Remind the owners on Mon 23 Nov.
+
+## Update of Mon 23 Nov 2026
+
+**What I did**
+- Raised the Docker memory from 2 GB to 8 GB (4 processors), then ran `make test` on my machine: 57 passed in 4 minutes.
+- Ran the whole chain once on the real CFPB file of 22 Nov 2026, from a scratch copy of the repository that adds Marwa's collectors (they are not on `main` yet): download (19,371,701 records, 353.6 MiB zipped, 5.5 GiB CSV), Spark job (quality gate PASS; 19,166,525 out of domain, 112 quarantined, 205,064 curated, 0 duplicates; the counts reconcile exactly) and MongoDB load (205,064 complaints, 73,545 monthly and 8,074 company-year summaries), then the indexes.
+- Took the MinIO console screenshots (raw files and manifest, curated Parquet, quality report, bucket) and a `mongosh` output with the collections, the five indexes and an index scan; saved in `docs/images/`.
+- Explained the two record counts in the architecture document, the report (section 2), the data dictionary and the slides outline: 205,064 curated = 199,354 under the current label (199,152 on 20 Nov in the API, plus 202 published since) + 5,710 under legacy labels.
+- Updated the architecture document after Joseph's PR #27 (NiFi and Redis services on `main`) and corrected the first contract difference: the Spark job and the loader both use `domain=money_transfers_payments`; only the brief's example says `option=5`.
+- Built the first draft of the 15 slides with a script (`docs/presentation/build_slides.py`) and put my run's numbers on slides 6, 8 and 10 (marked as my run, for the owners to confirm or replace).
+- Used an AI assistant (Claude Code) for these steps; I check the numbers against the quality report and must be able to explain them.
+
+**Problems**
+- The full file has 19.4 million records; the Spark job needs the 8 GB Docker setting. Teammates with the default 2 GB will not be able to run it.
+- The two record counts (199,152 and 205,064) were not explained anywhere; now they are.
+- The quality check names `timeliness` and `integrity` in `processing/quality.py` still differ from brief V2 (`freshness`, `reconciliation`); to settle with Christopher.
+- Perla's dashboard is on her branch (work in progress); her pages do not yet show my texts from `dashboard/content/`.
+
+**Next step**
+- Message the team about the section files (due Wed 25 Nov) and settle the two differences with Joseph and Christopher.
+- Fill the findings, the executive summary and the remaining slide placeholders when Perla's findings arrive (Tue 24 Nov).
+- Write my reflection (due Fri 27 Nov), rehearse step 1 and export the final report with `export_report.py --final`.
