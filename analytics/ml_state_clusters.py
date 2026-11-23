@@ -38,15 +38,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from processing.spark_job import build_spark, path_exists
-
+from processing.spark_job import CURATED_DIR, build_spark, path_exists
 
 OUTPUT_DIR = ROOT / "analytics" / "output"
 
-CURATED_DIR = (
-    "curated/complaints/"
-    "domain=money_transfers_payments"
-)
 
 COLLECTION_NAME = "ml_state_clusters"
 

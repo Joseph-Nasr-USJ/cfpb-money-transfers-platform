@@ -1,12 +1,11 @@
-
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
 from dashboard.components.filters import show_filters
 from dashboard.components.db import cached_query
+from dashboard.components.transforms import prepare_monthly_data
 from database.queries import a1_monthly_volume
-
 
 # --------------------------------------------------
 # PAGE SETUP
@@ -106,11 +105,7 @@ df = df.sort_values(["month", "sub_product_std"])
 
 st.header("Monthly Complaint Volume")
 
-monthly = (
-    df.groupby("month", as_index=False)["complaint_count"]
-    .sum()
-    .sort_values("month")
-)
+monthly = prepare_monthly_data(df)
 
 fig_monthly = px.line(
     monthly,

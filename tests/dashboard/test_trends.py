@@ -1,28 +1,7 @@
 
-import pandas as pd
+"""Tests for the actual Trends dashboard transformation."""
 
-
-def prepare_monthly_data(rows):
-    """Prepare the monthly totals used by the Trends page."""
-
-    df = pd.DataFrame(rows)
-
-    df["month"] = pd.to_datetime(
-        df["year_month"],
-        format="%Y-%m"
-    )
-
-    df["complaint_count"] = pd.to_numeric(
-        df["complaint_count"]
-    )
-
-    monthly = (
-        df.groupby("month", as_index=False)["complaint_count"]
-        .sum()
-        .sort_values("month")
-    )
-
-    return monthly
+from dashboard.components.transforms import prepare_monthly_data
 
 
 def test_monthly_totals():
@@ -72,3 +51,24 @@ def test_wallet_percentage():
     wallet_share = wallet / total * 100
 
     assert wallet_share == 30.0
+
+
+def test_invalid_months_are_excluded():
+    rows = [
+        {"year_month": "2025-01", "complaint_count": 10},
+        {"year_month": "not-a-month", "complaint_count": 50},
+    ]
+
+    monthly = prepare_monthly_data(rows)
+
+    assert monthly["complaint_count"].tolist() == [10]
+
+
+def test_empty_monthly_data():
+    monthly = prepare_monthly_data([])
+
+    assert monthly.empty
+    assert list(monthly.columns) == [
+        "month",
+        "complaint_count",
+    ]
