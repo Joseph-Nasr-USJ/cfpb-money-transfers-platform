@@ -1,9 +1,12 @@
 # MongoDB Model — Banking Complaints Data Platform
 
-**Team:** Group 5 — Money Transfers and Digital Payments  
-**Database:** `cfpb_money_transfers`  
-**Owner:** Christopher Al Hassrouty (Database Lead)  
-**Status:** Design specification; implementation and validation pending
+**Team:** Group 5 — Money Transfers and Digital Payments
+
+**Database:** `cfpb_money_transfers`
+
+**Owner:** Christopher Al Hassrouty (Database Lead)
+
+**Status:** Model and implementation drafted; production integration, tests and benchmarking pending
 
 ## 1. Purpose and design decisions
 
@@ -22,9 +25,11 @@ The authoritative transformation and field names come from Spark and the team's 
 
 ### 2.1 `complaints` — curated records
 
-**Purpose:** primary queryable, deduplicated collection for detailed descriptive analysis.  
-**Grain:** one document per complaint.  
-**Source:** Spark `curated/complaints/domain=money_transfers_payments/year=YYYY/month=MM/` in the MinIO bucket `cfpb-lake`.
+**Purpose:** primary queryable, deduplicated collection for detailed descriptive analysis.
+
+**Grain:** one document per complaint.
+
+**Source:** Spark `curated/complaints/option=5/year=YYYY/month=MM/` in the MinIO bucket `cfpb-lake` (`MM` is two digits). This path must be deployed together with Joseph's corresponding Spark writer change.
 
 Example (mongosh syntax; illustrative, **not** a real consumer record):
 
@@ -72,8 +77,10 @@ The source-defined `processing_lag_days` is **date sent to company minus date re
 
 ### 2.2 `agg_monthly` — dashboard-ready monthly summaries
 
-**Purpose:** monthly counts and response measures for frequently used multi-dimensional charts.  
-**Grain:** one row per unique combination of `year_month`, `sub_product_std`, `issue`, `state`, `submitted_via`, and `company_response`.  
+**Purpose:** monthly counts and response measures for frequently used multi-dimensional charts.
+
+**Grain:** one row per unique combination of `year_month`, `sub_product_std`, `issue`, `state`, `submitted_via`, and `company_response`.
+
 **Source:** Spark `curated/aggregates/agg_monthly/`.
 
 ```javascript
@@ -96,8 +103,10 @@ Index: `{year_month: 1, sub_product_std: 1}`. The numbers above are illustrative
 
 ### 2.3 `agg_company_year` — annual company/sub-product counts
 
-**Purpose:** company-share summaries, **not** company service-quality rankings.  
-**Grain:** `year`, `company`, `sub_product_std`.  
+**Purpose:** company-share summaries, **not** company service-quality rankings.
+
+**Grain:** `year`, `company`, `sub_product_std`.
+
 **Source:** Spark `curated/aggregates/agg_company_year/`.
 
 ```javascript
@@ -113,7 +122,8 @@ Candidate index: `{year: 1, sub_product_std: 1, company: 1}`, subject to benchma
 
 ### 2.4 `pipeline_runs` — operational audit trail
 
-**Purpose:** record each ingestion/pipeline run and the MongoDB load reconciliation evidence.  
+**Purpose:** record each ingestion/pipeline run and the MongoDB load reconciliation evidence.
+
 **Grain:** one document per `run_id` (use `_id = run_id` for idempotent writes).
 
 ```javascript
@@ -134,7 +144,8 @@ Also retain the remaining non-secret collector run metadata, including endpoint,
 
 ### 2.5 `quality_reports` — data-quality evidence
 
-**Purpose:** store Spark quality reports for monitoring and the dashboard's data-quality view.  
+**Purpose:** store Spark quality reports for monitoring and the dashboard's data-quality view.
+
 **Grain:** one document per `run_id`, with `_id = run_id`.
 
 ```javascript
@@ -148,31 +159,95 @@ Also retain the remaining non-secret collector run metadata, including endpoint,
   checks: [{ dimension: "uniqueness", rule: "unique complaint_id", status: "PASS" }],
   completeness: { complaint_id: 100.0 },
   freshness: { latest_date_received: "2026-11-09", ingestion_lag_days: 1 },
-  overall_status: "PASS"
+  overall_status: "PASS",
+  quality_gate: "passed"
 }
 ```
 
-Examples are illustrative; actual counts and quality statuses must come from the Spark job. The six required quality dimensions are uniqueness, completeness, validity, consistency, timeliness and integrity.
+Examples are illustrative; actual counts and quality statuses must come from the Spark job. The six required V2 quality dimensions are **uniqueness, completeness, validity, consistency, freshness and reconciliation**. Reconciliation checks the raw-to-curated accounting and, **after MongoDB loading**, the equality of curated and MongoDB complaint counts; the loader records this latter count as `pipeline_runs.mongo_count_after`.
 
-### 2.6 `state_population` — optional enrichment
+The Spark report exposes `quality_gate` with the decisions `"passed"`, `"stopped"` and `"overridden"`. The MongoDB loader **aborts before opening MongoDB only when `quality_gate == "stopped"`**. An explicitly overridden gate can proceed even if `overall_status` reports `"FAIL"`, allowing controlled fixture testing with Spark's `--ignore-quality-gate`; this does not mean the underlying quality warnings or failures disappear. Keep the actual status and override evidence in `quality_reports`.
 
-**Purpose:** hold documented US state population estimates **only if** the team implements and validates this optional enrichment.  
+### 2.6 `ml_emerging_issues` — descriptive emerging-issue analysis
+
+**Purpose:** serve Perla's **Spark MLlib** emerging-issue results to the dashboard; this collection stores *derived analytical results*, not individual complaints.
+
+**Grain:** one result per `(sub_product_std, issue)` for the defined 24-complete-month analysis window.
+
+**Writer:** Perla's `analytics/ml_emerging_issues.py` (the MongoDB loader does not train the models or write this collection).
+
+**Index:** the built-in unique `{_id: 1}` is sufficient for this small collection; do not introduce additional secondary indexes without a measured query need.
+
+Expected content: sub-product and issue labels, a slope in **percentage points per month**, R², latest observed issue share, count of complaints in the analysis window, an emerging-issue decision based on the documented thresholds, `generated_at` and the curated input record count. The agreed rule is slope >= +0.2 percentage points/month, R² >= 0.5, and at least 50 complaints in the window. This is a description of published complaint shares, **not a forecast or a claim of fraud**.
+
+Illustrative shape **only** (field names beyond the shared contract must be finalized with Perla before dashboard integration):
+
+```javascript
+{
+  _id: "Domestic (US) money transfer|Fraud or scam",
+  sub_product_std: "Domestic (US) money transfer",
+  issue: "Fraud or scam",
+  slope_pp_per_month: 0.25,
+  r_squared: 0.62,
+  latest_share_pct: 23.5,
+  complaints_in_window: 500,
+  is_emerging: true,
+  generated_at: ISODate("2026-11-21T12:00:00Z"),
+  curated_count: 200000
+}
+```
+
+Reader: `ml_emerging_issues(db, filters)` in `database/queries.py`, returning a list and `[]` when the collection or filtered result is empty. Use the dashboard's agreed filters and preserve the helper's return structure for Redis caching.
+
+### 2.7 `ml_state_clusters` — descriptive state segmentation
+
+**Purpose:** serve Perla's **Spark MLlib K-means** state-profile clusters to the dashboard.
+
+**Grain:** one result per eligible state, with a cluster label and a documented cluster profile; states with fewer than 100 complaints are listed separately.
+
+**Writer:** Perla's `analytics/ml_state_clusters.py`.
+
+**Index:** the automatic `{_id: 1}` is sufficient for this small collection.
+
+The team evaluates `k` from 2 through 6 using silhouette score, with seed 42; features describe the issue and submission-channel shares. Include the selected cluster, descriptive leading issues/channels, silhouette, `generated_at`, and curated input record count. Clusters **do not** describe individual consumers or service quality.
+
+Illustrative shape **only** (exact field names and `_id` format to be confirmed with Perla):
+
+```javascript
+{
+  _id: "NY",
+  state: "NY",
+  cluster: 1,
+  leading_issues: ["Fraud or scam"],
+  leading_channels: ["Web"],
+  silhouette: 0.41,
+  generated_at: ISODate("2026-11-21T12:00:00Z"),
+  curated_count: 200000
+}
+```
+
+Reader: `ml_state_clusters(db)` in `database/queries.py`, returning a list and `[]` if there are no results. Perla owns ML model fitting, collection output formats, and refresh after a successful curated-data load; coordinate changes to the reader contract before altering the dashboard's Redis-cached usage.
+
+### 2.8 `state_population` — optional enrichment
+
+**Purpose:** hold documented US state population estimates **only if** the team implements and validates this optional enrichment.
+
 **Grain:** one document per state and reference year, with a documented source and update date. Do not create or populate it unless Perla proceeds with population-normalized analysis.
 
 ## 3. Loading and query contracts
 
 1. `python -m database.load --run-id <id>` reads curated Parquet and the two aggregate outputs from MinIO using `pyarrow.fs.S3FileSystem` with credentials from environment variables. It never directly reads raw data to serve the dashboard.
 2. Convert Parquet/Python dates to BSON `Date` before writing. Upsert `complaints` in batches of **5,000**, unordered; the same complaint ID must not create duplicates on rerun.
-3. Replace aggregate collections safely by loading temporary collections and renaming them into place (`dropTarget=True`) so the dashboard does not see partially loaded results. Preserve relevant indexes on the replacement collections.
-4. Copy the run log and quality report to `pipeline_runs` and `quality_reports`, including `mongo_count_after`.
-5. `database/queries.py` exposes shared filter-aware aggregations to Perla's dashboard, with filters including date range, sub-product, issue, state, submission channel and company. Queries must handle empty results gracefully.
+3. **Refresh aggregates whenever their underlying curated records change.** Replace aggregate collections safely by loading temporary collections and renaming them into place (`dropTarget=True`). Each collection rename is atomic independently; replacement of both aggregates together is **not** one transaction. Preserve relevant indexes on the replacement collections.
+4. Copy the run log and quality report to `pipeline_runs` and `quality_reports`; store `mongo_count_after` in the run document for post-load **reconciliation** with the curated count. Reject a Spark `quality_gate` of `"stopped"` before opening the database; allow `"passed"` and `"overridden"`.
+5. `database/queries.py` exposes shared filter-aware aggregations to Perla's dashboard, with filters including date range, sub-product, issue, state, submission channel and company. It also exposes the two ML read helpers. Return stable list/dictionary shapes, with `[]` for empty list-producing queries, and coordinate signature/shape changes with Perla **before** changing them because her Redis cache uses those results (configured TTL: 600 seconds).
 6. Reconcile counts at the **same scope** (a full curated snapshot versus MongoDB, or a specific run's affected records). Rerunning an identical window must not increase unique complaint counts.
 
 ## 4. Performance and verification evidence
 
 - Implement the planned indexes in `database/indexes.py` and record their actual names and keys.
 - Compare three representative query patterns **before and after indexing** using MongoDB `explain("executionStats")`; record median execution time, `totalDocsExamined`, `totalKeysExamined`, and winning plan (typically `COLLSCAN` before, `IXSCAN` after when usable).
-- Test: duplicate `_id` insertion raises `DuplicateKeyError`; upsert twice does not increase count; `date_received` is a BSON Date; aggregate totals reconcile with the same curated snapshot; impossible filters return empty results; query timings meet a documented threshold.
+- Test: duplicate `_id` insertion raises `DuplicateKeyError`; upsert twice does not increase count; `date_received` is a BSON Date; aggregate totals reconcile with the same curated snapshot; impossible filters return empty results; a `quality_gate` of `"stopped"` prevents a MongoDB connection, while `"passed"` and `"overridden"` proceed; query timings meet a documented threshold.
 - Save evidence in `docs/evidence/benchmark.md`, database tests in `tests/database/`, and MongoDB screenshots for the technical report and live demonstration.
 
 ## 5. Open integration decisions
@@ -180,4 +255,5 @@ Examples are illustrative; actual counts and quality statuses must come from the
 - Confirm final product mapping with the lecturer and Joseph.
 - Confirm with Joseph whether the optional `lineage` nested object is emitted by Spark or assembled solely by the MongoDB loader; do **not** drop the canonical flat lineage fields.
 - Confirm Perla's `docs/metrics.md` and agree on query return formats before dashboard integration.
-- Confirm actual MinIO Parquet paths and per-run touched partitions with Joseph before implementing the production loader.
+- Deploy the updated `curated/complaints/option=5` reader **in the same release as Joseph's Spark writer**; verify real MinIO partitions have two-digit months.
+- Confirm the exact Spark MLlib document fields and any dashboard filters with Perla; retain the current query function names and return shapes.
