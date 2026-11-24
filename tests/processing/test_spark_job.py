@@ -3,6 +3,7 @@ import json
 
 import pytest
 
+from processing import paths
 from processing import schema
 from processing import spark_job as job
 
@@ -53,7 +54,10 @@ def test_full_load_writes_curated_aggregates_and_report(spark, fixtures_dir, lak
     df = curated(spark, lake)
     assert df.count() == 15
     assert set(df.columns) == {f.name for f in schema.CURATED_SCHEMA.fields}
-    assert job.path_exists(spark, f"{lake}/{job.CURATED_DIR}/year=2024/month=3")
+    assert job.CURATED_DIR == "curated/complaints/option=5"
+    assert job.path_exists(spark, f"{lake}/{paths.curated_partition(2024, 3)}")     # month=03
+    assert not job.path_exists(spark, f"{lake}/{job.CURATED_DIR}/year=2024/month=3")
+    assert {row.month for row in df.select("month").distinct().collect()} <= set(range(1, 13))
     assert not job.path_exists(spark, f"{lake}/curated/_staging")
     monthly = spark.read.parquet(f"{lake}/{job.AGG_MONTHLY_DIR}")
     company = spark.read.parquet(f"{lake}/{job.AGG_COMPANY_YEAR_DIR}")
