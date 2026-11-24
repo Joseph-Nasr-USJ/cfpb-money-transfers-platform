@@ -156,8 +156,8 @@ Run every command from the repository root. Commands that run Python start a tem
 | `minio-init` | One-shot job that creates the bucket `cfpb-lake`, then exits with code 0 | none |
 | `mongo` | MongoDB 7.0, the serving layer (database `cfpb_money_transfers`) | 27017 |
 | `pipeline` | Python 3.11 + Java 17 + PySpark 3.5.9 (Spark in local mode): collectors, Spark job, loader, 24-hour scheduler | none |
-| `nifi` | Apache NiFi: scheduled collection into MinIO, web UI, provenance of every run (**being added by Joseph**: the address and port will be given here) | see here when merged |
-| `redis` | Cache for the dashboard queries (**being added by Joseph**) | see here when merged |
+| `nifi` | Apache NiFi: scheduled collection into MinIO, web UI, provenance of every run (the flow itself is not exported yet) | 8443 (HTTPS) |
+| `redis` | Cache for the dashboard queries | 6379 |
 | `dashboard` | Streamlit dashboard, reads MongoDB only | 8501 |
 
 All ports are bound to `127.0.0.1`: only your own laptop can reach them. The repository is mounted into the `pipeline` container at `/app`, so code changes do not need an image rebuild; only a change to `requirements-pipeline.txt` or the Dockerfile does (`make up` rebuilds automatically).
@@ -166,7 +166,7 @@ All ports are bound to `127.0.0.1`: only your own laptop can reach them. The rep
 
 ## Project status
 
-Updated Sat 21 Nov 2026. This section changes as Pull Requests are merged.
+Updated Tue 24 Nov 2026. This section changes as Pull Requests are merged.
 
 | Component | Status |
 |---|---|
@@ -176,17 +176,17 @@ Updated Sat 21 Nov 2026. This section changes as Pull Requests are merged.
 | Spark job and quality gate (`processing/spark_job.py`, `processing/quality.py`) | ✅ on `main` |
 | MongoDB loader, indexes, queries, benchmark, model document (`database/`, `docs/mongodb_model.md`) | ✅ on `main` |
 | Metric definitions (`docs/metrics.md`) | ✅ on `main` |
-| Historical and incremental Python collectors, scheduler, sample script (`ingestion/`, the fallback) | in progress (Marwa) |
-| Apache NiFi flow (`ingestion/nifi/`) | in progress (Marwa) |
-| `nifi` and `redis` services in `docker-compose.yml` | in progress (Joseph) |
-| Analysis scripts, Spark MLlib scripts and dashboard (`analytics/`, `dashboard/`) | in progress (Perla) |
+| Historical and incremental Python collectors, scheduler, pipeline chain, sample script (`ingestion/`, the fallback) | ✅ on `main` (Marwa, PR #33) |
+| Apache NiFi flow (`ingestion/nifi/`) | in progress (Marwa, Joseph); the folder is still empty |
+| `nifi` and `redis` services in `docker-compose.yml` | ✅ on `main` (Joseph, PR #27) |
+| Analysis scripts, Spark MLlib scripts and dashboard (`analytics/`, `dashboard/`) | ✅ on `main` (Perla, PR #28) |
 
 Expected today:
 
-- The `pipeline` container exits with code 1 and restarts up to 5 times with `No module named ingestion.scheduler`, until the scheduler is merged. This is normal.
-- The `dashboard` service is disabled (`profiles: ["dashboard"]` in `docker-compose.yml`) until `docker/dashboard.Dockerfile` exists.
-- The `make` commands for ingestion and analytics fail with `No module named ...` until their component is merged. The Spark job, the loader and the benchmark are on `main`, but they need a raw run in MinIO, which the collectors produce.
-- `docker compose exec redis ...` answers `service "redis" is not running` until the `redis` service is merged.
+- The scheduler, the collectors and the dashboard are on `main`, so the `pipeline` container should start without the `No module named ingestion.scheduler` error. If it still restarts, check `docker compose logs pipeline` and write down what you see.
+- The Spark job, the loader and the benchmark need a raw run in MinIO, which the collectors produce, so run `make pipeline-full` or `make sample` first.
+- The NiFi service starts, but its flow is not exported to `ingestion/nifi/` yet, so the Python collector is the working path for now.
+- I have not run the whole stack again on the merged `main`; this section describes the files, not a fresh run.
 
 ## Folder structure
 

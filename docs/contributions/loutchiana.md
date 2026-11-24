@@ -75,3 +75,21 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 - Message the team about the section files (due Wed 25 Nov) and settle the two differences with Joseph and Christopher.
 - Fill the findings, the executive summary and the remaining slide placeholders when Perla's findings arrive (Tue 24 Nov).
 - Write my reflection (due Fri 27 Nov), rehearse step 1 and export the final report with `export_report.py --final`.
+
+## Update of Tue 24 Nov 2026
+
+**What I did**
+- Merged the latest `main` into my branch `loutchiana/delivery-docs`. It now includes Marwa's collectors, scheduler and pipeline chain (PR #33), Perla's dashboard and analytics (PR #28) and Joseph's changes to the curated path (PR #31) and to the quality dimension names (PR #32).
+- Updated the architecture document (section 12), the data dictionary (section 6.2), the runbook and the test plan. The curated path is now `option=5` and the quality report uses `freshness` and `reconciliation`; it also has a `sub_issue_applicability` section (filled, missing, not applicable) and `ingested_at`.
+- Updated the README status table and the "Expected today" notes, which still said the collectors, the services and the dashboard were not merged.
+- Corrected the two lines above that said the paths and names were still different (21 Nov and 23 Nov). They were true on those days, so I left the earlier entries as they were.
+- I keep all my work on this one branch only. I used an AI assistant to help with the wording of these updates and I checked them against the files on `main`.
+
+**Problems**
+- The `nifi` service is on `main` but `ingestion/nifi/` is still empty, so the flow is not exported yet.
+- I have not run `make test` or the stack on the merged `main`. The test counts (42 on 21 Nov, 57 on 22 Nov) are old; Joseph wrote 127 passed and 1 skipped in PR #32, but I will only quote a number from my own run.
+- The collector, database and dashboard rows of the test plan are written but not run by me, so I did not mark them as passing.
+
+**Next step**
+- Run `make test` on the merged code, then update the counts in the README, the test plan, the architecture document and the demo script.
+- Add the new curated path to my report text once the team confirms that no run still uses `domain=`.
