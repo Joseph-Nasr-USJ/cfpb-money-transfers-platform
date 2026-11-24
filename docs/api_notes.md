@@ -51,7 +51,8 @@ Test query: our current product label, window 1 to 22 Oct 2026, `sort=created_da
 | 4 | `date_received_max=2026-10-22` | First hit received **2026-10-22T23:57:30Z** | The spec says "<" (exclusive) but the end day was returned. We send end + 1 day so the end day is always included; the overlap and de-duplication make extra days harmless. |
 | 5 | `size=1000` | 1,000 hits, although the published spec says a maximum of 100 | We keep 100. The spec also says a `format` parameter switches to export mode and ignores `size`, so we never send it. |
 | 6 | Volume | 2,704 complaints in the 22-day test window (about 125 per day); 199,152 for the current label in total | A 21-day overlap window is about 28 pages of 100, far below the 100,000 export limit. |
-| 7 | Dates | API dates are UTC timestamps (`2026-10-22T23:57:30.000Z`); the CSV has plain dates | Spark takes the first 10 characters. **To check once the full CSV is loaded:** compare a few complaint IDs present in both sources to confirm the day is the same. |
+| 7 | Full CSV ZIP download (20 Nov) | **369,859,546 bytes (about 370 MB)**. On our connection, about 37 KB/s, the transfer broke after 104 MB (`ChunkedEncodingError`). | Mid-transfer breaks are retried, and an attempt that made progress resumes at once without counting against `API_MAX_RETRIES` (defect fixed 24 Nov, regression tests added). |
+| 8 | Dates | API dates are UTC timestamps (`2026-10-22T23:57:30.000Z`); the CSV has plain dates | Spark takes the first 10 characters. **To check once the full CSV is loaded:** compare a few complaint IDs present in both sources to confirm the day is the same. |
 
 ## Rules that follow from the publication policy
 

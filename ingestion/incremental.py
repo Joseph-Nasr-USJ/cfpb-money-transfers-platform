@@ -116,7 +116,8 @@ def get_with_retries(session, url, params, timeout, max_retries, http_log, sleep
             if response.status_code != 200:
                 raise CollectorError(f"HTTP {response.status_code} is not retryable: {response.text[:200]}")
             return response
-        except (requests.ConnectionError, requests.Timeout, requests.HTTPError) as exc:
+        except (requests.ConnectionError, requests.Timeout, requests.HTTPError,
+                requests.exceptions.ChunkedEncodingError) as exc:   # a page cut off mid-transfer too
             http_log["errors"].append(f"{iso(utc_now())} {type(exc).__name__}: {exc}")
             if attempt >= max_retries:
                 raise CollectorError(f"gave up after {max_retries} retries: {exc}") from exc

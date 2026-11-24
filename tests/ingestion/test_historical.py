@@ -200,3 +200,68 @@ def test_sends_the_default_requests_user_agent(env):
     historical.run()
 
     assert responses.calls[0].request.headers["User-Agent"].startswith("python-requests/")
+
+
+class BrokenStream:
+    """A response whose connection drops after `cut` bytes, like the real 20 Nov failure."""
+
+    def __init__(self, data, status=200, headers=None, cut=None):
+        self.data, self.status_code, self.cut = data, status, cut
+        self.headers = headers or {"Content-Length": str(len(data))}
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def iter_content(self, chunk_size=1):
+        sent = self.data if self.cut is None else self.data[:self.cut]
+        for i in range(0, len(sent), 7):
+            yield sent[i:i + 7]
+        if self.cut is not None:
+            raise requests.exceptions.ChunkedEncodingError(
+                f"Connection broken: IncompleteRead({self.cut} bytes read, {len(self.data) - self.cut} more expected)")
+
+
+def test_connection_dropped_mid_download_resumes_and_finishes(env, monkeypatch):
+    """Regression test for the 20 Nov failure: ChunkedEncodingError was not retried."""
+    payload = make_zip()
+    third = len(payload) // 3
+    calls = []
+
+    def fake_get(url, headers=None, **kwargs):
+        calls.append(dict(headers or {}))
+        start = int(headers["Range"].split("=")[1].rstrip("-")) if headers and "Range" in headers else 0
+        rest = payload[start:]
+        if start == 0:
+            return BrokenStream(payload, headers={"Content-Length": str(len(payload)), "ETag": '"v1"'}, cut=third)
+        if start == third:
+            return BrokenStream(rest, 206, {"Content-Range": f"bytes {start}-{len(payload) - 1}/{len(payload)}"},
+                                cut=third)                                  # drops again, still progress
+        return BrokenStream(rest, 206, {"Content-Range": f"bytes {start}-{len(payload) - 1}/{len(payload)}"})
+
+    monkeypatch.setattr(historical.requests, "get", fake_get)
+
+    log = historical.run()
+
+    assert log["outcome"] == "success"
+    assert log["sha256"] == hashlib.sha256(payload).hexdigest()
+    assert log["http"]["resumes"] == 2 and log["http"]["retries"] == 0
+    assert [c.get("Range") for c in calls] == [None, f"bytes={third}-", f"bytes={2 * third}-"]
+    assert all(c.get("If-Range") == '"v1"' for c in calls[1:])
+
+
+def test_connection_that_drops_without_progress_gives_up(env, monkeypatch):
+    payload = make_zip()
+
+    def fake_get(url, headers=None, **kwargs):
+        return BrokenStream(payload, cut=0)                                 # breaks before any byte
+
+    monkeypatch.setattr(historical.requests, "get", fake_get)
+
+    log = historical.run()
+
+    assert log["outcome"] == "failed"
+    assert log["http"]["retries"] == 2                                      # API_MAX_RETRIES, then stop
+    assert "ChunkedEncodingError" in log["http"]["errors"][0]

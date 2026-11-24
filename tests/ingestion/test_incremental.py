@@ -269,3 +269,21 @@ def test_without_high_water_mark_or_historical_load_the_run_fails_clearly(env):
     log = incremental.run()
     assert log["outcome"] == "failed"
     assert "make ingest-full" in log["http"]["errors"][-1]
+
+
+@responses.activate
+def test_page_cut_off_mid_transfer_is_retried(env, monkeypatch):
+    api = FakeApi(5)
+    calls = {"n": 0}
+
+    def cut_once(request):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise requests.exceptions.ChunkedEncodingError("Connection broken: IncompleteRead")
+        return api(request)
+
+    responses.add_callback(responses.GET, API, callback=cut_once)
+
+    log = incremental.run(date(2026, 11, 1), date(2026, 11, 20))
+
+    assert log["outcome"] == "success" and log["http"]["retries"] == 1
