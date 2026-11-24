@@ -6,22 +6,22 @@ Owner: Charbel Mazraani. Each test is written by the owner of its component; thi
 
 **Status values:** `passing` (on `main`, green in the last run), `failing` (on `main`, red in the last run; a defect is open in [defect_log.md](defect_log.md)), `planned` (not written yet). Test names marked *proposed* are suggestions; the owner may rename them and this file is updated when the test is merged.
 
-Last update: Tue 24 Nov 2026 (the V2 dimension names are in the code since PR #32; the last full `make test` run is still the one of Sat 21 Nov, 42 passed; the collector, database, dashboard and analytics tests are on `main` and wait for a new run).
+Last update: Tue 24 Nov 2026 (159 passed, 1 skipped with `make test` on the merged code; the V2 dimension names are in the code since PR #32).
 
 ## 1. Test levels required by the brief
 
 | Level | What the tests must show | Owner | Location | Status |
 |---|---|---|---|---|
-| Collector | Pagination, timeouts, bounded retries, date window with high-water mark and overlap, complete run log, raw files never overwritten, resume after failure | Marwa Zeineddine | `tests/ingestion/` | written, on `main` (7 test files, about 70 tests); not yet run on the merged code |
+| Collector | Pagination, timeouts, bounded retries, date window with high-water mark and overlap, complete run log, raw files never overwritten, resume after failure | Marwa Zeineddine | `tests/ingestion/` | passing (7 test files, about 70 tests) |
 | Transformation | Explicit schema, standard column names, trimmed strings, date parsing and invalid dates, Yes/No and missing values, domain filter, deduplication by Complaint ID with tie-break, derived fields, quarantine | Joseph Nasr | `tests/processing/` | passing (26 tests in the transformation files, plus 6 for the Spark job) |
 | Data quality | Six dimensions (uniqueness, completeness, validity, consistency, freshness, reconciliation) with the fixed thresholds; the quality gate stops a bad run; the known bad fixture records are caught (defect D-005) | Joseph Nasr | `tests/processing/test_quality.py` | passing (12 tests) |
-| Database | Upsert or bulk load is idempotent, `_id` = complaint_id, native dates, indexes on the dashboard filters, aggregation queries return the expected result | Christopher Al Hassrouty | `tests/database/` | written, on `main` (6 test files, about 14 tests); not yet run on the merged code |
-| Dashboard | Query functions return aggregates only, empty selection, invalid date range, missing category, database unavailable | Perla Boustany | `tests/dashboard/` + manual checklist | written, on `main` (2 test files, about 9 tests); manual checklist still to do |
+| Database | Upsert or bulk load is idempotent, `_id` = complaint_id, native dates, indexes on the dashboard filters, aggregation queries return the expected result | Christopher Al Hassrouty | `tests/database/` | passing (6 test files, about 14 tests) |
+| Dashboard | Query functions return aggregates only, empty selection, invalid date range, missing category, database unavailable | Perla Boustany | `tests/dashboard/` + manual checklist | passing (2 test files; `test_db.py` is skipped in the pipeline image because streamlit is not installed there); manual checklist still to do |
 | End-to-end | A small sample goes raw → curated → MongoDB → query function and the counts reconcile at every layer; a repeated run creates no duplicates | Charbel Mazraani with Joseph Nasr | `tests/e2e/test_pipeline_sample.py` | planned |
 
 ## 2. Test inventory
 
-The IDs C-, D-, B- and M- below are the names proposed on 21 Nov. The tests merged since then have other names; the real ones are in the files named in the Location column above. A level is marked `passing` only after a `make test` run on the merged code; that run is still to do.
+The IDs C-, D-, B- and M- below are the names proposed on 21 Nov. The tests merged since then have other names; the real ones are in the files named in the Location column above. The statuses of the levels in section 1 come from the run of Tue 24 Nov (159 passed, 1 skipped).
 
 ### Collector (Marwa Zeineddine)
 
@@ -160,3 +160,4 @@ The brief requires a known bad test record to be shown caught by the intended ch
 |---|---|---|---|
 | Thu 12 Nov 2026 | `make test` | 26 passed | [test_results_2026-11-12.txt](evidence/test_results_2026-11-12.txt) |
 | Sat 21 Nov 2026 | `make test` | 42 passed | [test_results_2026-11-21.txt](evidence/test_results_2026-11-21.txt) |
+| Tue 24 Nov 2026 | `make test` | 159 passed, 1 skipped | [test_results_2026-11-24.txt](evidence/test_results_2026-11-24.txt) |

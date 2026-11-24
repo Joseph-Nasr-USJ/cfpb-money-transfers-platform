@@ -79,17 +79,18 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 ## Update of Tue 24 Nov 2026
 
 **Work done**
-- The latest `main` was merged into `loutchiana/delivery-docs`. It brings in the collectors, scheduler and pipeline chain (Marwa, PR #33), the dashboard and analytics (Perla, PR #28), the `option=5` curated path (Joseph, PR #31) and the renamed quality dimensions (Joseph, PR #32).
-- The architecture document (section 12), the data dictionary (section 6.2), the runbook and the test plan were updated to match. The curated path is `option=5`, the quality report uses `freshness` and `reconciliation`, and it now contains a `sub_issue_applicability` section (filled, missing, not applicable) and `ingested_at`.
-- The README status table and its "Expected today" notes were corrected: they still described the collectors, services and dashboard as not merged.
+- The latest `main` was merged into `loutchiana/delivery-docs`. It brings in the collectors, scheduler and pipeline chain (Marwa, PR #33), the dashboard and analytics (Perla, PR #28), the `option=5` curated path (Joseph, PR #31), the renamed quality dimensions (Joseph, PR #32) and the collector settings in `.env.example` (Joseph, PR #34).
+- `make test` on the merged code: 159 passed, 1 skipped in 4 min 25 s (Docker 8 GB, 4 processors). The skipped module is `tests/dashboard/test_db.py`, which needs streamlit; the pipeline image does not include it. The result is saved in `docs/evidence/test_results_2026-11-24.txt`.
+- The architecture document (section 12), the data dictionary (section 6.2), the runbook, the test plan and the README were updated to match the code. The curated path is `option=5`, the quality report uses `freshness` and `reconciliation`, and it contains a `sub_issue_applicability` section (filled, missing, not applicable) and `ingested_at`. The test counts and the status of the collector, database and dashboard test levels come from the run above.
+- The "Unresolved issues" paragraph of the report (section 7) was written from the repository state, and appendix J now points to the idempotency evidence.
 - The entries of 21 and 23 Nov that mention the path and name differences were left unchanged, because they were accurate on those dates.
 - All work stays on this single branch. An AI assistant (Claude Code) was used for the wording of these updates; the content was checked against the files on `main`.
 
 **Problems**
-- The `nifi` service is on `main`, but `ingestion/nifi/` is still empty, so the flow is not exported.
-- `make test` and the stack have not been run on the merged `main`. The test counts in the documents (42 on 21 Nov, 57 on 22 Nov) are therefore dated. PR #32 reports 127 passed and 1 skipped, but that figure will only be quoted after a run on this machine.
-- The collector, database and dashboard rows of the test plan are written but not yet run, so they are not marked as passing.
+- `ingestion/nifi/` is still empty, so the NiFi flow is not exported and the Python collector remains the collection path.
+- The figures in the report and on the slides come from the full run of 22 Nov, made before the `option=5` change; they are refreshed by a new full run on the merged code.
+- `docs/findings.md` and the report sections 4.2, 4.5 and 6 (Marwa, Perla) are not on `main` yet, so the executive summary and the slide placeholders that depend on them stay open.
 
 **Next step**
-- Run `make test` on the merged code, then update the counts in the README, the test plan, the architecture document and the demo script.
-- Update the curated path in the report text once the team confirms that no run still uses `domain=`.
+- Refresh the numbers and screenshots from a full run on the `option=5` path.
+- Fill the executive summary, the findings slide and the remaining placeholders when `docs/findings.md` is available, then rebuild the report and the slides.

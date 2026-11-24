@@ -41,6 +41,6 @@ Each appendix points to a file of the repository that its owner maintains. Excer
 | G | Index benchmark before and after | `docs/evidence/benchmark.md` [TO COMPLETE] | Christopher |
 | H | Metric definitions and findings | `docs/metrics.md`, `docs/findings.md` | Perla |
 | I | Test plan, test results and defect log | `docs/test_plan.md`, `docs/evidence/test_results_*.txt`, `docs/defect_log.md` | Charbel |
-| J | Rerun (idempotency) evidence | `docs/evidence/idempotency.md` [TO COMPLETE] | Joseph |
+| J | Rerun (idempotency) evidence | `docs/evidence/idempotency.md` | Joseph |
 | K | Demonstration script and runbook | `docs/demo_script.md`, `docs/runbook.md` | Charbel |
 | L | Checkpoint notes and contribution logs | `docs/checkpoints/`, `docs/contributions/` | Loutchiana, everyone |

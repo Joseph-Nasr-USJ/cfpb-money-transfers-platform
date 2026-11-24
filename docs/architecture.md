@@ -174,7 +174,7 @@ Secrets are never in code: they are read from `.env` (placeholders in `.env.exam
 | Item | State |
 |---|---|
 | Docker stack (`minio`, `minio-init`, `mongo`, `pipeline` image), Makefile, reference files | on `main` |
-| Spark schema, transforms, quality gate, Spark job; MongoDB loader, indexes, queries, benchmark | on `main` (42 tests passed on 21 Nov in Charbel's run; 57 passed on 22 Nov with `make test` on my machine; a new run on the merged code is still to do) |
+| Spark schema, transforms, quality gate, Spark job; MongoDB loader, indexes, queries, benchmark | on `main` (42 tests passed on 21 Nov in Charbel's run; 57 passed on 22 Nov and 159 passed, 1 skipped on 24 Nov with `make test` on my machine, the latter on the merged code) |
 | Metric definitions, README, runbook, test plan, defect log, demo script | on `main` |
 | Python collectors (historical, incremental), sample script, API notes and their tests | on `main` (Marwa, PR #33, merged 24 Nov), together with the scheduler, the pipeline chain and the high-water mark update |
 | `nifi` and `redis` services, `.env` settings, `make ml` target | on `main` (Joseph, PR #27, merged 22 Nov) |

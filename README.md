@@ -118,7 +118,7 @@ Expected: `minio` and `mongo` are `running (healthy)`, and `minio-init` has `exi
 ```
 make test
 ```
-Expected: a summary line ending in `passed` with no failures (`42 passed` on Sat 21 Nov 2026; the number grows as components are merged). It takes about 1 to 2 minutes. The dated results are saved in `docs/evidence/`.
+Expected: a summary line ending in `passed` with no failures (`159 passed, 1 skipped` on Tue 24 Nov 2026; the number grows as components are merged). It takes about 1 to 2 minutes. The dated results are saved in `docs/evidence/`.
 
 **7. See every command:** run `make` with no argument.
 
