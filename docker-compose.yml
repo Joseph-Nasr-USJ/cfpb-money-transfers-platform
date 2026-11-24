@@ -129,10 +129,7 @@ services:
     restart: unless-stopped
 
   # Streamlit dashboard (reads MongoDB only, through the Redis cache).
-  # Disabled until docker/dashboard.Dockerfile exists: remove the "profiles" line in the same
-  # Pull Request that adds that file.
   dashboard:
-    profiles: ["dashboard"]
     build:
       context: .
       dockerfile: docker/dashboard.Dockerfile

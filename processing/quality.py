@@ -20,7 +20,7 @@ THRESHOLDS = {
     "completeness_required_min_pct": 99.5,  # required fields filled
     "validity_warn_above_pct": 0.5,         # invalid records per rule
     "validity_fail_above_pct": 2.0,
-    "timeliness_max_age_days": 3,           # age of the latest date_received
+    "freshness_max_age_days": 3,            # age of the latest date_received
 }
 
 REQUIRED_FIELDS = ["complaint_id", "date_received", "product", "issue", "company"]
@@ -29,6 +29,7 @@ OPTIONAL_FIELDS = [
     "company_response", "timely_response", "state", "zip_code", "submitted_via",
 ]
 # Optional fields the CFPB leaves mostly or fully empty for our product: reported, never a warning.
+# sub_issue is also split into filled, missing and not applicable (see sub_issue_applicability).
 EXPECTED_SPARSE_FIELDS = {"sub_issue", "company_public_response"}
 VALIDITY_RULES = {
     "invalid_date": "dates parse (yyyy-MM-dd, MM/dd/yyyy, MM/dd/yy) and are real calendar dates",
@@ -65,6 +66,32 @@ def _check(dimension: str, rule: str, metric, threshold: str, status: str) -> di
     return {"dimension": dimension, "rule": rule, "metric": metric, "threshold": threshold, "status": status}
 
 
+def sub_issue_applicability(checked_df: DataFrame) -> dict:
+    """Split sub_issue into filled, missing and not applicable.
+
+    The CFPB form offers sub-issues for some issues only. An empty sub_issue is "not applicable"
+    when no record of the same issue in this run has a sub-issue, and "missing" when other records
+    of that issue do. The split uses the records of the run, so an issue seen only without a
+    sub-issue counts as not applicable.
+    """
+    rows = (
+        checked_df.groupBy("issue")
+        .agg(F.count(F.lit(1)).alias("records"), F.count("sub_issue").alias("filled"))
+        .collect()
+    )
+    records = sum(r["records"] for r in rows)
+    applicable = sum(r["records"] for r in rows if r["filled"] > 0)
+    filled = sum(r["filled"] for r in rows)
+    return {
+        "records": records,
+        "applicable": applicable,
+        "not_applicable": records - applicable,
+        "filled": filled,
+        "missing": applicable - filled,
+        "filled_pct_of_applicable": _pct(filled, applicable) if applicable else 100.0,
+    }
+
+
 def _quarantine_reason_counts(quarantine_df: DataFrame) -> dict:
     rows = (
         quarantine_df.select(F.explode(F.split("reject_reason", ";")).alias("reason"))
@@ -92,6 +119,7 @@ def build_quality_report(
     stats = checked_df.agg(
         F.count(F.lit(1)).alias("_total"),
         F.sum(F.col("invalid_timely_flag").cast("int")).alias("_invalid_timely"),
+        F.date_format(F.max("ingested_at"), "yyyy-MM-dd HH:mm:ss").alias("_ingested_at"),  # session time zone (UTC)
         *filled,
     ).collect()[0]
     checked_total = stats["_total"]
@@ -116,8 +144,11 @@ def build_quality_report(
         PASS if uniqueness_problems <= THRESHOLDS["uniqueness_max_problems"] else FAIL,
     ))
 
-    # 2. Completeness (checked records, before quarantine)
+    # 2. Completeness (checked records, before quarantine). For sub_issue the percentage counts only
+    #    records where a sub-issue applies; the full split is in report["sub_issue_applicability"].
     completeness = {f: _pct(stats[f], checked_total) for f in REQUIRED_FIELDS + OPTIONAL_FIELDS}
+    sub_issue = sub_issue_applicability(checked_df)
+    completeness["sub_issue"] = sub_issue["filled_pct_of_applicable"]
     minimum = THRESHOLDS["completeness_required_min_pct"]
     for field in REQUIRED_FIELDS:
         checks.append(_check(
@@ -131,6 +162,10 @@ def build_quality_report(
     checks.append(_check(
         "completeness", "optional fields are reported; a field that is always empty suggests a source change",
         {"always_empty": always_empty}, "no optional field 100% empty", WARN if always_empty else PASS,
+    ))
+    checks.append(_check(
+        "completeness", "sub_issue is reported as filled, missing or not applicable (issue without sub-issues)",
+        {k: sub_issue[k] for k in ("filled", "missing", "not_applicable")}, "reported (optional field)", PASS,
     ))
 
     # 3. Validity (checked records, before quarantine)
@@ -163,19 +198,20 @@ def build_quality_report(
         WARN if unmapped else PASS,
     ))
 
-    # 5. Timeliness (curated data)
+    # 5. Freshness (curated data): age of the latest record when the report is produced
     latest = cur["latest"]
     age_days = (generated_at.date() - latest).days if latest else None
-    max_age = THRESHOLDS["timeliness_max_age_days"]
+    max_age = THRESHOLDS["freshness_max_age_days"]
+    ingested_at = stats["_ingested_at"]
     checks.append(_check(
-        "timeliness", "latest date_received is recent", age_days, f"<= {max_age} days",
+        "freshness", "latest date_received is recent", age_days, f"<= {max_age} days",
         PASS if age_days is not None and age_days <= max_age else WARN,
     ))
 
-    # 6. Integrity (counts reconcile; the MongoDB count is compared later by the loader)
+    # 6. Reconciliation (counts add up; the MongoDB count is compared later by the loader)
     accounted = curated + quarantined + out_of_domain + duplicates_removed
     checks.append(_check(
-        "integrity", "raw = curated + quarantined + out_of_domain + duplicates_removed",
+        "reconciliation", "raw = curated + quarantined + out_of_domain + duplicates_removed",
         {"raw_input": raw_input, "accounted": accounted}, "exact",
         PASS if accounted == raw_input else FAIL,
     ))
@@ -194,9 +230,11 @@ def build_quality_report(
         "quarantine_reasons": reasons,
         "checks": checks,
         "completeness": completeness,
+        "sub_issue_applicability": sub_issue,
         "freshness": {
             "latest_date_received": latest.isoformat() if latest else None,
             "ingestion_lag_days": age_days,
+            "ingested_at": ingested_at,
         },
         "consistency": {
             "unmapped_combinations": unmapped,
