@@ -96,3 +96,9 @@ def test_upload_and_download_file(fake, tmp_path):
 def test_list_keys_sorted_by_prefix(fake):
     fake.objects.update({"raw/b.json": b"", "raw/a.json": b"", "logs/c.json": b""})
     assert minio_utils.list_keys("raw/") == ["raw/a.json", "raw/b.json"]
+
+
+def test_sha256_of_object_matches_the_content(fake):
+    import hashlib
+    fake.objects["raw/x.zip"] = b"abc" * 1000
+    assert minio_utils.sha256_of_object("raw/x.zip", chunk_size=7) == hashlib.sha256(b"abc" * 1000).hexdigest()

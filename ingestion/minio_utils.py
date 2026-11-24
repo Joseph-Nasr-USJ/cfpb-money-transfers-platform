@@ -96,6 +96,20 @@ def write_json(obj: dict, object_key: str, overwrite: bool = False) -> str:
     return upload_bytes(data, object_key, content_type="application/json", overwrite=overwrite)
 
 
+def sha256_of_object(object_key: str, chunk_size: int = 1024 * 1024) -> str:
+    """SHA-256 of a stored object, read in chunks (used to verify a raw file left by an earlier run)."""
+    import hashlib
+    digest = hashlib.sha256()
+    response = get_client().get_object(bucket(), object_key)
+    try:
+        for chunk in iter(lambda: response.read(chunk_size), b""):
+            digest.update(chunk)
+    finally:
+        response.close()
+        response.release_conn()
+    return digest.hexdigest()
+
+
 def list_keys(prefix: str) -> list:
     """Every object key under a prefix, sorted (for example all manifests of the full load)."""
     objects = get_client().list_objects(bucket(), prefix=prefix, recursive=True)
