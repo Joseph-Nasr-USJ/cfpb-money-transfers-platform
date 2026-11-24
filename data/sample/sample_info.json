@@ -1,0 +1,43 @@
+{
+  "source_object": "raw/cfpb/full_load/ingest_date=2026-11-24/complaints.csv",
+  "source_run_id": "20261124T121316Z_full",
+  "source_csv_sha256": "a1303e078a2ee460920bb13e380cf7e1ba36095908ab56bf338b3af41b265d28",
+  "created_at": "2026-11-24T16:07:20Z",
+  "domain_rule_file": "config/product_mapping.csv",
+  "method": "stratified by year of date_received, proportional with a floor of 50 rows per year, reservoir sampling within each year, seed 42",
+  "rows_read": 19397176,
+  "domain_rows": 205383,
+  "sample_rows": 5000,
+  "domain_rows_by_year": {
+    "2013": 559,
+    "2014": 1210,
+    "2015": 1783,
+    "2016": 1738,
+    "2017": 3765,
+    "2018": 5430,
+    "2019": 5082,
+    "2020": 8306,
+    "2021": 13896,
+    "2022": 13534,
+    "2023": 13749,
+    "2024": 16751,
+    "2025": 84619,
+    "2026": 34961
+  },
+  "sample_rows_by_year": {
+    "2013": 50,
+    "2014": 50,
+    "2015": 50,
+    "2016": 50,
+    "2017": 92,
+    "2018": 132,
+    "2019": 124,
+    "2020": 202,
+    "2021": 338,
+    "2022": 329,
+    "2023": 335,
+    "2024": 408,
+    "2025": 1989,
+    "2026": 851
+  }
+}
