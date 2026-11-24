@@ -9,7 +9,7 @@ creating duplicates or changing totals. It was produced on real CFPB data, not o
 |---|---|
 | run_id | `20261124T084259Z_api` (24 Nov 2026, 08:42:59 UTC) |
 | Source | CFPB complaint API, incremental collector (`ingestion/incremental.py`) |
-| Window | `date_received` from 2026-10-20 to 2026-10-21 |
+| Window | requested `date_received` 2026-10-20 to 2026-10-21; the collector sends the API an end date one day later because the API's end bound proved inclusive (`docs/api_notes.md`, finding 4), so complaints received on 2026-10-22 are included |
 | Products | Money transfer, virtual currency, or money service; Money transfers; Virtual currency; Prepaid card / Mobile wallet |
 | Stack | Docker Compose on Windows (WSL2), Spark 3.5.9 with Java 17, MinIO, MongoDB 7.0 |
 | Code | `main` after the merge of PR #29 |
@@ -59,6 +59,9 @@ In PowerShell, replace each `\$` with a backtick followed by `$`.
   and then published, so the dashboard never sees a half-written or doubled aggregate.
 - The loader line `Upserted N curated rows` counts rows sent to MongoDB, not rows changed. That is
   why the document count and the duplicate check above are the actual proof.
+- Each aggregate rename is atomic, but the two renames together are not one transaction. For a
+  moment `agg_monthly` can already be the new version while `agg_company_year` is still the old
+  one. Both are rebuilt from the same curated snapshot, so they agree again after the second rename.
 
 ## Quality report for this run
 
@@ -74,9 +77,9 @@ Overall status `WARN`, quality gate `passed`. All checks are `PASS` except fresh
 | Freshness | latest `date_received` is recent | 33 days | <= 3 days | WARN |
 | Reconciliation | raw = curated + quarantined + out_of_domain + duplicates_removed | 468 = 468 | exact | PASS |
 
-The freshness warning is expected: the window was chosen a month in the past, so the newest
-complaint is 33 days old. A warning is recorded and shown on the dashboard. Only a failure stops
-publication.
+The freshness warning is expected: the window was chosen a month in the past. The newest complaint
+was received on 22 Oct 2026, 33 days before the run on 24 Nov 2026. A warning is recorded and
+shown on the dashboard. Only a failure stops publication.
 
 Note: in the report of this run, freshness is still named `timeliness` and reconciliation is still
 named `integrity`. The rename to the brief's names is a separate change.
