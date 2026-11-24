@@ -312,9 +312,9 @@ bullets(s, 0.6, 1.55, 6.0, 4.8, [
     "manifest.json: source URL, start and end time, size, SHA-256, record count",
     "A second identical download is logged as skipped, not stored twice",
 ], size=18, gap=12)
-stat_card(s, 6.95, 1.55, 5.8, 4.8, "19,371,701", ["records in the file of 22 Nov 2026", "complaints.csv.zip: 353.6 MiB",
-          "complaints.csv: 5.5 GiB", "manifest.json: 1.1 KiB", "SHA-256 786c59f0...3cee50",
-          "Screenshot: docs/images/minio_raw_full_load.png (my run; Marwa to confirm)"])
+stat_card(s, 6.95, 1.55, 5.8, 4.8, "19,397,176", ["records in the file of 24 Nov 2026", "complaints.csv.zip: 354.0 MiB",
+          "complaints.csv: 5.5 GiB", "manifest.json: 1.1 KiB", "SHA-256 8b6db08e...59dca2",
+          "Screenshot: docs/images/minio_raw_full_load.png (run of 22 Nov); manifest of 24 Nov in docs/evidence/"])
 
 # ---------- 7. step 3 ----------
 s = content_slide("A bounded incremental run", step=3, presenter="Marwa (2:30)", number=7, notes=(
@@ -349,8 +349,8 @@ bullets(s, 0.6, 5.2, 8.1, 1.7, [
     "A FAIL stops the run: Spark exits with code 1, nothing is published",
     "Known bad records are caught (defect D-005)",
 ], size=16, gap=6)
-stat_card(s, 9.0, 1.55, 3.75, 5.2, "PASS", ["Full load of 22 Nov 2026", "19,371,701 raw records", "19,166,525 out of domain",
-          "112 quarantined", "205,064 curated", "0 duplicates removed", "(my run; Joseph to confirm)"])
+stat_card(s, 9.0, 1.55, 3.75, 5.2, "PASS", ["Full load of 24 Nov 2026", "19,397,176 raw records", "19,191,793 out of domain",
+          "112 quarantined", "205,271 curated", "0 duplicates removed", "(run 20261124T135857Z_full)"])
 
 # ---------- 9. step 5 ----------
 s = content_slide("Rerun: the counts are not inflated", step=5, presenter="Joseph (1:30)", number=9, notes=(
@@ -375,8 +375,8 @@ card(s, 4.7, 1.55, 3.9, 4.9, "Five compound indexes", None)
 bullets(s, 4.9, 2.3, 3.5, 4.1, ["sub-product, date", "issue, date", "state, date", "company, date", "channel, date"],
         size=16, gap=5)
 text(s, 4.9, 5.05, 3.5, 1.3, "Equality field first, date last. Dates are native BSON Date values.", size=14, color=MUTED)
-stat_card(s, 8.9, 1.55, 3.85, 4.9, "205,064", ["complaints in MongoDB", "73,545 monthly summaries", "8,074 company-year summaries",
-          "Query on state and date: index scan on state_date_idx", "(my run; Christopher to confirm)"])
+stat_card(s, 8.9, 1.55, 3.85, 4.9, "205,271", ["complaints in MongoDB", "73,597 monthly summaries", "8,078 company-year summaries",
+          "Query on state and date: index scan on state_date_idx (run of 22 Nov)", "(run of 24 Nov)"])
 
 # ---------- 11. step 7 ----------
 s = content_slide("Dashboard: answering Q1 and Q2", step=7, presenter="Perla (2:00)", number=11, notes=(
@@ -440,7 +440,7 @@ table(s, 0.6, 1.4, 8.3, [2.3, 6.0], [
     ["Loutchiana Marie", "Report, architecture, data dictionary"],
     ["Charbel Mazraani", "README, runbook, tests, demo"],
 ], size=14, row_h=0.62)
-for index, (number, label) in enumerate([("57", "automated tests passing (22 Nov)"), ("5", "defects found and fixed, all logged"),
+for index, (number, label) in enumerate([("159", "automated tests passing (24 Nov, 1 skipped)"), ("5", "defects found and fixed, all logged"),
                                           ("6", "members, each presenting one step")]):
     shape(s, MSO_SHAPE.ROUNDED_RECTANGLE, 9.3, 1.4 + index * 1.7, 3.45, 1.5, fill="14455A")
     text(s, 9.3, 1.4 + index * 1.7, 1.35, 1.5, number, size=40, bold=True, color=AMBER, font=HEAD, align=PP_ALIGN.CENTER,

@@ -1,0 +1,292 @@
+{
+  "run_id": "20261124T135857Z_full",
+  "generated_at": "2026-11-24T14:57:23.755718+00:00",
+  "source_type": "full_load",
+  "counts": {
+    "raw_input": 19397176,
+    "out_of_domain": 19191793,
+    "duplicates_removed": 0,
+    "quarantined": 112,
+    "curated": 205271
+  },
+  "quarantine_reasons": {
+    "invalid_state": 32,
+    "negative_lag": 80
+  },
+  "checks": [
+    {
+      "dimension": "uniqueness",
+      "rule": "complaint_id is not null and unique in curated data",
+      "metric": {
+        "null_ids": 0,
+        "duplicate_ids": 0
+      },
+      "threshold": "0 problems",
+      "status": "PASS"
+    },
+    {
+      "dimension": "completeness",
+      "rule": "required field complaint_id is filled",
+      "metric": 100.0,
+      "threshold": ">= 99.5%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "completeness",
+      "rule": "required field date_received is filled",
+      "metric": 100.0,
+      "threshold": ">= 99.5%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "completeness",
+      "rule": "required field product is filled",
+      "metric": 100.0,
+      "threshold": ">= 99.5%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "completeness",
+      "rule": "required field issue is filled",
+      "metric": 100.0,
+      "threshold": ">= 99.5%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "completeness",
+      "rule": "required field company is filled",
+      "metric": 100.0,
+      "threshold": ">= 99.5%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "completeness",
+      "rule": "optional fields are reported; a field that is always empty suggests a source change",
+      "metric": {
+        "always_empty": []
+      },
+      "threshold": "no optional field 100% empty",
+      "status": "PASS"
+    },
+    {
+      "dimension": "completeness",
+      "rule": "sub_issue is reported as filled, missing or not applicable (issue without sub-issues)",
+      "metric": {
+        "filled": 0,
+        "missing": 0,
+        "not_applicable": 205383
+      },
+      "threshold": "reported (optional field)",
+      "status": "PASS"
+    },
+    {
+      "dimension": "validity",
+      "rule": "dates parse (yyyy-MM-dd, MM/dd/yyyy, MM/dd/yy) and are real calendar dates",
+      "metric": {
+        "invalid": 0,
+        "invalid_pct": 0.0
+      },
+      "threshold": "WARN above 0.5%, FAIL above 2.0%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "validity",
+      "rule": "timely response is Yes or No",
+      "metric": {
+        "invalid": 0,
+        "invalid_pct": 0.0
+      },
+      "threshold": "WARN above 0.5%, FAIL above 2.0%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "validity",
+      "rule": "state is in config/state_codes.csv",
+      "metric": {
+        "invalid": 32,
+        "invalid_pct": 0.016
+      },
+      "threshold": "WARN above 0.5%, FAIL above 2.0%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "validity",
+      "rule": "date sent to company is not before date received",
+      "metric": {
+        "invalid": 80,
+        "invalid_pct": 0.039
+      },
+      "threshold": "WARN above 0.5%, FAIL above 2.0%",
+      "status": "PASS"
+    },
+    {
+      "dimension": "consistency",
+      "rule": "every product and sub-product combination maps to a standard sub-product",
+      "metric": {
+        "unmapped_combinations": 0
+      },
+      "threshold": "0 unmapped (listed when present)",
+      "status": "PASS"
+    },
+    {
+      "dimension": "freshness",
+      "rule": "latest date_received is recent",
+      "metric": 1,
+      "threshold": "<= 3 days",
+      "status": "PASS"
+    },
+    {
+      "dimension": "reconciliation",
+      "rule": "raw = curated + quarantined + out_of_domain + duplicates_removed",
+      "metric": {
+        "raw_input": 19397176,
+        "accounted": 19397176
+      },
+      "threshold": "exact",
+      "status": "PASS"
+    }
+  ],
+  "completeness": {
+    "complaint_id": 100.0,
+    "date_received": 100.0,
+    "product": 100.0,
+    "issue": 100.0,
+    "company": 100.0,
+    "date_sent_to_company": 100.0,
+    "sub_product": 100.0,
+    "sub_issue": 100.0,
+    "company_public_response": 14.175,
+    "company_response": 100.0,
+    "timely_response": 100.0,
+    "state": 95.013,
+    "zip_code": 99.694,
+    "submitted_via": 100.0
+  },
+  "sub_issue_applicability": {
+    "records": 205383,
+    "applicable": 0,
+    "not_applicable": 205383,
+    "filled": 0,
+    "missing": 0,
+    "filled_pct_of_applicable": 100.0
+  },
+  "freshness": {
+    "latest_date_received": "2026-11-23",
+    "ingestion_lag_days": 1,
+    "ingested_at": "2026-11-24 13:58:57"
+  },
+  "consistency": {
+    "unmapped_combinations": [],
+    "domain_combinations": [
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Domestic (US) money transfer",
+        "sub_product_std": "Domestic (US) money transfer",
+        "count": 87077
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Mobile or digital wallet",
+        "sub_product_std": "Mobile or digital wallet",
+        "count": 64494
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Virtual currency",
+        "sub_product_std": "Virtual currency",
+        "count": 22873
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "International money transfer",
+        "sub_product_std": "International money transfer",
+        "count": 15197
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Money order, traveler's check or cashier's check",
+        "sub_product_std": "Money order, traveler's check or cashier's check",
+        "count": 2798
+      },
+      {
+        "product": "Money transfers",
+        "sub_product": "International money transfer",
+        "sub_product_std": "International money transfer",
+        "count": 2721
+      },
+      {
+        "product": "Money transfers",
+        "sub_product": "Domestic (US) money transfer",
+        "sub_product_std": "Domestic (US) money transfer",
+        "count": 2553
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Check cashing service",
+        "sub_product_std": "Check cashing service",
+        "count": 2343
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Foreign currency exchange",
+        "sub_product_std": "Foreign currency exchange",
+        "count": 1448
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Traveler's check or cashier's check",
+        "sub_product_std": "Traveler's check or cashier's check",
+        "count": 983
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Debt settlement",
+        "sub_product_std": "Debt settlement",
+        "count": 945
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Money order",
+        "sub_product_std": "Money order",
+        "count": 776
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "sub_product": "Refund anticipation check",
+        "sub_product_std": "Refund anticipation check",
+        "count": 627
+      },
+      {
+        "product": "Prepaid card",
+        "sub_product": "Mobile wallet",
+        "sub_product_std": "Mobile or digital wallet",
+        "count": 418
+      },
+      {
+        "product": "Virtual currency",
+        "sub_product": "Domestic (US) money transfer",
+        "sub_product_std": "Virtual currency",
+        "count": 17
+      },
+      {
+        "product": "Virtual currency",
+        "sub_product": "International money transfer",
+        "sub_product_std": "Virtual currency",
+        "count": 1
+      }
+    ]
+  },
+  "thresholds": {
+    "uniqueness_max_problems": 0,
+    "completeness_required_min_pct": 99.5,
+    "validity_warn_above_pct": 0.5,
+    "validity_fail_above_pct": 2.0,
+    "freshness_max_age_days": 3
+  },
+  "overall_status": "PASS",
+  "quality_gate": "passed",
+  "curated_snapshot": {
+    "total_records": 205271,
+    "distinct_complaint_ids": 205271
+  }
+}

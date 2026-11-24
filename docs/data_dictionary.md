@@ -47,7 +47,7 @@ One document per distinct `complaint_id`. 27 fields, in contract order.
 | Field | Type | Source | Description and rule | Allowed values | Example | Known issues |
 |---|---|---|---|---|---|---|
 | `issue` | string | `Issue` / `issue` | Issue the consumer selected. Possible values depend on the product. Required. | CFPB values | `Fraud or scam` | The issue is chosen by the consumer; it does not establish confirmed fraud. |
-| `sub_issue` | string | `Sub-issue` / `sub_issue` | Sub-issue, where the CFPB defines one. | CFPB values; null allowed | `null` | **Mostly empty** for this product: not every issue has a sub-issue. The quality report treats it as expected sparse, never a warning. |
+| `sub_issue` | string | `Sub-issue` / `sub_issue` | Sub-issue, where the CFPB defines one. | CFPB values; null allowed | `null` | **Empty for every record in the domain** in the full run of 24 Nov (0 of 205,383 checked records): none of these products has a sub-issue, so the quality report counts them as not applicable, never as missing or as a warning. |
 
 ### 2.4 Company and response
 
@@ -91,7 +91,7 @@ Required data artefact of the brief. Columns: `source_product`, `source_sub_prod
 
 | Source product | Sub-product | `product_std` | `sub_product_std` | Meaning |
 |---|---|---|---|---|
-| Money transfer, virtual currency, or money service | any | same label | original sub-product | current CFPB label (199,152 records on 20 Nov 2026 in the API; 199,354 in the full file of 22 Nov) |
+| Money transfer, virtual currency, or money service | any | same label | original sub-product | current CFPB label (199,152 records on 20 Nov 2026 in the API; 199,561 in the full file of 24 Nov) |
 | Money transfers | any | `Money transfer, virtual currency, or money service` | original sub-product | legacy label used before April 2017 (**to confirm** with the lecturer) |
 | Virtual currency | any | `Money transfer, virtual currency, or money service` | `Virtual currency` | legacy label |
 | Prepaid card | Mobile wallet | `Money transfer, virtual currency, or money service` | `Mobile or digital wallet` | legacy label; other prepaid sub-products stay out of domain |
@@ -153,9 +153,9 @@ The rejected records with all their columns and a `reject_reason`. Several reaso
 | `overall_status` | PASS, WARN or FAIL; FAIL stops the run |
 | `quality_gate` | `passed`, `stopped` or `overridden` (development only) |
 
-Example, full run of 22 Nov 2026 (`20261122T183046Z_full`): `overall_status` PASS; `counts` raw_input 19,371,701, out_of_domain 19,166,525, duplicates_removed 0, quarantined 112, curated 205,064; `quarantine_reasons` invalid_state 32, negative_lag 80; `freshness` latest_date_received 2026-11-20, ingestion_lag_days 2.
+Example, full run of 24 Nov 2026 (`20261124T135857Z_full`): `overall_status` PASS; `counts` raw_input 19,397,176, out_of_domain 19,191,793, duplicates_removed 0, quarantined 112, curated 205,271; `quarantine_reasons` invalid_state 32, negative_lag 80; `freshness` latest_date_received 2026-11-23, ingestion_lag_days 1, ingested_at 2026-11-24 13:58:57; `sub_issue_applicability` records 205,383, filled 0, missing 0, not_applicable 205,383.
 
-The six dimensions of brief V2 are uniqueness, completeness, validity, consistency, freshness and reconciliation, and the code uses these names since PR #32 (merged 24 Nov; the threshold key is `freshness_max_age_days`, 3 days). Reports of runs made before that, such as the example above, still use the old names `timeliness` and `integrity` and have no `sub_issue_applicability` section or `ingested_at`.
+The six dimensions of brief V2 are uniqueness, completeness, validity, consistency, freshness and reconciliation, and the code uses these names since PR #32 (merged 24 Nov; the threshold key is `freshness_max_age_days`, 3 days). Reports of runs made before that (for example the run of 22 Nov) still use the old names `timeliness` and `integrity` and have no `sub_issue_applicability` section or `ingested_at`.
 
 ### 6.3 Raw manifest and run log
 
@@ -167,7 +167,8 @@ The six dimensions of brief V2 are uniqueness, completeness, validity, consisten
 
 ## 7. Known data issues, summarised
 
-- `sub_issue` and `company_public_response` are mostly empty for this product.
+- `sub_issue` is empty for every record of this domain (0 of 205,383 in the run of 24 Nov, reported as not applicable); `company_public_response` is filled for only 14.2% of the checked records.
+- `state` is empty for 4.99% of the curated complaints (10,239 of 205,271); geographic results cover the other 95%.
 - ZIP codes are partly masked or suppressed by the CFPB.
 - Legacy product labels (before April 2017) are mapped to the current domain; the mapping is to be confirmed with the lecturer.
 - The CSV mixes two date formats; API dates are UTC timestamps (the day should be checked against the CSV once both are loaded).

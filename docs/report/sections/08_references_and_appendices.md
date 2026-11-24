@@ -34,8 +34,8 @@ Each appendix points to a file of the repository that its owner maintains. Excer
 |---|---|---|---|
 | A | Architecture document and diagram | `docs/architecture.md`, `docs/images/architecture.png` | Loutchiana |
 | B | Data dictionary, product mapping and state list | `docs/data_dictionary.md`, `config/product_mapping.csv`, `config/state_codes.csv` | Loutchiana, Joseph |
-| C | Raw manifest of the historical load and a sample run log | `docs/images/minio_raw_full_load.png` (manifest in MinIO, 22 Nov); `docs/evidence/` [TO COMPLETE: manifest and run log files, Marwa] | Marwa |
-| D | Sample quality report and the reconciliation of one run | `docs/images/minio_quality_report.png`; `docs/evidence/` [TO COMPLETE: the JSON file, Joseph] | Joseph |
+| C | Raw manifest of the historical load and a sample run log | `docs/images/minio_raw_full_load.png` (manifest in MinIO, run of 22 Nov); `docs/evidence/run_20261124T135857Z_full/manifest.json` and `run_log.json` (run of 24 Nov) | Marwa |
+| D | Sample quality report and the reconciliation of one run | `docs/images/minio_quality_report.png` (run of 22 Nov); `docs/evidence/run_20261124T135857Z_full/quality_report.json` (run of 24 Nov) | Joseph |
 | E | Sample curated output | `docs/images/minio_curated_parquet.png`; `docs/evidence/` [TO COMPLETE: sample file, Joseph] | Joseph |
 | F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py`, `docs/images/mongodb_collections_indexes.png` | Christopher |
 | G | Index benchmark before and after | `docs/evidence/benchmark.md` [TO COMPLETE] | Christopher |

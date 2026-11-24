@@ -193,17 +193,26 @@ The two differences between the contract and the code that this section listed o
 - CFPB: [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/), [API](https://cfpb.github.io/api/ccdb/api.html), [fields](https://cfpb.github.io/api/ccdb/fields.html), [release notes](https://cfpb.github.io/api/ccdb/release-notes.html).
 - Team documents: [mongodb_model.md](mongodb_model.md), [metrics.md](metrics.md), [runbook.md](runbook.md), [test_plan.md](test_plan.md), [defect_log.md](defect_log.md).
 
-### Result of a full run on the real file (Sun 22 Nov 2026)
+### Result of a full run on the real file (Tue 24 Nov 2026)
 
-One run of the chain with the historical collector, the Spark job and the loader, on the official CFPB file of 22 November 2026 (run `20261122T183046Z_full`, Docker with 8 GB):
+One run of the chain with the historical collector, the Spark job and the loader, on the official CFPB file of 24 November 2026 (run `20261124T135857Z_full`, Docker with 8 GB), after the curated path moved to `option=5`:
 
 | Step | Result |
 |---|---|
-| Collection | `complaints.csv.zip` 353.6 MiB, extracted CSV 5.5 GiB, 19,371,701 records, SHA-256 and manifest saved next to the raw files |
-| Spark job | quality gate passed (PASS); 19,166,525 out of domain + 112 quarantined (32 invalid state, 80 sent before received) + 205,064 curated + 0 duplicates removed = 19,371,701 |
-| MongoDB load | 205,064 unique complaints, 73,545 monthly summaries, 8,074 company-year summaries; latest complaint 20 Nov 2026, so the ingestion lag is 2 days |
-| Indexes | the five compound indexes on `complaints` and the monthly index; a query on state and date uses `state_date_idx` (index scan) |
+| Collection | `complaints.csv.zip` 354.0 MiB (371,218,594 bytes), extracted CSV 5.5 GiB, 19,397,176 records, SHA-256 and manifest saved next to the raw files; the download took 70 seconds |
+| Spark job | quality gate passed (PASS); 19,191,793 out of domain + 112 quarantined (32 invalid state, 80 sent before received) + 205,271 curated + 0 duplicates removed = 19,397,176; reconciliation exact |
+| MongoDB load | 205,271 unique complaints, 73,597 monthly summaries, 8,078 company-year summaries; latest complaint 23 Nov 2026, so the ingestion lag is 1 day; high-water mark set to 2026-11-23 |
+| Indexes | the five compound indexes on `complaints` (`sub_product_date_idx`, `issue_date_idx`, `state_date_idx`, `company_date_idx`, `channel_date_idx`) kept from the earlier run |
 
-The count of 205,064 is higher than the 199,152 of the API test of 20 November because the two numbers count different things. The API figure counts the current product label only. On 22 November the current label has 199,354 records in the file, which is 202 more than on 20 November (complaints published since). The curated data also keeps the legacy labels that the product mapping includes: 5,274 under "Money transfers", 418 under "Prepaid card" (mobile wallet only) and 18 under "Virtual currency"; 199,354 + 5,710 = 205,064.
+The count of 205,271 is higher than the 199,152 of the API test of 20 November because the two numbers count different things. The API figure counts the current product label only. On 24 November the current label has 199,561 records in the file, which is 409 more than on 20 November (complaints published since). The curated data also keeps the legacy labels that the product mapping includes: 5,274 under "Money transfers", 418 under "Prepaid card" (mobile wallet only) and 18 under "Virtual currency"; 199,561 + 5,710 = 205,271.
+
+Observations from the quality report and MongoDB for this run:
+
+- `sub_issue` is empty for every record in the domain: 0 of 205,383 checked records have a sub-issue, so the report counts all 205,383 as not applicable (the raw file has none for these products). Any breakdown by sub-issue is therefore a breakdown by issue.
+- `state` is empty for 10,239 curated complaints (4.99%), so geographic results cover the 95% that have a state.
+- Complaints per year jump from 16,746 in 2024 to 84,612 in 2025 (34,960 in 2026 up to 23 Nov). The data does not say why; the report describes the jump without giving a cause.
+- The first load of this run stopped at the integrity check (205,271 curated, 205,272 in MongoDB). The extra document was complaint 33357934, received on 20 Nov and loaded on 22 Nov, which is not in the file of 24 Nov. The loader only inserts and updates; it does not remove a complaint that the CFPB has dropped from its file. The document was deleted from the local MongoDB and the run was resumed (`ingestion.pipeline --mode process`). A permanent answer (remove or flag dropped complaints in the loader) belongs to the database owner.
+
+The earlier full run of Sun 22 Nov 2026 (run `20261122T183046Z_full`, 19,371,701 records, 205,064 curated, written under the previous folder layout) gave the same 112 quarantined records and the same legacy label counts.
 
 Screenshots: `docs/images/minio_raw_full_load.png`, `minio_curated_parquet.png`, `minio_quality_report.png`, `minio_bucket_overview.png` and `mongodb_collections_indexes.png` (output of `mongosh`, not Compass).

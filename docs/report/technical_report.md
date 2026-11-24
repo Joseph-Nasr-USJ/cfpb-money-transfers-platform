@@ -4,7 +4,7 @@ Technical report. Group 5, course 020IABDM2 Big Data Frameworks (Dr. Rafiqul Haq
 
 ## 1. Executive summary
 
-We built a batch data platform that turns the public CFPB Consumer Complaint Database into evidence for one financial domain, money transfers and digital payments (option 5). It loads the full historical file once and collects new complaints from the CFPB API every 24 hours with Apache NiFi, with a tested Python collector as the fallback. Raw files are kept unchanged in MinIO. Apache Spark validates, cleans and deduplicates the records, quarantines bad ones with a reason and stops a run when a quality threshold fixed in advance is breached. MongoDB serves the curated records and aggregates, indexed for the dashboard filters, and a Streamlit dashboard with a Redis cache presents them. Two Spark MLlib analyses describe emerging issues and groups of states. The whole stack starts with one Docker Compose command, and rerunning the same window does not create duplicates. [TO COMPLETE: number of automated tests passing and the full-load record counts from the quality report.]
+We built a batch data platform that turns the public CFPB Consumer Complaint Database into evidence for one financial domain, money transfers and digital payments (option 5). It loads the full historical file once and collects new complaints from the CFPB API every 24 hours with Apache NiFi, with a tested Python collector as the fallback. Raw files are kept unchanged in MinIO. Apache Spark validates, cleans and deduplicates the records, quarantines bad ones with a reason and stops a run when a quality threshold fixed in advance is breached. MongoDB serves the curated records and aggregates, indexed for the dashboard filters, and a Streamlit dashboard with a Redis cache presents them. Two Spark MLlib analyses describe emerging issues and groups of states. The whole stack starts with one Docker Compose command, and rerunning the same window does not create duplicates. On the full CFPB file of 24 November 2026 the chain read 19,397,176 records, kept 205,271 complaints in the domain and quarantined 112 with a stated reason (32 invalid state, 80 sent to the company before they were received), and the quality report passed with an exact reconciliation. The automated tests give 159 passed and 1 skipped.
 
 **What we found.** [TO COMPLETE: three or four principal findings from docs/findings.md, each with its number, its denominator, the period and its caution. Include the answer to Q1 (fastest-growing sub-products and issues, and the wallet share) and to Q2 (the fraud-or-scam share by core sub-product).]
 
@@ -29,7 +29,7 @@ We built a batch data platform that turns the public CFPB Consumer Complaint Dat
 | Virtual currency (legacy label) | all | Virtual currency |
 | Prepaid card | Mobile wallet only | Mobile or digital wallet |
 
-Four core sub-products are compared throughout: domestic (US) money transfer, international money transfer, mobile or digital wallet and virtual currency; the rest are grouped as "Other money services". The CFPB API returned 199,152 records for the current label on 20 November 2026. The full load of 22 November keeps 205,064 curated complaints: 199,354 under the current label and 5,710 under the legacy labels of the mapping.
+Four core sub-products are compared throughout: domestic (US) money transfer, international money transfer, mobile or digital wallet and virtual currency; the rest are grouped as "Other money services". The CFPB API returned 199,152 records for the current label on 20 November 2026. The full load of 24 November keeps 205,271 curated complaints: 199,561 under the current label and 5,710 under the legacy labels of the mapping.
 
 **Reporting period.** The full history in the CFPB file, kept current by a 24-hour incremental collection. Each question's window is fixed in advance, and the current year is labelled partial.
 
@@ -123,7 +123,7 @@ _Draft pending (Perla, due Wed 25 Nov)._
 
 **Design trade-offs.** We chose a daily batch over streaming, because the CFPB publishes daily and the brief rules streaming out. We chose MongoDB as the serving store and kept Parquet in MinIO as the trusted source. We kept the tested Python collector next to NiFi so that the demonstration does not depend on one tool. MinIO no longer publishes official images, so we pinned a community rebuild.
 
-**Unresolved issues.** [TO COMPLETE on Wed 25 Nov from the repository: for example whether NiFi and Redis are merged and verified, the curated path `option=5`, the quality dimension names of brief V2, the approval of the legacy product labels, and any open defect.]
+**Unresolved issues.** The NiFi and Redis services are merged and part of the Docker stack, but the NiFi flow is not exported to `ingestion/nifi/` yet, so the Python collector remains the collection path that the pipeline uses. The two differences between the brief and the code that were open on 21 Nov are closed: the curated data is written and read under `curated/complaints/option=5/year=YYYY/month=MM/` through one shared module, and the quality report uses the V2 names freshness and reconciliation. A full run on the new path was made on 24 Nov (19,397,176 records, 205,271 curated, quality PASS) and its figures replace those of the run of 22 Nov. Two points remain open: the lecturer's approval of the legacy product labels, which account for 5,710 of the 205,271 curated complaints, and the MongoDB loader, which inserts and updates complaints but does not remove one that the CFPB has dropped from its file. The second full load stopped at the integrity check for that reason (205,272 documents in MongoDB for 205,271 curated); the stale document was removed by hand and the run resumed.
 
 **Next improvement.** The improvement to prioritise is a MongoDB replica set with automatic primary election, majority writes and reads from the primary, so that the loss of one node no longer means rebuilding the database. Sharding is not needed at about 200,000 documents. After that, a Spark cluster would be needed only if the data grew by orders of magnitude.
 
@@ -159,13 +159,13 @@ _Draft pending (Perla, due Wed 25 Nov)._
 |---|---|---|---|
 | A | Architecture document and diagram | `docs/architecture.md`, `docs/images/architecture.png` | Loutchiana |
 | B | Data dictionary, product mapping and state list | `docs/data_dictionary.md`, `config/product_mapping.csv`, `config/state_codes.csv` | Loutchiana, Joseph |
-| C | Raw manifest of the historical load and a sample run log | `docs/images/minio_raw_full_load.png` (manifest in MinIO, 22 Nov); `docs/evidence/` [TO COMPLETE: manifest and run log files, Marwa] | Marwa |
-| D | Sample quality report and the reconciliation of one run | `docs/images/minio_quality_report.png`; `docs/evidence/` [TO COMPLETE: the JSON file, Joseph] | Joseph |
+| C | Raw manifest of the historical load and a sample run log | `docs/images/minio_raw_full_load.png` (manifest in MinIO, run of 22 Nov); `docs/evidence/run_20261124T135857Z_full/manifest.json` and `run_log.json` (run of 24 Nov) | Marwa |
+| D | Sample quality report and the reconciliation of one run | `docs/images/minio_quality_report.png` (run of 22 Nov); `docs/evidence/run_20261124T135857Z_full/quality_report.json` (run of 24 Nov) | Joseph |
 | E | Sample curated output | `docs/images/minio_curated_parquet.png`; `docs/evidence/` [TO COMPLETE: sample file, Joseph] | Joseph |
 | F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py`, `docs/images/mongodb_collections_indexes.png` | Christopher |
 | G | Index benchmark before and after | `docs/evidence/benchmark.md` [TO COMPLETE] | Christopher |
 | H | Metric definitions and findings | `docs/metrics.md`, `docs/findings.md` | Perla |
 | I | Test plan, test results and defect log | `docs/test_plan.md`, `docs/evidence/test_results_*.txt`, `docs/defect_log.md` | Charbel |
-| J | Rerun (idempotency) evidence | `docs/evidence/idempotency.md` [TO COMPLETE] | Joseph |
+| J | Rerun (idempotency) evidence | `docs/evidence/idempotency.md` | Joseph |
 | K | Demonstration script and runbook | `docs/demo_script.md`, `docs/runbook.md` | Charbel |
 | L | Checkpoint notes and contribution logs | `docs/checkpoints/`, `docs/contributions/` | Loutchiana, everyone |
