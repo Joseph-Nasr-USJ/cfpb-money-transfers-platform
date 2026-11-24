@@ -314,7 +314,7 @@ bullets(s, 0.6, 1.55, 6.0, 4.8, [
 ], size=18, gap=12)
 stat_card(s, 6.95, 1.55, 5.8, 4.8, "19,397,176", ["records in the file of 24 Nov 2026", "complaints.csv.zip: 354.0 MiB",
           "complaints.csv: 5.5 GiB", "manifest.json: 1.1 KiB", "SHA-256 8b6db08e...59dca2",
-          "Screenshot: docs/images/minio_raw_full_load.png (run of 22 Nov); manifest of 24 Nov in docs/evidence/"])
+          "Screenshot: docs/images/minio_raw_full_load.png; manifest in docs/evidence/"])
 
 # ---------- 7. step 3 ----------
 s = content_slide("A bounded incremental run", step=3, presenter="Marwa (2:30)", number=7, notes=(
@@ -376,7 +376,7 @@ bullets(s, 4.9, 2.3, 3.5, 4.1, ["sub-product, date", "issue, date", "state, date
         size=16, gap=5)
 text(s, 4.9, 5.05, 3.5, 1.3, "Equality field first, date last. Dates are native BSON Date values.", size=14, color=MUTED)
 stat_card(s, 8.9, 1.55, 3.85, 4.9, "205,271", ["complaints in MongoDB", "73,597 monthly summaries", "8,078 company-year summaries",
-          "Query on state and date: index scan on state_date_idx (run of 22 Nov)", "(run of 24 Nov)"])
+          "Query on state and date: index scan on state_date_idx", "(run of 24 Nov)"])
 
 # ---------- 11. step 7 ----------
 s = content_slide("Dashboard: answering Q1 and Q2", step=7, presenter="Perla (2:00)", number=11, notes=(
