@@ -176,15 +176,15 @@ Secrets are never in code: they are read from `.env` (placeholders in `.env.exam
 | Docker stack (`minio`, `minio-init`, `mongo`, `pipeline` image), Makefile, reference files | on `main` |
 | Spark schema, transforms, quality gate, Spark job; MongoDB loader, indexes, queries, benchmark | on `main` (42 tests passed on 21 Nov in Charbel's run; 57 passed on 22 Nov with `make test` on my machine) |
 | Metric definitions, README, runbook, test plan, defect log, demo script | on `main` |
-| Python collectors (historical, incremental), sample script, API notes and their tests | written, on branch `marwa/historical-load`, not merged yet (Marwa); the scheduler and the pipeline chain are still to come |
+| Python collectors (historical, incremental), sample script, API notes and their tests | on `main` (Marwa, PR #33, merged 24 Nov), together with the scheduler, the pipeline chain and the high-water mark update |
 | `nifi` and `redis` services, `.env` settings, `make ml` target | on `main` (Joseph, PR #27, merged 22 Nov) |
-| NiFi flow (exported to `ingestion/nifi/`) | in progress (Marwa, Joseph) |
-| Analysis scripts, Spark MLlib scripts, dashboard | in progress (Perla) |
+| NiFi flow (exported to `ingestion/nifi/`) | in progress (Marwa, Joseph); `ingestion/nifi/` is still empty on `main` |
+| Analysis scripts, Spark MLlib scripts, dashboard | on `main` (Perla, PR #28, merged); not yet checked by me on a full run |
 
-Two differences between the contract and the code on `main` that the team still has to close (to confirm with Joseph and Christopher):
+The two differences between the contract and the code that this section listed on 23 Nov are closed on `main`:
 
-1. The Spark job and the MongoDB loader both use `curated/complaints/domain=money_transfers_payments/` (checked in the code and by the full run below), while the brief's example path is `curated/complaints/option=5/`. The two components agree with each other; the difference is only with the example in the brief, so the team can keep `domain=` and say so, or change writer and loader together.
-2. `processing/quality.py` still names two dimensions `timeliness` and `integrity`; brief V2 names them **freshness** and **reconciliation**, and the documents use the V2 names.
+1. **Curated path.** The Spark job writes, and the MongoDB loader reads, `curated/complaints/option=5/year=YYYY/month=MM/` with a two-digit month, through the shared module `processing/paths.py` (Joseph, PR #31). The full run below was made before this change and wrote `domain=money_transfers_payments/`; its curated files sit under that older path.
+2. **Quality dimension names.** `processing/quality.py` now uses the V2 names **freshness** (threshold `freshness_max_age_days`, 3 days; the report also records `ingested_at`) and **reconciliation** (Joseph, PR #32, merged 24 Nov). The same change splits `sub_issue` into filled, missing and not applicable in a new `sub_issue_applicability` section. Reports of earlier runs keep the old names `timeliness` and `integrity`.
 
 ## 13. References
 

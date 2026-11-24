@@ -145,16 +145,17 @@ The rejected records with all their columns and a `reject_reason`. Several reaso
 | `counts` | `raw_input`, `out_of_domain`, `duplicates_removed`, `quarantined`, `curated` (they reconcile exactly: raw = curated + quarantined + out of domain + duplicates removed) |
 | `quarantine_reasons` | count per reject reason |
 | `checks` | one entry per check: `dimension`, `rule`, `metric`, `threshold`, `status` (PASS, WARN, FAIL) |
-| `completeness` | percentage filled per field |
-| `freshness` | `latest_date_received`, `ingestion_lag_days` |
+| `completeness` | percentage filled per field; for `sub_issue`, only records where a sub-issue applies are counted |
+| `sub_issue_applicability` | `sub_issue` split into `filled`, `missing` and `not_applicable` (with `records`, `applicable` and `filled_pct_of_applicable`); an empty `sub_issue` is not applicable when no record of the same issue in the run has a sub-issue |
+| `freshness` | `latest_date_received`, `ingestion_lag_days`, `ingested_at` (ingestion time of the run) |
 | `consistency` | unmapped and mapped product combinations with counts |
 | `thresholds` | the thresholds used (fixed in advance) |
 | `overall_status` | PASS, WARN or FAIL; FAIL stops the run |
-
-Example, full run of 22 Nov 2026 (`20261122T183046Z_full`): `overall_status` PASS; `counts` raw_input 19,371,701, out_of_domain 19,166,525, duplicates_removed 0, quarantined 112, curated 205,064; `quarantine_reasons` invalid_state 32, negative_lag 80; `freshness` latest_date_received 2026-11-20, ingestion_lag_days 2.
 | `quality_gate` | `passed`, `stopped` or `overridden` (development only) |
 
-The six dimensions of brief V2 are uniqueness, completeness, validity, consistency, freshness and reconciliation. On 21 Nov the code still labels two of them `timeliness` and `integrity`; the rename is open with Joseph.
+Example, full run of 22 Nov 2026 (`20261122T183046Z_full`): `overall_status` PASS; `counts` raw_input 19,371,701, out_of_domain 19,166,525, duplicates_removed 0, quarantined 112, curated 205,064; `quarantine_reasons` invalid_state 32, negative_lag 80; `freshness` latest_date_received 2026-11-20, ingestion_lag_days 2.
+
+The six dimensions of brief V2 are uniqueness, completeness, validity, consistency, freshness and reconciliation, and the code uses these names since PR #32 (merged 24 Nov; the threshold key is `freshness_max_age_days`, 3 days). Reports of runs made before that, such as the example above, still use the old names `timeliness` and `integrity` and have no `sub_issue_applicability` section or `ingested_at`.
 
 ### 6.3 Raw manifest and run log
 

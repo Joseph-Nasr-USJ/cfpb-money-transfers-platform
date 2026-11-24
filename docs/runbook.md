@@ -119,7 +119,7 @@ Each Spark run writes `quality/run_id=<run_id>/quality_report.json`. It covers s
 
 A FAIL makes the Spark job exit with code 1 and publish nothing: the curated data stays as it was, and the report and quarantine are still written as evidence. A WARN does not stop the run. `overall_status` in the report is `PASS`, `WARN` or `FAIL`.
 
-The code still uses the names `timeliness` and `integrity` for freshness and reconciliation until Joseph's V2 change is merged.
+The report uses the names `freshness` and `reconciliation` since Joseph's PR #32 (24 Nov); reports of earlier runs still say `timeliness` and `integrity`. `sub_issue` is reported in a separate `sub_issue_applicability` section (filled, missing, not applicable).
 
 ## 9. Apache NiFi
 

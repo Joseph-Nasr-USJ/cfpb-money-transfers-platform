@@ -25,7 +25,7 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 **Problems**
 - I started late: the report skeleton and section 2 were due on Sat 14 Nov, and the architecture document, data dictionary and dashboard texts on Wed 18 Nov. Perla and the others could not use my texts before today.
 - My teammates' task files describe the earlier plan (no Redis in Perla's, a nine-step demo in Charbel's). I followed my own updated file and the code on `main`.
-- The repository differs from the shared contract in two places: the Spark job writes `curated/complaints/domain=money_transfers_payments/` while the contract and the MongoDB loader use `option=5`; and `processing/quality.py` still calls two dimensions `timeliness` and `integrity`, while brief V2 names them freshness and reconciliation. Both are written in `docs/architecture.md` (section 12) and must be settled with Joseph and Christopher.
+- On 21 Nov the repository differed from the shared contract in two places: the curated path (`domain=money_transfers_payments` in the Spark job, `option=5` in the contract) and the quality dimension names (`timeliness` and `integrity` instead of freshness and reconciliation). Both were written in `docs/architecture.md` (section 12). Joseph closed them on 24 Nov (PR #31 for the path, PR #32 for the names) and I updated the documents.
 - The `nifi` and `redis` services and Marwa's collectors are not on `main` yet, so the architecture document marks them as target.
 - `make` is not installed on my machine yet and I have not run `make up` or `make test` myself.
 - The checkpoint notes are based on the repository history; I still have to check them with the team.
@@ -68,7 +68,7 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 **Problems**
 - The full file has 19.4 million records; the Spark job needs the 8 GB Docker setting. Teammates with the default 2 GB will not be able to run it.
 - The two record counts (199,152 and 205,064) were not explained anywhere; now they are.
-- The quality check names `timeliness` and `integrity` in `processing/quality.py` still differ from brief V2 (`freshness`, `reconciliation`); to settle with Christopher.
+- The quality check names `timeliness` and `integrity` in `processing/quality.py` differed from brief V2 (`freshness`, `reconciliation`); resolved by Joseph's PR #32, merged 24 Nov.
 - Perla's dashboard is on her branch (work in progress); her pages do not yet show my texts from `dashboard/content/`.
 
 **Next step**

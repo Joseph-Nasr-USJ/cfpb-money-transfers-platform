@@ -2,7 +2,7 @@
 Section 4.1 Architecture and technology choices
 Owner: Loutchiana | Target: 300 words | Written: Sat 21 Nov
 Summary of docs/architecture.md (the full reasoning is there). Facts to confirm before submission: that the NiFi flow is exported and
-running (the NiFi and Redis services were merged on 22 Nov, PR #27), and the curated path (domain= in code, option=5 in the brief).
+running (the NiFi and Redis services were merged on 22 Nov, PR #27), and the curated path (option=5, merged in PR #31).
 -->
 
 ### 4.1 Architecture and technology choices
