@@ -37,6 +37,11 @@ from ingestion import minio_utils
 CHUNK_SIZE = 1024 * 1024                       # 1 MiB per read
 BACKOFF_SECONDS = [2, 4, 8]                    # waits between attempts
 RETRY_STATUS = {429, 500, 502, 503, 504}
+# Network problems worth another attempt. ChunkedEncodingError is what requests raises when the
+# connection drops in the MIDDLE of a download; it is not a ConnectionError subclass, so it must be
+# listed (defect found on 20 Nov: a 370 MB download broke after 104 MB and was not retried).
+RETRYABLE_ERRORS = (requests.ConnectionError, requests.Timeout, requests.HTTPError,
+                    requests.exceptions.ChunkedEncodingError)
 WORK_DIR = Path(os.environ.get("INGEST_WORK_DIR", "data/tmp"))   # git-ignored, survives container restarts
 DATE_RECEIVED_HEADER = "Date received"
 COMPLAINT_ID_HEADER = "Complaint ID"
@@ -84,7 +89,8 @@ def download(url: str, target: Path, http_log: dict, timeout: float, max_retries
     sleep = sleep or time.sleep
     target.parent.mkdir(parents=True, exist_ok=True)
     validator_file = target.with_name(target.name + ".validator.json")
-    attempt = 0
+    attempt = 0                     # failures in a row WITHOUT progress (bytes on disk did not grow)
+    best_size = target.stat().st_size if target.exists() else 0
     while True:
         digest = hashlib.sha256()
         already = _hash_existing(target, digest) if target.exists() else 0
@@ -106,7 +112,7 @@ def download(url: str, target: Path, http_log: dict, timeout: float, max_retries
                 if response.status_code not in (200, 206):
                     raise DownloadError(f"HTTP {response.status_code} is not retryable")
                 if already and response.status_code == 200:  # file changed or Range ignored: start again
-                    digest, already = hashlib.sha256(), 0
+                    digest, already, best_size = hashlib.sha256(), 0, 0
                 validator = response.headers.get("ETag") or response.headers.get("Last-Modified")
                 if validator and not already:
                     validator_file.write_text(json.dumps({"validator": validator}))
@@ -120,8 +126,16 @@ def download(url: str, target: Path, http_log: dict, timeout: float, max_retries
                 if expected is not None and size != expected:
                     raise requests.ConnectionError(f"incomplete download: {size} of {expected} bytes")
                 return _result(target, digest, size, response)
-        except (requests.ConnectionError, requests.Timeout, requests.HTTPError) as exc:
+        except RETRYABLE_ERRORS as exc:
             http_log["errors"].append(f"{iso(utc_now())} {type(exc).__name__}: {exc}")
+            size_now = target.stat().st_size if target.exists() else 0
+            if size_now > best_size:
+                # The broken attempt still downloaded more: resume at once and do not count it
+                # against max_retries, so a slow, unstable connection can finish a large file.
+                best_size, attempt = size_now, 0
+                http_log["resumes"] = http_log.get("resumes", 0) + 1
+                print(f"Connection dropped after {size_now:,} bytes; resuming", flush=True)
+                continue
             if attempt >= max_retries:
                 raise DownloadError(f"gave up after {max_retries} retries: {exc}") from exc
             wait = BACKOFF_SECONDS[min(attempt, len(BACKOFF_SECONDS) - 1)]
@@ -129,7 +143,7 @@ def download(url: str, target: Path, http_log: dict, timeout: float, max_retries
             if retry_after and retry_after.isdigit():
                 wait = int(retry_after)
             attempt += 1
-            http_log["retries"] = attempt
+            http_log["retries"] += 1
             print(f"Download problem ({exc}); retry {attempt}/{max_retries} in {wait} s", flush=True)
             sleep(wait)
 
