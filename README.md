@@ -186,7 +186,7 @@ Expected today:
 - The scheduler, the collectors and the dashboard are on `main`, so the `pipeline` container should start without the `No module named ingestion.scheduler` error. If it still restarts, check `docker compose logs pipeline` and write down what you see.
 - The Spark job, the loader and the benchmark need a raw run in MinIO, which the collectors produce, so run `make pipeline-full` or `make sample` first.
 - The NiFi service starts, but its flow is not exported to `ingestion/nifi/` yet, so the Python collector is the working path for now.
-- I have not run the whole stack again on the merged `main`; this section describes the files, not a fresh run.
+- The whole stack has not been run again on the merged `main`; this section describes the files, not a fresh run.
 
 ## Folder structure
 
