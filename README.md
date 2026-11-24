@@ -166,7 +166,7 @@ All ports are bound to `127.0.0.1`: only your own laptop can reach them. The rep
 
 ## Project status
 
-Updated Tue 24 Nov 2026. This section changes as Pull Requests are merged.
+Updated Tue 24 Nov 2026. Everything marked on `main` is merged.
 
 | Component | Status |
 |---|---|
@@ -177,16 +177,16 @@ Updated Tue 24 Nov 2026. This section changes as Pull Requests are merged.
 | MongoDB loader, indexes, queries, benchmark, model document (`database/`, `docs/mongodb_model.md`) | ✅ on `main` |
 | Metric definitions (`docs/metrics.md`) | ✅ on `main` |
 | Historical and incremental Python collectors, scheduler, pipeline chain, sample script (`ingestion/`, the fallback) | ✅ on `main` (Marwa, PR #33) |
-| Apache NiFi flow (`ingestion/nifi/`) | in progress (Marwa, Joseph); the folder is still empty |
+| Apache NiFi flow (`ingestion/nifi/`) | in progress (Marwa, Joseph): export of the flow into the folder |
 | `nifi` and `redis` services in `docker-compose.yml` | ✅ on `main` (Joseph, PR #27) |
 | Analysis scripts, Spark MLlib scripts and dashboard (`analytics/`, `dashboard/`) | ✅ on `main` (Perla, PR #28) |
 
-Expected today:
+Notes:
 
-- The scheduler, the collectors and the dashboard are on `main`, so the `pipeline` container should start without the `No module named ingestion.scheduler` error. If it still restarts, check `docker compose logs pipeline` and write down what you see.
-- The Spark job, the loader and the benchmark need a raw run in MinIO, which the collectors produce, so run `make pipeline-full` or `make sample` first.
-- The NiFi service starts, but its flow is not exported to `ingestion/nifi/` yet, so the Python collector is the working path for now.
-- The whole stack has not been run again on the merged `main`; this section describes the files, not a fresh run.
+- The `pipeline` container runs `ingestion/scheduler.py`: a collection every `SCHEDULE_HOURS` (24) with the collector selected by `COLLECTOR` (`python` or `nifi`), followed by the Spark job and the MongoDB load. Check it with `docker compose logs pipeline`.
+- The Spark job, the loader and the benchmark read from MinIO, so a raw run must exist first: `make pipeline-full` (historical file) or `make sample` (about 1,000 rows).
+- NiFi is available at https://localhost:8443. Until its flow is exported to `ingestion/nifi/`, the Python collector is the collection path.
+- Curated data is written to `curated/complaints/option=5/year=YYYY/month=MM/` (shared module `processing/paths.py`); the quality report names its dimensions uniqueness, completeness, validity, consistency, freshness and reconciliation.
 
 ## Folder structure
 
@@ -216,7 +216,7 @@ Every folder has its own `README.md` naming its owner.
 | Joseph Nasr | Data engineering lead and repository integrator | repository setup, Docker files, `requirements-pipeline.txt`, `Makefile`, `processing/`, `config/`, `tests/processing/` |
 | Christopher Al Hassrouty | Database lead | `database/`, `tests/database/`, `docs/mongodb_model.md` |
 | Perla Boustany | Analytics lead and visualisation | `analytics/`, `dashboard/` code, `docker/dashboard.Dockerfile`, `tests/dashboard/`, `docs/metrics.md`, `docs/findings.md` |
-| Loutchiana Marie | Delivery lead: report, architecture and data documentation, dashboard content, presentation | `docs/report/`, `docs/architecture.md`, `docs/data_dictionary.md`, `dashboard/content/`, `docs/checkpoints/`, slides |
+| Loutchiana Marie | Delivery lead: report, architecture and data documentation, dashboard content, presentation | `docs/report/` (sections and DOCX/PDF export), `docs/architecture.md` and diagram, `docs/data_dictionary.md`, `dashboard/content/`, `docs/checkpoints/`, `docs/presentation/` (slide builder), `docs/contributions/loutchiana.md`, full-run evidence in `docs/images/` |
 | Charbel Mazraani | Delivery lead: README, runbook, testing evidence, demo, presentation | `README.md`, `docs/runbook.md`, `docs/test_plan.md`, `docs/defect_log.md`, `docs/demo_script.md`, `docs/evidence/`, slides |
 
 The brief lists five roles; with six members, the "Visualisation and delivery lead" role is shared: visualisation by Perla, delivery by Loutchiana and Charbel.
@@ -252,7 +252,9 @@ More recovery steps (failed run, resume, reset of the high-water mark, index reb
 | [docs/evidence/](docs/evidence/) | Dated test results and other evidence | Charbel |
 | [docs/architecture.md](docs/architecture.md) | Components and the reason for each | Loutchiana |
 | [docs/data_dictionary.md](docs/data_dictionary.md) | Curated fields, types and rules | Loutchiana |
-| [docs/report/](docs/report/) | Technical report | Loutchiana (editor), every owner |
+| [docs/report/](docs/report/) | Technical report: sections, build script, DOCX and PDF export | Loutchiana (editor), every owner |
+| [docs/presentation/](docs/presentation/) | Slide outline and the script that builds the 15-slide deck | Loutchiana, Charbel |
+| [docs/images/](docs/images/) | Architecture diagram and screenshots of MinIO and MongoDB after the full run of 22 Nov | Loutchiana |
 | [docs/metrics.md](docs/metrics.md), [docs/findings.md](docs/findings.md) | Metric definitions and analytical findings | Perla |
 | [docs/mongodb_model.md](docs/mongodb_model.md) | Collections, indexes, aggregations | Christopher |
 | [docs/api_notes.md](docs/api_notes.md) | CFPB API behaviour and limits | Marwa |
