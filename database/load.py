@@ -25,13 +25,14 @@ from bson.int64 import Int64
 from pymongo import MongoClient, UpdateOne
 
 from database.indexes import INDEX_SPECS
+from processing.paths import AGG_COMPANY_YEAR_DIR, AGG_MONTHLY_DIR, CURATED_DIR
 
 
 BATCH_SIZE = 5_000
-CURATED_COMPLAINTS = "curated/complaints/domain=money_transfers_payments"
+CURATED_COMPLAINTS = CURATED_DIR          # curated/complaints/option=5, shared with the Spark job
 AGGREGATE_PATHS = {
-    "agg_monthly": "curated/aggregates/agg_monthly",
-    "agg_company_year": "curated/aggregates/agg_company_year",
+    "agg_monthly": AGG_MONTHLY_DIR,
+    "agg_company_year": AGG_COMPANY_YEAR_DIR,
 }
 DATE_FIELDS = ("date_received", "date_sent_to_company", "ingested_at")
 
