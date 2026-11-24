@@ -69,7 +69,7 @@ Last update: Sat 21 Nov 2026 (42 tests passing, brief V2 dimension names, machin
 | T-28 | `test_wrong_arguments_exit_with_code_2` | `tests/processing/test_spark_job.py` | passing |
 | T-29 | `test_quality_gate_failure_writes_evidence_but_no_curated_data` | `tests/processing/test_spark_job.py` | passing |
 | T-30 | `test_full_load_writes_curated_aggregates_and_report` | `tests/processing/test_spark_job.py` | passing |
-| T-31 | `test_api_run_merges_with_curated_and_rerun_changes_nothing` (idempotent rerun, demo step 5) | `tests/processing/test_spark_job.py` | passing |
+| T-31 | `test_api_run_merges_with_curated_and_rerun_changes_nothing` (idempotent rerun, demo step 5; real-data proof in [idempotency.md](evidence/idempotency.md)) | `tests/processing/test_spark_job.py` | passing |
 | T-32 | `test_missing_input` | `tests/processing/test_spark_job.py` | passing |
 
 ### Data quality (Joseph Nasr)
@@ -95,7 +95,8 @@ Unit tests use `mongomock` (in-memory MongoDB), so they run without the `mongo` 
 
 | ID | Test | File | Status |
 |---|---|---|---|
-| D-01 | *proposed* `test_load_twice_gives_the_same_count` (upsert is idempotent) | `tests/database/test_load.py` | planned |
+| D-01 | `test_loading_twice_does_not_create_duplicates` (upsert is idempotent; real-data proof in [idempotency.md](evidence/idempotency.md)) | `tests/database/test_upsert_idempotency.py` | passing |
+| D-01b | `test_upsert_updates_existing_complaint` | `tests/database/test_upsert_idempotency.py` | passing |
 | D-02 | *proposed* `test_id_is_complaint_id` | `tests/database/test_load.py` | planned |
 | D-03 | *proposed* `test_dates_are_stored_as_native_dates` | `tests/database/test_load.py` | planned |
 | D-04 | *proposed* `test_indexes_cover_dashboard_filters` (product, date, state, company, issue) | `tests/database/test_indexes.py` | planned |
@@ -128,7 +129,7 @@ The models only describe or diagnose past data; they never predict. Fixed rule f
 | ID | Test | File | Status |
 |---|---|---|---|
 | E-01 | *proposed* `test_sample_counts_reconcile_at_every_layer`: about 1,000 sample rows go raw → curated → MongoDB → query function; raw = curated + quarantined + out_of_domain + duplicates_removed, curated = MongoDB count = query total | `tests/e2e/test_pipeline_sample.py` | planned |
-| E-02 | *proposed* `test_rerun_creates_no_duplicates`: the same window processed and loaded twice gives the same counts | `tests/e2e/test_pipeline_sample.py` | planned |
+| E-02 | *proposed* `test_rerun_creates_no_duplicates`: the same window processed and loaded twice gives the same counts. Manual real-data version already recorded: run `20261124T084259Z_api`, 468 complaints before and after the rerun, no duplicate Complaint IDs ([idempotency.md](evidence/idempotency.md)) | `tests/e2e/test_pipeline_sample.py` | planned |
 
 ## 3. Deliberate failing test (brief requirement)
 
