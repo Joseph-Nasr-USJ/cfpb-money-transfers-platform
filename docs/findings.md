@@ -59,3 +59,30 @@ These results show that the ranking changes depending on whether the comparison 
 
 
 
+
+
+## Q3 — Submission Channels
+
+**Question:** Has the mix of submission channels changed over time?
+
+Web submission became increasingly dominant in the complaint dataset. Web represented 91.58% of complaints in 2021, fell temporarily to 87.77% in 2022, then increased to 90.53% in 2023, 91.04% in 2024 and 98.36% in 2025. Over the same period, Phone fell from 5.66% in 2021 to only 1.20% in 2025, while Referral fell from 2.44% to 0.30%.
+
+Across the complete dataset, Web accounts for 191,726 complaints, or 93.30% of all records. Phone accounts for 4.53%, Referral 1.62%, Postal mail 0.48%, Fax 0.07%, and Email is effectively negligible.
+
+**Key numbers**
+- Web: 91.58% in 2021 → 98.36% in 2025.
+- Phone: 5.66% → 1.20%.
+- Referral: 2.44% → 0.30%.
+- Overall Web share: 93.30%.
+
+**Charts and outputs**
+- `analytics/output/q3_channel_counts.png`
+- `analytics/output/q3_channel_shares.png`
+- `analytics/output/q3_channels_yearly.csv`
+- `analytics/output/q3_channels_summary.csv`
+
+**Caution:** Changes in CFPB submission channels may reflect operational or intake-process changes rather than changes in consumer preferences.
+
+---
+
+
