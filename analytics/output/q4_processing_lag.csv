@@ -1,0 +1,7 @@
+bucket_label,sort_order,complaint_count,share_pct
+0 days,0,179647,87.42
+1 day,1,6875,3.35
+2-3 days,2,6561,3.19
+4-7 days,3,4094,1.99
+8-14 days,4,2734,1.33
+15+ days,5,5589,2.72

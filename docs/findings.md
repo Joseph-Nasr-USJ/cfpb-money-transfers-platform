@@ -86,3 +86,35 @@ Across the complete dataset, Web accounts for 191,726 complaints, or 93.30% of a
 ---
 
 
+
+
+## Q4 — Company Responses and Processing Lag
+
+**Question:** How do response categories and timely-response rates differ across sub-products?
+
+Across all 205,500 curated complaints, 98.29% of complaints with a valid timely-response value were marked as timely. Domestic money transfer had a timely-response rate of 99.28%, mobile or digital wallet 98.51%, virtual currency 96.67%, and international money transfer 95.59%. Debt settlement had the lowest rate among the displayed sub-products at 86.03%.
+
+The median interval between complaint receipt and referral to the company was 0 days. In total, 87.42% of complaints were referred on the same day, 3.35% after one day, 3.19% after two to three days, and 2.72% after 15 or more days. "Closed with explanation" was the dominant company-response category for several major sub-products, including 93.73% of domestic money-transfer complaints.
+
+**Key numbers**
+- Total complaints: 205,500.
+- Overall timely-response rate: 98.29%.
+- Median processing lag: 0 days.
+- Same-day referral: 179,647 complaints, or 87.42%.
+- Domestic money transfer timely rate: 99.28%.
+- Mobile/digital wallet: 98.51%.
+- Virtual currency: 96.67%.
+- International money transfer: 95.59%.
+
+**Charts and outputs**
+- `analytics/output/q4_timely_responses.png`
+- `analytics/output/q4_response_categories.png`
+- `analytics/output/q4_processing_lag.png`
+- `analytics/output/q4_summary.csv`
+- `analytics/output/q4_timely_responses.csv`
+
+**Caution:** A timely response does not measure customer satisfaction or whether the consumer's problem was resolved. Processing lag measures the interval between CFPB receipt and referral to the company, not the company's resolution time. Complaint shares also do not provide a market-share denominator.
+
+---
+
+

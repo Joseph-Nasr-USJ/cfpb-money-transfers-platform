@@ -1,0 +1,12 @@
+sub_product_std,total_complaints,timely_yes_count,timely_no_count,missing_invalid_count,timely_pct
+Check cashing service,2347,2297,50,0,97.87
+Debt settlement,945,813,132,0,86.03
+Domestic (US) money transfer,89686,89038,648,0,99.28
+Foreign currency exchange,1450,1385,65,0,95.52
+International money transfer,17945,17153,792,0,95.59
+Mobile or digital wallet,65002,64034,968,0,98.51
+Money order,776,759,17,0,97.81
+"Money order, traveler's check or cashier's check",2801,2755,46,0,98.36
+Refund anticipation check,627,610,17,0,97.29
+Traveler's check or cashier's check,983,964,19,0,98.07
+Virtual currency,22938,22175,763,0,96.67

@@ -1,0 +1,56 @@
+sub_product_std,company_response,complaint_count,response_share_pct,closed_response_share_pct,timely_pct,timely_yes_count,timely_known_count
+Check cashing service,Closed with explanation,2086,88.88,89.34,97.87,2297,2347
+Check cashing service,Closed with monetary relief,121,5.16,5.18,97.87,2297,2347
+Check cashing service,Closed with non-monetary relief,111,4.73,4.75,97.87,2297,2347
+Check cashing service,In progress,12,0.51,,97.87,2297,2347
+Check cashing service,Untimely response,17,0.72,0.73,97.87,2297,2347
+Debt settlement,Closed with explanation,733,77.57,77.57,86.03,813,945
+Debt settlement,Closed with monetary relief,114,12.06,12.06,86.03,813,945
+Debt settlement,Closed with non-monetary relief,34,3.6,3.6,86.03,813,945
+Debt settlement,Untimely response,64,6.77,6.77,86.03,813,945
+Domestic (US) money transfer,Closed,37,0.04,0.04,99.28,89038,89686
+Domestic (US) money transfer,Closed with explanation,84060,93.73,94.11,99.28,89038,89686
+Domestic (US) money transfer,Closed with monetary relief,3295,3.67,3.69,99.28,89038,89686
+Domestic (US) money transfer,Closed with non-monetary relief,1824,2.03,2.04,99.28,89038,89686
+Domestic (US) money transfer,In progress,366,0.41,,99.28,89038,89686
+Domestic (US) money transfer,Untimely response,104,0.12,0.12,99.28,89038,89686
+Foreign currency exchange,Closed with explanation,1232,84.97,85.73,95.52,1385,1450
+Foreign currency exchange,Closed with monetary relief,157,10.83,10.93,95.52,1385,1450
+Foreign currency exchange,Closed with non-monetary relief,36,2.48,2.51,95.52,1385,1450
+Foreign currency exchange,In progress,13,0.9,,95.52,1385,1450
+Foreign currency exchange,Untimely response,12,0.83,0.84,95.52,1385,1450
+International money transfer,Closed,23,0.13,0.13,95.59,17153,17945
+International money transfer,Closed with explanation,15493,86.34,86.74,95.59,17153,17945
+International money transfer,Closed with monetary relief,1904,10.61,10.66,95.59,17153,17945
+International money transfer,Closed with non-monetary relief,335,1.87,1.88,95.59,17153,17945
+International money transfer,In progress,83,0.46,,95.59,17153,17945
+International money transfer,Untimely response,107,0.6,0.6,95.59,17153,17945
+Mobile or digital wallet,Closed,19,0.03,0.03,98.51,64034,65002
+Mobile or digital wallet,Closed with explanation,54469,83.8,84.64,98.51,64034,65002
+Mobile or digital wallet,Closed with monetary relief,4873,7.5,7.57,98.51,64034,65002
+Mobile or digital wallet,Closed with non-monetary relief,4918,7.57,7.64,98.51,64034,65002
+Mobile or digital wallet,In progress,649,1.0,,98.51,64034,65002
+Mobile or digital wallet,Untimely response,74,0.11,0.11,98.51,64034,65002
+Money order,Closed with explanation,698,89.95,89.95,97.81,759,776
+Money order,Closed with monetary relief,49,6.31,6.31,97.81,759,776
+Money order,Closed with non-monetary relief,25,3.22,3.22,97.81,759,776
+Money order,Untimely response,4,0.52,0.52,97.81,759,776
+"Money order, traveler's check or cashier's check",Closed with explanation,2442,87.18,88.35,98.36,2755,2801
+"Money order, traveler's check or cashier's check",Closed with monetary relief,209,7.46,7.56,98.36,2755,2801
+"Money order, traveler's check or cashier's check",Closed with non-monetary relief,100,3.57,3.62,98.36,2755,2801
+"Money order, traveler's check or cashier's check",In progress,37,1.32,,98.36,2755,2801
+"Money order, traveler's check or cashier's check",Untimely response,13,0.46,0.47,98.36,2755,2801
+Refund anticipation check,Closed with explanation,546,87.08,87.08,97.29,610,627
+Refund anticipation check,Closed with monetary relief,52,8.29,8.29,97.29,610,627
+Refund anticipation check,Closed with non-monetary relief,24,3.83,3.83,97.29,610,627
+Refund anticipation check,Untimely response,5,0.8,0.8,97.29,610,627
+Traveler's check or cashier's check,Closed with explanation,846,86.06,86.06,98.07,964,983
+Traveler's check or cashier's check,Closed with monetary relief,105,10.68,10.68,98.07,964,983
+Traveler's check or cashier's check,Closed with non-monetary relief,29,2.95,2.95,98.07,964,983
+Traveler's check or cashier's check,Untimely response,3,0.31,0.31,98.07,964,983
+Virtual currency,Closed,1,0.0,0.0,96.67,22175,22938
+Virtual currency,Closed with explanation,19848,86.53,87.3,96.67,22175,22938
+Virtual currency,Closed with monetary relief,2033,8.86,8.94,96.67,22175,22938
+Virtual currency,Closed with non-monetary relief,692,3.02,3.04,96.67,22175,22938
+Virtual currency,In progress,202,0.88,,96.67,22175,22938
+Virtual currency,Untimely response,162,0.71,0.71,96.67,22175,22938
