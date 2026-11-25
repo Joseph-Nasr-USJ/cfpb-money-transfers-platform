@@ -172,3 +172,10 @@ The best result was k = 2 with a silhouette score of 0.695668, so the final mode
 ---
 
 
+
+
+## Overall Interpretation
+
+The analysis shows that published complaints in the Money Transfers and Digital Payments domain have become increasingly concentrated in digital submission channels, with Web accounting for more than 98% of submissions in 2025. Complaint composition also differs substantially by sub-product: Virtual currency has the highest proportional Fraud-or-scam share, while mobile wallets generate the greatest absolute number of Fraud-or-scam complaints among the four core sub-products.
+
+The machine-learning analyses add diagnostic structure without making predictions. The emerging-issues model found no issue satisfying the predefined statistical rule, while KMeans identified two broad groups of states with similar complaint profiles. These findings can support exploratory work by policy analysts and service managers, but the CFPB complaint database is not a random sample of consumers and therefore should not be used to estimate population-level prevalence, product market share or causal effects.
