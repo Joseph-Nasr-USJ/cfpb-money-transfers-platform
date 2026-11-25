@@ -253,6 +253,23 @@ def extract_and_profile(zip_path: Path, csv_path: Path) -> dict:
 
 # ---------------------------------------------------------------- run
 
+def store_or_verify(local_path: Path, object_key: str, sha256: str, content_type: str) -> bool:
+    """Upload a raw file, or, if an earlier run of the same day already stored it, verify it.
+
+    Returns True when an existing identical copy was kept. A partial earlier run (for example the
+    ZIP uploaded but the process stopped before the manifest) can therefore be completed by a rerun
+    the same day, while raw objects are still never overwritten. A different file under the same
+    key stops the run.
+    """
+    if not minio_utils.object_exists(object_key):
+        minio_utils.upload_file(str(local_path), object_key, content_type=content_type)
+        return False
+    if minio_utils.sha256_of_object(object_key) != sha256:
+        raise RuntimeError(f"{object_key} already holds a different file and raw objects are immutable: "
+                           "run the historical load again on another day.")
+    return True
+
+
 def run() -> dict:
     """Execute one historical load and return its run log (also written to MinIO)."""
     started = utc_now()
@@ -292,10 +309,16 @@ def run() -> dict:
                        raw_paths=[zip_key, csv_key, manifest_key])
             print(f"[{run_id}] identical file already stored today: nothing uploaded", flush=True)
         else:
-            minio_utils.upload_file(str(zip_path), zip_key, content_type="application/zip")
-            print(f"[{run_id}] uploaded {zip_key}; extracting and counting records", flush=True)
+            reused = []
+            if store_or_verify(zip_path, zip_key, meta["sha256"], "application/zip"):
+                reused.append(zip_key)
+            print(f"[{run_id}] {zip_key} stored; extracting and counting records", flush=True)
             profile = extract_and_profile(zip_path, csv_path)
-            minio_utils.upload_file(str(csv_path), csv_key, content_type="text/csv")
+            if store_or_verify(csv_path, csv_key, profile["sha256"], "text/csv"):
+                reused.append(csv_key)
+            if reused:
+                log["note"] = ("an earlier run of the same day stopped after uploading " + ", ".join(reused)
+                               + "; the stored copies were verified by SHA-256 and kept unchanged")
             manifest = {
                 "run_id": run_id,
                 "source_url": url,
