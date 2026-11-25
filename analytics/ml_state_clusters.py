@@ -368,7 +368,8 @@ def run():
     print("Curated source:", curated_path)
 
     spark = build_spark()
-
+    spark.sparkContext.setLogLevel("WARN")
+    
     try:
         if not path_exists(spark, curated_path):
             print("No curated Parquet dataset exists yet.")
