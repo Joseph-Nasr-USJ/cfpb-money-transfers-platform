@@ -118,3 +118,36 @@ The median interval between complaint receipt and referral to the company was 0 
 ---
 
 
+
+
+## Q5 — Geographic Patterns
+
+**Question:** Which states show different complaint and issue profiles?
+
+California had the largest number of complaints, with 24,619 complaints or 11.98% of the complete dataset. Texas followed with 18,646 complaints (9.07%), Florida with 16,582 (8.07%), New York with 13,963 (6.79%), and Illinois with 10,636 (5.18%). State information was unavailable for 10,257 complaints, representing 4.99% of all curated complaints, so these records are explicitly labelled as "Unknown" rather than being dropped.
+
+The Spark MLlib KMeans analysis clustered states according to similarities in their issue-mix and submission-channel shares. Fifty-one states or state-level entities met the minimum threshold of 100 complaints. Testing k values from 2 through 6 selected **k = 2** because it produced the highest silhouette score, **0.695668**, indicating the strongest separation among the tested solutions.
+
+**Key numbers**
+- California: 24,619 — 11.98%.
+- Texas: 18,646 — 9.07%.
+- Florida: 16,582 — 8.07%.
+- New York: 13,963 — 6.79%.
+- Unknown state: 10,257 — 4.99%.
+- States included in KMeans: 51.
+- Selected clusters: k = 2.
+- Silhouette score: 0.695668.
+- Random seed: 42.
+
+**Charts and outputs**
+- `analytics/output/q5_state_counts.png`
+- `analytics/output/q5_issue_share_heatmap.png`
+- `analytics/output/q5_state_totals.csv`
+- `analytics/output/q5_state_issue_profiles.csv`
+- `analytics/output/ml_state_clusters.csv`
+
+**Caution:** Raw state complaint counts are not normalized by population, product usage or the number of customers. Population is not the same as the user base. The KMeans groups describe similarities in published complaint profiles and should not be interpreted as geographic risk, consumer quality or company performance.
+
+---
+
+
