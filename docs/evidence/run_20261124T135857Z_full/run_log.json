@@ -1,0 +1,29 @@
+{
+  "run_id": "20261124T135857Z_full",
+  "run_type": "full",
+  "started_at": "2026-11-24T13:58:57Z",
+  "finished_at": "2026-11-24T14:32:16Z",
+  "endpoint": "https://files.consumerfinance.gov/ccdb/complaints.csv.zip",
+  "params": {},
+  "window": null,
+  "pagination": null,
+  "http": {
+    "last_status": 200,
+    "retries": 0,
+    "errors": []
+  },
+  "outcome": "success",
+  "raw_paths": [
+    "raw/cfpb/full_load/ingest_date=2026-11-24/complaints.csv.zip",
+    "raw/cfpb/full_load/ingest_date=2026-11-24/complaints.csv",
+    "raw/cfpb/full_load/ingest_date=2026-11-24/manifest.json"
+  ],
+  "record_count": 19397176,
+  "sha256": "8b6db08e0f2d3c7af2a5e0c06c1e26b86c4411cffdceb4e78a8b327acb59dca2",
+  "high_water_mark_used": null,
+  "high_water_mark_next": {
+    "date_received_max": "2026-11-23",
+    "complaint_id_max": 33624989,
+    "note": "candidate only; state/high_water_mark.json is set by ingestion.update_hwm after Spark and the load succeed"
+  }
+}
