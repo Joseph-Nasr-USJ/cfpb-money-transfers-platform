@@ -1,6 +1,6 @@
 # Architecture
 
-**Owner:** Loutchiana Marie | **Status:** written Sat 21 Nov 2026 from the code on `main` (PR #18) and the team plan. Components still being merged (NiFi, Redis, dashboard, collectors) are marked **target** in sections 6 and 12.
+**Owner:** Loutchiana Marie | **Status:** written Sat 21 Nov 2026 from the code on `main` (PR #18) and the team plan; updated Mon 23 Nov 2026 after the NiFi and Redis services were merged (PR #27) and after a full run on the real CFPB file. Components still to be merged (NiFi flow, collectors, dashboard) are marked **target** in sections 6 and 12.
 
 ## 1. Purpose and scope
 
@@ -107,9 +107,9 @@ quality/run_id=<run_id>/quality_report.json
 | `minio` | Object storage for the raw, curated, quarantine and quality zones | 9000 (S3 API), 9001 (web console) |
 | `minio-init` | One-shot job that creates the bucket `cfpb-lake`, then exits with code 0 | none |
 | `mongo` | MongoDB 7.0, the serving layer | 27017 |
-| `nifi` | Apache NiFi: scheduled collection into MinIO, web UI, provenance of every run (**target**, being added) | see the README |
+| `nifi` | Apache NiFi: scheduled collection into MinIO, web UI, provenance of every run (service on `main` since PR #27; the exported flow is still **target**) | 8443 (HTTPS, 127.0.0.1) |
 | `pipeline` | One image with Python 3.11, Java 17 and PySpark 3.5.9: Spark in local mode, the loader, the processing chain and the Python fallback collectors | none |
-| `redis` | Cache for dashboard queries (**target**, being added) | see the README |
+| `redis` | Cache for dashboard queries; in memory only, 256 MB, least recently used keys removed first (service on `main` since PR #27) | 6379 (127.0.0.1) |
 | `dashboard` | Streamlit, reads MongoDB only | 8501 |
 
 All ports are bound to `127.0.0.1`, so the stack is reachable only from the local machine. Images and Python packages are pinned (for example `python:3.11-slim-bookworm`, `mongo:7.0`, every package in `requirements-pipeline.txt` with `==`). Secrets live in `.env`, which is never committed; `.env.example` holds placeholders only.
@@ -169,21 +169,22 @@ Secrets are never in code: they are read from `.env` (placeholders in `.env.exam
 - **Batch latency** of up to 24 hours is accepted by design.
 - The data is **not a random sample** (Session 1, inferential analytics), so the platform describes complaints in this database and does not generalise to all consumers.
 
-## 12. Implementation status and known gaps (Sat 21 Nov 2026)
+## 12. Implementation status and known gaps (Mon 23 Nov 2026)
 
 | Item | State |
 |---|---|
 | Docker stack (`minio`, `minio-init`, `mongo`, `pipeline` image), Makefile, reference files | on `main` |
-| Spark schema, transforms, quality gate, Spark job; MongoDB loader, indexes, queries, benchmark | on `main` (42 tests passing on 21 Nov) |
+| Spark schema, transforms, quality gate, Spark job; MongoDB loader, indexes, queries, benchmark | on `main` (42 tests passed on 21 Nov in Charbel's run; 57 passed on 22 Nov and 159 passed, 1 skipped on 24 Nov with `make test` on my machine, the latter on the merged code) |
 | Metric definitions, README, runbook, test plan, defect log, demo script | on `main` |
-| Python collectors (historical, incremental), sample script, API notes and their tests | written, on branch `marwa/historical-load`, not merged yet (Marwa); the scheduler and the pipeline chain are still to come |
-| NiFi flow and the `nifi` and `redis` services | in progress (Marwa, Joseph) |
-| Analysis scripts, Spark MLlib scripts, dashboard | in progress (Perla) |
+| Python collectors (historical, incremental), sample script, API notes and their tests | on `main` (Marwa, PR #33, merged 24 Nov), together with the scheduler, the pipeline chain and the high-water mark update |
+| `nifi` and `redis` services, `.env` settings, `make ml` target | on `main` (Joseph, PR #27, merged 22 Nov) |
+| NiFi flow (exported to `ingestion/nifi/`) | in progress (Marwa, Joseph); `ingestion/nifi/` is still empty on `main` |
+| Analysis scripts, Spark MLlib scripts, dashboard | on `main` (Perla, PR #28, merged); not yet checked by me on a full run |
 
-Two differences between the contract and the code on `main` that the team still has to close (to confirm with Joseph and Christopher):
+The two differences between the contract and the code that this section listed on 23 Nov are closed on `main`:
 
-1. The Spark job writes curated data to `curated/complaints/domain=money_transfers_payments/`, while the brief's example path and the MongoDB loader contract use `curated/complaints/option=5/`. The loader and the writer must change in the same release.
-2. `processing/quality.py` still names two dimensions `timeliness` and `integrity`; brief V2 names them **freshness** and **reconciliation**, and the documents use the V2 names.
+1. **Curated path.** The Spark job writes, and the MongoDB loader reads, `curated/complaints/option=5/year=YYYY/month=MM/` with a two-digit month, through the shared module `processing/paths.py` (Joseph, PR #31). The full run below was made before this change and wrote `domain=money_transfers_payments/`; its curated files sit under that older path.
+2. **Quality dimension names.** `processing/quality.py` now uses the V2 names **freshness** (threshold `freshness_max_age_days`, 3 days; the report also records `ingested_at`) and **reconciliation** (Joseph, PR #32, merged 24 Nov). The same change splits `sub_issue` into filled, missing and not applicable in a new `sub_issue_applicability` section. Reports of earlier runs keep the old names `timeliness` and `integrity`.
 
 ## 13. References
 
@@ -191,3 +192,27 @@ Two differences between the contract and the code on `main` that the team still 
 - Brief V2: "Public Banking Complaints Data Platform", 020IABDM2.
 - CFPB: [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/), [API](https://cfpb.github.io/api/ccdb/api.html), [fields](https://cfpb.github.io/api/ccdb/fields.html), [release notes](https://cfpb.github.io/api/ccdb/release-notes.html).
 - Team documents: [mongodb_model.md](mongodb_model.md), [metrics.md](metrics.md), [runbook.md](runbook.md), [test_plan.md](test_plan.md), [defect_log.md](defect_log.md).
+
+### Result of a full run on the real file (Tue 24 Nov 2026)
+
+One run of the chain with the historical collector, the Spark job and the loader, on the official CFPB file of 24 November 2026 (run `20261124T135857Z_full`, Docker with 8 GB), after the curated path moved to `option=5`:
+
+| Step | Result |
+|---|---|
+| Collection | `complaints.csv.zip` 354.0 MiB (371,218,594 bytes), extracted CSV 5.5 GiB, 19,397,176 records, SHA-256 and manifest saved next to the raw files; the download took 70 seconds |
+| Spark job | quality gate passed (PASS); 19,191,793 out of domain + 112 quarantined (32 invalid state, 80 sent before received) + 205,271 curated + 0 duplicates removed = 19,397,176; reconciliation exact |
+| MongoDB load | 205,271 unique complaints, 73,597 monthly summaries, 8,078 company-year summaries; latest complaint 23 Nov 2026, so the ingestion lag is 1 day; high-water mark set to 2026-11-23 |
+| Indexes | the five compound indexes on `complaints` (`sub_product_date_idx`, `issue_date_idx`, `state_date_idx`, `company_date_idx`, `channel_date_idx`) kept from the earlier run |
+
+The count of 205,271 is higher than the 199,152 of the API test of 20 November because the two numbers count different things. The API figure counts the current product label only. On 24 November the current label has 199,561 records in the file, which is 409 more than on 20 November (complaints published since). The curated data also keeps the legacy labels that the product mapping includes: 5,274 under "Money transfers", 418 under "Prepaid card" (mobile wallet only) and 18 under "Virtual currency"; 199,561 + 5,710 = 205,271.
+
+Observations from the quality report and MongoDB for this run:
+
+- `sub_issue` is empty for every record in the domain: 0 of 205,383 checked records have a sub-issue, so the report counts all 205,383 as not applicable (the raw file has none for these products). Any breakdown by sub-issue is therefore a breakdown by issue.
+- `state` is empty for 10,239 curated complaints (4.99%), so geographic results cover the 95% that have a state.
+- Complaints per year jump from 16,746 in 2024 to 84,612 in 2025 (34,960 in 2026 up to 23 Nov). The data does not say why; the report describes the jump without giving a cause.
+- The first load of this run stopped at the integrity check (205,271 curated, 205,272 in MongoDB). The extra document was complaint 33357934, received on 20 Nov and loaded on 22 Nov, which is not in the file of 24 Nov. The loader only inserts and updates; it does not remove a complaint that the CFPB has dropped from its file. The document was deleted from the local MongoDB and the run was resumed (`ingestion.pipeline --mode process`). A permanent answer (remove or flag dropped complaints in the loader) belongs to the database owner.
+
+The earlier full run of Sun 22 Nov 2026 (run `20261122T183046Z_full`, 19,371,701 records, 205,064 curated, written under the previous folder layout) gave the same 112 quarantined records and the same legacy label counts.
+
+Screenshots: `docs/images/minio_raw_full_load.png`, `minio_curated_parquet.png`, `minio_quality_report.png`, `minio_bucket_overview.png` and `mongodb_collections_indexes.png` (output of `mongosh`, not Compass).
