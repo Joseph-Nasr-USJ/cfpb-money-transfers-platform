@@ -1,0 +1,2187 @@
+year_month,issue,complaint_count
+2013-04,Fraud or scam,13
+2013-04,Incorrect/missing disclosures or info,1
+2013-04,Money was not available when promised,5
+2013-04,Other service issues,1
+2013-04,Other transaction issues,17
+2013-04,Wrong amount charged or received,1
+2013-05,Fraud or scam,13
+2013-05,Incorrect/missing disclosures or info,1
+2013-05,Money was not available when promised,4
+2013-05,Other service issues,2
+2013-05,Other transaction issues,7
+2013-05,Wrong amount charged or received,2
+2013-06,Fraud or scam,12
+2013-06,Incorrect/missing disclosures or info,1
+2013-06,Money was not available when promised,14
+2013-06,Other service issues,3
+2013-06,Other transaction issues,15
+2013-06,Wrong amount charged or received,2
+2013-07,Fraud or scam,16
+2013-07,Incorrect/missing disclosures or info,3
+2013-07,Money was not available when promised,7
+2013-07,Other service issues,5
+2013-07,Other transaction issues,15
+2013-07,Wrong amount charged or received,2
+2013-08,Fraud or scam,20
+2013-08,Incorrect/missing disclosures or info,1
+2013-08,Money was not available when promised,6
+2013-08,Other service issues,5
+2013-08,Other transaction issues,15
+2013-08,Wrong amount charged or received,3
+2013-09,Fraud or scam,20
+2013-09,Incorrect/missing disclosures or info,3
+2013-09,Money was not available when promised,10
+2013-09,Other service issues,6
+2013-09,Other transaction issues,16
+2013-09,Wrong amount charged or received,3
+2013-10,Fraud or scam,29
+2013-10,Incorrect/missing disclosures or info,4
+2013-10,Money was not available when promised,18
+2013-10,Other service issues,4
+2013-10,Other transaction issues,20
+2013-10,Wrong amount charged or received,6
+2013-11,Fraud or scam,24
+2013-11,Incorrect/missing disclosures or info,3
+2013-11,Money was not available when promised,17
+2013-11,Other service issues,7
+2013-11,Other transaction issues,25
+2013-11,Wrong amount charged or received,7
+2013-12,Fraud or scam,29
+2013-12,Money was not available when promised,13
+2013-12,Other service issues,8
+2013-12,Other transaction issues,17
+2013-12,Wrong amount charged or received,8
+2014-01,Fraud or scam,42
+2014-01,Incorrect/missing disclosures or info,2
+2014-01,Money was not available when promised,12
+2014-01,Other service issues,8
+2014-01,Other transaction issues,20
+2014-01,Wrong amount charged or received,5
+2014-02,Fraud or scam,34
+2014-02,Incorrect/missing disclosures or info,3
+2014-02,Money was not available when promised,16
+2014-02,Other service issues,9
+2014-02,Other transaction issues,13
+2014-02,Wrong amount charged or received,5
+2014-03,Fraud or scam,39
+2014-03,Incorrect/missing disclosures or info,7
+2014-03,Money was not available when promised,15
+2014-03,Other service issues,13
+2014-03,Other transaction issues,19
+2014-03,Wrong amount charged or received,1
+2014-04,Fraud or scam,42
+2014-04,Incorrect/missing disclosures or info,1
+2014-04,Money was not available when promised,12
+2014-04,Other service issues,10
+2014-04,Other transaction issues,30
+2014-04,Wrong amount charged or received,10
+2014-05,Fraud or scam,41
+2014-05,Incorrect/missing disclosures or info,2
+2014-05,Money was not available when promised,17
+2014-05,Other service issues,9
+2014-05,Other transaction issues,25
+2014-05,Wrong amount charged or received,6
+2014-06,Fraud or scam,34
+2014-06,Incorrect/missing disclosures or info,5
+2014-06,Money was not available when promised,21
+2014-06,Other service issues,21
+2014-06,Other transaction issues,25
+2014-06,Wrong amount charged or received,11
+2014-07,Fees,1
+2014-07,Fraud or scam,37
+2014-07,Incorrect/missing disclosures or info,5
+2014-07,"Managing, opening, or closing account",1
+2014-07,Money was not available when promised,12
+2014-07,Other service issues,7
+2014-07,Other transaction issues,21
+2014-07,Unauthorized transactions/trans. issues,3
+2014-07,Wrong amount charged or received,4
+2014-08,Fees,2
+2014-08,Fraud or scam,31
+2014-08,Incorrect/missing disclosures or info,2
+2014-08,"Managing, opening, or closing account",2
+2014-08,Money was not available when promised,24
+2014-08,Other service issues,8
+2014-08,Other transaction issues,24
+2014-08,Unauthorized transactions/trans. issues,1
+2014-08,Wrong amount charged or received,7
+2014-09,Fraud or scam,38
+2014-09,Incorrect/missing disclosures or info,6
+2014-09,"Managing, opening, or closing account",2
+2014-09,Money was not available when promised,17
+2014-09,Other service issues,15
+2014-09,Other transaction issues,27
+2014-09,Unauthorized transactions/trans. issues,2
+2014-09,Wrong amount charged or received,6
+2014-10,Fraud or scam,30
+2014-10,Incorrect/missing disclosures or info,5
+2014-10,"Managing, opening, or closing account",5
+2014-10,Money was not available when promised,22
+2014-10,Other service issues,6
+2014-10,Other transaction issues,19
+2014-10,Wrong amount charged or received,2
+2014-11,Fraud or scam,35
+2014-11,Incorrect/missing disclosures or info,4
+2014-11,"Managing, opening, or closing account",6
+2014-11,Money was not available when promised,13
+2014-11,Other service issues,11
+2014-11,Other transaction issues,13
+2014-11,Wrong amount charged or received,1
+2014-12,Fraud or scam,26
+2014-12,Incorrect/missing disclosures or info,7
+2014-12,"Managing, opening, or closing account",5
+2014-12,Money was not available when promised,24
+2014-12,Other service issues,10
+2014-12,Other transaction issues,38
+2014-12,Unauthorized transactions/trans. issues,4
+2014-12,Wrong amount charged or received,4
+2015-01,Adding money,1
+2015-01,Fees,1
+2015-01,Fraud or scam,39
+2015-01,Incorrect/missing disclosures or info,3
+2015-01,"Managing, opening, or closing account",7
+2015-01,Money was not available when promised,29
+2015-01,Other service issues,6
+2015-01,Other transaction issues,22
+2015-01,Unauthorized transactions/trans. issues,3
+2015-01,Wrong amount charged or received,6
+2015-02,Adding money,1
+2015-02,Fraud or scam,31
+2015-02,Incorrect/missing disclosures or info,5
+2015-02,"Managing, opening, or closing account",4
+2015-02,Money was not available when promised,21
+2015-02,Other service issues,10
+2015-02,Other transaction issues,22
+2015-02,"Overdraft, savings or rewards features",1
+2015-02,Unauthorized transactions/trans. issues,2
+2015-02,Wrong amount charged or received,4
+2015-03,Fees,1
+2015-03,Fraud or scam,58
+2015-03,Incorrect/missing disclosures or info,5
+2015-03,"Managing, opening, or closing account",7
+2015-03,Money was not available when promised,21
+2015-03,Other service issues,8
+2015-03,Other transaction issues,33
+2015-03,Unauthorized transactions/trans. issues,2
+2015-03,Wrong amount charged or received,9
+2015-04,Fees,1
+2015-04,Fraud or scam,62
+2015-04,Incorrect/missing disclosures or info,5
+2015-04,"Managing, opening, or closing account",9
+2015-04,Money was not available when promised,26
+2015-04,Other service issues,8
+2015-04,Other transaction issues,27
+2015-04,Unauthorized transactions/trans. issues,3
+2015-04,Wrong amount charged or received,5
+2015-05,Fees,1
+2015-05,Fraud or scam,67
+2015-05,Incorrect/missing disclosures or info,3
+2015-05,"Managing, opening, or closing account",7
+2015-05,Money was not available when promised,22
+2015-05,Other service issues,15
+2015-05,Other transaction issues,36
+2015-05,Unauthorized transactions/trans. issues,3
+2015-05,Wrong amount charged or received,7
+2015-06,Adding money,1
+2015-06,Fees,1
+2015-06,Fraud or scam,66
+2015-06,Incorrect/missing disclosures or info,7
+2015-06,"Managing, opening, or closing account",6
+2015-06,Money was not available when promised,27
+2015-06,Other service issues,10
+2015-06,Other transaction issues,38
+2015-06,Unauthorized transactions/trans. issues,1
+2015-06,Wrong amount charged or received,9
+2015-07,Fees,1
+2015-07,Fraud or scam,55
+2015-07,Incorrect/missing disclosures or info,7
+2015-07,"Managing, opening, or closing account",6
+2015-07,Money was not available when promised,31
+2015-07,Other service issues,11
+2015-07,Other transaction issues,51
+2015-07,"Overdraft, savings or rewards features",1
+2015-07,Unauthorized transactions/trans. issues,1
+2015-07,Wrong amount charged or received,7
+2015-08,Adding money,1
+2015-08,Fraud or scam,48
+2015-08,Incorrect/missing disclosures or info,11
+2015-08,"Managing, opening, or closing account",3
+2015-08,Money was not available when promised,25
+2015-08,Other service issues,14
+2015-08,Other transaction issues,39
+2015-08,Unauthorized transactions/trans. issues,1
+2015-08,Wrong amount charged or received,10
+2015-09,Adding money,2
+2015-09,"Advertising, marketing or disclosures",1
+2015-09,Fraud or scam,47
+2015-09,Incorrect/missing disclosures or info,3
+2015-09,"Managing, opening, or closing account",5
+2015-09,Money was not available when promised,12
+2015-09,Other service issues,17
+2015-09,Other transaction issues,34
+2015-09,Unauthorized transactions/trans. issues,3
+2015-09,Wrong amount charged or received,4
+2015-10,Adding money,1
+2015-10,Fees,1
+2015-10,Fraud or scam,76
+2015-10,Incorrect/missing disclosures or info,4
+2015-10,"Managing, opening, or closing account",9
+2015-10,Money was not available when promised,32
+2015-10,Other service issues,14
+2015-10,Other transaction issues,47
+2015-10,Unauthorized transactions/trans. issues,7
+2015-10,Wrong amount charged or received,8
+2015-11,"Advertising, marketing or disclosures",1
+2015-11,Fraud or scam,43
+2015-11,Incorrect/missing disclosures or info,5
+2015-11,"Managing, opening, or closing account",2
+2015-11,Money was not available when promised,24
+2015-11,Other service issues,10
+2015-11,Other transaction issues,41
+2015-11,Unauthorized transactions/trans. issues,2
+2015-11,Wrong amount charged or received,10
+2015-12,Adding money,1
+2015-12,Fees,3
+2015-12,Fraud or scam,63
+2015-12,Incorrect/missing disclosures or info,2
+2015-12,"Managing, opening, or closing account",7
+2015-12,Money was not available when promised,24
+2015-12,Other service issues,13
+2015-12,Other transaction issues,34
+2015-12,Unauthorized transactions/trans. issues,7
+2015-12,Wrong amount charged or received,6
+2016-01,"Advertising, marketing or disclosures",1
+2016-01,Fees,3
+2016-01,Fraud or scam,54
+2016-01,Incorrect/missing disclosures or info,3
+2016-01,"Managing, opening, or closing account",8
+2016-01,Money was not available when promised,26
+2016-01,Other service issues,10
+2016-01,Other transaction issues,39
+2016-01,Unauthorized transactions/trans. issues,1
+2016-01,Wrong amount charged or received,3
+2016-02,Fees,1
+2016-02,Fraud or scam,53
+2016-02,Incorrect/missing disclosures or info,6
+2016-02,"Managing, opening, or closing account",5
+2016-02,Money was not available when promised,23
+2016-02,Other service issues,15
+2016-02,Other transaction issues,41
+2016-02,Unauthorized transactions/trans. issues,1
+2016-02,Wrong amount charged or received,4
+2016-03,Fees,1
+2016-03,Fraud or scam,44
+2016-03,Incorrect/missing disclosures or info,1
+2016-03,"Managing, opening, or closing account",7
+2016-03,Money was not available when promised,26
+2016-03,Other service issues,17
+2016-03,Other transaction issues,41
+2016-03,"Overdraft, savings or rewards features",1
+2016-03,Unauthorized transactions/trans. issues,2
+2016-03,Wrong amount charged or received,7
+2016-04,Fraud or scam,49
+2016-04,Incorrect/missing disclosures or info,2
+2016-04,"Managing, opening, or closing account",4
+2016-04,Money was not available when promised,19
+2016-04,Other service issues,14
+2016-04,Other transaction issues,35
+2016-04,Unauthorized transactions/trans. issues,2
+2016-04,Wrong amount charged or received,10
+2016-05,Adding money,1
+2016-05,Fees,4
+2016-05,Fraud or scam,40
+2016-05,Incorrect/missing disclosures or info,4
+2016-05,"Managing, opening, or closing account",7
+2016-05,Money was not available when promised,33
+2016-05,Other service issues,14
+2016-05,Other transaction issues,51
+2016-05,Unauthorized transactions/trans. issues,3
+2016-05,Wrong amount charged or received,4
+2016-06,Adding money,3
+2016-06,"Advertising, marketing or disclosures",1
+2016-06,Fees,13
+2016-06,Fraud or scam,41
+2016-06,Incorrect/missing disclosures or info,1
+2016-06,"Managing, opening, or closing account",10
+2016-06,Money was not available when promised,29
+2016-06,Other service issues,24
+2016-06,Other transaction issues,33
+2016-06,Unauthorized transactions/trans. issues,3
+2016-06,Wrong amount charged or received,4
+2016-07,Fraud or scam,38
+2016-07,Incorrect/missing disclosures or info,3
+2016-07,"Managing, opening, or closing account",7
+2016-07,Money was not available when promised,22
+2016-07,Other service issues,7
+2016-07,Other transaction issues,36
+2016-07,Unauthorized transactions/trans. issues,8
+2016-07,Wrong amount charged or received,2
+2016-08,Fraud or scam,53
+2016-08,Incorrect/missing disclosures or info,5
+2016-08,"Managing, opening, or closing account",6
+2016-08,Money was not available when promised,22
+2016-08,Other service issues,13
+2016-08,Other transaction issues,56
+2016-08,Unauthorized transactions/trans. issues,2
+2016-08,Wrong amount charged or received,6
+2016-09,"Advertising, marketing or disclosures",1
+2016-09,Fraud or scam,41
+2016-09,Incorrect/missing disclosures or info,9
+2016-09,"Managing, opening, or closing account",3
+2016-09,Money was not available when promised,36
+2016-09,Other service issues,9
+2016-09,Other transaction issues,43
+2016-09,Unauthorized transactions/trans. issues,1
+2016-09,Wrong amount charged or received,5
+2016-10,Adding money,1
+2016-10,Fraud or scam,33
+2016-10,Incorrect/missing disclosures or info,5
+2016-10,"Managing, opening, or closing account",5
+2016-10,Money was not available when promised,26
+2016-10,Other service issues,13
+2016-10,Other transaction issues,47
+2016-10,"Overdraft, savings or rewards features",1
+2016-10,Unauthorized transactions/trans. issues,1
+2016-10,Wrong amount charged or received,7
+2016-11,Fraud or scam,45
+2016-11,Incorrect/missing disclosures or info,7
+2016-11,"Managing, opening, or closing account",5
+2016-11,Money was not available when promised,29
+2016-11,Other service issues,11
+2016-11,Other transaction issues,39
+2016-11,Unauthorized transactions/trans. issues,1
+2016-11,Wrong amount charged or received,3
+2016-12,"Advertising, marketing or disclosures",1
+2016-12,Fraud or scam,40
+2016-12,Incorrect/missing disclosures or info,7
+2016-12,"Managing, opening, or closing account",6
+2016-12,Money was not available when promised,19
+2016-12,Other service issues,9
+2016-12,Other transaction issues,31
+2016-12,Unauthorized transactions/trans. issues,4
+2016-12,Wrong amount charged or received,6
+2017-01,Fees,3
+2017-01,Fraud or scam,34
+2017-01,Incorrect/missing disclosures or info,1
+2017-01,"Managing, opening, or closing account",7
+2017-01,Money was not available when promised,19
+2017-01,Other service issues,20
+2017-01,Other transaction issues,35
+2017-01,"Overdraft, savings or rewards features",1
+2017-01,Unauthorized transactions/trans. issues,4
+2017-01,Wrong amount charged or received,4
+2017-02,Fraud or scam,41
+2017-02,Incorrect/missing disclosures or info,4
+2017-02,"Managing, opening, or closing account",5
+2017-02,Money was not available when promised,16
+2017-02,Other service issues,5
+2017-02,Other transaction issues,37
+2017-02,Unauthorized transactions/trans. issues,3
+2017-02,Wrong amount charged or received,6
+2017-03,Fees,1
+2017-03,Fraud or scam,46
+2017-03,Incorrect/missing disclosures or info,8
+2017-03,"Managing, opening, or closing account",7
+2017-03,Money was not available when promised,19
+2017-03,Other service issues,16
+2017-03,Other transaction issues,43
+2017-03,Unauthorized transactions/trans. issues,4
+2017-03,Wrong amount charged or received,6
+2017-04,Adding money,1
+2017-04,Confusing or misleading advertising or marketing,1
+2017-04,Confusing or missing disclosures,1
+2017-04,Fraud or scam,54
+2017-04,Incorrect exchange rate,1
+2017-04,Incorrect/missing disclosures or info,1
+2017-04,"Managing, opening, or closing account",8
+2017-04,"Managing, opening, or closing your mobile wallet account",5
+2017-04,Money was not available when promised,38
+2017-04,Other service issues,9
+2017-04,Other service problem,3
+2017-04,Other transaction issues,19
+2017-04,Other transaction problem,17
+2017-04,Problem with customer service,2
+2017-04,Unauthorized transactions or other transaction problem,7
+2017-04,Unauthorized transactions/trans. issues,2
+2017-04,Unexpected or other fees,2
+2017-04,Wrong amount charged or received,6
+2017-05,Confusing or misleading advertising or marketing,2
+2017-05,Confusing or missing disclosures,12
+2017-05,Fraud or scam,73
+2017-05,Incorrect exchange rate,2
+2017-05,Lost or stolen check,3
+2017-05,Lost or stolen money order,1
+2017-05,"Managing, opening, or closing your mobile wallet account",14
+2017-05,Money was not available when promised,47
+2017-05,Other service problem,12
+2017-05,Other transaction problem,50
+2017-05,"Overdraft, savings, or rewards features",2
+2017-05,Problem adding money,3
+2017-05,Problem with customer service,16
+2017-05,Unauthorized transactions or other transaction problem,11
+2017-05,Unexpected or other fees,16
+2017-05,Wrong amount charged or received,9
+2017-06,Confusing or misleading advertising or marketing,5
+2017-06,Confusing or missing disclosures,19
+2017-06,Fraud or scam,75
+2017-06,Incorrect exchange rate,1
+2017-06,Lost or stolen check,1
+2017-06,"Managing, opening, or closing your mobile wallet account",19
+2017-06,Money was not available when promised,70
+2017-06,Other service problem,29
+2017-06,Other transaction problem,71
+2017-06,"Overdraft, savings, or rewards features",1
+2017-06,Problem adding money,14
+2017-06,Problem with customer service,15
+2017-06,Unauthorized transactions or other transaction problem,23
+2017-06,Unexpected or other fees,16
+2017-06,Wrong amount charged or received,10
+2017-07,Confusing or misleading advertising or marketing,2
+2017-07,Confusing or missing disclosures,10
+2017-07,Fraud or scam,81
+2017-07,Incorrect exchange rate,1
+2017-07,Lost or stolen check,6
+2017-07,Lost or stolen money order,6
+2017-07,"Managing, opening, or closing your mobile wallet account",29
+2017-07,Money was not available when promised,84
+2017-07,Other service problem,44
+2017-07,Other transaction problem,95
+2017-07,Problem adding money,11
+2017-07,Problem with customer service,11
+2017-07,Unauthorized transactions or other transaction problem,12
+2017-07,Unexpected or other fees,11
+2017-07,Wrong amount charged or received,13
+2017-08,Confusing or misleading advertising or marketing,3
+2017-08,Confusing or missing disclosures,13
+2017-08,Fraud or scam,88
+2017-08,Lost or stolen check,1
+2017-08,Lost or stolen money order,2
+2017-08,"Managing, opening, or closing your mobile wallet account",29
+2017-08,Money was not available when promised,107
+2017-08,Other service problem,21
+2017-08,Other transaction problem,89
+2017-08,"Overdraft, savings, or rewards features",1
+2017-08,Problem adding money,6
+2017-08,Problem with customer service,8
+2017-08,Unauthorized transactions or other transaction problem,30
+2017-08,Unexpected or other fees,12
+2017-08,Wrong amount charged or received,8
+2017-09,Confusing or misleading advertising or marketing,4
+2017-09,Confusing or missing disclosures,15
+2017-09,Fraud or scam,68
+2017-09,Lost or stolen check,4
+2017-09,Lost or stolen money order,4
+2017-09,"Managing, opening, or closing your mobile wallet account",20
+2017-09,Money was not available when promised,86
+2017-09,Other service problem,28
+2017-09,Other transaction problem,70
+2017-09,"Overdraft, savings, or rewards features",1
+2017-09,Problem adding money,3
+2017-09,Problem with customer service,12
+2017-09,Unauthorized transactions or other transaction problem,17
+2017-09,Unexpected or other fees,7
+2017-09,Wrong amount charged or received,12
+2017-10,Confusing or misleading advertising or marketing,2
+2017-10,Confusing or missing disclosures,13
+2017-10,Fraud or scam,86
+2017-10,Incorrect exchange rate,1
+2017-10,Lost or stolen check,1
+2017-10,Lost or stolen money order,2
+2017-10,"Managing, opening, or closing your mobile wallet account",10
+2017-10,Money was not available when promised,38
+2017-10,Other service problem,22
+2017-10,Other transaction problem,56
+2017-10,"Overdraft, savings, or rewards features",1
+2017-10,Problem adding money,3
+2017-10,Problem with customer service,10
+2017-10,Unauthorized transactions or other transaction problem,24
+2017-10,Unexpected or other fees,14
+2017-10,Wrong amount charged or received,7
+2017-11,Confusing or misleading advertising or marketing,1
+2017-11,Confusing or missing disclosures,10
+2017-11,Fraud or scam,73
+2017-11,Incorrect exchange rate,4
+2017-11,Lost or stolen check,4
+2017-11,Lost or stolen money order,6
+2017-11,"Managing, opening, or closing your mobile wallet account",23
+2017-11,Money was not available when promised,73
+2017-11,Other service problem,23
+2017-11,Other transaction problem,96
+2017-11,Problem adding money,2
+2017-11,Problem with customer service,9
+2017-11,Unauthorized transactions or other transaction problem,16
+2017-11,Unexpected or other fees,8
+2017-11,Wrong amount charged or received,11
+2017-12,Confusing or misleading advertising or marketing,1
+2017-12,Confusing or missing disclosures,18
+2017-12,Fraud or scam,139
+2017-12,Incorrect exchange rate,2
+2017-12,Lost or stolen check,4
+2017-12,Lost or stolen money order,3
+2017-12,"Managing, opening, or closing your mobile wallet account",46
+2017-12,Money was not available when promised,215
+2017-12,Other service problem,47
+2017-12,Other transaction problem,151
+2017-12,Problem adding money,16
+2017-12,Problem with customer service,11
+2017-12,Unauthorized transactions or other transaction problem,33
+2017-12,Unexpected or other fees,11
+2017-12,Wrong amount charged or received,20
+2018-01,Confusing or misleading advertising or marketing,5
+2018-01,Confusing or missing disclosures,21
+2018-01,Fraud or scam,160
+2018-01,Incorrect exchange rate,3
+2018-01,Lost or stolen check,4
+2018-01,Lost or stolen money order,3
+2018-01,"Managing, opening, or closing your mobile wallet account",97
+2018-01,Money was not available when promised,467
+2018-01,Other service problem,98
+2018-01,Other transaction problem,240
+2018-01,Problem adding money,21
+2018-01,Problem with customer service,9
+2018-01,Unauthorized transactions or other transaction problem,47
+2018-01,Unexpected or other fees,21
+2018-01,Wrong amount charged or received,24
+2018-02,Confusing or misleading advertising or marketing,3
+2018-02,Confusing or missing disclosures,13
+2018-02,Fraud or scam,114
+2018-02,Incorrect exchange rate,2
+2018-02,Lost or stolen check,5
+2018-02,Lost or stolen money order,3
+2018-02,"Managing, opening, or closing your mobile wallet account",33
+2018-02,Money was not available when promised,147
+2018-02,Other service problem,32
+2018-02,Other transaction problem,143
+2018-02,Problem adding money,4
+2018-02,Problem with customer service,11
+2018-02,Unauthorized transactions or other transaction problem,34
+2018-02,Unexpected or other fees,14
+2018-02,Wrong amount charged or received,16
+2018-03,Confusing or misleading advertising or marketing,2
+2018-03,Confusing or missing disclosures,7
+2018-03,Fraud or scam,127
+2018-03,Lost or stolen check,3
+2018-03,Lost or stolen money order,3
+2018-03,"Managing, opening, or closing your mobile wallet account",31
+2018-03,Money was not available when promised,82
+2018-03,Other service problem,37
+2018-03,Other transaction problem,99
+2018-03,Problem adding money,2
+2018-03,Problem with customer service,19
+2018-03,Unauthorized transactions or other transaction problem,28
+2018-03,Unexpected or other fees,14
+2018-03,Wrong amount charged or received,17
+2018-04,Confusing or misleading advertising or marketing,9
+2018-04,Confusing or missing disclosures,4
+2018-04,Fraud or scam,116
+2018-04,Incorrect exchange rate,2
+2018-04,Lost or stolen check,4
+2018-04,Lost or stolen money order,4
+2018-04,"Managing, opening, or closing your mobile wallet account",17
+2018-04,Money was not available when promised,66
+2018-04,Other service problem,31
+2018-04,Other transaction problem,91
+2018-04,Problem with customer service,12
+2018-04,Unauthorized transactions or other transaction problem,34
+2018-04,Unexpected or other fees,9
+2018-04,Wrong amount charged or received,9
+2018-05,Confusing or misleading advertising or marketing,3
+2018-05,Confusing or missing disclosures,9
+2018-05,Fraud or scam,122
+2018-05,Incorrect exchange rate,2
+2018-05,Lost or stolen check,4
+2018-05,Lost or stolen money order,5
+2018-05,"Managing, opening, or closing your mobile wallet account",22
+2018-05,Money was not available when promised,49
+2018-05,Other service problem,17
+2018-05,Other transaction problem,79
+2018-05,"Overdraft, savings, or rewards features",2
+2018-05,Problem adding money,1
+2018-05,Problem with customer service,12
+2018-05,Unauthorized transactions or other transaction problem,19
+2018-05,Unexpected or other fees,8
+2018-05,Wrong amount charged or received,9
+2018-06,Confusing or misleading advertising or marketing,8
+2018-06,Confusing or missing disclosures,9
+2018-06,Fraud or scam,127
+2018-06,Incorrect exchange rate,3
+2018-06,Lost or stolen check,6
+2018-06,Lost or stolen money order,2
+2018-06,"Managing, opening, or closing your mobile wallet account",24
+2018-06,Money was not available when promised,52
+2018-06,Other service problem,15
+2018-06,Other transaction problem,84
+2018-06,Problem adding money,3
+2018-06,Problem with customer service,11
+2018-06,Unauthorized transactions or other transaction problem,28
+2018-06,Unexpected or other fees,7
+2018-06,Wrong amount charged or received,9
+2018-07,Confusing or misleading advertising or marketing,5
+2018-07,Confusing or missing disclosures,10
+2018-07,Fraud or scam,122
+2018-07,Incorrect exchange rate,1
+2018-07,Lost or stolen check,5
+2018-07,Lost or stolen money order,4
+2018-07,"Managing, opening, or closing your mobile wallet account",9
+2018-07,Money was not available when promised,36
+2018-07,Other service problem,20
+2018-07,Other transaction problem,79
+2018-07,Problem adding money,5
+2018-07,Problem with customer service,9
+2018-07,Unauthorized transactions or other transaction problem,24
+2018-07,Unexpected or other fees,10
+2018-07,Wrong amount charged or received,8
+2018-08,Confusing or misleading advertising or marketing,6
+2018-08,Confusing or missing disclosures,11
+2018-08,Fraud or scam,125
+2018-08,Incorrect exchange rate,2
+2018-08,Lost or stolen money order,7
+2018-08,"Managing, opening, or closing your mobile wallet account",22
+2018-08,Money was not available when promised,46
+2018-08,Other service problem,15
+2018-08,Other transaction problem,73
+2018-08,Problem adding money,1
+2018-08,Problem with customer service,9
+2018-08,Unauthorized transactions or other transaction problem,26
+2018-08,Unexpected or other fees,14
+2018-08,Wrong amount charged or received,10
+2018-09,Confusing or misleading advertising or marketing,3
+2018-09,Confusing or missing disclosures,18
+2018-09,Fraud or scam,94
+2018-09,Incorrect exchange rate,2
+2018-09,Lost or stolen check,4
+2018-09,Lost or stolen money order,6
+2018-09,"Managing, opening, or closing your mobile wallet account",12
+2018-09,Money was not available when promised,34
+2018-09,Other service problem,9
+2018-09,Other transaction problem,60
+2018-09,"Overdraft, savings, or rewards features",1
+2018-09,Problem with customer service,10
+2018-09,Unauthorized transactions or other transaction problem,25
+2018-09,Unexpected or other fees,10
+2018-09,Wrong amount charged or received,12
+2018-10,Confusing or misleading advertising or marketing,3
+2018-10,Confusing or missing disclosures,6
+2018-10,Fraud or scam,127
+2018-10,Incorrect exchange rate,5
+2018-10,Lost or stolen check,1
+2018-10,Lost or stolen money order,5
+2018-10,"Managing, opening, or closing your mobile wallet account",13
+2018-10,Money was not available when promised,50
+2018-10,Other service problem,12
+2018-10,Other transaction problem,80
+2018-10,Problem adding money,2
+2018-10,Problem with customer service,6
+2018-10,Unauthorized transactions or other transaction problem,29
+2018-10,Unexpected or other fees,12
+2018-10,Wrong amount charged or received,5
+2018-11,Confusing or misleading advertising or marketing,5
+2018-11,Confusing or missing disclosures,6
+2018-11,Fraud or scam,113
+2018-11,Incorrect exchange rate,2
+2018-11,Lost or stolen check,4
+2018-11,Lost or stolen money order,4
+2018-11,"Managing, opening, or closing your mobile wallet account",14
+2018-11,Money was not available when promised,42
+2018-11,Other service problem,6
+2018-11,Other transaction problem,50
+2018-11,"Overdraft, savings, or rewards features",1
+2018-11,Problem with customer service,14
+2018-11,Unauthorized transactions or other transaction problem,23
+2018-11,Unexpected or other fees,16
+2018-11,Wrong amount charged or received,4
+2018-12,Confusing or misleading advertising or marketing,4
+2018-12,Confusing or missing disclosures,9
+2018-12,Fraud or scam,130
+2018-12,Lost or stolen check,1
+2018-12,"Managing, opening, or closing your mobile wallet account",14
+2018-12,Money was not available when promised,34
+2018-12,Other service problem,9
+2018-12,Other transaction problem,78
+2018-12,Problem with customer service,10
+2018-12,Unauthorized transactions or other transaction problem,28
+2018-12,Unexpected or other fees,8
+2018-12,Wrong amount charged or received,7
+2019-01,Confusing or misleading advertising or marketing,1
+2019-01,Confusing or missing disclosures,8
+2019-01,Fraud or scam,135
+2019-01,Incorrect exchange rate,1
+2019-01,Lost or stolen check,3
+2019-01,Lost or stolen money order,3
+2019-01,"Managing, opening, or closing your mobile wallet account",20
+2019-01,Money was not available when promised,51
+2019-01,Other service problem,11
+2019-01,Other transaction problem,56
+2019-01,"Overdraft, savings, or rewards features",1
+2019-01,Problem adding money,1
+2019-01,Problem with customer service,6
+2019-01,Unauthorized transactions or other transaction problem,34
+2019-01,Unexpected or other fees,9
+2019-01,Wrong amount charged or received,3
+2019-02,Confusing or misleading advertising or marketing,4
+2019-02,Confusing or missing disclosures,12
+2019-02,Fraud or scam,117
+2019-02,Lost or stolen check,5
+2019-02,Lost or stolen money order,5
+2019-02,"Managing, opening, or closing your mobile wallet account",35
+2019-02,Money was not available when promised,33
+2019-02,Other service problem,13
+2019-02,Other transaction problem,56
+2019-02,Problem adding money,3
+2019-02,Problem with customer service,9
+2019-02,Unauthorized transactions or other transaction problem,23
+2019-02,Unexpected or other fees,9
+2019-02,Wrong amount charged or received,10
+2019-03,Confusing or misleading advertising or marketing,5
+2019-03,Confusing or missing disclosures,13
+2019-03,Fraud or scam,159
+2019-03,Incorrect exchange rate,1
+2019-03,Lost or stolen check,2
+2019-03,Lost or stolen money order,2
+2019-03,"Managing, opening, or closing your mobile wallet account",36
+2019-03,Money was not available when promised,44
+2019-03,Other service problem,12
+2019-03,Other transaction problem,78
+2019-03,"Overdraft, savings, or rewards features",1
+2019-03,Problem adding money,2
+2019-03,Problem with customer service,7
+2019-03,Unauthorized transactions or other transaction problem,37
+2019-03,Unexpected or other fees,9
+2019-03,Wrong amount charged or received,7
+2019-04,Confusing or misleading advertising or marketing,2
+2019-04,Confusing or missing disclosures,12
+2019-04,Fraud or scam,164
+2019-04,Incorrect exchange rate,1
+2019-04,Lost or stolen check,3
+2019-04,Lost or stolen money order,2
+2019-04,"Managing, opening, or closing your mobile wallet account",17
+2019-04,Money was not available when promised,41
+2019-04,Other service problem,13
+2019-04,Other transaction problem,77
+2019-04,"Overdraft, savings, or rewards features",1
+2019-04,Problem adding money,6
+2019-04,Problem with customer service,13
+2019-04,Unauthorized transactions or other transaction problem,31
+2019-04,Unexpected or other fees,7
+2019-04,Wrong amount charged or received,8
+2019-05,Confusing or misleading advertising or marketing,4
+2019-05,Confusing or missing disclosures,28
+2019-05,Fraud or scam,168
+2019-05,Incorrect exchange rate,1
+2019-05,Lost or stolen check,4
+2019-05,Lost or stolen money order,2
+2019-05,"Managing, opening, or closing your mobile wallet account",44
+2019-05,Money was not available when promised,36
+2019-05,Other service problem,15
+2019-05,Other transaction problem,87
+2019-05,"Overdraft, savings, or rewards features",2
+2019-05,Problem adding money,2
+2019-05,Problem with customer service,14
+2019-05,Unauthorized transactions or other transaction problem,35
+2019-05,Unexpected or other fees,8
+2019-05,Wrong amount charged or received,6
+2019-06,Confusing or misleading advertising or marketing,5
+2019-06,Confusing or missing disclosures,18
+2019-06,Fraud or scam,164
+2019-06,Incorrect exchange rate,1
+2019-06,Lost or stolen money order,2
+2019-06,"Managing, opening, or closing your mobile wallet account",33
+2019-06,Money was not available when promised,49
+2019-06,Other service problem,15
+2019-06,Other transaction problem,58
+2019-06,Problem adding money,4
+2019-06,Problem with customer service,14
+2019-06,Unauthorized transactions or other transaction problem,41
+2019-06,Unexpected or other fees,9
+2019-06,Wrong amount charged or received,7
+2019-07,Confusing or misleading advertising or marketing,6
+2019-07,Confusing or missing disclosures,19
+2019-07,Fraud or scam,166
+2019-07,Lost or stolen check,3
+2019-07,Lost or stolen money order,3
+2019-07,"Managing, opening, or closing your mobile wallet account",33
+2019-07,Money was not available when promised,47
+2019-07,Other service problem,15
+2019-07,Other transaction problem,98
+2019-07,"Overdraft, savings, or rewards features",1
+2019-07,Problem adding money,4
+2019-07,Problem with customer service,13
+2019-07,Unauthorized transactions or other transaction problem,37
+2019-07,Unexpected or other fees,14
+2019-07,Wrong amount charged or received,13
+2019-08,Confusing or misleading advertising or marketing,5
+2019-08,Confusing or missing disclosures,11
+2019-08,Fraud or scam,189
+2019-08,Incorrect exchange rate,2
+2019-08,Lost or stolen check,3
+2019-08,Lost or stolen money order,3
+2019-08,"Managing, opening, or closing your mobile wallet account",37
+2019-08,Money was not available when promised,50
+2019-08,Other service problem,18
+2019-08,Other transaction problem,84
+2019-08,Problem adding money,7
+2019-08,Problem with customer service,15
+2019-08,Unauthorized transactions or other transaction problem,37
+2019-08,Unexpected or other fees,13
+2019-08,Wrong amount charged or received,6
+2019-09,Confusing or misleading advertising or marketing,5
+2019-09,Confusing or missing disclosures,9
+2019-09,Fraud or scam,184
+2019-09,Lost or stolen check,1
+2019-09,Lost or stolen money order,2
+2019-09,"Managing, opening, or closing your mobile wallet account",42
+2019-09,Money was not available when promised,54
+2019-09,Other service problem,8
+2019-09,Other transaction problem,70
+2019-09,Problem adding money,4
+2019-09,Problem with customer service,17
+2019-09,Unauthorized transactions or other transaction problem,59
+2019-09,Unexpected or other fees,7
+2019-09,Wrong amount charged or received,5
+2019-10,Confusing or misleading advertising or marketing,5
+2019-10,Confusing or missing disclosures,15
+2019-10,Fraud or scam,174
+2019-10,Incorrect exchange rate,1
+2019-10,Lost or stolen check,5
+2019-10,Lost or stolen money order,4
+2019-10,"Managing, opening, or closing your mobile wallet account",43
+2019-10,Money was not available when promised,44
+2019-10,Other service problem,27
+2019-10,Other transaction problem,73
+2019-10,Problem adding money,3
+2019-10,Problem with customer service,20
+2019-10,Unauthorized transactions or other transaction problem,41
+2019-10,Unexpected or other fees,15
+2019-10,Wrong amount charged or received,12
+2019-11,Confusing or misleading advertising or marketing,5
+2019-11,Confusing or missing disclosures,14
+2019-11,Fraud or scam,157
+2019-11,Incorrect exchange rate,1
+2019-11,Lost or stolen check,3
+2019-11,Lost or stolen money order,1
+2019-11,"Managing, opening, or closing your mobile wallet account",26
+2019-11,Money was not available when promised,31
+2019-11,Other service problem,13
+2019-11,Other transaction problem,72
+2019-11,"Overdraft, savings, or rewards features",1
+2019-11,Problem adding money,2
+2019-11,Problem with customer service,11
+2019-11,Unauthorized transactions or other transaction problem,30
+2019-11,Unexpected or other fees,17
+2019-11,Wrong amount charged or received,7
+2019-12,Confusing or misleading advertising or marketing,12
+2019-12,Confusing or missing disclosures,33
+2019-12,Fraud or scam,137
+2019-12,Incorrect exchange rate,1
+2019-12,Lost or stolen check,5
+2019-12,Lost or stolen money order,5
+2019-12,"Managing, opening, or closing your mobile wallet account",17
+2019-12,Money was not available when promised,49
+2019-12,Other service problem,16
+2019-12,Other transaction problem,56
+2019-12,"Overdraft, savings, or rewards features",1
+2019-12,Problem adding money,1
+2019-12,Problem with customer service,9
+2019-12,Unauthorized transactions or other transaction problem,51
+2019-12,Unexpected or other fees,19
+2019-12,Wrong amount charged or received,11
+2020-01,Confusing or misleading advertising or marketing,11
+2020-01,Confusing or missing disclosures,10
+2020-01,Fraud or scam,154
+2020-01,Lost or stolen check,3
+2020-01,Lost or stolen money order,2
+2020-01,"Managing, opening, or closing your mobile wallet account",20
+2020-01,Money was not available when promised,36
+2020-01,Other service problem,13
+2020-01,Other transaction problem,73
+2020-01,Problem adding money,2
+2020-01,Problem with customer service,11
+2020-01,Unauthorized transactions or other transaction problem,32
+2020-01,Unexpected or other fees,16
+2020-01,Wrong amount charged or received,8
+2020-02,Confusing or misleading advertising or marketing,4
+2020-02,Confusing or missing disclosures,9
+2020-02,Fraud or scam,131
+2020-02,Lost or stolen money order,4
+2020-02,"Managing, opening, or closing your mobile wallet account",25
+2020-02,Money was not available when promised,47
+2020-02,Other service problem,11
+2020-02,Other transaction problem,72
+2020-02,"Overdraft, savings, or rewards features",1
+2020-02,Problem with customer service,15
+2020-02,Unauthorized transactions or other transaction problem,46
+2020-02,Unexpected or other fees,12
+2020-02,Wrong amount charged or received,12
+2020-03,Confusing or misleading advertising or marketing,4
+2020-03,Confusing or missing disclosures,9
+2020-03,Fraud or scam,165
+2020-03,Incorrect exchange rate,2
+2020-03,Lost or stolen check,2
+2020-03,Lost or stolen money order,3
+2020-03,"Managing, opening, or closing your mobile wallet account",31
+2020-03,Money was not available when promised,75
+2020-03,Other service problem,15
+2020-03,Other transaction problem,80
+2020-03,"Overdraft, savings, or rewards features",1
+2020-03,Problem adding money,3
+2020-03,Problem with customer service,16
+2020-03,Unauthorized transactions or other transaction problem,33
+2020-03,Unexpected or other fees,14
+2020-03,Wrong amount charged or received,8
+2020-04,Confusing or misleading advertising or marketing,6
+2020-04,Confusing or missing disclosures,15
+2020-04,Fraud or scam,188
+2020-04,Lost or stolen check,6
+2020-04,Lost or stolen money order,2
+2020-04,"Managing, opening, or closing your mobile wallet account",54
+2020-04,Money was not available when promised,72
+2020-04,Other service problem,34
+2020-04,Other transaction problem,118
+2020-04,Problem adding money,30
+2020-04,Problem with customer service,12
+2020-04,Unauthorized transactions or other transaction problem,74
+2020-04,Unexpected or other fees,16
+2020-04,Wrong amount charged or received,9
+2020-05,Confusing or misleading advertising or marketing,6
+2020-05,Confusing or missing disclosures,17
+2020-05,Fraud or scam,231
+2020-05,Incorrect exchange rate,1
+2020-05,Lost or stolen check,4
+2020-05,Lost or stolen money order,5
+2020-05,"Managing, opening, or closing your mobile wallet account",61
+2020-05,Money was not available when promised,93
+2020-05,Other service problem,42
+2020-05,Other transaction problem,138
+2020-05,"Overdraft, savings, or rewards features",1
+2020-05,Problem adding money,24
+2020-05,Problem with customer service,15
+2020-05,Unauthorized transactions or other transaction problem,82
+2020-05,Unexpected or other fees,11
+2020-05,Wrong amount charged or received,8
+2020-06,Confusing or misleading advertising or marketing,12
+2020-06,Confusing or missing disclosures,25
+2020-06,Fraud or scam,225
+2020-06,Incorrect exchange rate,1
+2020-06,Lost or stolen check,6
+2020-06,Lost or stolen money order,5
+2020-06,"Managing, opening, or closing your mobile wallet account",151
+2020-06,Money was not available when promised,91
+2020-06,Other service problem,136
+2020-06,Other transaction problem,248
+2020-06,"Overdraft, savings, or rewards features",1
+2020-06,Problem adding money,84
+2020-06,Problem with customer service,17
+2020-06,Unauthorized transactions or other transaction problem,115
+2020-06,Unexpected or other fees,27
+2020-06,Wrong amount charged or received,9
+2020-07,Confusing or misleading advertising or marketing,13
+2020-07,Confusing or missing disclosures,16
+2020-07,Fraud or scam,247
+2020-07,Incorrect exchange rate,2
+2020-07,Lost or stolen check,2
+2020-07,Lost or stolen money order,6
+2020-07,"Managing, opening, or closing your mobile wallet account",126
+2020-07,Money was not available when promised,94
+2020-07,Other service problem,136
+2020-07,Other transaction problem,245
+2020-07,"Overdraft, savings, or rewards features",3
+2020-07,Problem adding money,103
+2020-07,Problem with customer service,14
+2020-07,Unauthorized transactions or other transaction problem,147
+2020-07,Unexpected or other fees,18
+2020-07,Wrong amount charged or received,8
+2020-08,Confusing or misleading advertising or marketing,9
+2020-08,Confusing or missing disclosures,15
+2020-08,Fraud or scam,208
+2020-08,Lost or stolen check,4
+2020-08,Lost or stolen money order,4
+2020-08,"Managing, opening, or closing your mobile wallet account",91
+2020-08,Money was not available when promised,80
+2020-08,Other service problem,48
+2020-08,Other transaction problem,171
+2020-08,"Overdraft, savings, or rewards features",4
+2020-08,Problem adding money,35
+2020-08,Problem with customer service,22
+2020-08,Unauthorized transactions or other transaction problem,107
+2020-08,Unexpected or other fees,22
+2020-08,Wrong amount charged or received,10
+2020-09,Confusing or misleading advertising or marketing,9
+2020-09,Confusing or missing disclosures,13
+2020-09,Fraud or scam,175
+2020-09,Lost or stolen check,2
+2020-09,Lost or stolen money order,4
+2020-09,"Managing, opening, or closing your mobile wallet account",56
+2020-09,Money was not available when promised,72
+2020-09,Other service problem,18
+2020-09,Other transaction problem,112
+2020-09,Problem adding money,4
+2020-09,Problem with customer service,16
+2020-09,Unauthorized transactions or other transaction problem,75
+2020-09,Unexpected or other fees,20
+2020-09,Wrong amount charged or received,7
+2020-10,Confusing or misleading advertising or marketing,6
+2020-10,Confusing or missing disclosures,11
+2020-10,Fraud or scam,205
+2020-10,Incorrect exchange rate,1
+2020-10,Lost or stolen check,6
+2020-10,Lost or stolen money order,5
+2020-10,"Managing, opening, or closing your mobile wallet account",49
+2020-10,Money was not available when promised,62
+2020-10,Other service problem,19
+2020-10,Other transaction problem,113
+2020-10,Problem adding money,2
+2020-10,Problem with customer service,8
+2020-10,Unauthorized transactions or other transaction problem,86
+2020-10,Unexpected or other fees,13
+2020-10,Wrong amount charged or received,15
+2020-11,Confusing or misleading advertising or marketing,5
+2020-11,Confusing or missing disclosures,11
+2020-11,Fraud or scam,206
+2020-11,Incorrect exchange rate,1
+2020-11,Lost or stolen check,4
+2020-11,Lost or stolen money order,3
+2020-11,"Managing, opening, or closing your mobile wallet account",59
+2020-11,Money was not available when promised,47
+2020-11,Other service problem,17
+2020-11,Other transaction problem,114
+2020-11,"Overdraft, savings, or rewards features",1
+2020-11,Problem adding money,4
+2020-11,Problem with customer service,8
+2020-11,Unauthorized transactions or other transaction problem,79
+2020-11,Unexpected or other fees,9
+2020-11,Wrong amount charged or received,5
+2020-12,Confusing or misleading advertising or marketing,22
+2020-12,Confusing or missing disclosures,17
+2020-12,Fraud or scam,262
+2020-12,Lost or stolen check,6
+2020-12,Lost or stolen money order,3
+2020-12,"Managing, opening, or closing your mobile wallet account",62
+2020-12,Money was not available when promised,79
+2020-12,Other service problem,30
+2020-12,Other transaction problem,136
+2020-12,"Overdraft, savings, or rewards features",1
+2020-12,Problem adding money,5
+2020-12,Problem with customer service,15
+2020-12,Unauthorized transactions or other transaction problem,87
+2020-12,Unexpected or other fees,25
+2020-12,Wrong amount charged or received,18
+2021-01,Confusing or misleading advertising or marketing,9
+2021-01,Confusing or missing disclosures,21
+2021-01,Fraud or scam,260
+2021-01,Incorrect exchange rate,2
+2021-01,Lost or stolen check,8
+2021-01,Lost or stolen money order,1
+2021-01,"Managing, opening, or closing your mobile wallet account",67
+2021-01,Money was not available when promised,89
+2021-01,Other service problem,26
+2021-01,Other transaction problem,145
+2021-01,"Overdraft, savings, or rewards features",4
+2021-01,Problem adding money,4
+2021-01,Problem with customer service,22
+2021-01,Unauthorized transactions or other transaction problem,88
+2021-01,Unexpected or other fees,24
+2021-01,Wrong amount charged or received,14
+2021-02,Confusing or misleading advertising or marketing,5
+2021-02,Confusing or missing disclosures,28
+2021-02,Fraud or scam,259
+2021-02,Incorrect exchange rate,1
+2021-02,Lost or stolen check,4
+2021-02,Lost or stolen money order,2
+2021-02,"Managing, opening, or closing your mobile wallet account",348
+2021-02,Money was not available when promised,111
+2021-02,Other service problem,38
+2021-02,Other transaction problem,155
+2021-02,"Overdraft, savings, or rewards features",1
+2021-02,Problem adding money,3
+2021-02,Problem with customer service,14
+2021-02,Unauthorized transactions or other transaction problem,80
+2021-02,Unexpected or other fees,21
+2021-02,Wrong amount charged or received,24
+2021-03,Confusing or misleading advertising or marketing,6
+2021-03,Confusing or missing disclosures,29
+2021-03,Fraud or scam,338
+2021-03,Incorrect exchange rate,2
+2021-03,Lost or stolen check,6
+2021-03,Lost or stolen money order,4
+2021-03,"Managing, opening, or closing your mobile wallet account",683
+2021-03,Money was not available when promised,161
+2021-03,Other service problem,60
+2021-03,Other transaction problem,233
+2021-03,"Overdraft, savings, or rewards features",1
+2021-03,Problem adding money,8
+2021-03,Problem with customer service,15
+2021-03,Unauthorized transactions or other transaction problem,118
+2021-03,Unexpected or other fees,31
+2021-03,Wrong amount charged or received,19
+2021-04,Confusing or misleading advertising or marketing,9
+2021-04,Confusing or missing disclosures,24
+2021-04,Fraud or scam,307
+2021-04,Incorrect exchange rate,1
+2021-04,Lost or stolen check,5
+2021-04,Lost or stolen money order,4
+2021-04,"Managing, opening, or closing your mobile wallet account",732
+2021-04,Money was not available when promised,137
+2021-04,Other service problem,67
+2021-04,Other transaction problem,231
+2021-04,"Overdraft, savings, or rewards features",1
+2021-04,Problem adding money,12
+2021-04,Problem with customer service,20
+2021-04,Unauthorized transactions or other transaction problem,113
+2021-04,Unexpected or other fees,19
+2021-04,Wrong amount charged or received,27
+2021-05,Confusing or misleading advertising or marketing,14
+2021-05,Confusing or missing disclosures,27
+2021-05,Fraud or scam,346
+2021-05,Lost or stolen check,7
+2021-05,"Managing, opening, or closing your mobile wallet account",678
+2021-05,Money was not available when promised,176
+2021-05,Other service problem,80
+2021-05,Other transaction problem,229
+2021-05,Problem adding money,11
+2021-05,Problem with customer service,21
+2021-05,Unauthorized transactions or other transaction problem,114
+2021-05,Unexpected or other fees,20
+2021-05,Wrong amount charged or received,23
+2021-06,Confusing or misleading advertising or marketing,9
+2021-06,Confusing or missing disclosures,17
+2021-06,Fraud or scam,283
+2021-06,Incorrect exchange rate,1
+2021-06,Lost or stolen check,5
+2021-06,"Managing, opening, or closing your mobile wallet account",577
+2021-06,Money was not available when promised,106
+2021-06,Other service problem,46
+2021-06,Other transaction problem,192
+2021-06,"Overdraft, savings, or rewards features",2
+2021-06,Problem adding money,4
+2021-06,Problem with customer service,20
+2021-06,Unauthorized transactions or other transaction problem,89
+2021-06,Unexpected or other fees,19
+2021-06,Wrong amount charged or received,14
+2021-07,Confusing or misleading advertising or marketing,2
+2021-07,Confusing or missing disclosures,19
+2021-07,Fraud or scam,351
+2021-07,Incorrect exchange rate,1
+2021-07,Lost or stolen check,3
+2021-07,Lost or stolen money order,4
+2021-07,"Managing, opening, or closing your mobile wallet account",130
+2021-07,Money was not available when promised,70
+2021-07,Other service problem,35
+2021-07,Other transaction problem,144
+2021-07,"Overdraft, savings, or rewards features",1
+2021-07,Problem adding money,7
+2021-07,Problem with customer service,17
+2021-07,Unauthorized transactions or other transaction problem,79
+2021-07,Unexpected or other fees,15
+2021-07,Wrong amount charged or received,12
+2021-08,Confusing or misleading advertising or marketing,3
+2021-08,Confusing or missing disclosures,24
+2021-08,Fraud or scam,334
+2021-08,Lost or stolen check,6
+2021-08,Lost or stolen money order,2
+2021-08,"Managing, opening, or closing your mobile wallet account",97
+2021-08,Money was not available when promised,97
+2021-08,Other service problem,35
+2021-08,Other transaction problem,156
+2021-08,"Overdraft, savings, or rewards features",2
+2021-08,Problem adding money,10
+2021-08,Problem with customer service,21
+2021-08,Unauthorized transactions or other transaction problem,88
+2021-08,Unexpected or other fees,22
+2021-08,Wrong amount charged or received,17
+2021-09,Confusing or misleading advertising or marketing,4
+2021-09,Confusing or missing disclosures,19
+2021-09,Fraud or scam,317
+2021-09,Lost or stolen check,9
+2021-09,Lost or stolen money order,2
+2021-09,"Managing, opening, or closing your mobile wallet account",96
+2021-09,Money was not available when promised,83
+2021-09,Other service problem,46
+2021-09,Other transaction problem,148
+2021-09,"Overdraft, savings, or rewards features",2
+2021-09,Problem adding money,6
+2021-09,Problem with customer service,15
+2021-09,Unauthorized transactions or other transaction problem,84
+2021-09,Unexpected or other fees,18
+2021-09,Wrong amount charged or received,14
+2021-10,Confusing or misleading advertising or marketing,7
+2021-10,Confusing or missing disclosures,21
+2021-10,Fraud or scam,325
+2021-10,Lost or stolen check,6
+2021-10,Lost or stolen money order,3
+2021-10,"Managing, opening, or closing your mobile wallet account",97
+2021-10,Money was not available when promised,91
+2021-10,Other service problem,39
+2021-10,Other transaction problem,160
+2021-10,"Overdraft, savings, or rewards features",2
+2021-10,Problem adding money,7
+2021-10,Problem with customer service,23
+2021-10,Unauthorized transactions or other transaction problem,98
+2021-10,Unexpected or other fees,14
+2021-10,Wrong amount charged or received,17
+2021-11,Confusing or misleading advertising or marketing,11
+2021-11,Confusing or missing disclosures,22
+2021-11,Fraud or scam,318
+2021-11,Incorrect exchange rate,1
+2021-11,Lost or stolen check,6
+2021-11,Lost or stolen money order,3
+2021-11,"Managing, opening, or closing your mobile wallet account",105
+2021-11,Money was not available when promised,88
+2021-11,Other service problem,37
+2021-11,Other transaction problem,209
+2021-11,"Overdraft, savings, or rewards features",6
+2021-11,Problem adding money,3
+2021-11,Problem with customer service,17
+2021-11,Unauthorized transactions or other transaction problem,93
+2021-11,Unexpected or other fees,17
+2021-11,Wrong amount charged or received,12
+2021-12,Confusing or misleading advertising or marketing,8
+2021-12,Confusing or missing disclosures,23
+2021-12,Fraud or scam,365
+2021-12,Lost or stolen check,6
+2021-12,Lost or stolen money order,5
+2021-12,"Managing, opening, or closing your mobile wallet account",97
+2021-12,Money was not available when promised,73
+2021-12,Other service problem,26
+2021-12,Other transaction problem,168
+2021-12,"Overdraft, savings, or rewards features",3
+2021-12,Problem adding money,6
+2021-12,Problem with customer service,21
+2021-12,Unauthorized transactions or other transaction problem,104
+2021-12,Unexpected or other fees,14
+2021-12,Wrong amount charged or received,14
+2022-01,Confusing or misleading advertising or marketing,6
+2022-01,Confusing or missing disclosures,17
+2022-01,Fraud or scam,387
+2022-01,Incorrect exchange rate,1
+2022-01,Lost or stolen check,10
+2022-01,Lost or stolen money order,4
+2022-01,"Managing, opening, or closing your mobile wallet account",125
+2022-01,Money was not available when promised,73
+2022-01,Other service problem,38
+2022-01,Other transaction problem,172
+2022-01,Problem adding money,2
+2022-01,Problem with customer service,29
+2022-01,Unauthorized transactions or other transaction problem,95
+2022-01,Unexpected or other fees,42
+2022-01,Wrong amount charged or received,18
+2022-02,Confusing or misleading advertising or marketing,5
+2022-02,Confusing or missing disclosures,22
+2022-02,Fraud or scam,373
+2022-02,Lost or stolen check,13
+2022-02,Lost or stolen money order,7
+2022-02,"Managing, opening, or closing your mobile wallet account",94
+2022-02,Money was not available when promised,64
+2022-02,Other service problem,23
+2022-02,Other transaction problem,132
+2022-02,"Overdraft, savings, or rewards features",2
+2022-02,Problem adding money,6
+2022-02,Problem with customer service,24
+2022-02,Unauthorized transactions or other transaction problem,78
+2022-02,Unexpected or other fees,24
+2022-02,Wrong amount charged or received,16
+2022-03,Confusing or misleading advertising or marketing,9
+2022-03,Confusing or missing disclosures,27
+2022-03,Fraud or scam,411
+2022-03,Incorrect exchange rate,2
+2022-03,Lost or stolen check,10
+2022-03,Lost or stolen money order,5
+2022-03,"Managing, opening, or closing your mobile wallet account",119
+2022-03,Money was not available when promised,122
+2022-03,Other service problem,36
+2022-03,Other transaction problem,180
+2022-03,"Overdraft, savings, or rewards features",2
+2022-03,Problem adding money,7
+2022-03,Problem with customer service,20
+2022-03,Unauthorized transactions or other transaction problem,117
+2022-03,Unexpected or other fees,24
+2022-03,Wrong amount charged or received,19
+2022-04,Confusing or misleading advertising or marketing,14
+2022-04,Confusing or missing disclosures,40
+2022-04,Fraud or scam,458
+2022-04,Incorrect exchange rate,2
+2022-04,Lost or stolen check,8
+2022-04,Lost or stolen money order,4
+2022-04,"Managing, opening, or closing your mobile wallet account",119
+2022-04,Money was not available when promised,91
+2022-04,Other service problem,62
+2022-04,Other transaction problem,166
+2022-04,"Overdraft, savings, or rewards features",1
+2022-04,Problem adding money,10
+2022-04,Problem with customer service,25
+2022-04,Unauthorized transactions or other transaction problem,125
+2022-04,Unexpected or other fees,37
+2022-04,Wrong amount charged or received,15
+2022-05,Confusing or misleading advertising or marketing,15
+2022-05,Confusing or missing disclosures,34
+2022-05,Fraud or scam,417
+2022-05,Incorrect exchange rate,1
+2022-05,Lost or stolen check,6
+2022-05,Lost or stolen money order,2
+2022-05,"Managing, opening, or closing your mobile wallet account",239
+2022-05,Money was not available when promised,81
+2022-05,Other service problem,37
+2022-05,Other transaction problem,158
+2022-05,"Overdraft, savings, or rewards features",3
+2022-05,Problem adding money,7
+2022-05,Problem with customer service,24
+2022-05,Unauthorized transactions or other transaction problem,101
+2022-05,Unexpected or other fees,16
+2022-05,Wrong amount charged or received,11
+2022-06,Confusing or misleading advertising or marketing,11
+2022-06,Confusing or missing disclosures,29
+2022-06,Fraud or scam,434
+2022-06,Incorrect exchange rate,2
+2022-06,Lost or stolen check,11
+2022-06,Lost or stolen money order,6
+2022-06,"Managing, opening, or closing your mobile wallet account",81
+2022-06,Money was not available when promised,80
+2022-06,Other service problem,21
+2022-06,Other transaction problem,159
+2022-06,"Overdraft, savings, or rewards features",1
+2022-06,Problem adding money,12
+2022-06,Problem with customer service,19
+2022-06,Unauthorized transactions or other transaction problem,108
+2022-06,Unexpected or other fees,16
+2022-06,Wrong amount charged or received,13
+2022-07,Confusing or misleading advertising or marketing,2
+2022-07,Confusing or missing disclosures,32
+2022-07,Fraud or scam,555
+2022-07,Incorrect exchange rate,2
+2022-07,Lost or stolen check,9
+2022-07,Lost or stolen money order,12
+2022-07,"Managing, opening, or closing your mobile wallet account",101
+2022-07,Money was not available when promised,117
+2022-07,Other service problem,24
+2022-07,Other transaction problem,159
+2022-07,"Overdraft, savings, or rewards features",5
+2022-07,Problem adding money,10
+2022-07,Problem with customer service,23
+2022-07,Unauthorized transactions or other transaction problem,119
+2022-07,Unexpected or other fees,15
+2022-07,Wrong amount charged or received,5
+2022-08,Confusing or misleading advertising or marketing,11
+2022-08,Confusing or missing disclosures,25
+2022-08,Fraud or scam,664
+2022-08,Incorrect exchange rate,1
+2022-08,Lost or stolen check,9
+2022-08,Lost or stolen money order,5
+2022-08,"Managing, opening, or closing your mobile wallet account",90
+2022-08,Money was not available when promised,107
+2022-08,Other service problem,23
+2022-08,Other transaction problem,160
+2022-08,"Overdraft, savings, or rewards features",1
+2022-08,Problem adding money,10
+2022-08,Problem with customer service,27
+2022-08,Unauthorized transactions or other transaction problem,136
+2022-08,Unexpected or other fees,21
+2022-08,Wrong amount charged or received,9
+2022-09,Confusing or misleading advertising or marketing,7
+2022-09,Confusing or missing disclosures,21
+2022-09,Fraud or scam,640
+2022-09,Lost or stolen check,13
+2022-09,Lost or stolen money order,4
+2022-09,"Managing, opening, or closing your mobile wallet account",86
+2022-09,Money was not available when promised,78
+2022-09,Other service problem,20
+2022-09,Other transaction problem,161
+2022-09,Problem adding money,9
+2022-09,Problem with customer service,30
+2022-09,Unauthorized transactions or other transaction problem,102
+2022-09,Unexpected or other fees,18
+2022-09,Wrong amount charged or received,12
+2022-10,Confusing or misleading advertising or marketing,12
+2022-10,Confusing or missing disclosures,24
+2022-10,Fraud or scam,518
+2022-10,Incorrect exchange rate,3
+2022-10,Lost or stolen check,9
+2022-10,Lost or stolen money order,1
+2022-10,"Managing, opening, or closing your mobile wallet account",92
+2022-10,Money was not available when promised,73
+2022-10,Other service problem,29
+2022-10,Other transaction problem,174
+2022-10,"Overdraft, savings, or rewards features",1
+2022-10,Problem adding money,4
+2022-10,Problem with customer service,23
+2022-10,Unauthorized transactions or other transaction problem,100
+2022-10,Unexpected or other fees,24
+2022-10,Wrong amount charged or received,12
+2022-11,Confusing or misleading advertising or marketing,13
+2022-11,Confusing or missing disclosures,64
+2022-11,Fraud or scam,524
+2022-11,Incorrect exchange rate,5
+2022-11,Lost or stolen check,11
+2022-11,Lost or stolen money order,3
+2022-11,"Managing, opening, or closing your mobile wallet account",110
+2022-11,Money was not available when promised,146
+2022-11,Other service problem,26
+2022-11,Other transaction problem,159
+2022-11,"Overdraft, savings, or rewards features",1
+2022-11,Problem adding money,3
+2022-11,Problem with customer service,19
+2022-11,Unauthorized transactions or other transaction problem,108
+2022-11,Unexpected or other fees,16
+2022-11,Wrong amount charged or received,12
+2022-12,Confusing or misleading advertising or marketing,8
+2022-12,Confusing or missing disclosures,21
+2022-12,Fraud or scam,547
+2022-12,Incorrect exchange rate,2
+2022-12,Lost or stolen check,7
+2022-12,Lost or stolen money order,6
+2022-12,"Managing, opening, or closing your mobile wallet account",107
+2022-12,Money was not available when promised,137
+2022-12,Other service problem,28
+2022-12,Other transaction problem,158
+2022-12,"Overdraft, savings, or rewards features",2
+2022-12,Problem adding money,3
+2022-12,Problem with customer service,18
+2022-12,Unauthorized transactions or other transaction problem,99
+2022-12,Unexpected or other fees,21
+2022-12,Wrong amount charged or received,11
+2023-01,Confusing or misleading advertising or marketing,15
+2023-01,Confusing or missing disclosures,75
+2023-01,Fraud or scam,488
+2023-01,Incorrect exchange rate,2
+2023-01,Lost or stolen check,12
+2023-01,Lost or stolen money order,4
+2023-01,"Managing, opening, or closing your mobile wallet account",149
+2023-01,Money was not available when promised,116
+2023-01,Other service problem,26
+2023-01,Other transaction problem,178
+2023-01,Problem adding money,8
+2023-01,Problem with customer service,38
+2023-01,Unauthorized transactions or other transaction problem,104
+2023-01,Unexpected or other fees,38
+2023-01,Wrong amount charged or received,15
+2023-02,Confusing or misleading advertising or marketing,7
+2023-02,Confusing or missing disclosures,52
+2023-02,Fraud or scam,436
+2023-02,Incorrect exchange rate,2
+2023-02,Lost or stolen check,8
+2023-02,Lost or stolen money order,4
+2023-02,"Managing, opening, or closing your mobile wallet account",113
+2023-02,Money was not available when promised,74
+2023-02,Other service problem,28
+2023-02,Other transaction problem,151
+2023-02,"Overdraft, savings, or rewards features",2
+2023-02,Problem adding money,8
+2023-02,Problem with customer service,41
+2023-02,Unauthorized transactions or other transaction problem,95
+2023-02,Unexpected or other fees,31
+2023-02,Wrong amount charged or received,14
+2023-03,Confusing or misleading advertising or marketing,12
+2023-03,Confusing or missing disclosures,26
+2023-03,Fraud or scam,491
+2023-03,Incorrect exchange rate,1
+2023-03,Lost or stolen check,7
+2023-03,Lost or stolen money order,5
+2023-03,"Managing, opening, or closing your mobile wallet account",84
+2023-03,Money was not available when promised,86
+2023-03,Other service problem,31
+2023-03,Other transaction problem,177
+2023-03,"Overdraft, savings, or rewards features",2
+2023-03,Problem adding money,4
+2023-03,Problem with customer service,34
+2023-03,Unauthorized transactions or other transaction problem,136
+2023-03,Unexpected or other fees,28
+2023-03,Wrong amount charged or received,11
+2023-04,Confusing or misleading advertising or marketing,8
+2023-04,Confusing or missing disclosures,30
+2023-04,Fraud or scam,399
+2023-04,Incorrect exchange rate,2
+2023-04,Lost or stolen check,16
+2023-04,Lost or stolen money order,7
+2023-04,"Managing, opening, or closing your mobile wallet account",147
+2023-04,Money was not available when promised,74
+2023-04,Other service problem,22
+2023-04,Other transaction problem,134
+2023-04,"Overdraft, savings, or rewards features",1
+2023-04,Problem adding money,6
+2023-04,Problem with customer service,34
+2023-04,Unauthorized transactions or other transaction problem,124
+2023-04,Unexpected or other fees,18
+2023-04,Wrong amount charged or received,9
+2023-05,Confusing or misleading advertising or marketing,7
+2023-05,Confusing or missing disclosures,24
+2023-05,Fraud or scam,405
+2023-05,Lost or stolen check,14
+2023-05,Lost or stolen money order,6
+2023-05,"Managing, opening, or closing your mobile wallet account",169
+2023-05,Money was not available when promised,93
+2023-05,Other service problem,24
+2023-05,Other transaction problem,187
+2023-05,"Overdraft, savings, or rewards features",1
+2023-05,Problem adding money,5
+2023-05,Problem with customer service,29
+2023-05,Unauthorized transactions or other transaction problem,116
+2023-05,Unexpected or other fees,23
+2023-05,Wrong amount charged or received,12
+2023-06,Confusing or misleading advertising or marketing,8
+2023-06,Confusing or missing disclosures,26
+2023-06,Fraud or scam,475
+2023-06,Incorrect exchange rate,1
+2023-06,Lost or stolen check,14
+2023-06,Lost or stolen money order,6
+2023-06,"Managing, opening, or closing your mobile wallet account",123
+2023-06,Money was not available when promised,102
+2023-06,Other service problem,32
+2023-06,Other transaction problem,176
+2023-06,"Overdraft, savings, or rewards features",2
+2023-06,Problem adding money,8
+2023-06,Problem with customer service,36
+2023-06,Unauthorized transactions or other transaction problem,110
+2023-06,Unexpected or other fees,19
+2023-06,Wrong amount charged or received,20
+2023-07,Confusing or misleading advertising or marketing,13
+2023-07,Confusing or missing disclosures,33
+2023-07,Fraud or scam,418
+2023-07,Incorrect exchange rate,1
+2023-07,Lost or stolen check,8
+2023-07,Lost or stolen money order,6
+2023-07,"Managing, opening, or closing your mobile wallet account",99
+2023-07,Money was not available when promised,83
+2023-07,Other service problem,25
+2023-07,Other transaction problem,171
+2023-07,"Overdraft, savings, or rewards features",3
+2023-07,Problem adding money,8
+2023-07,Problem with customer service,32
+2023-07,Unauthorized transactions or other transaction problem,132
+2023-07,Unexpected or other fees,34
+2023-07,Wrong amount charged or received,8
+2023-08,Confusing or misleading advertising or marketing,8
+2023-08,Confusing or missing disclosures,26
+2023-08,Fraud or scam,483
+2023-08,Incorrect exchange rate,4
+2023-08,Lost or stolen check,14
+2023-08,Lost or stolen money order,9
+2023-08,"Managing, opening, or closing your mobile wallet account",104
+2023-08,Money was not available when promised,93
+2023-08,Other service problem,13
+2023-08,Other transaction problem,195
+2023-08,"Overdraft, savings, or rewards features",2
+2023-08,Problem adding money,5
+2023-08,Problem with customer service,24
+2023-08,Trouble accessing funds in your mobile or digital wallet,16
+2023-08,Unauthorized transactions or other transaction problem,123
+2023-08,Unexpected or other fees,29
+2023-08,Wrong amount charged or received,12
+2023-09,Confusing or misleading advertising or marketing,6
+2023-09,Confusing or missing disclosures,28
+2023-09,Fraud or scam,430
+2023-09,Incorrect exchange rate,1
+2023-09,Lost or stolen money order,15
+2023-09,"Managing, opening, or closing your mobile wallet account",59
+2023-09,Money was not available when promised,65
+2023-09,Other service problem,14
+2023-09,Other transaction problem,198
+2023-09,"Overdraft, savings, or rewards features",4
+2023-09,Problem adding money,2
+2023-09,Problem with customer service,21
+2023-09,Trouble accessing funds in your mobile or digital wallet,104
+2023-09,Unauthorized transactions or other transaction problem,134
+2023-09,Unexpected or other fees,20
+2023-09,Wrong amount charged or received,10
+2023-10,Confusing or misleading advertising or marketing,5
+2023-10,Confusing or missing disclosures,33
+2023-10,Fraud or scam,486
+2023-10,Incorrect exchange rate,3
+2023-10,Lost or stolen money order,14
+2023-10,"Managing, opening, or closing your mobile wallet account",75
+2023-10,Money was not available when promised,97
+2023-10,Other service problem,35
+2023-10,Other transaction problem,191
+2023-10,"Overdraft, savings, or rewards features",1
+2023-10,Problem adding money,5
+2023-10,Problem with customer service,26
+2023-10,Trouble accessing funds in your mobile or digital wallet,119
+2023-10,Unauthorized transactions or other transaction problem,130
+2023-10,Unexpected or other fees,30
+2023-10,Wrong amount charged or received,17
+2023-11,Confusing or misleading advertising or marketing,5
+2023-11,Confusing or missing disclosures,28
+2023-11,Fraud or scam,396
+2023-11,Incorrect exchange rate,1
+2023-11,Lost or stolen money order,16
+2023-11,"Managing, opening, or closing your mobile wallet account",76
+2023-11,Money was not available when promised,97
+2023-11,Other service problem,28
+2023-11,Other transaction problem,210
+2023-11,"Overdraft, savings, or rewards features",3
+2023-11,Problem adding money,3
+2023-11,Problem with customer service,17
+2023-11,Trouble accessing funds in your mobile or digital wallet,106
+2023-11,Unauthorized transactions or other transaction problem,103
+2023-11,Unexpected or other fees,27
+2023-11,Wrong amount charged or received,13
+2023-12,Confusing or misleading advertising or marketing,2
+2023-12,Confusing or missing disclosures,35
+2023-12,Fraud or scam,488
+2023-12,Incorrect exchange rate,1
+2023-12,Lost or stolen money order,8
+2023-12,"Managing, opening, or closing your mobile wallet account",67
+2023-12,Money was not available when promised,113
+2023-12,Other service problem,35
+2023-12,Other transaction problem,191
+2023-12,"Overdraft, savings, or rewards features",2
+2023-12,Problem adding money,9
+2023-12,Problem with customer service,25
+2023-12,Trouble accessing funds in your mobile or digital wallet,95
+2023-12,Unauthorized transactions or other transaction problem,125
+2023-12,Unexpected or other fees,24
+2023-12,Wrong amount charged or received,12
+2024-01,Confusing or misleading advertising or marketing,7
+2024-01,Confusing or missing disclosures,30
+2024-01,Fraud or scam,488
+2024-01,Incorrect exchange rate,1
+2024-01,Lost or stolen money order,14
+2024-01,"Managing, opening, or closing your mobile wallet account",80
+2024-01,Money was not available when promised,117
+2024-01,Other service problem,38
+2024-01,Other transaction problem,226
+2024-01,"Overdraft, savings, or rewards features",2
+2024-01,Problem adding money,5
+2024-01,Problem with customer service,27
+2024-01,Trouble accessing funds in your mobile or digital wallet,93
+2024-01,Unauthorized transactions or other transaction problem,117
+2024-01,Unexpected or other fees,27
+2024-01,Wrong amount charged or received,14
+2024-02,Confusing or misleading advertising or marketing,9
+2024-02,Confusing or missing disclosures,28
+2024-02,Fraud or scam,524
+2024-02,Incorrect exchange rate,3
+2024-02,Lost or stolen money order,11
+2024-02,"Managing, opening, or closing your mobile wallet account",69
+2024-02,Money was not available when promised,97
+2024-02,Other service problem,38
+2024-02,Other transaction problem,227
+2024-02,"Overdraft, savings, or rewards features",3
+2024-02,Problem with customer service,21
+2024-02,Trouble accessing funds in your mobile or digital wallet,114
+2024-02,Unauthorized transactions or other transaction problem,123
+2024-02,Unexpected or other fees,27
+2024-02,Wrong amount charged or received,12
+2024-03,Confusing or misleading advertising or marketing,9
+2024-03,Confusing or missing disclosures,28
+2024-03,Fraud or scam,472
+2024-03,Incorrect exchange rate,3
+2024-03,Lost or stolen money order,11
+2024-03,"Managing, opening, or closing your mobile wallet account",49
+2024-03,Money was not available when promised,189
+2024-03,Other service problem,45
+2024-03,Other transaction problem,276
+2024-03,"Overdraft, savings, or rewards features",1
+2024-03,Problem adding money,4
+2024-03,Problem with customer service,35
+2024-03,Trouble accessing funds in your mobile or digital wallet,125
+2024-03,Unauthorized transactions or other transaction problem,164
+2024-03,Unexpected or other fees,32
+2024-03,Wrong amount charged or received,14
+2024-04,Confusing or misleading advertising or marketing,4
+2024-04,Confusing or missing disclosures,23
+2024-04,Fraud or scam,447
+2024-04,Incorrect exchange rate,2
+2024-04,Lost or stolen money order,20
+2024-04,"Managing, opening, or closing your mobile wallet account",60
+2024-04,Money was not available when promised,134
+2024-04,Other service problem,48
+2024-04,Other transaction problem,272
+2024-04,Problem adding money,6
+2024-04,Problem with customer service,24
+2024-04,Trouble accessing funds in your mobile or digital wallet,96
+2024-04,Unauthorized transactions or other transaction problem,111
+2024-04,Unexpected or other fees,30
+2024-04,Wrong amount charged or received,8
+2024-05,Confusing or misleading advertising or marketing,5
+2024-05,Confusing or missing disclosures,33
+2024-05,Fraud or scam,498
+2024-05,Incorrect exchange rate,5
+2024-05,Lost or stolen money order,24
+2024-05,"Managing, opening, or closing your mobile wallet account",65
+2024-05,Money was not available when promised,141
+2024-05,Other service problem,41
+2024-05,Other transaction problem,228
+2024-05,"Overdraft, savings, or rewards features",1
+2024-05,Problem adding money,11
+2024-05,Problem with customer service,28
+2024-05,Trouble accessing funds in your mobile or digital wallet,103
+2024-05,Unauthorized transactions or other transaction problem,128
+2024-05,Unexpected or other fees,23
+2024-05,Wrong amount charged or received,17
+2024-06,Confusing or misleading advertising or marketing,4
+2024-06,Confusing or missing disclosures,16
+2024-06,Fraud or scam,499
+2024-06,Incorrect exchange rate,2
+2024-06,Lost or stolen money order,9
+2024-06,"Managing, opening, or closing your mobile wallet account",40
+2024-06,Money was not available when promised,121
+2024-06,Other service problem,46
+2024-06,Other transaction problem,217
+2024-06,"Overdraft, savings, or rewards features",1
+2024-06,Problem adding money,6
+2024-06,Problem with customer service,39
+2024-06,Trouble accessing funds in your mobile or digital wallet,98
+2024-06,Unauthorized transactions or other transaction problem,129
+2024-06,Unexpected or other fees,27
+2024-06,Wrong amount charged or received,12
+2024-07,Confusing or misleading advertising or marketing,5
+2024-07,Confusing or missing disclosures,29
+2024-07,Fraud or scam,512
+2024-07,Incorrect exchange rate,2
+2024-07,Lost or stolen money order,11
+2024-07,"Managing, opening, or closing your mobile wallet account",56
+2024-07,Money was not available when promised,120
+2024-07,Other service problem,36
+2024-07,Other transaction problem,236
+2024-07,"Overdraft, savings, or rewards features",4
+2024-07,Problem adding money,5
+2024-07,Problem with customer service,18
+2024-07,Trouble accessing funds in your mobile or digital wallet,108
+2024-07,Unauthorized transactions or other transaction problem,143
+2024-07,Unexpected or other fees,27
+2024-07,Wrong amount charged or received,16
+2024-08,Confusing or misleading advertising or marketing,8
+2024-08,Confusing or missing disclosures,44
+2024-08,Fraud or scam,630
+2024-08,Incorrect exchange rate,2
+2024-08,Lost or stolen money order,16
+2024-08,"Managing, opening, or closing your mobile wallet account",69
+2024-08,Money was not available when promised,111
+2024-08,Other service problem,25
+2024-08,Other transaction problem,250
+2024-08,"Overdraft, savings, or rewards features",1
+2024-08,Problem adding money,14
+2024-08,Problem with customer service,37
+2024-08,Trouble accessing funds in your mobile or digital wallet,135
+2024-08,Unauthorized transactions or other transaction problem,163
+2024-08,Unexpected or other fees,31
+2024-08,Wrong amount charged or received,21
+2024-09,Confusing or misleading advertising or marketing,8
+2024-09,Confusing or missing disclosures,27
+2024-09,Fraud or scam,461
+2024-09,Incorrect exchange rate,2
+2024-09,Lost or stolen money order,15
+2024-09,"Managing, opening, or closing your mobile wallet account",79
+2024-09,Money was not available when promised,146
+2024-09,Other service problem,44
+2024-09,Other transaction problem,221
+2024-09,"Overdraft, savings, or rewards features",1
+2024-09,Problem adding money,3
+2024-09,Problem with customer service,30
+2024-09,Trouble accessing funds in your mobile or digital wallet,117
+2024-09,Unauthorized transactions or other transaction problem,120
+2024-09,Unexpected or other fees,26
+2024-09,Wrong amount charged or received,14
+2024-10,Confusing or misleading advertising or marketing,5
+2024-10,Confusing or missing disclosures,39
+2024-10,Fraud or scam,544
+2024-10,Incorrect exchange rate,1
+2024-10,Lost or stolen money order,20
+2024-10,"Managing, opening, or closing your mobile wallet account",60
+2024-10,Money was not available when promised,119
+2024-10,Other service problem,48
+2024-10,Other transaction problem,266
+2024-10,"Overdraft, savings, or rewards features",1
+2024-10,Problem adding money,11
+2024-10,Problem with customer service,32
+2024-10,Trouble accessing funds in your mobile or digital wallet,108
+2024-10,Unauthorized transactions or other transaction problem,155
+2024-10,Unexpected or other fees,23
+2024-10,Wrong amount charged or received,17
+2024-11,Confusing or misleading advertising or marketing,8
+2024-11,Confusing or missing disclosures,29
+2024-11,Fraud or scam,477
+2024-11,Incorrect exchange rate,3
+2024-11,Lost or stolen money order,12
+2024-11,"Managing, opening, or closing your mobile wallet account",63
+2024-11,Money was not available when promised,136
+2024-11,Other service problem,59
+2024-11,Other transaction problem,279
+2024-11,"Overdraft, savings, or rewards features",3
+2024-11,Problem adding money,5
+2024-11,Problem with customer service,43
+2024-11,Trouble accessing funds in your mobile or digital wallet,123
+2024-11,Unauthorized transactions or other transaction problem,135
+2024-11,Unexpected or other fees,25
+2024-11,Wrong amount charged or received,16
+2024-12,Confusing or misleading advertising or marketing,21
+2024-12,Confusing or missing disclosures,34
+2024-12,Fraud or scam,618
+2024-12,Incorrect exchange rate,2
+2024-12,Lost or stolen money order,14
+2024-12,"Managing, opening, or closing your mobile wallet account",68
+2024-12,Money was not available when promised,173
+2024-12,Other service problem,77
+2024-12,Other transaction problem,308
+2024-12,"Overdraft, savings, or rewards features",1
+2024-12,Problem adding money,10
+2024-12,Problem with customer service,37
+2024-12,Trouble accessing funds in your mobile or digital wallet,146
+2024-12,Unauthorized transactions or other transaction problem,172
+2024-12,Unexpected or other fees,29
+2024-12,Wrong amount charged or received,21
+2025-01,Confusing or misleading advertising or marketing,125
+2025-01,Confusing or missing disclosures,1096
+2025-01,Fraud or scam,2363
+2025-01,Incorrect exchange rate,1
+2025-01,Lost or stolen money order,26
+2025-01,"Managing, opening, or closing your mobile wallet account",162
+2025-01,Money was not available when promised,321
+2025-01,Other service problem,1111
+2025-01,Other transaction problem,42520
+2025-01,"Overdraft, savings, or rewards features",15
+2025-01,Problem adding money,34
+2025-01,Problem with customer service,58
+2025-01,Trouble accessing funds in your mobile or digital wallet,274
+2025-01,Unauthorized transactions or other transaction problem,1313
+2025-01,Unexpected or other fees,157
+2025-01,Wrong amount charged or received,165
+2025-02,Confusing or misleading advertising or marketing,29
+2025-02,Confusing or missing disclosures,121
+2025-02,Fraud or scam,962
+2025-02,Incorrect exchange rate,1
+2025-02,Lost or stolen money order,16
+2025-02,"Managing, opening, or closing your mobile wallet account",122
+2025-02,Money was not available when promised,175
+2025-02,Other service problem,169
+2025-02,Other transaction problem,3720
+2025-02,"Overdraft, savings, or rewards features",2
+2025-02,Problem adding money,20
+2025-02,Problem with customer service,37
+2025-02,Trouble accessing funds in your mobile or digital wallet,193
+2025-02,Unauthorized transactions or other transaction problem,466
+2025-02,Unexpected or other fees,54
+2025-02,Wrong amount charged or received,41
+2025-03,Confusing or misleading advertising or marketing,18
+2025-03,Confusing or missing disclosures,100
+2025-03,Fraud or scam,747
+2025-03,Incorrect exchange rate,3
+2025-03,Lost or stolen money order,12
+2025-03,"Managing, opening, or closing your mobile wallet account",117
+2025-03,Money was not available when promised,161
+2025-03,Other service problem,63
+2025-03,Other transaction problem,1189
+2025-03,"Overdraft, savings, or rewards features",3
+2025-03,Problem adding money,19
+2025-03,Problem with customer service,26
+2025-03,Trouble accessing funds in your mobile or digital wallet,170
+2025-03,Unauthorized transactions or other transaction problem,359
+2025-03,Unexpected or other fees,29
+2025-03,Wrong amount charged or received,16
+2025-04,Confusing or misleading advertising or marketing,15
+2025-04,Confusing or missing disclosures,66
+2025-04,Fraud or scam,714
+2025-04,Incorrect exchange rate,3
+2025-04,Lost or stolen money order,17
+2025-04,"Managing, opening, or closing your mobile wallet account",129
+2025-04,Money was not available when promised,143
+2025-04,Other service problem,58
+2025-04,Other transaction problem,706
+2025-04,"Overdraft, savings, or rewards features",6
+2025-04,Problem adding money,9
+2025-04,Problem with customer service,45
+2025-04,Trouble accessing funds in your mobile or digital wallet,193
+2025-04,Unauthorized transactions or other transaction problem,339
+2025-04,Unexpected or other fees,40
+2025-04,Wrong amount charged or received,21
+2025-05,Confusing or misleading advertising or marketing,21
+2025-05,Confusing or missing disclosures,66
+2025-05,Fraud or scam,713
+2025-05,Incorrect exchange rate,2
+2025-05,Lost or stolen money order,21
+2025-05,"Managing, opening, or closing your mobile wallet account",103
+2025-05,Money was not available when promised,167
+2025-05,Other service problem,57
+2025-05,Other transaction problem,826
+2025-05,"Overdraft, savings, or rewards features",2
+2025-05,Problem adding money,7
+2025-05,Problem with customer service,41
+2025-05,Trouble accessing funds in your mobile or digital wallet,214
+2025-05,Unauthorized transactions or other transaction problem,342
+2025-05,Unexpected or other fees,40
+2025-05,Wrong amount charged or received,30
+2025-06,Confusing or misleading advertising or marketing,13
+2025-06,Confusing or missing disclosures,71
+2025-06,Fraud or scam,691
+2025-06,Incorrect exchange rate,2
+2025-06,Lost or stolen money order,19
+2025-06,"Managing, opening, or closing your mobile wallet account",124
+2025-06,Money was not available when promised,188
+2025-06,Other service problem,88
+2025-06,Other transaction problem,548
+2025-06,"Overdraft, savings, or rewards features",1
+2025-06,Problem adding money,21
+2025-06,Problem with customer service,33
+2025-06,Trouble accessing funds in your mobile or digital wallet,236
+2025-06,Unauthorized transactions or other transaction problem,319
+2025-06,Unexpected or other fees,39
+2025-06,Wrong amount charged or received,13
+2025-07,Confusing or misleading advertising or marketing,17
+2025-07,Confusing or missing disclosures,74
+2025-07,Fraud or scam,863
+2025-07,Incorrect exchange rate,7
+2025-07,Lost or stolen money order,16
+2025-07,"Managing, opening, or closing your mobile wallet account",162
+2025-07,Money was not available when promised,207
+2025-07,Other service problem,90
+2025-07,Other transaction problem,564
+2025-07,"Overdraft, savings, or rewards features",5
+2025-07,Problem adding money,11
+2025-07,Problem with customer service,58
+2025-07,Trouble accessing funds in your mobile or digital wallet,292
+2025-07,Unauthorized transactions or other transaction problem,402
+2025-07,Unexpected or other fees,38
+2025-07,Wrong amount charged or received,17
+2025-08,Confusing or misleading advertising or marketing,19
+2025-08,Confusing or missing disclosures,100
+2025-08,Fraud or scam,855
+2025-08,Incorrect exchange rate,3
+2025-08,Lost or stolen money order,22
+2025-08,"Managing, opening, or closing your mobile wallet account",169
+2025-08,Money was not available when promised,215
+2025-08,Other service problem,90
+2025-08,Other transaction problem,539
+2025-08,"Overdraft, savings, or rewards features",2
+2025-08,Problem adding money,20
+2025-08,Problem with customer service,49
+2025-08,Trouble accessing funds in your mobile or digital wallet,309
+2025-08,Unauthorized transactions or other transaction problem,389
+2025-08,Unexpected or other fees,43
+2025-08,Wrong amount charged or received,55
+2025-09,Confusing or misleading advertising or marketing,16
+2025-09,Confusing or missing disclosures,62
+2025-09,Fraud or scam,773
+2025-09,Incorrect exchange rate,1
+2025-09,Lost or stolen money order,25
+2025-09,"Managing, opening, or closing your mobile wallet account",136
+2025-09,Money was not available when promised,191
+2025-09,Other service problem,82
+2025-09,Other transaction problem,431
+2025-09,"Overdraft, savings, or rewards features",4
+2025-09,Problem adding money,14
+2025-09,Problem with customer service,42
+2025-09,Trouble accessing funds in your mobile or digital wallet,273
+2025-09,Unauthorized transactions or other transaction problem,387
+2025-09,Unexpected or other fees,42
+2025-09,Wrong amount charged or received,25
+2025-10,Confusing or misleading advertising or marketing,23
+2025-10,Confusing or missing disclosures,53
+2025-10,Fraud or scam,798
+2025-10,Incorrect exchange rate,2
+2025-10,Lost or stolen money order,17
+2025-10,"Managing, opening, or closing your mobile wallet account",161
+2025-10,Money was not available when promised,233
+2025-10,Other service problem,108
+2025-10,Other transaction problem,1890
+2025-10,"Overdraft, savings, or rewards features",6
+2025-10,Problem adding money,19
+2025-10,Problem with customer service,54
+2025-10,Trouble accessing funds in your mobile or digital wallet,284
+2025-10,Unauthorized transactions or other transaction problem,456
+2025-10,Unexpected or other fees,56
+2025-10,Wrong amount charged or received,32
+2025-11,Confusing or misleading advertising or marketing,18
+2025-11,Confusing or missing disclosures,77
+2025-11,Fraud or scam,786
+2025-11,Incorrect exchange rate,3
+2025-11,Lost or stolen money order,16
+2025-11,"Managing, opening, or closing your mobile wallet account",164
+2025-11,Money was not available when promised,207
+2025-11,Other service problem,74
+2025-11,Other transaction problem,437
+2025-11,"Overdraft, savings, or rewards features",2
+2025-11,Problem adding money,11
+2025-11,Problem with customer service,49
+2025-11,Trouble accessing funds in your mobile or digital wallet,276
+2025-11,Unauthorized transactions or other transaction problem,405
+2025-11,Unexpected or other fees,57
+2025-11,Wrong amount charged or received,20
+2025-12,Confusing or misleading advertising or marketing,36
+2025-12,Confusing or missing disclosures,84
+2025-12,Fraud or scam,913
+2025-12,Incorrect exchange rate,1
+2025-12,Lost or stolen money order,16
+2025-12,"Managing, opening, or closing your mobile wallet account",224
+2025-12,Money was not available when promised,221
+2025-12,Other service problem,74
+2025-12,Other transaction problem,520
+2025-12,"Overdraft, savings, or rewards features",16
+2025-12,Problem adding money,10
+2025-12,Problem with customer service,54
+2025-12,Trouble accessing funds in your mobile or digital wallet,323
+2025-12,Unauthorized transactions or other transaction problem,581
+2025-12,Unexpected or other fees,52
+2025-12,Wrong amount charged or received,24
+2026-01,Confusing or misleading advertising or marketing,32
+2026-01,Confusing or missing disclosures,95
+2026-01,Fraud or scam,971
+2026-01,Incorrect exchange rate,2
+2026-01,Lost or stolen money order,32
+2026-01,"Managing, opening, or closing your mobile wallet account",213
+2026-01,Money was not available when promised,276
+2026-01,Other service problem,116
+2026-01,Other transaction problem,516
+2026-01,"Overdraft, savings, or rewards features",15
+2026-01,Problem adding money,21
+2026-01,Problem with customer service,47
+2026-01,Trouble accessing funds in your mobile or digital wallet,450
+2026-01,Unauthorized transactions or other transaction problem,597
+2026-01,Unexpected or other fees,62
+2026-01,Wrong amount charged or received,33
+2026-02,Confusing or misleading advertising or marketing,19
+2026-02,Confusing or missing disclosures,73
+2026-02,Fraud or scam,820
+2026-02,Incorrect exchange rate,1
+2026-02,Lost or stolen money order,23
+2026-02,"Managing, opening, or closing your mobile wallet account",137
+2026-02,Money was not available when promised,200
+2026-02,Other service problem,81
+2026-02,Other transaction problem,459
+2026-02,"Overdraft, savings, or rewards features",7
+2026-02,Problem adding money,21
+2026-02,Problem with customer service,35
+2026-02,Trouble accessing funds in your mobile or digital wallet,320
+2026-02,Unauthorized transactions or other transaction problem,502
+2026-02,Unexpected or other fees,37
+2026-02,Wrong amount charged or received,31
+2026-03,Confusing or misleading advertising or marketing,23
+2026-03,Confusing or missing disclosures,65
+2026-03,Fraud or scam,1122
+2026-03,Incorrect exchange rate,2
+2026-03,Lost or stolen money order,24
+2026-03,"Managing, opening, or closing your mobile wallet account",179
+2026-03,Money was not available when promised,238
+2026-03,Other service problem,78
+2026-03,Other transaction problem,575
+2026-03,"Overdraft, savings, or rewards features",9
+2026-03,Problem adding money,13
+2026-03,Problem with customer service,51
+2026-03,Trouble accessing funds in your mobile or digital wallet,319
+2026-03,Unauthorized transactions or other transaction problem,605
+2026-03,Unexpected or other fees,53
+2026-03,Wrong amount charged or received,39
+2026-04,Confusing or misleading advertising or marketing,26
+2026-04,Confusing or missing disclosures,74
+2026-04,Fraud or scam,1152
+2026-04,Incorrect exchange rate,1
+2026-04,Lost or stolen money order,32
+2026-04,"Managing, opening, or closing your mobile wallet account",204
+2026-04,Money was not available when promised,253
+2026-04,Other service problem,76
+2026-04,Other transaction problem,511
+2026-04,"Overdraft, savings, or rewards features",8
+2026-04,Problem adding money,15
+2026-04,Problem with customer service,60
+2026-04,Trouble accessing funds in your mobile or digital wallet,330
+2026-04,Unauthorized transactions or other transaction problem,645
+2026-04,Unexpected or other fees,42
+2026-04,Wrong amount charged or received,29
+2026-05,Confusing or misleading advertising or marketing,21
+2026-05,Confusing or missing disclosures,81
+2026-05,Fraud or scam,1007
+2026-05,Incorrect exchange rate,3
+2026-05,Lost or stolen money order,27
+2026-05,"Managing, opening, or closing your mobile wallet account",206
+2026-05,Money was not available when promised,239
+2026-05,Other service problem,86
+2026-05,Other transaction problem,486
+2026-05,"Overdraft, savings, or rewards features",9
+2026-05,Problem adding money,13
+2026-05,Problem with customer service,54
+2026-05,Trouble accessing funds in your mobile or digital wallet,315
+2026-05,Unauthorized transactions or other transaction problem,590
+2026-05,Unexpected or other fees,41
+2026-05,Wrong amount charged or received,37
+2026-06,Confusing or misleading advertising or marketing,25
+2026-06,Confusing or missing disclosures,61
+2026-06,Fraud or scam,938
+2026-06,Lost or stolen money order,25
+2026-06,"Managing, opening, or closing your mobile wallet account",250
+2026-06,Money was not available when promised,215
+2026-06,Other service problem,80
+2026-06,Other transaction problem,458
+2026-06,"Overdraft, savings, or rewards features",10
+2026-06,Problem adding money,21
+2026-06,Problem with customer service,51
+2026-06,Trouble accessing funds in your mobile or digital wallet,326
+2026-06,Unauthorized transactions or other transaction problem,524
+2026-06,Unexpected or other fees,39
+2026-06,Wrong amount charged or received,20
+2026-07,Confusing or misleading advertising or marketing,22
+2026-07,Confusing or missing disclosures,88
+2026-07,Fraud or scam,1051
+2026-07,Lost or stolen money order,32
+2026-07,"Managing, opening, or closing your mobile wallet account",262
+2026-07,Money was not available when promised,253
+2026-07,Other service problem,79
+2026-07,Other transaction problem,520
+2026-07,"Overdraft, savings, or rewards features",13
+2026-07,Problem adding money,14
+2026-07,Problem with customer service,60
+2026-07,Trouble accessing funds in your mobile or digital wallet,403
+2026-07,Unauthorized transactions or other transaction problem,652
+2026-07,Unexpected or other fees,41
+2026-07,Wrong amount charged or received,29
+2026-08,Confusing or misleading advertising or marketing,22
+2026-08,Confusing or missing disclosures,64
+2026-08,Fraud or scam,893
+2026-08,Incorrect exchange rate,2
+2026-08,Lost or stolen money order,33
+2026-08,"Managing, opening, or closing your mobile wallet account",237
+2026-08,Money was not available when promised,285
+2026-08,Other service problem,112
+2026-08,Other transaction problem,501
+2026-08,"Overdraft, savings, or rewards features",6
+2026-08,Problem adding money,12
+2026-08,Problem with customer service,54
+2026-08,Trouble accessing funds in your mobile or digital wallet,360
+2026-08,Unauthorized transactions or other transaction problem,629
+2026-08,Unexpected or other fees,53
+2026-08,Wrong amount charged or received,29
+2026-09,Confusing or misleading advertising or marketing,18
+2026-09,Confusing or missing disclosures,57
+2026-09,Fraud or scam,969
+2026-09,Incorrect exchange rate,3
+2026-09,Lost or stolen money order,19
+2026-09,"Managing, opening, or closing your mobile wallet account",257
+2026-09,Money was not available when promised,277
+2026-09,Other service problem,101
+2026-09,Other transaction problem,572
+2026-09,"Overdraft, savings, or rewards features",5
+2026-09,Problem adding money,21
+2026-09,Problem with customer service,49
+2026-09,Trouble accessing funds in your mobile or digital wallet,356
+2026-09,Unauthorized transactions or other transaction problem,690
+2026-09,Unexpected or other fees,48
+2026-09,Wrong amount charged or received,31
+2026-10,Confusing or misleading advertising or marketing,25
+2026-10,Confusing or missing disclosures,71
+2026-10,Fraud or scam,1048
+2026-10,Incorrect exchange rate,4
+2026-10,Lost or stolen money order,31
+2026-10,"Managing, opening, or closing your mobile wallet account",332
+2026-10,Money was not available when promised,289
+2026-10,Other service problem,109
+2026-10,Other transaction problem,606
+2026-10,"Overdraft, savings, or rewards features",13
+2026-10,Problem adding money,19
+2026-10,Problem with customer service,58
+2026-10,Trouble accessing funds in your mobile or digital wallet,429
+2026-10,Unauthorized transactions or other transaction problem,818
+2026-10,Unexpected or other fees,60
+2026-10,Wrong amount charged or received,33
+2026-11,Confusing or misleading advertising or marketing,7
+2026-11,Confusing or missing disclosures,29
+2026-11,Fraud or scam,424
+2026-11,Incorrect exchange rate,2
+2026-11,Lost or stolen money order,14
+2026-11,"Managing, opening, or closing your mobile wallet account",148
+2026-11,Money was not available when promised,165
+2026-11,Other service problem,62
+2026-11,Other transaction problem,264
+2026-11,"Overdraft, savings, or rewards features",3
+2026-11,Problem adding money,6
+2026-11,Problem with customer service,24
+2026-11,Trouble accessing funds in your mobile or digital wallet,137
+2026-11,Unauthorized transactions or other transaction problem,286
+2026-11,Unexpected or other fees,27
+2026-11,Wrong amount charged or received,7

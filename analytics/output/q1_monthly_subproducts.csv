@@ -1,0 +1,1181 @@
+year_month,sub_product_std,complaint_count,mom_pct,yoy_pct
+2013-04,Domestic (US) money transfer,21,,
+2013-04,International money transfer,17,,
+2013-05,Domestic (US) money transfer,18,-14.29,
+2013-05,International money transfer,11,-35.29,
+2013-06,Domestic (US) money transfer,28,55.56,
+2013-06,International money transfer,19,72.73,
+2013-07,Domestic (US) money transfer,25,-10.71,
+2013-07,International money transfer,23,21.05,
+2013-08,Domestic (US) money transfer,33,32.0,
+2013-08,International money transfer,17,-26.09,
+2013-09,Domestic (US) money transfer,28,-15.15,
+2013-09,International money transfer,30,76.47,
+2013-10,Domestic (US) money transfer,40,42.86,
+2013-10,International money transfer,41,36.67,
+2013-11,Domestic (US) money transfer,27,-32.5,
+2013-11,International money transfer,56,36.59,
+2013-12,Domestic (US) money transfer,29,7.41,
+2013-12,International money transfer,46,-17.86,
+2014-01,Domestic (US) money transfer,30,3.45,
+2014-01,International money transfer,59,28.26,
+2014-02,Domestic (US) money transfer,30,0.0,
+2014-02,International money transfer,50,-15.25,
+2014-03,Domestic (US) money transfer,39,30.0,
+2014-03,International money transfer,55,10.0,
+2014-04,Domestic (US) money transfer,44,12.82,109.52
+2014-04,International money transfer,61,10.91,258.82
+2014-05,Domestic (US) money transfer,41,-6.82,127.78
+2014-05,International money transfer,59,-3.28,436.36
+2014-06,Domestic (US) money transfer,53,29.27,89.29
+2014-06,International money transfer,64,8.47,236.84
+2014-07,Domestic (US) money transfer,33,-37.74,32.0
+2014-07,International money transfer,51,-20.31,121.74
+2014-07,Mobile or digital wallet,7,,
+2014-08,Domestic (US) money transfer,36,9.09,9.09
+2014-08,International money transfer,58,13.73,241.18
+2014-08,Mobile or digital wallet,6,-14.29,
+2014-08,Virtual currency,1,,
+2014-09,Domestic (US) money transfer,47,30.56,67.86
+2014-09,International money transfer,61,5.17,103.33
+2014-09,Mobile or digital wallet,5,-16.67,
+2014-10,Domestic (US) money transfer,28,-40.43,-30.0
+2014-10,International money transfer,56,-8.2,36.59
+2014-10,Mobile or digital wallet,5,0.0,
+2014-11,Domestic (US) money transfer,40,42.86,48.15
+2014-11,International money transfer,35,-37.5,-37.5
+2014-11,Mobile or digital wallet,8,60.0,
+2014-12,Domestic (US) money transfer,52,30.0,79.31
+2014-12,International money transfer,57,62.86,23.91
+2014-12,Mobile or digital wallet,9,12.5,
+2015-01,Domestic (US) money transfer,50,-3.85,66.67
+2015-01,International money transfer,55,-3.51,-6.78
+2015-01,Mobile or digital wallet,12,33.33,
+2015-02,Domestic (US) money transfer,33,-34.0,10.0
+2015-02,International money transfer,57,3.64,14.0
+2015-02,Mobile or digital wallet,11,-8.33,
+2015-03,Domestic (US) money transfer,55,66.67,41.03
+2015-03,International money transfer,76,33.33,38.18
+2015-03,Mobile or digital wallet,13,18.18,
+2015-04,Domestic (US) money transfer,54,-1.82,22.73
+2015-04,International money transfer,77,1.32,26.23
+2015-04,Mobile or digital wallet,14,7.69,
+2015-04,Virtual currency,1,,
+2015-05,Domestic (US) money transfer,67,24.07,63.41
+2015-05,International money transfer,80,3.9,35.59
+2015-05,Mobile or digital wallet,14,0.0,
+2015-06,Domestic (US) money transfer,74,10.45,39.62
+2015-06,International money transfer,77,-3.75,20.31
+2015-06,Mobile or digital wallet,15,7.14,
+2015-07,Domestic (US) money transfer,77,4.05,133.33
+2015-07,International money transfer,84,9.09,64.71
+2015-07,Mobile or digital wallet,10,-33.33,42.86
+2015-08,Domestic (US) money transfer,72,-6.49,100.0
+2015-08,International money transfer,73,-13.1,25.86
+2015-08,Mobile or digital wallet,7,-30.0,16.67
+2015-09,Domestic (US) money transfer,64,-11.11,36.17
+2015-09,International money transfer,50,-31.51,-18.03
+2015-09,Mobile or digital wallet,13,85.71,160.0
+2015-09,Virtual currency,1,,
+2015-10,Domestic (US) money transfer,85,32.81,203.57
+2015-10,International money transfer,88,76.0,57.14
+2015-10,Mobile or digital wallet,21,61.54,320.0
+2015-10,Virtual currency,5,400.0,
+2015-11,Domestic (US) money transfer,71,-16.47,77.5
+2015-11,International money transfer,59,-32.95,68.57
+2015-11,Mobile or digital wallet,8,-61.9,0.0
+2015-12,Domestic (US) money transfer,71,0.0,36.54
+2015-12,International money transfer,70,18.64,22.81
+2015-12,Mobile or digital wallet,19,137.5,111.11
+2016-01,Domestic (US) money transfer,62,-12.68,24.0
+2016-01,International money transfer,72,2.86,30.91
+2016-01,Mobile or digital wallet,14,-26.32,16.67
+2016-02,Domestic (US) money transfer,84,35.48,154.55
+2016-02,International money transfer,55,-23.61,-3.51
+2016-02,Mobile or digital wallet,10,-28.57,-9.09
+2016-03,Domestic (US) money transfer,68,-19.05,23.64
+2016-03,International money transfer,63,14.55,-17.11
+2016-03,Mobile or digital wallet,14,40.0,7.69
+2016-03,Virtual currency,2,,
+2016-04,Domestic (US) money transfer,70,2.94,29.63
+2016-04,International money transfer,57,-9.52,-25.97
+2016-04,Mobile or digital wallet,8,-42.86,-42.86
+2016-05,Domestic (US) money transfer,75,7.14,11.94
+2016-05,International money transfer,68,19.3,-15.0
+2016-05,Mobile or digital wallet,18,125.0,28.57
+2016-06,Domestic (US) money transfer,77,2.67,4.05
+2016-06,International money transfer,51,-25.0,-33.77
+2016-06,Mobile or digital wallet,32,77.78,113.33
+2016-06,Virtual currency,2,,
+2016-07,Domestic (US) money transfer,57,-25.97,-25.97
+2016-07,International money transfer,51,0.0,-39.29
+2016-07,Mobile or digital wallet,15,-53.12,50.0
+2016-08,Domestic (US) money transfer,72,26.32,0.0
+2016-08,International money transfer,81,58.82,10.96
+2016-08,Mobile or digital wallet,10,-33.33,42.86
+2016-09,Domestic (US) money transfer,67,-6.94,4.69
+2016-09,International money transfer,74,-8.64,48.0
+2016-09,Mobile or digital wallet,7,-30.0,-46.15
+2016-10,Domestic (US) money transfer,64,-4.48,-24.71
+2016-10,International money transfer,61,-17.57,-30.68
+2016-10,Mobile or digital wallet,12,71.43,-42.86
+2016-10,Virtual currency,2,,
+2016-11,Domestic (US) money transfer,67,4.69,-5.63
+2016-11,International money transfer,63,3.28,6.78
+2016-11,Mobile or digital wallet,9,-25.0,12.5
+2016-11,Virtual currency,1,-50.0,
+2016-12,Domestic (US) money transfer,60,-10.45,-15.49
+2016-12,International money transfer,48,-23.81,-31.43
+2016-12,Mobile or digital wallet,15,66.67,-21.05
+2017-01,Domestic (US) money transfer,53,-11.67,-14.52
+2017-01,International money transfer,57,18.75,-20.83
+2017-01,Mobile or digital wallet,17,13.33,21.43
+2017-01,Virtual currency,1,,
+2017-02,Domestic (US) money transfer,62,16.98,-26.19
+2017-02,International money transfer,41,-28.07,-25.45
+2017-02,Mobile or digital wallet,13,-23.53,30.0
+2017-02,Virtual currency,1,0.0,
+2017-03,Domestic (US) money transfer,78,25.81,14.71
+2017-03,International money transfer,58,41.46,-7.94
+2017-03,Mobile or digital wallet,14,7.69,0.0
+2017-04,Check cashing service,2,,
+2017-04,Debt settlement,4,,
+2017-04,Domestic (US) money transfer,64,-17.95,-8.57
+2017-04,Foreign currency exchange,2,,
+2017-04,International money transfer,69,18.97,21.05
+2017-04,Mobile or digital wallet,30,114.29,275.0
+2017-04,Traveler's check or cashier's check,1,,
+2017-04,Virtual currency,5,,
+2017-05,Check cashing service,9,350.0,
+2017-05,Debt settlement,14,250.0,
+2017-05,Domestic (US) money transfer,90,40.62,20.0
+2017-05,Foreign currency exchange,4,100.0,
+2017-05,International money transfer,63,-8.7,-7.35
+2017-05,Mobile or digital wallet,41,36.67,127.78
+2017-05,Money order,9,,
+2017-05,Refund anticipation check,4,,
+2017-05,Traveler's check or cashier's check,16,1500.0,
+2017-05,Virtual currency,23,360.0,
+2017-06,Check cashing service,12,33.33,
+2017-06,Debt settlement,5,-64.29,
+2017-06,Domestic (US) money transfer,96,6.67,24.68
+2017-06,Foreign currency exchange,6,50.0,
+2017-06,International money transfer,62,-1.59,21.57
+2017-06,Mobile or digital wallet,79,92.68,146.88
+2017-06,Money order,4,-55.56,
+2017-06,Refund anticipation check,2,-50.0,
+2017-06,Traveler's check or cashier's check,12,-25.0,
+2017-06,Virtual currency,91,295.65,
+2017-07,Check cashing service,6,-50.0,
+2017-07,Debt settlement,7,40.0,
+2017-07,Domestic (US) money transfer,111,15.62,94.74
+2017-07,Foreign currency exchange,2,-66.67,
+2017-07,International money transfer,92,48.39,80.39
+2017-07,Mobile or digital wallet,69,-12.66,360.0
+2017-07,Money order,8,100.0,
+2017-07,Refund anticipation check,4,100.0,
+2017-07,Traveler's check or cashier's check,9,-25.0,
+2017-07,Virtual currency,108,18.68,
+2017-08,Check cashing service,5,-16.67,
+2017-08,Debt settlement,7,0.0,
+2017-08,Domestic (US) money transfer,128,15.32,77.78
+2017-08,International money transfer,77,-16.3,-4.94
+2017-08,Mobile or digital wallet,89,28.99,790.0
+2017-08,Money order,6,-25.0,
+2017-08,Refund anticipation check,1,-75.0,
+2017-08,Traveler's check or cashier's check,9,0.0,
+2017-08,Virtual currency,96,-11.11,
+2017-09,Check cashing service,6,20.0,
+2017-09,Debt settlement,6,-14.29,
+2017-09,Domestic (US) money transfer,95,-25.78,41.79
+2017-09,Foreign currency exchange,3,,
+2017-09,International money transfer,79,2.6,6.76
+2017-09,Mobile or digital wallet,57,-35.96,714.29
+2017-09,Money order,7,16.67,
+2017-09,Refund anticipation check,5,400.0,
+2017-09,Traveler's check or cashier's check,9,0.0,
+2017-09,Virtual currency,84,-12.5,
+2017-10,Check cashing service,10,66.67,
+2017-10,Debt settlement,17,183.33,
+2017-10,Domestic (US) money transfer,81,-14.74,26.56
+2017-10,Foreign currency exchange,2,-33.33,
+2017-10,International money transfer,70,-11.39,14.75
+2017-10,Mobile or digital wallet,51,-10.53,325.0
+2017-10,Money order,10,42.86,
+2017-10,Refund anticipation check,1,-80.0,
+2017-10,Traveler's check or cashier's check,6,-33.33,
+2017-10,Virtual currency,42,-50.0,
+2017-11,Check cashing service,5,-50.0,
+2017-11,Debt settlement,10,-41.18,
+2017-11,Domestic (US) money transfer,86,6.17,28.36
+2017-11,Foreign currency exchange,8,300.0,
+2017-11,International money transfer,83,18.57,31.75
+2017-11,Mobile or digital wallet,56,9.8,522.22
+2017-11,Money order,8,-20.0,
+2017-11,Refund anticipation check,5,400.0,
+2017-11,Traveler's check or cashier's check,9,50.0,
+2017-11,Virtual currency,89,111.9,
+2017-12,Check cashing service,5,0.0,
+2017-12,Debt settlement,8,-20.0,
+2017-12,Domestic (US) money transfer,164,90.7,173.33
+2017-12,Foreign currency exchange,11,37.5,
+2017-12,International money transfer,112,34.94,133.33
+2017-12,Mobile or digital wallet,125,123.21,733.33
+2017-12,Money order,6,-25.0,
+2017-12,Refund anticipation check,3,-40.0,
+2017-12,Traveler's check or cashier's check,7,-22.22,
+2017-12,Virtual currency,276,210.11,
+2018-01,Check cashing service,8,60.0,
+2018-01,Debt settlement,10,25.0,
+2018-01,Domestic (US) money transfer,338,106.1,537.74
+2018-01,Foreign currency exchange,9,-18.18,
+2018-01,International money transfer,139,24.11,143.86
+2018-01,Mobile or digital wallet,207,65.6,1117.65
+2018-01,Money order,13,116.67,
+2018-01,Refund anticipation check,3,0.0,
+2018-01,Traveler's check or cashier's check,10,42.86,
+2018-01,Virtual currency,483,75.0,
+2018-02,Check cashing service,9,12.5,
+2018-02,Debt settlement,11,10.0,
+2018-02,Domestic (US) money transfer,157,-53.55,153.23
+2018-02,Foreign currency exchange,3,-66.67,
+2018-02,International money transfer,75,-46.04,82.93
+2018-02,Mobile or digital wallet,100,-51.69,669.23
+2018-02,Money order,6,-53.85,
+2018-02,Refund anticipation check,3,0.0,
+2018-02,Traveler's check or cashier's check,7,-30.0,
+2018-02,Virtual currency,203,-57.97,
+2018-03,Check cashing service,10,11.11,
+2018-03,Debt settlement,10,-9.09,
+2018-03,Domestic (US) money transfer,129,-17.83,65.38
+2018-03,Foreign currency exchange,6,100.0,
+2018-03,International money transfer,55,-26.67,-5.17
+2018-03,Mobile or digital wallet,91,-9.0,550.0
+2018-03,Money order,10,66.67,
+2018-03,Refund anticipation check,4,33.33,
+2018-03,Traveler's check or cashier's check,10,42.86,
+2018-03,Virtual currency,146,-28.08,
+2018-04,Check cashing service,8,-20.0,300.0
+2018-04,Debt settlement,12,20.0,200.0
+2018-04,Domestic (US) money transfer,143,10.85,123.44
+2018-04,Foreign currency exchange,5,-16.67,
+2018-04,International money transfer,54,-1.82,-21.74
+2018-04,Mobile or digital wallet,83,-8.79,176.67
+2018-04,Money order,8,-20.0,
+2018-04,Refund anticipation check,5,25.0,
+2018-04,Traveler's check or cashier's check,10,0.0,900.0
+2018-04,Virtual currency,80,-45.21,1500.0
+2018-05,Check cashing service,7,-12.5,-22.22
+2018-05,Debt settlement,9,-25.0,-35.71
+2018-05,Domestic (US) money transfer,121,-15.38,34.44
+2018-05,Foreign currency exchange,3,-40.0,
+2018-05,International money transfer,60,11.11,-4.76
+2018-05,Mobile or digital wallet,88,6.02,114.63
+2018-05,Money order,10,25.0,11.11
+2018-05,Refund anticipation check,1,-80.0,-75.0
+2018-05,Traveler's check or cashier's check,7,-30.0,-56.25
+2018-05,Virtual currency,57,-28.75,147.83
+2018-06,Check cashing service,7,0.0,-41.67
+2018-06,Debt settlement,18,100.0,260.0
+2018-06,Domestic (US) money transfer,109,-9.92,13.54
+2018-06,Foreign currency exchange,8,166.67,
+2018-06,International money transfer,83,38.33,33.87
+2018-06,Mobile or digital wallet,89,1.14,12.66
+2018-06,Money order,6,-40.0,50.0
+2018-06,Refund anticipation check,6,500.0,200.0
+2018-06,Traveler's check or cashier's check,9,28.57,-25.0
+2018-06,Virtual currency,53,-7.02,-41.76
+2018-07,Check cashing service,5,-28.57,-16.67
+2018-07,Debt settlement,13,-27.78,85.71
+2018-07,Domestic (US) money transfer,108,-0.92,-2.7
+2018-07,Foreign currency exchange,7,-12.5,
+2018-07,International money transfer,76,-8.43,-17.39
+2018-07,Mobile or digital wallet,78,-12.36,13.04
+2018-07,Money order,8,33.33,0.0
+2018-07,Refund anticipation check,6,0.0,50.0
+2018-07,Traveler's check or cashier's check,7,-22.22,-22.22
+2018-07,Virtual currency,39,-26.42,-63.89
+2018-08,Check cashing service,7,40.0,40.0
+2018-08,Debt settlement,14,7.69,100.0
+2018-08,Domestic (US) money transfer,120,11.11,-6.25
+2018-08,Foreign currency exchange,6,-14.29,
+2018-08,International money transfer,83,9.21,7.79
+2018-08,Mobile or digital wallet,94,20.51,5.62
+2018-08,Money order,12,50.0,100.0
+2018-08,Refund anticipation check,3,-50.0,200.0
+2018-08,Traveler's check or cashier's check,4,-42.86,-55.56
+2018-08,Virtual currency,24,-38.46,-75.0
+2018-09,Check cashing service,3,-57.14,-50.0
+2018-09,Debt settlement,11,-21.43,83.33
+2018-09,Domestic (US) money transfer,100,-16.67,5.26
+2018-09,Foreign currency exchange,5,-16.67,66.67
+2018-09,International money transfer,62,-25.3,-21.52
+2018-09,Mobile or digital wallet,66,-29.79,15.79
+2018-09,Money order,13,8.33,85.71
+2018-09,Refund anticipation check,4,33.33,-20.0
+2018-09,Traveler's check or cashier's check,4,0.0,-55.56
+2018-09,Virtual currency,32,33.33,-61.9
+2018-10,Check cashing service,6,100.0,-40.0
+2018-10,Debt settlement,9,-18.18,-47.06
+2018-10,Domestic (US) money transfer,132,32.0,62.96
+2018-10,Foreign currency exchange,7,40.0,250.0
+2018-10,International money transfer,78,25.81,11.43
+2018-10,Mobile or digital wallet,85,28.79,66.67
+2018-10,Money order,10,-23.08,0.0
+2018-10,Refund anticipation check,3,-25.0,200.0
+2018-10,Traveler's check or cashier's check,4,0.0,-33.33
+2018-10,Virtual currency,22,-31.25,-47.62
+2018-11,Check cashing service,10,66.67,100.0
+2018-11,Debt settlement,9,0.0,-10.0
+2018-11,Domestic (US) money transfer,97,-26.52,12.79
+2018-11,Foreign currency exchange,5,-28.57,-37.5
+2018-11,International money transfer,59,-24.36,-28.92
+2018-11,Mobile or digital wallet,71,-16.47,26.79
+2018-11,Money order,9,-10.0,12.5
+2018-11,Refund anticipation check,4,33.33,-20.0
+2018-11,Traveler's check or cashier's check,13,225.0,44.44
+2018-11,Virtual currency,27,22.73,-69.66
+2018-12,Check cashing service,5,-50.0,0.0
+2018-12,Debt settlement,12,33.33,50.0
+2018-12,Domestic (US) money transfer,122,25.77,-25.61
+2018-12,Foreign currency exchange,5,0.0,-54.55
+2018-12,International money transfer,60,1.69,-46.43
+2018-12,Mobile or digital wallet,83,16.9,-33.6
+2018-12,Money order,7,-22.22,16.67
+2018-12,Refund anticipation check,4,0.0,33.33
+2018-12,Traveler's check or cashier's check,8,-38.46,14.29
+2018-12,Virtual currency,26,-3.7,-90.58
+2019-01,Check cashing service,6,20.0,-25.0
+2019-01,Debt settlement,5,-58.33,-50.0
+2019-01,Domestic (US) money transfer,107,-12.3,-68.34
+2019-01,Foreign currency exchange,1,-80.0,-88.89
+2019-01,International money transfer,67,11.67,-51.8
+2019-01,Mobile or digital wallet,100,20.48,-51.69
+2019-01,Money order,6,-14.29,-53.85
+2019-01,Refund anticipation check,1,-75.0,-66.67
+2019-01,Traveler's check or cashier's check,13,62.5,30.0
+2019-01,Virtual currency,37,42.31,-92.34
+2019-02,Check cashing service,10,66.67,11.11
+2019-02,Debt settlement,8,60.0,-27.27
+2019-02,Domestic (US) money transfer,90,-15.89,-42.68
+2019-02,Foreign currency exchange,7,600.0,133.33
+2019-02,International money transfer,60,-10.45,-20.0
+2019-02,Mobile or digital wallet,113,13.0,13.0
+2019-02,Money order,9,50.0,50.0
+2019-02,Refund anticipation check,3,200.0,0.0
+2019-02,Traveler's check or cashier's check,8,-38.46,14.29
+2019-02,Virtual currency,26,-29.73,-87.19
+2019-03,Check cashing service,7,-30.0,-30.0
+2019-03,Debt settlement,11,37.5,10.0
+2019-03,Domestic (US) money transfer,126,40.0,-2.33
+2019-03,Foreign currency exchange,5,-28.57,-16.67
+2019-03,International money transfer,92,53.33,67.27
+2019-03,Mobile or digital wallet,127,12.39,39.56
+2019-03,Money order,4,-55.56,-60.0
+2019-03,Refund anticipation check,4,33.33,0.0
+2019-03,Traveler's check or cashier's check,10,25.0,0.0
+2019-03,Virtual currency,29,11.54,-80.14
+2019-04,Check cashing service,9,28.57,12.5
+2019-04,Debt settlement,5,-54.55,-58.33
+2019-04,Domestic (US) money transfer,140,11.11,-2.1
+2019-04,Foreign currency exchange,3,-40.0,-40.0
+2019-04,International money transfer,71,-22.83,31.48
+2019-04,Mobile or digital wallet,115,-9.45,38.55
+2019-04,Money order,9,125.0,12.5
+2019-04,Refund anticipation check,7,75.0,40.0
+2019-04,Traveler's check or cashier's check,8,-20.0,-20.0
+2019-04,Virtual currency,31,6.9,-61.25
+2019-05,Check cashing service,4,-55.56,-42.86
+2019-05,Debt settlement,7,40.0,-22.22
+2019-05,Domestic (US) money transfer,132,-5.71,9.09
+2019-05,Foreign currency exchange,5,66.67,66.67
+2019-05,International money transfer,73,2.82,21.67
+2019-05,Mobile or digital wallet,154,33.91,75.0
+2019-05,Money order,7,-22.22,-30.0
+2019-05,Refund anticipation check,5,-28.57,400.0
+2019-05,Traveler's check or cashier's check,20,150.0,185.71
+2019-05,Virtual currency,49,58.06,-14.04
+2019-06,Check cashing service,8,100.0,14.29
+2019-06,Debt settlement,21,200.0,16.67
+2019-06,Domestic (US) money transfer,114,-13.64,4.59
+2019-06,Foreign currency exchange,2,-60.0,-75.0
+2019-06,International money transfer,72,-1.37,-13.25
+2019-06,Mobile or digital wallet,134,-12.99,50.56
+2019-06,Money order,10,42.86,66.67
+2019-06,Refund anticipation check,2,-60.0,-66.67
+2019-06,Traveler's check or cashier's check,6,-70.0,-33.33
+2019-06,Virtual currency,51,4.08,-3.77
+2019-07,Check cashing service,6,-25.0,20.0
+2019-07,Debt settlement,26,23.81,100.0
+2019-07,Domestic (US) money transfer,127,11.4,17.59
+2019-07,Foreign currency exchange,2,0.0,-71.43
+2019-07,International money transfer,77,6.94,1.32
+2019-07,Mobile or digital wallet,142,5.97,82.05
+2019-07,Money order,12,20.0,50.0
+2019-07,Refund anticipation check,8,300.0,33.33
+2019-07,Traveler's check or cashier's check,7,16.67,0.0
+2019-07,Virtual currency,65,27.45,66.67
+2019-08,Check cashing service,7,16.67,0.0
+2019-08,Debt settlement,15,-42.31,7.14
+2019-08,Domestic (US) money transfer,153,20.47,27.5
+2019-08,Foreign currency exchange,10,400.0,66.67
+2019-08,International money transfer,82,6.49,-1.2
+2019-08,Mobile or digital wallet,136,-4.23,44.68
+2019-08,Money order,8,-33.33,-33.33
+2019-08,Refund anticipation check,6,-25.0,100.0
+2019-08,Traveler's check or cashier's check,10,42.86,150.0
+2019-08,Virtual currency,53,-18.46,120.83
+2019-09,Check cashing service,12,71.43,300.0
+2019-09,Debt settlement,13,-13.33,18.18
+2019-09,Domestic (US) money transfer,144,-5.88,44.0
+2019-09,Foreign currency exchange,5,-50.0,0.0
+2019-09,International money transfer,49,-40.24,-20.97
+2019-09,Mobile or digital wallet,177,30.15,168.18
+2019-09,Money order,10,25.0,-23.08
+2019-09,Refund anticipation check,1,-83.33,-75.0
+2019-09,Traveler's check or cashier's check,13,30.0,225.0
+2019-09,Virtual currency,43,-18.87,34.38
+2019-10,Check cashing service,11,-8.33,83.33
+2019-10,Debt settlement,15,15.38,66.67
+2019-10,Domestic (US) money transfer,143,-0.69,8.33
+2019-10,Foreign currency exchange,7,40.0,0.0
+2019-10,International money transfer,69,40.82,-11.54
+2019-10,Mobile or digital wallet,159,-10.17,87.06
+2019-10,Money order,14,40.0,40.0
+2019-10,Refund anticipation check,6,500.0,100.0
+2019-10,Traveler's check or cashier's check,13,0.0,225.0
+2019-10,Virtual currency,45,4.65,104.55
+2019-11,Check cashing service,6,-45.45,-40.0
+2019-11,Debt settlement,15,0.0,66.67
+2019-11,Domestic (US) money transfer,106,-25.87,9.28
+2019-11,Foreign currency exchange,8,14.29,60.0
+2019-11,International money transfer,58,-15.94,-1.69
+2019-11,Mobile or digital wallet,146,-8.18,105.63
+2019-11,Money order,8,-42.86,-11.11
+2019-11,Refund anticipation check,2,-66.67,-50.0
+2019-11,Traveler's check or cashier's check,6,-53.85,-53.85
+2019-11,Virtual currency,36,-20.0,33.33
+2019-12,Check cashing service,5,-16.67,0.0
+2019-12,Debt settlement,15,0.0,25.0
+2019-12,Domestic (US) money transfer,118,11.32,-3.28
+2019-12,Foreign currency exchange,7,-12.5,40.0
+2019-12,International money transfer,69,18.97,15.0
+2019-12,Mobile or digital wallet,140,-4.11,68.67
+2019-12,Money order,11,37.5,57.14
+2019-12,Refund anticipation check,1,-50.0,-75.0
+2019-12,Traveler's check or cashier's check,34,466.67,325.0
+2019-12,Virtual currency,23,-36.11,-11.54
+2020-01,Check cashing service,7,40.0,16.67
+2020-01,Debt settlement,25,66.67,400.0
+2020-01,Domestic (US) money transfer,114,-3.39,6.54
+2020-01,Foreign currency exchange,3,-57.14,200.0
+2020-01,International money transfer,64,-7.25,-4.48
+2020-01,Mobile or digital wallet,119,-15.0,19.0
+2020-01,Money order,4,-63.64,-33.33
+2020-01,Refund anticipation check,9,800.0,800.0
+2020-01,Traveler's check or cashier's check,7,-79.41,-46.15
+2020-01,Virtual currency,39,69.57,5.41
+2020-02,Check cashing service,8,14.29,-20.0
+2020-02,Debt settlement,13,-48.0,62.5
+2020-02,Domestic (US) money transfer,113,-0.88,25.56
+2020-02,Foreign currency exchange,6,100.0,-14.29
+2020-02,International money transfer,63,-1.56,5.0
+2020-02,Mobile or digital wallet,135,13.45,19.47
+2020-02,Money order,9,125.0,0.0
+2020-02,Refund anticipation check,4,-55.56,33.33
+2020-02,Traveler's check or cashier's check,9,28.57,12.5
+2020-02,Virtual currency,29,-25.64,11.54
+2020-03,Check cashing service,12,50.0,71.43
+2020-03,Debt settlement,14,7.69,27.27
+2020-03,Domestic (US) money transfer,138,22.12,9.52
+2020-03,Foreign currency exchange,8,33.33,60.0
+2020-03,International money transfer,102,61.9,10.87
+2020-03,Mobile or digital wallet,130,-3.7,2.36
+2020-03,Money order,8,-11.11,100.0
+2020-03,Refund anticipation check,8,100.0,100.0
+2020-03,Traveler's check or cashier's check,6,-33.33,-40.0
+2020-03,Virtual currency,35,20.69,20.69
+2020-04,Check cashing service,13,8.33,44.44
+2020-04,Debt settlement,10,-28.57,100.0
+2020-04,Domestic (US) money transfer,172,24.64,22.86
+2020-04,Foreign currency exchange,3,-62.5,0.0
+2020-04,International money transfer,111,8.82,56.34
+2020-04,Mobile or digital wallet,246,89.23,113.91
+2020-04,Money order,6,-25.0,-33.33
+2020-04,Refund anticipation check,7,-12.5,0.0
+2020-04,Traveler's check or cashier's check,10,66.67,25.0
+2020-04,Virtual currency,58,65.71,87.1
+2020-05,Check cashing service,11,-15.38,175.0
+2020-05,Debt settlement,8,-20.0,14.29
+2020-05,Domestic (US) money transfer,190,10.47,43.94
+2020-05,Foreign currency exchange,7,133.33,40.0
+2020-05,International money transfer,134,20.72,83.56
+2020-05,Mobile or digital wallet,279,13.41,81.17
+2020-05,Money order,8,33.33,14.29
+2020-05,Refund anticipation check,13,85.71,160.0
+2020-05,Traveler's check or cashier's check,8,-20.0,-60.0
+2020-05,Virtual currency,81,39.66,65.31
+2020-06,Check cashing service,13,18.18,62.5
+2020-06,Debt settlement,11,37.5,-47.62
+2020-06,Domestic (US) money transfer,309,62.63,171.05
+2020-06,Foreign currency exchange,5,-28.57,150.0
+2020-06,International money transfer,125,-6.72,73.61
+2020-06,Mobile or digital wallet,461,65.23,244.03
+2020-06,Money order,18,125.0,80.0
+2020-06,Refund anticipation check,5,-61.54,150.0
+2020-06,Traveler's check or cashier's check,10,25.0,66.67
+2020-06,Virtual currency,196,141.98,284.31
+2020-07,Check cashing service,7,-46.15,16.67
+2020-07,Debt settlement,9,-18.18,-65.38
+2020-07,Domestic (US) money transfer,316,2.27,148.82
+2020-07,Foreign currency exchange,9,80.0,350.0
+2020-07,International money transfer,113,-9.6,46.75
+2020-07,Mobile or digital wallet,517,12.15,264.08
+2020-07,Money order,10,-44.44,-16.67
+2020-07,Refund anticipation check,12,140.0,50.0
+2020-07,Traveler's check or cashier's check,6,-40.0,-14.29
+2020-07,Virtual currency,181,-7.65,178.46
+2020-08,Check cashing service,11,57.14,57.14
+2020-08,Debt settlement,8,-11.11,-46.67
+2020-08,Domestic (US) money transfer,232,-26.58,51.63
+2020-08,Foreign currency exchange,10,11.11,0.0
+2020-08,International money transfer,98,-13.27,19.51
+2020-08,Mobile or digital wallet,337,-34.82,147.79
+2020-08,Money order,12,20.0,50.0
+2020-08,Refund anticipation check,6,-50.0,0.0
+2020-08,Traveler's check or cashier's check,9,50.0,-10.0
+2020-08,Virtual currency,107,-40.88,101.89
+2020-09,Check cashing service,7,-36.36,-41.67
+2020-09,Debt settlement,11,37.5,-15.38
+2020-09,Domestic (US) money transfer,180,-22.41,25.0
+2020-09,Foreign currency exchange,3,-70.0,-40.0
+2020-09,International money transfer,107,9.18,118.37
+2020-09,Mobile or digital wallet,201,-40.36,13.56
+2020-09,Money order,14,16.67,40.0
+2020-09,Refund anticipation check,9,50.0,800.0
+2020-09,Traveler's check or cashier's check,6,-33.33,-53.85
+2020-09,Virtual currency,45,-57.94,4.65
+2020-10,Check cashing service,8,14.29,-27.27
+2020-10,Debt settlement,11,0.0,-26.67
+2020-10,Domestic (US) money transfer,177,-1.67,23.78
+2020-10,Foreign currency exchange,9,200.0,28.57
+2020-10,International money transfer,95,-11.21,37.68
+2020-10,Mobile or digital wallet,217,7.96,36.48
+2020-10,Money order,9,-35.71,-35.71
+2020-10,Refund anticipation check,7,-22.22,16.67
+2020-10,Traveler's check or cashier's check,6,0.0,-53.85
+2020-10,Virtual currency,62,37.78,37.78
+2020-11,Check cashing service,7,-12.5,16.67
+2020-11,Debt settlement,2,-81.82,-86.67
+2020-11,Domestic (US) money transfer,172,-2.82,62.26
+2020-11,Foreign currency exchange,3,-66.67,-62.5
+2020-11,International money transfer,69,-27.37,18.97
+2020-11,Mobile or digital wallet,235,8.29,60.96
+2020-11,Money order,11,22.22,37.5
+2020-11,Refund anticipation check,8,14.29,300.0
+2020-11,Traveler's check or cashier's check,10,66.67,66.67
+2020-11,Virtual currency,56,-9.68,55.56
+2020-12,Check cashing service,12,71.43,140.0
+2020-12,Debt settlement,12,500.0,-20.0
+2020-12,Domestic (US) money transfer,223,29.65,88.98
+2020-12,Foreign currency exchange,6,100.0,-14.29
+2020-12,International money transfer,111,60.87,60.87
+2020-12,Mobile or digital wallet,279,18.72,99.29
+2020-12,Money order,10,-9.09,-9.09
+2020-12,Refund anticipation check,10,25.0,900.0
+2020-12,Traveler's check or cashier's check,11,10.0,-67.65
+2020-12,Virtual currency,94,67.86,308.7
+2021-01,Check cashing service,14,16.67,100.0
+2021-01,Debt settlement,9,-25.0,-64.0
+2021-01,Domestic (US) money transfer,210,-5.83,84.21
+2021-01,Foreign currency exchange,8,33.33,166.67
+2021-01,International money transfer,88,-20.72,37.5
+2021-01,Mobile or digital wallet,287,2.87,141.18
+2021-01,Money order,5,-50.0,25.0
+2021-01,Refund anticipation check,13,30.0,44.44
+2021-01,Traveler's check or cashier's check,15,36.36,114.29
+2021-01,Virtual currency,135,43.62,246.15
+2021-02,Check cashing service,9,-35.71,12.5
+2021-02,Debt settlement,11,22.22,-15.38
+2021-02,Domestic (US) money transfer,253,20.48,123.89
+2021-02,Foreign currency exchange,5,-37.5,-16.67
+2021-02,International money transfer,114,29.55,80.95
+2021-02,Mobile or digital wallet,542,88.85,301.48
+2021-02,Money order,4,-20.0,-55.56
+2021-02,Refund anticipation check,8,-38.46,100.0
+2021-02,Traveler's check or cashier's check,8,-46.67,-11.11
+2021-02,Virtual currency,140,3.7,382.76
+2021-03,Check cashing service,7,-22.22,-41.67
+2021-03,Debt settlement,12,9.09,-14.29
+2021-03,Domestic (US) money transfer,303,19.76,119.57
+2021-03,Foreign currency exchange,12,140.0,50.0
+2021-03,International money transfer,128,12.28,25.49
+2021-03,Mobile or digital wallet,957,76.57,636.15
+2021-03,Money order,13,225.0,62.5
+2021-03,Refund anticipation check,10,25.0,25.0
+2021-03,Traveler's check or cashier's check,14,75.0,133.33
+2021-03,Virtual currency,258,84.29,637.14
+2021-04,Check cashing service,9,28.57,-30.77
+2021-04,Debt settlement,7,-41.67,-30.0
+2021-04,Domestic (US) money transfer,266,-12.21,54.65
+2021-04,Foreign currency exchange,9,-25.0,200.0
+2021-04,International money transfer,126,-1.56,13.51
+2021-04,Mobile or digital wallet,970,1.36,294.31
+2021-04,Money order,9,-30.77,50.0
+2021-04,Refund anticipation check,11,10.0,57.14
+2021-04,Traveler's check or cashier's check,11,-21.43,10.0
+2021-04,Virtual currency,291,12.79,401.72
+2021-05,Check cashing service,22,144.44,100.0
+2021-05,Debt settlement,8,14.29,0.0
+2021-05,Domestic (US) money transfer,283,6.39,48.95
+2021-05,Foreign currency exchange,13,44.44,85.71
+2021-05,International money transfer,116,-7.94,-13.43
+2021-05,Mobile or digital wallet,935,-3.61,235.13
+2021-05,Money order,8,-11.11,0.0
+2021-05,Refund anticipation check,13,18.18,0.0
+2021-05,Traveler's check or cashier's check,12,9.09,50.0
+2021-05,Virtual currency,336,15.46,314.81
+2021-06,Check cashing service,12,-45.45,-7.69
+2021-06,Debt settlement,5,-37.5,-54.55
+2021-06,Domestic (US) money transfer,230,-18.73,-25.57
+2021-06,Foreign currency exchange,14,7.69,180.0
+2021-06,International money transfer,117,0.86,-6.4
+2021-06,Mobile or digital wallet,768,-17.86,66.59
+2021-06,Money order,6,-25.0,-66.67
+2021-06,Refund anticipation check,10,-23.08,100.0
+2021-06,Traveler's check or cashier's check,9,-25.0,-10.0
+2021-06,Virtual currency,213,-36.61,8.67
+2021-07,Check cashing service,10,-16.67,42.86
+2021-07,Debt settlement,16,220.0,77.78
+2021-07,Domestic (US) money transfer,239,3.91,-24.37
+2021-07,Foreign currency exchange,14,0.0,55.56
+2021-07,International money transfer,81,-30.77,-28.32
+2021-07,Mobile or digital wallet,349,-54.56,-32.5
+2021-07,Money order,10,66.67,0.0
+2021-07,Refund anticipation check,11,10.0,-8.33
+2021-07,Traveler's check or cashier's check,13,44.44,116.67
+2021-07,Virtual currency,147,-30.99,-18.78
+2021-08,Check cashing service,22,120.0,100.0
+2021-08,Debt settlement,8,-50.0,0.0
+2021-08,Domestic (US) money transfer,237,-0.84,2.16
+2021-08,Foreign currency exchange,8,-42.86,-20.0
+2021-08,International money transfer,102,25.93,4.08
+2021-08,Mobile or digital wallet,324,-7.16,-3.86
+2021-08,Money order,10,0.0,-16.67
+2021-08,Refund anticipation check,11,0.0,83.33
+2021-08,Traveler's check or cashier's check,12,-7.69,33.33
+2021-08,Virtual currency,180,22.45,68.22
+2021-09,Check cashing service,11,-50.0,57.14
+2021-09,Debt settlement,9,12.5,-18.18
+2021-09,Domestic (US) money transfer,244,2.95,35.56
+2021-09,Foreign currency exchange,7,-12.5,133.33
+2021-09,International money transfer,92,-9.8,-14.02
+2021-09,Mobile or digital wallet,300,-7.41,49.25
+2021-09,Money order,7,-30.0,-50.0
+2021-09,Refund anticipation check,11,0.0,22.22
+2021-09,Traveler's check or cashier's check,13,8.33,116.67
+2021-09,Virtual currency,169,-6.11,275.56
+2021-10,Check cashing service,12,9.09,50.0
+2021-10,Debt settlement,12,33.33,9.09
+2021-10,Domestic (US) money transfer,234,-4.1,32.2
+2021-10,Foreign currency exchange,10,42.86,11.11
+2021-10,International money transfer,90,-2.17,-5.26
+2021-10,Mobile or digital wallet,316,5.33,45.62
+2021-10,Money order,9,28.57,0.0
+2021-10,Refund anticipation check,12,9.09,71.43
+2021-10,Traveler's check or cashier's check,16,23.08,166.67
+2021-10,Virtual currency,199,17.75,220.97
+2021-11,Check cashing service,10,-16.67,42.86
+2021-11,Debt settlement,5,-58.33,150.0
+2021-11,Domestic (US) money transfer,283,20.94,64.53
+2021-11,Foreign currency exchange,6,-40.0,100.0
+2021-11,International money transfer,101,12.22,46.38
+2021-11,Mobile or digital wallet,329,4.11,40.0
+2021-11,Money order,9,0.0,-18.18
+2021-11,Refund anticipation check,7,-41.67,-12.5
+2021-11,Traveler's check or cashier's check,13,-18.75,30.0
+2021-11,Virtual currency,185,-7.04,230.36
+2021-12,Check cashing service,17,70.0,41.67
+2021-12,Debt settlement,10,100.0,-16.67
+2021-12,Domestic (US) money transfer,287,1.41,28.7
+2021-12,Foreign currency exchange,4,-33.33,-33.33
+2021-12,International money transfer,103,1.98,-7.21
+2021-12,Mobile or digital wallet,328,-0.3,17.56
+2021-12,Money order,15,66.67,50.0
+2021-12,Refund anticipation check,3,-57.14,-70.0
+2021-12,Traveler's check or cashier's check,16,23.08,45.45
+2021-12,Virtual currency,150,-18.92,59.57
+2022-01,Check cashing service,8,-52.94,-42.86
+2022-01,Debt settlement,7,-30.0,-22.22
+2022-01,Domestic (US) money transfer,302,5.23,43.81
+2022-01,Foreign currency exchange,6,50.0,-25.0
+2022-01,International money transfer,105,1.94,19.32
+2022-01,Mobile or digital wallet,366,11.59,27.53
+2022-01,Money order,22,46.67,340.0
+2022-01,Refund anticipation check,18,500.0,38.46
+2022-01,Traveler's check or cashier's check,21,31.25,40.0
+2022-01,Virtual currency,164,9.33,21.48
+2022-02,Check cashing service,12,50.0,33.33
+2022-02,Debt settlement,10,42.86,-9.09
+2022-02,Domestic (US) money transfer,252,-16.56,-0.4
+2022-02,Foreign currency exchange,13,116.67,160.0
+2022-02,International money transfer,86,-18.1,-24.56
+2022-02,Mobile or digital wallet,316,-13.66,-41.7
+2022-02,Money order,14,-36.36,250.0
+2022-02,Refund anticipation check,17,-5.56,112.5
+2022-02,Traveler's check or cashier's check,16,-23.81,100.0
+2022-02,Virtual currency,147,-10.37,5.0
+2022-03,Check cashing service,15,25.0,114.29
+2022-03,Debt settlement,14,40.0,16.67
+2022-03,Domestic (US) money transfer,349,38.49,15.18
+2022-03,Foreign currency exchange,10,-23.08,-16.67
+2022-03,International money transfer,129,50.0,0.78
+2022-03,Mobile or digital wallet,399,26.27,-58.31
+2022-03,Money order,12,-14.29,-7.69
+2022-03,Refund anticipation check,10,-41.18,0.0
+2022-03,Traveler's check or cashier's check,22,37.5,57.14
+2022-03,Virtual currency,150,2.04,-41.86
+2022-04,Check cashing service,19,26.67,111.11
+2022-04,Debt settlement,23,64.29,228.57
+2022-04,Domestic (US) money transfer,345,-1.15,29.7
+2022-04,Foreign currency exchange,10,0.0,11.11
+2022-04,International money transfer,133,3.1,5.56
+2022-04,Mobile or digital wallet,430,7.77,-55.67
+2022-04,Money order,12,0.0,33.33
+2022-04,Refund anticipation check,11,10.0,0.0
+2022-04,Traveler's check or cashier's check,19,-13.64,72.73
+2022-04,Virtual currency,175,16.67,-39.86
+2022-05,Check cashing service,11,-42.11,-50.0
+2022-05,Debt settlement,13,-43.48,62.5
+2022-05,Domestic (US) money transfer,320,-7.25,13.07
+2022-05,Foreign currency exchange,10,0.0,-23.08
+2022-05,International money transfer,104,-21.8,-10.34
+2022-05,Mobile or digital wallet,535,24.42,-42.78
+2022-05,Money order,10,-16.67,25.0
+2022-05,Refund anticipation check,8,-27.27,-38.46
+2022-05,Traveler's check or cashier's check,15,-21.05,25.0
+2022-05,Virtual currency,126,-28.0,-62.5
+2022-06,Check cashing service,17,54.55,41.67
+2022-06,Debt settlement,11,-15.38,120.0
+2022-06,Domestic (US) money transfer,309,-3.44,34.35
+2022-06,Foreign currency exchange,11,10.0,-21.43
+2022-06,International money transfer,127,22.12,8.55
+2022-06,Mobile or digital wallet,358,-33.08,-53.39
+2022-06,Money order,12,20.0,100.0
+2022-06,Refund anticipation check,9,12.5,-10.0
+2022-06,Traveler's check or cashier's check,18,20.0,100.0
+2022-06,Virtual currency,131,3.97,-38.5
+2022-07,Check cashing service,12,-29.41,20.0
+2022-07,Debt settlement,16,45.45,0.0
+2022-07,Domestic (US) money transfer,352,13.92,47.28
+2022-07,Foreign currency exchange,16,45.45,14.29
+2022-07,International money transfer,135,6.3,66.67
+2022-07,Mobile or digital wallet,455,27.09,30.37
+2022-07,Money order,16,33.33,60.0
+2022-07,Refund anticipation check,11,22.22,0.0
+2022-07,Traveler's check or cashier's check,16,-11.11,23.08
+2022-07,Virtual currency,161,22.9,9.52
+2022-08,Check cashing service,15,25.0,-31.82
+2022-08,Debt settlement,16,0.0,100.0
+2022-08,Domestic (US) money transfer,344,-2.27,45.15
+2022-08,Foreign currency exchange,12,-25.0,50.0
+2022-08,International money transfer,145,7.41,42.16
+2022-08,Mobile or digital wallet,541,18.9,66.98
+2022-08,Money order,12,-25.0,20.0
+2022-08,Refund anticipation check,12,9.09,9.09
+2022-08,Traveler's check or cashier's check,18,12.5,50.0
+2022-08,Virtual currency,184,14.29,2.22
+2022-09,Check cashing service,20,33.33,81.82
+2022-09,Debt settlement,12,-25.0,33.33
+2022-09,Domestic (US) money transfer,358,4.07,46.72
+2022-09,Foreign currency exchange,13,8.33,85.71
+2022-09,International money transfer,143,-1.38,55.43
+2022-09,Mobile or digital wallet,447,-17.38,49.0
+2022-09,Money order,14,16.67,100.0
+2022-09,Refund anticipation check,12,0.0,9.09
+2022-09,Traveler's check or cashier's check,26,44.44,100.0
+2022-09,Virtual currency,156,-15.22,-7.69
+2022-10,Check cashing service,31,55.0,158.33
+2022-10,Debt settlement,14,16.67,16.67
+2022-10,Domestic (US) money transfer,315,-12.01,34.62
+2022-10,Foreign currency exchange,14,7.69,40.0
+2022-10,International money transfer,152,6.29,68.89
+2022-10,Mobile or digital wallet,399,-10.74,26.27
+2022-10,Money order,8,-42.86,-11.11
+2022-10,Refund anticipation check,14,16.67,16.67
+2022-10,Traveler's check or cashier's check,21,-19.23,31.25
+2022-10,Virtual currency,131,-16.03,-34.17
+2022-11,Check cashing service,29,-6.45,190.0
+2022-11,Debt settlement,14,0.0,180.0
+2022-11,Domestic (US) money transfer,293,-6.98,3.53
+2022-11,Foreign currency exchange,23,64.29,283.33
+2022-11,International money transfer,152,0.0,50.5
+2022-11,Mobile or digital wallet,424,6.27,28.88
+2022-11,Money order,13,62.5,44.44
+2022-11,Refund anticipation check,11,-21.43,57.14
+2022-11,Traveler's check or cashier's check,19,-9.52,46.15
+2022-11,Virtual currency,242,84.73,30.81
+2022-12,Check cashing service,26,-10.34,52.94
+2022-12,Debt settlement,14,0.0,40.0
+2022-12,Domestic (US) money transfer,338,15.36,17.77
+2022-12,Foreign currency exchange,13,-43.48,225.0
+2022-12,International money transfer,156,2.63,51.46
+2022-12,Mobile or digital wallet,369,-12.97,12.5
+2022-12,Money order,16,23.08,6.67
+2022-12,Refund anticipation check,19,72.73,533.33
+2022-12,Traveler's check or cashier's check,13,-31.58,-18.75
+2022-12,Virtual currency,211,-12.81,40.67
+2023-01,Check cashing service,46,76.92,475.0
+2023-01,Debt settlement,24,71.43,242.86
+2023-01,Domestic (US) money transfer,375,10.95,24.17
+2023-01,Foreign currency exchange,20,53.85,233.33
+2023-01,International money transfer,187,19.87,78.1
+2023-01,Mobile or digital wallet,414,12.2,13.11
+2023-01,Money order,13,-18.75,-40.91
+2023-01,Refund anticipation check,21,10.53,16.67
+2023-01,Traveler's check or cashier's check,26,100.0,23.81
+2023-01,Virtual currency,142,-32.7,-13.41
+2023-02,Check cashing service,34,-26.09,183.33
+2023-02,Debt settlement,17,-29.17,70.0
+2023-02,Domestic (US) money transfer,302,-19.47,19.84
+2023-02,Foreign currency exchange,17,-15.0,30.77
+2023-02,International money transfer,121,-35.29,40.7
+2023-02,Mobile or digital wallet,381,-7.97,20.57
+2023-02,Money order,15,15.38,7.14
+2023-02,Refund anticipation check,18,-14.29,5.88
+2023-02,Traveler's check or cashier's check,21,-19.23,31.25
+2023-02,Virtual currency,140,-1.41,-4.76
+2023-03,Check cashing service,22,-35.29,46.67
+2023-03,Debt settlement,24,41.18,71.43
+2023-03,Domestic (US) money transfer,324,7.28,-7.16
+2023-03,Foreign currency exchange,9,-47.06,-10.0
+2023-03,International money transfer,135,11.57,4.65
+2023-03,Mobile or digital wallet,409,7.35,2.51
+2023-03,Money order,14,-6.67,16.67
+2023-03,Refund anticipation check,14,-22.22,40.0
+2023-03,Traveler's check or cashier's check,26,23.81,18.18
+2023-03,Virtual currency,158,12.86,5.33
+2023-04,Check cashing service,29,31.82,52.63
+2023-04,Debt settlement,24,0.0,4.35
+2023-04,Domestic (US) money transfer,264,-18.52,-23.48
+2023-04,Foreign currency exchange,9,0.0,-10.0
+2023-04,International money transfer,96,-28.89,-27.82
+2023-04,Mobile or digital wallet,423,3.42,-1.63
+2023-04,Money order,13,-7.14,8.33
+2023-04,Refund anticipation check,21,50.0,90.91
+2023-04,Traveler's check or cashier's check,23,-11.54,21.05
+2023-04,Virtual currency,129,-18.35,-26.29
+2023-05,Check cashing service,29,0.0,163.64
+2023-05,Debt settlement,23,-4.17,76.92
+2023-05,Domestic (US) money transfer,270,2.27,-15.62
+2023-05,Foreign currency exchange,12,33.33,20.0
+2023-05,International money transfer,165,71.88,58.65
+2023-05,Mobile or digital wallet,435,2.84,-18.69
+2023-05,Money order,14,7.69,40.0
+2023-05,Refund anticipation check,15,-28.57,87.5
+2023-05,Traveler's check or cashier's check,26,13.04,73.33
+2023-05,Virtual currency,126,-2.33,0.0
+2023-06,Check cashing service,26,-10.34,52.94
+2023-06,Debt settlement,13,-43.48,18.18
+2023-06,Domestic (US) money transfer,315,16.67,1.94
+2023-06,Foreign currency exchange,14,16.67,27.27
+2023-06,International money transfer,152,-7.88,19.69
+2023-06,Mobile or digital wallet,418,-3.91,16.76
+2023-06,Money order,18,28.57,50.0
+2023-06,Refund anticipation check,23,53.33,155.56
+2023-06,Traveler's check or cashier's check,23,-11.54,27.78
+2023-06,Virtual currency,156,23.81,19.08
+2023-07,Check cashing service,20,-23.08,66.67
+2023-07,Debt settlement,18,38.46,12.5
+2023-07,Domestic (US) money transfer,267,-15.24,-24.15
+2023-07,Foreign currency exchange,15,7.14,-6.25
+2023-07,International money transfer,138,-9.21,2.22
+2023-07,Mobile or digital wallet,397,-5.02,-12.75
+2023-07,Money order,16,-11.11,0.0
+2023-07,Refund anticipation check,13,-43.48,18.18
+2023-07,Traveler's check or cashier's check,24,4.35,50.0
+2023-07,Virtual currency,166,6.41,3.11
+2023-08,Check cashing service,30,50.0,100.0
+2023-08,Debt settlement,20,11.11,25.0
+2023-08,Domestic (US) money transfer,281,5.24,-18.31
+2023-08,Foreign currency exchange,21,40.0,75.0
+2023-08,International money transfer,168,21.74,15.86
+2023-08,Mobile or digital wallet,416,4.79,-23.11
+2023-08,Money order,10,-37.5,-16.67
+2023-08,"Money order, traveler's check or cashier's check",10,,
+2023-08,Refund anticipation check,15,15.38,25.0
+2023-08,Traveler's check or cashier's check,21,-12.5,16.67
+2023-08,Virtual currency,168,1.2,-8.7
+2023-09,Check cashing service,26,-13.33,30.0
+2023-09,Domestic (US) money transfer,283,0.71,-20.95
+2023-09,Foreign currency exchange,12,-42.86,-7.69
+2023-09,International money transfer,138,-17.86,-3.5
+2023-09,Mobile or digital wallet,461,10.82,3.13
+2023-09,"Money order, traveler's check or cashier's check",45,350.0,
+2023-09,Virtual currency,146,-13.1,-6.41
+2023-10,Check cashing service,26,0.0,-16.13
+2023-10,Domestic (US) money transfer,323,14.13,2.54
+2023-10,Foreign currency exchange,19,58.33,35.71
+2023-10,International money transfer,160,15.94,5.26
+2023-10,Mobile or digital wallet,499,8.24,25.06
+2023-10,"Money order, traveler's check or cashier's check",51,13.33,
+2023-10,Virtual currency,189,29.45,44.27
+2023-11,Check cashing service,24,-7.69,-17.24
+2023-11,Domestic (US) money transfer,319,-1.24,8.87
+2023-11,Foreign currency exchange,15,-21.05,-34.78
+2023-11,International money transfer,147,-8.12,-3.29
+2023-11,Mobile or digital wallet,428,-14.23,0.94
+2023-11,"Money order, traveler's check or cashier's check",39,-23.53,
+2023-11,Virtual currency,157,-16.93,-35.12
+2023-12,Check cashing service,26,8.33,0.0
+2023-12,Domestic (US) money transfer,335,5.02,-0.89
+2023-12,Foreign currency exchange,19,26.67,46.15
+2023-12,International money transfer,145,-1.36,-7.05
+2023-12,Mobile or digital wallet,466,8.88,26.29
+2023-12,"Money order, traveler's check or cashier's check",50,28.21,
+2023-12,Virtual currency,191,21.66,-9.48
+2024-01,Check cashing service,29,11.54,-36.96
+2024-01,Domestic (US) money transfer,355,5.97,-5.33
+2024-01,Foreign currency exchange,10,-47.37,-50.0
+2024-01,International money transfer,158,8.97,-15.51
+2024-01,Mobile or digital wallet,471,1.07,13.77
+2024-01,"Money order, traveler's check or cashier's check",53,6.0,
+2024-01,Virtual currency,210,9.95,47.89
+2024-02,Check cashing service,24,-17.24,-29.41
+2024-02,Domestic (US) money transfer,386,8.73,27.81
+2024-02,Foreign currency exchange,15,50.0,-11.76
+2024-02,International money transfer,142,-10.13,17.36
+2024-02,Mobile or digital wallet,468,-0.64,22.83
+2024-02,"Money order, traveler's check or cashier's check",50,-5.66,
+2024-02,Virtual currency,221,5.24,57.86
+2024-03,Check cashing service,22,-8.33,0.0
+2024-03,Domestic (US) money transfer,380,-1.55,17.28
+2024-03,Foreign currency exchange,16,6.67,77.78
+2024-03,International money transfer,175,23.24,29.63
+2024-03,Mobile or digital wallet,497,6.2,21.52
+2024-03,"Money order, traveler's check or cashier's check",62,24.0,
+2024-03,Virtual currency,305,38.01,93.04
+2024-04,Check cashing service,17,-22.73,-41.38
+2024-04,Domestic (US) money transfer,378,-0.53,43.18
+2024-04,Foreign currency exchange,16,0.0,77.78
+2024-04,International money transfer,180,2.86,87.5
+2024-04,Mobile or digital wallet,417,-16.1,-1.42
+2024-04,"Money order, traveler's check or cashier's check",58,-6.45,
+2024-04,Virtual currency,219,-28.2,69.77
+2024-05,Check cashing service,30,76.47,3.45
+2024-05,Domestic (US) money transfer,339,-10.32,25.56
+2024-05,Foreign currency exchange,29,81.25,141.67
+2024-05,International money transfer,176,-2.22,6.67
+2024-05,Mobile or digital wallet,456,9.35,4.83
+2024-05,"Money order, traveler's check or cashier's check",81,39.66,
+2024-05,Virtual currency,240,9.59,90.48
+2024-06,Check cashing service,30,0.0,15.38
+2024-06,Domestic (US) money transfer,358,5.6,13.65
+2024-06,Foreign currency exchange,29,0.0,107.14
+2024-06,International money transfer,169,-3.98,11.18
+2024-06,Mobile or digital wallet,432,-5.26,3.35
+2024-06,"Money order, traveler's check or cashier's check",41,-49.38,
+2024-06,Virtual currency,207,-13.75,32.69
+2024-07,Check cashing service,25,-16.67,25.0
+2024-07,Domestic (US) money transfer,366,2.23,37.08
+2024-07,Foreign currency exchange,15,-48.28,0.0
+2024-07,International money transfer,174,2.96,26.09
+2024-07,Mobile or digital wallet,490,13.43,23.43
+2024-07,"Money order, traveler's check or cashier's check",39,-4.88,
+2024-07,Virtual currency,219,5.8,31.93
+2024-08,Check cashing service,26,4.0,-13.33
+2024-08,Domestic (US) money transfer,447,22.13,59.07
+2024-08,Foreign currency exchange,23,53.33,9.52
+2024-08,International money transfer,181,4.02,7.74
+2024-08,Mobile or digital wallet,578,17.96,38.94
+2024-08,"Money order, traveler's check or cashier's check",60,53.85,500.0
+2024-08,Virtual currency,242,10.5,44.05
+2024-09,Check cashing service,24,-7.69,-7.69
+2024-09,Domestic (US) money transfer,370,-17.23,30.74
+2024-09,Foreign currency exchange,13,-43.48,8.33
+2024-09,International money transfer,165,-8.84,19.57
+2024-09,Mobile or digital wallet,471,-18.51,2.17
+2024-09,"Money order, traveler's check or cashier's check",60,0.0,33.33
+2024-09,Virtual currency,211,-12.81,44.52
+2024-10,Check cashing service,40,66.67,53.85
+2024-10,Domestic (US) money transfer,391,5.68,21.05
+2024-10,Foreign currency exchange,21,61.54,10.53
+2024-10,International money transfer,206,24.85,28.75
+2024-10,Mobile or digital wallet,502,6.58,0.6
+2024-10,"Money order, traveler's check or cashier's check",73,21.67,43.14
+2024-10,Virtual currency,216,2.37,14.29
+2024-11,Check cashing service,35,-12.5,45.83
+2024-11,Domestic (US) money transfer,333,-14.83,4.39
+2024-11,Foreign currency exchange,22,4.76,46.67
+2024-11,International money transfer,156,-24.27,6.12
+2024-11,Mobile or digital wallet,498,-0.8,16.36
+2024-11,"Money order, traveler's check or cashier's check",67,-8.22,71.79
+2024-11,Virtual currency,305,41.2,94.27
+2024-12,Check cashing service,31,-11.43,19.23
+2024-12,Domestic (US) money transfer,444,33.33,32.54
+2024-12,Foreign currency exchange,18,-18.18,-5.26
+2024-12,International money transfer,134,-14.1,-7.59
+2024-12,Mobile or digital wallet,632,26.91,35.62
+2024-12,"Money order, traveler's check or cashier's check",65,-2.99,30.0
+2024-12,Virtual currency,407,33.44,113.09
+2025-01,Check cashing service,76,145.16,162.07
+2025-01,Domestic (US) money transfer,44782,9986.04,12514.65
+2025-01,Foreign currency exchange,29,61.11,190.0
+2025-01,International money transfer,279,108.21,76.58
+2025-01,Mobile or digital wallet,3455,446.68,633.55
+2025-01,"Money order, traveler's check or cashier's check",111,70.77,109.43
+2025-01,Virtual currency,1009,147.91,380.48
+2025-02,Check cashing service,40,-47.37,66.67
+2025-02,Domestic (US) money transfer,3995,-91.08,934.97
+2025-02,Foreign currency exchange,9,-68.97,-40.0
+2025-02,International money transfer,174,-37.63,22.54
+2025-02,Mobile or digital wallet,1319,-61.82,181.84
+2025-02,"Money order, traveler's check or cashier's check",68,-38.74,36.0
+2025-02,Virtual currency,523,-48.17,136.65
+2025-03,Check cashing service,36,-10.0,63.64
+2025-03,Domestic (US) money transfer,1339,-66.48,252.37
+2025-03,Foreign currency exchange,20,122.22,25.0
+2025-03,International money transfer,156,-10.34,-10.86
+2025-03,Mobile or digital wallet,1063,-19.41,113.88
+2025-03,"Money order, traveler's check or cashier's check",57,-16.18,-8.06
+2025-03,Virtual currency,361,-30.98,18.36
+2025-04,Check cashing service,30,-16.67,76.47
+2025-04,Domestic (US) money transfer,839,-37.34,121.96
+2025-04,Foreign currency exchange,22,10.0,37.5
+2025-04,International money transfer,164,5.13,-8.89
+2025-04,Mobile or digital wallet,1034,-2.73,147.96
+2025-04,"Money order, traveler's check or cashier's check",80,40.35,37.93
+2025-04,Virtual currency,335,-7.2,52.97
+2025-05,Check cashing service,34,13.33,13.33
+2025-05,Domestic (US) money transfer,885,5.48,161.06
+2025-05,Foreign currency exchange,25,13.64,-13.79
+2025-05,International money transfer,189,15.24,7.39
+2025-05,Mobile or digital wallet,1062,2.71,132.89
+2025-05,"Money order, traveler's check or cashier's check",77,-3.75,-4.94
+2025-05,Virtual currency,380,13.43,58.33
+2025-06,Check cashing service,41,20.59,36.67
+2025-06,Domestic (US) money transfer,698,-21.13,94.97
+2025-06,Foreign currency exchange,18,-28.0,-37.93
+2025-06,International money transfer,156,-17.46,-7.69
+2025-06,Mobile or digital wallet,1081,1.79,150.23
+2025-06,"Money order, traveler's check or cashier's check",62,-19.48,51.22
+2025-06,Virtual currency,350,-7.89,69.08
+2025-07,Check cashing service,44,7.32,76.0
+2025-07,Domestic (US) money transfer,724,3.72,97.81
+2025-07,Foreign currency exchange,33,83.33,120.0
+2025-07,International money transfer,191,22.44,9.77
+2025-07,Mobile or digital wallet,1296,19.89,164.49
+2025-07,"Money order, traveler's check or cashier's check",74,19.35,89.74
+2025-07,Virtual currency,461,31.71,110.5
+2025-08,Check cashing service,48,9.09,84.62
+2025-08,Domestic (US) money transfer,677,-6.49,51.45
+2025-08,Foreign currency exchange,27,-18.18,17.39
+2025-08,International money transfer,208,8.9,14.92
+2025-08,Mobile or digital wallet,1347,3.94,133.04
+2025-08,"Money order, traveler's check or cashier's check",77,4.05,28.33
+2025-08,Virtual currency,495,7.38,104.55
+2025-09,Check cashing service,34,-29.17,41.67
+2025-09,Domestic (US) money transfer,596,-11.96,61.08
+2025-09,Foreign currency exchange,19,-29.63,46.15
+2025-09,International money transfer,215,3.37,30.3
+2025-09,Mobile or digital wallet,1178,-12.55,150.11
+2025-09,"Money order, traveler's check or cashier's check",64,-16.88,6.67
+2025-09,Virtual currency,398,-19.6,88.63
+2025-10,Check cashing service,38,11.76,-5.0
+2025-10,Domestic (US) money transfer,2087,250.17,433.76
+2025-10,Foreign currency exchange,18,-5.26,-14.29
+2025-10,International money transfer,195,-9.3,-5.34
+2025-10,Mobile or digital wallet,1356,15.11,170.12
+2025-10,"Money order, traveler's check or cashier's check",75,17.19,2.74
+2025-10,Virtual currency,423,6.28,95.83
+2025-11,Check cashing service,45,18.42,28.57
+2025-11,Domestic (US) money transfer,570,-72.69,71.17
+2025-11,Foreign currency exchange,27,50.0,22.73
+2025-11,International money transfer,208,6.67,33.33
+2025-11,Mobile or digital wallet,1295,-4.5,160.04
+2025-11,"Money order, traveler's check or cashier's check",76,1.33,13.43
+2025-11,Virtual currency,381,-9.93,24.92
+2025-12,Check cashing service,44,-2.22,41.94
+2025-12,Domestic (US) money transfer,661,15.96,48.87
+2025-12,Foreign currency exchange,24,-11.11,33.33
+2025-12,International money transfer,251,20.67,87.31
+2025-12,Mobile or digital wallet,1663,28.42,163.13
+2025-12,"Money order, traveler's check or cashier's check",88,15.79,35.38
+2025-12,Virtual currency,418,9.71,2.7
+2026-01,Check cashing service,39,-11.36,-48.68
+2026-01,Domestic (US) money transfer,751,13.62,-98.32
+2026-01,Foreign currency exchange,34,41.67,17.24
+2026-01,International money transfer,250,-0.4,-10.39
+2026-01,Mobile or digital wallet,1821,9.5,-47.29
+2026-01,"Money order, traveler's check or cashier's check",89,1.14,-19.82
+2026-01,Virtual currency,494,18.18,-51.04
+2026-02,Check cashing service,41,5.13,2.5
+2026-02,Domestic (US) money transfer,637,-15.18,-84.06
+2026-02,Foreign currency exchange,20,-41.18,122.22
+2026-02,International money transfer,239,-4.4,37.36
+2026-02,Mobile or digital wallet,1378,-24.33,4.47
+2026-02,"Money order, traveler's check or cashier's check",70,-21.35,2.94
+2026-02,Virtual currency,381,-22.87,-27.15
+2026-03,Check cashing service,56,36.59,55.56
+2026-03,Domestic (US) money transfer,833,30.77,-37.79
+2026-03,Foreign currency exchange,28,40.0,40.0
+2026-03,International money transfer,238,-0.42,52.56
+2026-03,Mobile or digital wallet,1700,23.37,59.92
+2026-03,"Money order, traveler's check or cashier's check",89,27.14,56.14
+2026-03,Virtual currency,451,18.37,24.93
+2026-04,Check cashing service,53,-5.36,76.67
+2026-04,Domestic (US) money transfer,784,-5.88,-6.56
+2026-04,Foreign currency exchange,17,-39.29,-22.73
+2026-04,International money transfer,252,5.88,53.66
+2026-04,Mobile or digital wallet,1793,5.47,73.4
+2026-04,"Money order, traveler's check or cashier's check",107,20.22,33.75
+2026-04,Virtual currency,452,0.22,34.93
+2026-05,Check cashing service,34,-35.85,0.0
+2026-05,Domestic (US) money transfer,692,-11.73,-21.81
+2026-05,Foreign currency exchange,29,70.59,16.0
+2026-05,International money transfer,264,4.76,39.68
+2026-05,Mobile or digital wallet,1649,-8.03,55.27
+2026-05,"Money order, traveler's check or cashier's check",103,-3.74,33.77
+2026-05,Virtual currency,444,-1.77,16.84
+2026-06,Check cashing service,41,20.59,0.0
+2026-06,Domestic (US) money transfer,657,-5.06,-5.87
+2026-06,Foreign currency exchange,25,-13.79,38.89
+2026-06,International money transfer,229,-13.26,46.79
+2026-06,Mobile or digital wallet,1628,-1.27,50.6
+2026-06,"Money order, traveler's check or cashier's check",81,-21.36,30.65
+2026-06,Virtual currency,382,-13.96,9.14
+2026-07,Check cashing service,53,29.27,20.45
+2026-07,Domestic (US) money transfer,741,12.79,2.35
+2026-07,Foreign currency exchange,21,-16.0,-36.36
+2026-07,International money transfer,252,10.04,31.94
+2026-07,Mobile or digital wallet,1937,18.98,49.46
+2026-07,"Money order, traveler's check or cashier's check",97,19.75,31.08
+2026-07,Virtual currency,418,9.42,-9.33
+2026-08,Check cashing service,38,-28.3,-20.83
+2026-08,Domestic (US) money transfer,698,-5.8,3.1
+2026-08,Foreign currency exchange,24,14.29,-11.11
+2026-08,International money transfer,283,12.3,36.06
+2026-08,Mobile or digital wallet,1710,-11.72,26.95
+2026-08,"Money order, traveler's check or cashier's check",101,4.12,31.17
+2026-08,Virtual currency,438,4.78,-11.52
+2026-09,Check cashing service,41,7.89,20.59
+2026-09,Domestic (US) money transfer,755,8.17,26.68
+2026-09,Foreign currency exchange,23,-4.17,21.05
+2026-09,International money transfer,263,-7.07,22.33
+2026-09,Mobile or digital wallet,1839,7.54,56.11
+2026-09,"Money order, traveler's check or cashier's check",102,0.99,59.38
+2026-09,Virtual currency,450,2.74,13.07
+2026-10,Check cashing service,35,-14.63,-7.89
+2026-10,Domestic (US) money transfer,839,11.13,-59.8
+2026-10,Foreign currency exchange,30,30.43,66.67
+2026-10,International money transfer,241,-8.37,23.59
+2026-10,Mobile or digital wallet,2171,18.05,60.1
+2026-10,"Money order, traveler's check or cashier's check",108,5.88,44.0
+2026-10,Virtual currency,521,15.78,23.17
+2026-11,Check cashing service,13,-62.86,-71.11
+2026-11,Domestic (US) money transfer,357,-57.45,-37.37
+2026-11,Foreign currency exchange,17,-43.33,-37.04
+2026-11,International money transfer,161,-33.2,-22.6
+2026-11,Mobile or digital wallet,788,-63.7,-39.15
+2026-11,"Money order, traveler's check or cashier's check",41,-62.04,-46.05
+2026-11,Virtual currency,228,-56.24,-40.16
