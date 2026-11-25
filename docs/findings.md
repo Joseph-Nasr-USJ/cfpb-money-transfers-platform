@@ -30,3 +30,31 @@ The Spark MLlib emerging-issues analysis examined the last 24 complete months, f
 
 ---
 
+
+
+## Q2 — Fraud or Scam — Demo Question
+
+**Question:** How did the "Fraud or scam" share differ across the four core sub-products?
+
+Virtual currency had the highest overall Fraud-or-scam complaint share among the four core sub-products, at 34.08%. Mobile or digital wallet followed at 28.35%, international money transfer at 24.32%, and domestic money transfer at 18.94%. In absolute terms, mobile or digital wallet generated the largest number of Fraud-or-scam complaints among these four groups, with 18,426, followed by domestic money transfer with 16,985.
+
+These results show that the ranking changes depending on whether the comparison is based on the number of complaints or the proportion within each sub-product. Virtual currency has the highest proportional concentration, while mobile wallets have the largest absolute Fraud-or-scam count.
+
+**Key numbers**
+- Virtual currency: 7,817 of 22,938 complaints — 34.08%.
+- Mobile/digital wallet: 18,426 of 65,002 — 28.35%.
+- International money transfer: 4,364 of 17,945 — 24.32%.
+- Domestic money transfer: 16,985 of 89,686 — 18.94%.
+
+**Charts and outputs**
+- `analytics/output/q2_fraud_monthly.png`
+- `analytics/output/q2_fraud_rolling_12m.png`
+- `analytics/output/q2_fraud_summary.csv`
+- `analytics/output/q2_fraud_monthly.csv`
+
+**Caution:** "Fraud or scam" is a category selected in the complaint process. It does not mean that fraud was independently investigated or verified.
+
+---
+
+
+
