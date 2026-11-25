@@ -29,3 +29,4 @@ The Spark MLlib emerging-issues analysis examined the last 24 complete months, f
 **Caution:** Growth in complaints does not establish growth in product usage, market share or consumer harm. CFPB categories have changed over time, and trend results should not be interpreted as forecasts. The ML model identifies changes in the share of published complaints only.
 
 ---
+
