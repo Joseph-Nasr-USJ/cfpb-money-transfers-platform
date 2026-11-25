@@ -151,3 +151,24 @@ The Spark MLlib KMeans analysis clustered states according to similarities in th
 ---
 
 
+
+
+## Machine-Learning Interpretation
+
+### Emerging Issues — Spark MLlib Linear Regression
+
+The emerging-issues analysis used Spark MLlib `LinearRegression` separately for each sub-product and issue combination over the last 24 complete months. The dependent measure was the issue's monthly percentage share within its sub-product, and the month index was used as the explanatory feature. An issue was classified as emerging only when its slope was at least +0.2 percentage points per month, its R² was at least 0.5, and it had at least 50 complaints in the analysis window.
+
+Forty-three models were evaluated and none satisfied all three thresholds. Some issues had positive slopes, but their R² values were below the required threshold. For example, Fraud or scam within Domestic (US) money transfer had a slope of +0.7946 percentage points per month but an R² of only 0.2048, so it was correctly not classified as emerging.
+
+This result does not mean that no complaint category increased. It means that none showed a sufficiently large, consistent and well-supported increase in complaint share under the rule fixed before the model was run.
+
+### State Segmentation — Spark MLlib KMeans
+
+State segmentation used Spark MLlib `KMeans` on features representing each state's issue mix and submission-channel mix. Only states with at least 100 complaints were included. Candidate values from k = 2 through k = 6 were evaluated using the silhouette score, with seed 42 used for reproducibility.
+
+The best result was k = 2 with a silhouette score of 0.695668, so the final model divided the 51 eligible states into two complaint-profile groups. These clusters can help analysts identify states with similar complaint compositions and submission behaviour, but they do not represent levels of consumer risk or service quality.
+
+---
+
+
