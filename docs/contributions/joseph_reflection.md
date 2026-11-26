@@ -26,7 +26,7 @@ I would run the full historical load much earlier. The real data changed several
 
 ## Use of AI
 
-I used an AI assistant (Claude) as a mentor and pair-programmer: to explain concepts, draft code, tests and documents, and review teammates' Pull Requests. I checked every output by running the tests and the pipeline on real data before merging, and I am responsible for everything I merged.
+I used Claude to draft tests, documents, and review teammates' Pull Requests. I checked every output by running the tests and the pipeline on real data before merging, and I am responsible for everything I merged.
 
 ## What I take away
 
