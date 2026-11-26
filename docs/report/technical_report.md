@@ -97,9 +97,25 @@ The platform is a batch system of seven layers, following the Conceptual Big Dat
 
 **Reconciling older revisions.** The 21-day overlap only refreshes recent complaints. Older records that the CFPB revises are reconciled by running the full CSV load again, which Spark merges with the existing curated data by `complaint_id`.
 
-### 4.3. Spark processing
+### 4.3 Spark processing
 
-_Draft pending (Joseph, due Wed 25 Nov)._
+The Spark job (`processing/spark_job.py`) turns one collected run into curated data, quarantine records, two aggregate tables and a quality report. It runs in local mode inside the pipeline container; on the full file of 19,397,176 records it took 2 minutes 38 seconds with a 4 GB driver.
+
+**Explicit schema.** Both sources are read with declared schemas in which every input field is text, so a change in the source cannot silently change a type. CSV headers and API keys are renamed to one set of standard names, and a test checks that both sources produce the same curated schema.
+
+**Transformations.** Dates are parsed from the first ten characters in three formats (yyyy-MM-dd, MM/dd/yyyy, MM/dd/yy), because API dates also carry a time; impossible dates such as 30 February become null. The timely-response field is normalised to Yes or No and any other value is flagged. Each record gains year, month, year_month and the processing lag in days between the date received and the date sent to the company.
+
+**Domain filter.** A broadcast join with `config/product_mapping.csv` keeps the product labels of option 5, the current label and three legacy labels, and adds a standard sub-product next to the original one. Records of other products are counted as out of domain rather than dropped silently: 19,191,793 in the full load.
+
+**De-duplication.** A complaint can arrive twice, for example in the full file and again in an API window. A window function keeps one record per complaint_id: the most recent ingestion wins, then an API record over a full-load record, then a record whose response is not "In progress", then the latest date sent to the company, and finally a hash of the whole record, so the choice is always the same.
+
+**Quarantine.** Records without a complaint_id, with an invalid date, with a state outside the reference list or with a negative processing lag go to a quarantine folder with a reject_reason that lists every problem found. An empty state is kept and reported as a completeness gap, because removing it would remove about 5% of real complaints. The full load quarantined 112 records.
+
+**Partitioned Parquet.** Curated data is written to `curated/complaints/option=5/year=YYYY/month=MM/`. An API run is merged with the existing curated data by complaint_id, and only the months it touches are rewritten, through a staging folder and dynamic partition overwrite, so running the same input again leaves the totals unchanged.
+
+**Aggregates.** `agg_monthly` (year_month, standard sub-product, issue, state, channel and response category, with complaint counts, timely counts and lag sums) and `agg_company_year` (year, company and standard sub-product, with complaint counts) are always recomputed from the whole curated data set, never from the increment alone.
+
+**Lineage.** Every curated record keeps its source_type (full_load or api), ingest_run_id and ingested_at, and every raw file stays unchanged in MinIO, so any curated value can be traced back to the run and the file it came from.
 
 ### 4.4. MongoDB serving layer
 
@@ -111,9 +127,26 @@ _Draft pending (Perla, due Wed 25 Nov)._
 
 ## 5. Testing and operations
 
-### 5.1. Quality thresholds, reconciliation and rerun evidence
+### 5.1 Quality thresholds, reconciliation and rerun evidence
 
-_Draft pending (Joseph, due Wed 25 Nov)._
+Every run writes a quality report (`quality/run_id=<id>/quality_report.json`, also stored in MongoDB) that checks six dimensions against thresholds fixed before any result was seen.
+
+| Dimension | Rule | On breach |
+|---|---|---|
+| Uniqueness | complaint_id not null and unique in curated data | FAIL |
+| Completeness | required fields (complaint_id, date_received, product, issue, company) at least 99.5% filled; optional fields reported; an empty sub_issue is "not applicable" when the issue has no sub-issues | FAIL for required fields |
+| Validity | dates parse, timely response is Yes or No, state in the reference list, processing lag not negative | WARN above 0.5%, FAIL above 2% |
+| Consistency | every product and sub-product combination maps to a standard sub-product | WARN |
+| Freshness | latest date received at most 3 days before the run | WARN |
+| Reconciliation | raw = curated + quarantined + out of domain + duplicates removed; curated = MongoDB count | FAIL |
+
+A failure stops the run: Spark exits with code 1, no curated data is published and the load does not start. A warning is recorded and shown on the dashboard. A development-only option can override the gate, and the report then records `quality_gate: overridden`.
+
+**Known bad records.** The test fixtures contain deliberate problems: a missing complaint_id, an impossible date, an invalid state, a negative processing lag and a duplicate. The gate fails on them as intended while the counts still reconcile (defect log D-005).
+
+**Full load.** 19,397,176 raw records = 205,271 curated + 112 quarantined + 19,191,793 out of domain + 0 duplicates removed, and MongoDB holds 205,271 complaints. The status was PASS, with the newest complaint one day old (`docs/evidence/full_load.md`). The same file processed independently on two more machines gave identical counts.
+
+**Reruns.** A real API window (20 to 22 October 2026, 468 complaints) was processed and loaded twice. The curated total and the MongoDB count stayed at 468, no complaint_id appeared twice and `agg_monthly` summed to 468; a second machine gave the same result (`docs/evidence/idempotency.md`). Reruns are safe because curated data is merged by complaint_id, MongoDB documents are upserted on the same key, and aggregates are rebuilt in staging collections before they replace the published ones.
 
 ### 5.2. Index measurements
 
@@ -129,13 +162,13 @@ _Draft pending (Perla, due Wed 25 Nov)._
 
 ## 7. Reflection and next steps
 
-**Team process.** Six members each own a folder, so most Pull Requests touch different files. The `main` branch is protected: every change goes through a branch, a Pull Request and a review by a named teammate, merged with a merge commit. Each member keeps a weekly contribution log, and the lecturer's checkpoints were written up as short notes. The brief was updated during the project (version 2) and the lecturer asked for course tools, so NiFi, Redis and Spark MLlib were added late; the shared plan, the contracts and the task files had to be revised in one day.
+**Team process.** Six members each own a folder, so most Pull Requests touch different files. The `main` branch is protected: every change goes through a branch, a Pull Request and a review by a named teammate. Each member keeps a weekly contribution log and the lecturer's checkpoints are written up as short notes. Brief version 2 and the lecturer's request for course tools added NiFi, Redis and Spark MLlib late, so the plan, the contracts and the task files were revised in one day.
 
-**Design trade-offs.** We chose a daily batch over streaming, because the CFPB publishes daily and the brief rules streaming out. We chose MongoDB as the serving store and kept Parquet in MinIO as the trusted source. We kept the tested Python collector next to NiFi so that the demonstration does not depend on one tool. MinIO no longer publishes official images, so we pinned a community rebuild.
+**Design trade-offs.** A daily batch rather than streaming, because the CFPB publishes daily; MongoDB for serving with Parquet in MinIO as the trusted source; the tested Python collector kept next to NiFi so the demonstration does not depend on one tool.
 
-**Unresolved issues.** The NiFi and Redis services are merged and part of the Docker stack, but the NiFi flow is not exported to `ingestion/nifi/` yet, so the Python collector remains the collection path that the pipeline uses. The two differences between the brief and the code that were open on 21 Nov are closed: the curated data is written and read under `curated/complaints/option=5/year=YYYY/month=MM/` through one shared module, and the quality report uses the V2 names freshness and reconciliation. A full run on the new path was made on 24 Nov (19,397,176 records, 205,271 curated, quality PASS) and its figures replace those of the run of 22 Nov. Two points remain open: the lecturer's approval of the legacy product labels, which account for 5,710 of the 205,271 curated complaints, and complaints that the CFPB drops from its file: the Spark merge and the MongoDB loader only insert and update, so such a complaint stays in the curated data and in MongoDB. The first load on the new path stopped at the integrity check (205,272 documents in MongoDB for 205,271 curated) because MongoDB still held one complaint from the run of 22 Nov, written under the previous folder layout; that document was removed by hand and the run resumed.
+**Unresolved issues.** The NiFi flow is not exported to `ingestion/nifi/`, so the Python collector is the collection path the pipeline uses. The lecturer has not yet approved the legacy product labels, which account for 5,710 of the 205,271 curated complaints. The Spark merge and the MongoDB loader insert and update by `complaint_id` but never delete, so a complaint that the CFPB drops from its file stays in the curated data and in MongoDB.
 
-**Next improvement.** The improvement to prioritise is a MongoDB replica set with automatic primary election, majority writes and reads from the primary, so that the loss of one node no longer means rebuilding the database. Sharding is not needed at about 200,000 documents. After that, a Spark cluster would be needed only if the data grew by orders of magnitude.
+**Next improvement.** A MongoDB replica set with automatic primary election and majority writes, so that losing one node no longer means rebuilding the database. Sharding is not needed at about 200,000 documents.
 
 **What we would do differently.** [TO COMPLETE with Charbel after the rehearsals: one or two lessons about planning, integration and testing.]
 
@@ -171,7 +204,7 @@ _Draft pending (Perla, due Wed 25 Nov)._
 | B | Data dictionary, product mapping and state list | `docs/data_dictionary.md`, `config/product_mapping.csv`, `config/state_codes.csv` | Loutchiana, Joseph |
 | C | Raw manifest of the historical load and a sample run log | `docs/images/minio_raw_full_load.png` (manifest in MinIO, run of 24 Nov); `docs/evidence/run_20261124T135857Z_full/manifest.json` and `run_log.json` | Marwa |
 | D | Sample quality report and the reconciliation of one run | `docs/images/minio_quality_report.png`; `docs/evidence/run_20261124T135857Z_full/quality_report.json` (run of 24 Nov) | Joseph |
-| E | Sample curated output | `docs/images/minio_curated_parquet.png`; `docs/evidence/` [TO COMPLETE: sample file, Joseph] | Joseph |
+| E | Sample curated output | `docs/images/minio_curated_parquet.png`; `docs/evidence/curated_sample_2025-10.csv` (20 curated complaints received in October 2025, every curated field including the lineage columns) | Joseph |
 | F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py`, `docs/images/mongodb_collections_indexes.png` | Christopher |
 | G | Index benchmark before and after | `docs/evidence/benchmark.md` [TO COMPLETE] | Christopher |
 | H | Metric definitions and findings | `docs/metrics.md`, `docs/findings.md` | Perla |

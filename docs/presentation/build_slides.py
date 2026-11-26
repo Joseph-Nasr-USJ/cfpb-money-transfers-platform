@@ -388,7 +388,8 @@ card(s, 0.6, 1.55, 5.9, 1.75, "Q1", "Which sub-products and issues grew fastest 
 card(s, 0.6, 3.5, 5.9, 1.75, "Q2", "How did the fraud-or-scam share change across the four core sub-products since 2018?", body_size=15)
 text(s, 0.6, 5.5, 5.9, 1.2, "Raw counts and percentages in each group. The issue is chosen by the consumer; a trend is not a forecast.",
      size=14, color=MUTED)
-placeholder(s, 6.85, 1.55, 5.9, 5.1, "[TO COMPLETE: dashboard screenshots for Q1 and Q2, with the Spark MLlib emerging-issues result (Perla)]")
+evidence_picture(s, 6.85, 1.55, 2.9, 5.1, "dashboard_q1_wallet_share.png", (466, 60, 1190, 820), "Q1: wallet share of complaints, by month")
+evidence_picture(s, 9.85, 1.55, 2.9, 5.1, "dashboard_q2_fraud_share.png", (466, 60, 1190, 680), "Q2: fraud-or-scam share, four core sub-products")
 
 # ---------- 12. findings ----------
 s = content_slide("What we found", presenter="Perla, Loutchiana", number=12, notes=(
