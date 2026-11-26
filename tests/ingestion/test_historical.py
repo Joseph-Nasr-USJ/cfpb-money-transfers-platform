@@ -265,3 +265,32 @@ def test_connection_that_drops_without_progress_gives_up(env, monkeypatch):
     assert log["outcome"] == "failed"
     assert log["http"]["retries"] == 2                                      # API_MAX_RETRIES, then stop
     assert "ChunkedEncodingError" in log["http"]["errors"][0]
+
+
+@responses.activate
+def test_same_day_rerun_completes_a_partial_upload(env):
+    """Joseph's review point on PR #29: the ZIP reached MinIO but the run stopped before the manifest."""
+    payload = make_zip()
+    prefix = "raw/cfpb/full_load/ingest_date=2026-11-20/"
+    env.objects[prefix + "complaints.csv.zip"] = payload                   # left by the stopped run
+    responses.get(URL, body=payload, status=200)
+
+    log = historical.run()
+
+    assert log["outcome"] == "success" and log["record_count"] == 3
+    assert env.objects[prefix + "complaints.csv.zip"] == payload           # kept, not overwritten
+    assert prefix + "complaints.csv" in env.objects and prefix + "manifest.json" in env.objects
+    assert "verified by SHA-256" in log["note"]
+
+
+@responses.activate
+def test_partial_upload_of_a_different_file_is_not_overwritten(env):
+    prefix = "raw/cfpb/full_load/ingest_date=2026-11-20/"
+    env.objects[prefix + "complaints.csv.zip"] = b"an older, different file"
+    responses.get(URL, body=make_zip(), status=200)
+
+    log = historical.run()
+
+    assert log["outcome"] == "failed"
+    assert env.objects[prefix + "complaints.csv.zip"] == b"an older, different file"
+    assert prefix + "manifest.json" not in env.objects

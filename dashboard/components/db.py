@@ -64,7 +64,9 @@ def json_converter(value):
 
     return str(value)
 
-
+# Redis caches repeated dashboard queries to improve response times.
+# If Redis is unavailable, MongoDB provides the fallback data source.
+# Cached and uncached queries return results in the same format.
 def cached_query(query_name, filters, query_function):
     """
     Cache-aside:
