@@ -6,7 +6,7 @@ Role: delivery lead (technical report, architecture and data documentation, dash
 
 My part was to document the platform so that the team, the professor and a reader who has never seen it can understand it: the technical report, the architecture document, the data dictionary, the dashboard texts and the slides. At the beginning I thought this was the easy part, because it seemed to be only writing. I changed my mind when I started. To describe a layer honestly I had to read the Docker stack, the Spark job, the quality gate and the loader.
 
-I started late. The report skeleton and section 2 were due on 14 November, and the architecture document, the data dictionary and the dashboard texts on 18 November. I delivered most of it on 21 November, so Perla and the others could not use my texts earlier. Next time I will start with the code and the data, and write the skeleton second.
+I started late. The report skeleton and section 2 were due on 14 November, and the architecture document, the data dictionary and the dashboard texts on 18 November. I delivered most of it on 21 November, so Perla and the others could not use my texts earlier. Next time I will start with the code and the data, and write the skeleton second. Writing for several readers also meant checking every number twice, once against the quality report and once against the dashboard.
 
 ## What I learned technically
 
@@ -14,7 +14,7 @@ Writing the architecture made the course concepts concrete. I had to justify eac
 
 I also ran the chain myself on the real file, on 22 and 24 November. The file of 24 November has 19,397,176 records; Spark keeps 205,271 in our domain, quarantines 112 and removes no duplicates, and the counts add up exactly. The runs showed me what the documents had not: Docker's default 2 GB is not enough for Spark, and our two counts, 199,152 from the API and 205,271 in the full load, measure different things.
 
-The second run stopped at the MongoDB count check, with 205,272 documents for 205,271 curated. I first explained it as a gap in the loader and wrote that in the documents, and it was merged. Reading the Spark job showed the real cause: the curated data had moved from `domain=` to `option=5`, so Spark built the new folder from scratch while MongoDB still held a complaint from the load of 22 November that the CFPB had since dropped. I corrected the documents. The lesson is to find the cause before writing it down.
+The second run stopped at the MongoDB count check, with 205,272 documents for 205,271 curated. I first explained it as a gap in the loader and wrote that in the documents, and it was merged. Reading the Spark job showed the real cause: the curated data had moved from `domain=` to `option=5`, so Spark built the new folder from scratch while MongoDB still held a complaint from the load of 22 November that the CFPB had since dropped. I corrected the documents and added to the report that neither the Spark merge nor the loader deletes a complaint the CFPB drops, so the next reader does not meet the same surprise. The lesson is to find the cause before writing it down.
 
 ## What I learned about teamwork
 
