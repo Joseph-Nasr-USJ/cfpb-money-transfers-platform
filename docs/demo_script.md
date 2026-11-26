@@ -43,7 +43,7 @@ Expected: `minio` and `mongo` healthy (plus `nifi` and `redis` once merged), `mi
 ## Step 1. Architecture and financial scope (Loutchiana, 2:00)
 
 - **Show:** the architecture diagram (`docs/images/architecture.png`, also in the README) and the product mapping `config/product_mapping.csv`.
-- **Say:** "We chose option 5, Money Transfers and Digital Payments, about 195,000 complaints. The platform follows the course's framework from collection to visualisation: Apache NiFi collects, MinIO keeps raw files unchanged, Spark cleans and checks quality, MongoDB serves, Redis caches and Streamlit presents. It is a batch platform that runs every 24 hours, because the CFPB publishes daily and the brief rules out streaming. The analysis is descriptive and diagnostic only."
+- **Say:** "We chose option 5, Money Transfers and Digital Payments, 205,271 curated complaints out of 19.4 million in the CFPB file. The platform follows the course's framework from collection to visualisation: a Python collector, with Apache NiFi as the planned scheduler, collects, MinIO keeps raw files unchanged, Spark cleans and checks quality, MongoDB serves, Redis caches and Streamlit presents. It is a batch platform that runs every 24 hours, because the CFPB publishes daily and the brief rules out streaming. The analysis is descriptive and diagnostic only."
 - **Expected result:** the audience knows the scope, the seven layers and why each tool was chosen.
 - **Backup:** `docs/images/architecture.png`.
 
