@@ -328,7 +328,8 @@ bullets(s, 0.6, 1.55, 6.0, 4.8, [
     "Run log: id, window, status, retries, outcome, count, checksum",
     "High-water mark moves only after full success",
 ], size=18, gap=12)
-placeholder(s, 6.95, 1.55, 5.8, 4.8, "[TO COMPLETE: screenshot of the raw folder and the run log (Marwa)]")
+stat_card(s, 6.95, 1.55, 5.8, 4.8, "468", ["complaints in a real API window", "date_received 20 to 22 Oct 2026", "run 20261124T084259Z_api",
+          "the same window on a second machine: identical", "Evidence: docs/evidence/idempotency.md"])
 
 # ---------- 8. step 4 ----------
 s = content_slide("Spark: quality checks and reconciliation", step=4, presenter="Joseph (2:30)", number=8, notes=(
@@ -362,7 +363,9 @@ bullets(s, 0.6, 1.55, 6.0, 4.8, [
     "MongoDB upserts in batches of 5,000: no second copy",
     "Same window twice: identical curated and MongoDB counts",
 ], size=18, gap=12)
-placeholder(s, 6.95, 1.55, 5.8, 4.8, "[TO COMPLETE: counts before and after the rerun (Joseph)]")
+stat_card(s, 6.95, 1.55, 5.8, 4.8, "468 = 468", ["MongoDB complaints after the 1st load: 468", "after the 2nd load (same run): 468",
+          "complaint_id present twice: none", "agg_monthly sums to 468", "Spark rerun: curated total unchanged (468)",
+          "Evidence: docs/evidence/idempotency.md"])
 
 # ---------- 10. step 6 ----------
 s = content_slide("MongoDB: collections, indexes, one query", step=6, presenter="Christopher (2:00)", number=10, notes=(

@@ -10,7 +10,7 @@ All measures use curated complaint records, each counted once by complaint ID. D
 
 **Sub-product share.** `100 × complaints in a sub-product / all complaints of the domain` in the same scope. The mobile or digital wallet share uses the whole domain as its denominator, so it stays comparable when other filters change.
 
-**Issue and sub-issue share.** Issue share is `100 × issue count / complaints of the sub-product`. Sub-issue share is `100 × sub-issue count / complaints of the parent issue` within the same sub-product. Missing sub-issues stay visible as *Unknown*.
+**Issue share.** `100 × issue count / complaints of the sub-product`. The CFPB defines sub-issues for some issues only, and none of the complaints in this domain has one (0 of 205,383 checked records in the full load of 24 November 2026), so no sub-issue share is shown and every breakdown is by issue.
 
 **Fraud-or-scam share.** For each core sub-product, the complaints whose issue is *Fraud or scam* divided by all complaints of that sub-product, times 100. The rolling share divides the sum of the fraud-or-scam counts by the sum of all counts over a 12-month window. The consumer chooses the issue; it is not confirmed fraud. The issue filter does not change this denominator.
 

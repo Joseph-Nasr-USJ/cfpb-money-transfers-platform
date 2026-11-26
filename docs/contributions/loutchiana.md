@@ -95,3 +95,21 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 
 **Next step**
 - Fill the executive summary, the findings slide and the remaining placeholders when `docs/findings.md` is available, then rebuild the report and the slides.
+
+## Update of Wed 25 and Thu 26 Nov 2026
+
+**Work done**
+- Pull Request #37 (documents, evidence, report and screenshots of the full run of 24 Nov) was merged into `main` on 25 Nov. The MinIO and `mongosh` screenshots in `docs/images/` and the manifest, run log and quality report in `docs/evidence/run_20261124T135857Z_full/` come from that run.
+- Corrected the explanation of the MongoDB count check that stopped the first load on the new path (205,272 documents for 205,271 curated). The cause is the move from `domain=money_transfers_payments/` to `option=5/`: curated data under `option=5` was built from scratch while MongoDB still held the load of 22 Nov, which included complaint 33357934, later dropped from the CFPB file. Neither the Spark merge nor the loader deletes a complaint that the CFPB drops. The correction is in the architecture document (section 12), report section 7 and this log.
+- Checked the Pull Requests of the team against the code, the evidence and MongoDB: #35 (full-load evidence and profiling) and #36 (collection section and partial-upload fix) are merged; #39 (sections 4.3 and 5.1) and #41 (curated sample, Joseph's log) are waiting for review. The 20 rows of the curated sample all match the complaints in MongoDB. Perla's `docs/findings.md` (PR #40) reports 205,500 curated complaints, while the report and the evidence use the fixed snapshot of 24 Nov (205,271); the yearly counts per sub-product are identical and the totals differ by about 229 newer complaints.
+- Wrote the executive summary and the findings slide from the figures that are identical in both datasets, and filled the two slides on the incremental run (468 complaints) and the rerun (468 = 468) from `docs/evidence/idempotency.md`.
+- Updated the dashboard texts: no complaint in the domain has a sub-issue (0 of 205,383), so the definitions state that every breakdown is by issue; about 5% of complaints have no state (4.99%).
+
+**Problems**
+- `docs/findings.md`, report sections 4.4, 4.5, 5.2, 5.3 and 6 and appendix G are not on `main` yet, so the report still has open markers.
+- The Issues page of the dashboard has a "Sub-Issue Composition" section, but the domain has no sub-issues.
+- `ingestion/nifi/` is still empty: the NiFi flow is not exported.
+
+**Next step**
+- Rebuild the report and the slides when #39, #40 and #41 and the remaining sections are merged, and replace the figures of the findings that differ from the snapshot of 24 Nov.
+- Write the lessons learned (section 7) with Charbel after the rehearsals of 28 and 29 Nov, and finish the individual reflection.
