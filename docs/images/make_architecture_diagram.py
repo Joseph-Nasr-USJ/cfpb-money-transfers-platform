@@ -58,7 +58,7 @@ X = [1.45, 4.85, 8.25, 11.65, 15.05]
 
 # Row 1: sources -> collection -> raw -> processing -> curated
 box(X[0], TOP, 2.0, H, "CFPB sources", ["Full CSV ZIP (once)", "Complaint API", "(every 24 hours)"], FILL["src"])
-box(X[1], TOP, W, H, "Collection", ["Apache NiFi flow", "schedule + provenance", "Python collectors", "(tested fallback)"], FILL["collect"], "1")
+box(X[1], TOP, W, H, "Collection", ["Python collectors (working)", "Apache NiFi (planned:", "schedule + provenance,", "flow not exported yet)"], FILL["collect"], "1")
 box(X[2], TOP, W, H, "Raw storage", ["MinIO, bucket cfpb-lake", "raw/ files never edited", "manifests + run logs"], FILL["raw"], "2")
 box(X[3], TOP, W, H, "Processing", ["Apache Spark, local mode", "explicit schema, clean,", "deduplicate, quality gate"], FILL["proc"], "3")
 box(X[4], TOP, W, H, "Curated storage", ["MinIO: curated/ Parquet", "+ aggregates", "quarantine/ + quality/"], FILL["cur"], "4")

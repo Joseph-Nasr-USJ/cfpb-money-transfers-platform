@@ -9,9 +9,9 @@ to Q5 with Perla.
 
 ## 2. Problem and scope
 
-**Problem.** A public-interest organisation that monitors consumer financial complaints needs a dependable way to collect the records the CFPB publishes, check their quality and show what they say to people who do not write code. Our platform turns the CFPB Consumer Complaint Database into evidence for one financial domain and states what the records cannot tell us. The analysis is descriptive and diagnostic (Session 1); it does not predict.
+**Problem.** A public-interest organisation that monitors consumer financial complaints needs a dependable way to collect the records the CFPB publishes, check their quality and show what they say to people who do not write code. The analysis is descriptive and diagnostic (Session 1); it does not predict.
 
-**Intended users.** Policy analysts in payments oversight (which issues and sub-products are growing), service and operations managers (channels, response categories, timely-response rates) and the platform maintainer (run logs, quality reports, freshness).
+**Intended users.** Policy analysts in payments oversight (growing issues and sub-products), service and operations managers (channels, responses, timely-response rates) and the platform maintainer (run logs, quality reports, freshness).
 
 **Chosen option.** Option 5, money transfers and digital payments: emerging issues, shifts in submission channels and growth rates.
 
@@ -38,4 +38,4 @@ Four core sub-products are compared throughout: domestic (US) money transfer, in
 | Q4 | How do response categories and timely-response rates differ by sub-product and among the largest companies by share? | full history |
 | Q5 | Which states show different issue profiles (optionally per 100,000 residents)? | full history |
 
-Q1 and Q5 use Spark MLlib descriptively (issue-share trends, K-means groups of states). Every answer shows raw counts and percentages within each group, with its caution next to it.
+Q1 and Q5 also use Spark MLlib descriptively (issue-share trends, K-means groups of states). Each answer shows raw counts and percentages within each group, with its caution.

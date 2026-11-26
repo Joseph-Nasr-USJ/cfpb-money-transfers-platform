@@ -4,19 +4,19 @@ Technical report. Group 5, course 020IABDM2 Big Data Frameworks (Dr. Rafiqul Haq
 
 ## 1. Executive summary
 
-We built a batch data platform that turns the public CFPB Consumer Complaint Database into evidence for one financial domain, money transfers and digital payments (option 5). It loads the full history once and collects new complaints every 24 hours with Apache NiFi, with a tested Python collector as the fallback. Raw files stay unchanged in MinIO; Apache Spark validates, cleans and deduplicates the records, quarantines bad ones with a reason and stops a run when a threshold fixed in advance is breached; MongoDB serves the curated records and aggregates to a Streamlit dashboard with a Redis cache. Two Spark MLlib analyses describe emerging issues and groups of states. The stack starts with one Docker Compose command, and rerunning a window creates no duplicates. On the full file of 24 November 2026 the chain read 19,397,176 records, kept 205,271 in the domain and quarantined 112; the quality report passed with an exact reconciliation, and 159 automated tests passed (1 skipped).
+We built a batch data platform that turns the public CFPB Consumer Complaint Database into evidence for one financial domain, money transfers and digital payments (option 5). It loads the full history once and collects new complaints every 24 hours with a tested Python collector; Apache NiFi is in the stack as the planned scheduler. Raw files stay unchanged in MinIO; Apache Spark validates and deduplicates the records, quarantines bad ones with a reason and stops a run when a threshold fixed in advance is breached; MongoDB serves the curated data to a Streamlit dashboard with a Redis cache, and two Spark MLlib analyses describe emerging issues and groups of states. Rerunning a window creates no duplicates. On the full file of 24 November 2026 the chain read 19,397,176 records, kept 205,271 in the domain and quarantined 112; the quality report passed with an exact reconciliation, and 159 automated tests passed (1 skipped).
 
-**What we found.** Domestic (US) money transfer grew from 3,069 complaints in 2021 to 57,853 in 2025 and mobile or digital wallet from 6,405 to 17,149; the yearly volume of the whole domain went from 16,746 in 2024 to 84,612 in 2025, which the data does not explain. The share of "Fraud or scam" complaints is highest for virtual currency (about 34%), then mobile or digital wallet (28%), international money transfer (24%) and domestic money transfer (19%). The MLlib model found no issue that met the three thresholds fixed in advance for "emerging" (43 models). Denominators and periods are in `docs/findings.md`.
+**What we found.** Domestic (US) money transfer grew from 3,069 complaints in 2021 to 57,853 in 2025 and mobile or digital wallet from 6,405 to 17,149; the whole domain went from 16,746 complaints in 2024 to 84,612 in 2025, which the data does not explain. The "Fraud or scam" share is highest for virtual currency (about 34%), then mobile or digital wallet (28%), international (24%) and domestic money transfer (19%). No issue met the three thresholds fixed in advance for "emerging" (43 models). Denominators and periods are in section 6.
 
-**What the findings do not show.** The database is not a statistical sample, so the results describe published complaints and not all consumers. A complaint is not confirmed fraud or harm, company figures are shares of complaints and not a quality ranking, and a trend is not a forecast.
+**What the findings do not show.** The database is not a statistical sample, so the results describe published complaints and not all consumers. A complaint is not confirmed fraud or harm, company figures are not a quality ranking, and a trend is not a forecast.
 
 **Implication for the user.** A payments policy analyst or an operations manager can see where complaint volume is concentrated and which sub-products carry a higher share of fraud-or-scam complaints, and decide where to look more closely.
 
 ## 2. Problem and scope
 
-**Problem.** A public-interest organisation that monitors consumer financial complaints needs a dependable way to collect the records the CFPB publishes, check their quality and show what they say to people who do not write code. Our platform turns the CFPB Consumer Complaint Database into evidence for one financial domain and states what the records cannot tell us. The analysis is descriptive and diagnostic (Session 1); it does not predict.
+**Problem.** A public-interest organisation that monitors consumer financial complaints needs a dependable way to collect the records the CFPB publishes, check their quality and show what they say to people who do not write code. The analysis is descriptive and diagnostic (Session 1); it does not predict.
 
-**Intended users.** Policy analysts in payments oversight (which issues and sub-products are growing), service and operations managers (channels, response categories, timely-response rates) and the platform maintainer (run logs, quality reports, freshness).
+**Intended users.** Policy analysts in payments oversight (growing issues and sub-products), service and operations managers (channels, responses, timely-response rates) and the platform maintainer (run logs, quality reports, freshness).
 
 **Chosen option.** Option 5, money transfers and digital payments: emerging issues, shifts in submission channels and growth rates.
 
@@ -43,13 +43,13 @@ Four core sub-products are compared throughout: domestic (US) money transfer, in
 | Q4 | How do response categories and timely-response rates differ by sub-product and among the largest companies by share? | full history |
 | Q5 | Which states show different issue profiles (optionally per 100,000 residents)? | full history |
 
-Q1 and Q5 use Spark MLlib descriptively (issue-share trends, K-means groups of states). Every answer shows raw counts and percentages within each group, with its caution next to it.
+Q1 and Q5 also use Spark MLlib descriptively (issue-share trends, K-means groups of states). Each answer shows raw counts and percentages within each group, with its caution.
 
 ## 3. Data source and limitations
 
-**Source and usage basis.** The platform uses the CFPB Consumer Complaint Database: the full CSV ZIP for the history and the official API for daily updates (references in section 8). The CFPB states that the complaint data it publishes is "freely available for anyone to use, analyze, and build on", and the API metadata declares the licence CC0, public domain (tested on 20 November 2026).
+**Source and usage basis.** The platform uses the CFPB Consumer Complaint Database: the full CSV ZIP for the history and the official API for daily updates (references in section 8). The CFPB states that the complaint data it publishes is "freely available for anyone to use, analyze, and build on", and the API metadata declares the licence CC0, public domain.
 
-**Fields and coverage.** The CFPB publishes 15 fields: Complaint ID, Date received, Date sent to company, Product, Sub-product, Issue, Sub-issue, Company, Company public response, Company response to consumer, Timely response?, State, ZIP code, Tags and Submitted via. Not every product has sub-products and not every issue has sub-issues, so sub-issue is mostly empty in our domain. The database generally updates daily. Only complaints sent to companies for response are eligible, and they are published after the company responds or after 15 days, whichever comes first, so recent weeks are provisional. Complaints referred to other regulators are not published.
+**Fields and coverage.** The CFPB publishes 15 fields: Complaint ID, Date received, Date sent to company, Product, Sub-product, Issue, Sub-issue, Company, Company public response, Company response to consumer, Timely response?, State, ZIP code, Tags and Submitted via. No complaint in our domain has a sub-issue (0 of 205,383 checked records in the full load of 24 November 2026), so an empty sub-issue is reported as not applicable. The database generally updates daily. Only complaints sent to companies for response are eligible, and they are published after the company responds or after 15 days, whichever comes first, so recent weeks are provisional. Complaints referred to other regulators are not published.
 
 **Current restrictions.** Complaint narratives were removed in September 2026 (release 24), which is why the project does no text analysis; the consumer-consent and consumer-disputed fields are also gone. Since July 2026 filtered exports are limited to 100,000 complaints, so we use the full ZIP for the history and narrow API windows for updates. ZIP codes are masked or suppressed for small areas. The data contains no transactions, balances, confirmed fraud labels or resolution durations.
 
@@ -57,7 +57,7 @@ Q1 and Q5 use Spark MLlib descriptively (issue-share trends, K-means groups of s
 
 **Category changes.** The CFPB updated its product and issue forms in August 2023 and 2026 but keeps the labels the consumer selected, so history is not re-coded. In our domain three legacy labels used before April 2017 (Money transfers, Virtual currency, and Prepaid card with the sub-product Mobile wallet) are mapped to the current domain by `config/product_mapping.csv`, and the original labels are kept next to the standard ones. The mapping is to be confirmed with the lecturer.
 
-**Responsible use and ethics.** The data is public, but the platform still limits its use. It never displays individual records or free text, makes no attempt to re-identify anyone and does not use ZIP codes. Company results carry a caution and are never rankings. No statement claims causality or confirmed fraud, and small groups are grouped or flagged. A quality failure stops a run, so bad data never reaches the dashboard. AI assistants were used for drafting and code support; every contribution was reviewed and tested by the team, who can explain it.
+**Responsible use and ethics.** The data is public, but the platform still limits its use. It never displays individual records or free text, makes no attempt to re-identify anyone and does not use ZIP codes. Company results carry a caution and are never rankings. No statement claims causality or confirmed fraud, and small groups are grouped or flagged. AI assistants were used for drafting and code support; every contribution was reviewed and tested by the team, who can explain it.
 
 ## 4. Architecture and implementation
 
@@ -67,11 +67,11 @@ Q1 and Q5 use Spark MLlib descriptively (issue-share trends, K-means groups of s
 
 The platform is a batch system of seven layers, following the Conceptual Big Data Framework of Session 2. Each layer has one purpose and the whole stack starts with one Docker Compose command.
 
-**Collection.** Apache NiFi is planned to start the collection every 24 hours and keep the provenance of every run (its service is in the Docker stack; its flow is still to be exported); the tested Python collector is the working path. NiFi was chosen from the course's ingestion tools for its scheduling and provenance. Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
+**Collection.** Apache NiFi is planned to start the collection every 24 hours and keep the provenance of every run (its service is in the Docker stack; its flow is still to be exported); the tested Python collector is the working path. NiFi was chosen from the course's ingestion tools for scheduling and provenance; Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
 
 **Raw storage.** MinIO object storage keeps every file unchanged, by ingestion date and run, with manifests and run logs. HDFS and Ceph need a cluster that about 200,000 records do not justify.
 
-**Processing.** Spark DataFrames in local mode validate, clean, deduplicate and aggregate. A quality gate stops a failing run. Spark Streaming is not used because the CFPB publishes daily, so there is no live stream.
+**Processing.** Spark DataFrames in local mode validate, clean, deduplicate and aggregate. A quality gate stops a failing run.
 
 **Curated storage.** Parquet is columnar, compressed and stores its schema, so the aggregates read only the columns they need. ORC would be an equivalent alternative; CSV is slower and compressed text cannot be split.
 
@@ -81,7 +81,7 @@ The platform is a batch system of seven layers, following the Conceptual Big Dat
 
 **Presentation.** Streamlit reads MongoDB only, with Redis as a cache-aside layer with a ten-minute time-to-live.
 
-**Trade-offs.** We accept data that is up to a day old, a single node and no horizontal scale, in return for a platform that is simple to test, replay and reproduce. MinIO no longer publishes official Docker images, so we pin a community rebuild of its last release to an exact tag.
+**Trade-offs.** We accept data that is up to a day old, a single node and no horizontal scale, in return for a platform that is simple to test, replay and reproduce.
 
 ### 4.2 Collection, scheduling and raw storage
 

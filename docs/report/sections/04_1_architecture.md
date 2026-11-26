@@ -11,11 +11,11 @@ running (the NiFi and Redis services were merged on 22 Nov, PR #27), and the cur
 
 The platform is a batch system of seven layers, following the Conceptual Big Data Framework of Session 2. Each layer has one purpose and the whole stack starts with one Docker Compose command.
 
-**Collection.** Apache NiFi is planned to start the collection every 24 hours and keep the provenance of every run (its service is in the Docker stack; its flow is still to be exported); the tested Python collector is the working path. NiFi was chosen from the course's ingestion tools for its scheduling and provenance. Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
+**Collection.** Apache NiFi is planned to start the collection every 24 hours and keep the provenance of every run (its service is in the Docker stack; its flow is still to be exported); the tested Python collector is the working path. NiFi was chosen from the course's ingestion tools for scheduling and provenance; Kafka and Flume serve streaming and log collection, which the brief rules out, and Sqoop moves relational data.
 
 **Raw storage.** MinIO object storage keeps every file unchanged, by ingestion date and run, with manifests and run logs. HDFS and Ceph need a cluster that about 200,000 records do not justify.
 
-**Processing.** Spark DataFrames in local mode validate, clean, deduplicate and aggregate. A quality gate stops a failing run. Spark Streaming is not used because the CFPB publishes daily, so there is no live stream.
+**Processing.** Spark DataFrames in local mode validate, clean, deduplicate and aggregate. A quality gate stops a failing run.
 
 **Curated storage.** Parquet is columnar, compressed and stores its schema, so the aggregates read only the columns they need. ORC would be an equivalent alternative; CSV is slower and compressed text cannot be split.
 
@@ -25,4 +25,4 @@ The platform is a batch system of seven layers, following the Conceptual Big Dat
 
 **Presentation.** Streamlit reads MongoDB only, with Redis as a cache-aside layer with a ten-minute time-to-live.
 
-**Trade-offs.** We accept data that is up to a day old, a single node and no horizontal scale, in return for a platform that is simple to test, replay and reproduce. MinIO no longer publishes official Docker images, so we pin a community rebuild of its last release to an exact tag.
+**Trade-offs.** We accept data that is up to a day old, a single node and no horizontal scale, in return for a platform that is simple to test, replay and reproduce.

@@ -272,8 +272,8 @@ card(s, 9.1, 4.95, 3.65, 1.7, "Descriptive only", "What was reported, not why. N
 
 # ---------- 4. architecture ----------
 s = content_slide("Architecture: seven layers, one purpose each", presenter="Loutchiana", number=4, notes=(
-    "Seven layers following the course framework. One: Apache NiFi collects every 24 hours and keeps provenance; a tested Python "
-    "collector is the fallback. Two: MinIO keeps raw files unchanged. Three: Spark cleans, deduplicates and checks quality; a "
+    "Seven layers following the course framework. One: collection every 24 hours. Apache NiFi is the planned scheduler with provenance, but its flow is not exported yet, "
+    "so the tested Python collector is the working path. Two: MinIO keeps raw files unchanged. Three: Spark cleans, deduplicates and checks quality; a "
     "failing check stops the run. Four: the trusted data is Parquet, rejected records go to quarantine. Five: MongoDB serves the "
     "dashboard. Six: analysis scripts and two Spark MLlib models describe the data. Seven: Streamlit presents it, with Redis "
     "caching the queries. It is a batch platform refreshed every 24 hours because the CFPB publishes daily and the brief rules "
@@ -384,12 +384,12 @@ stat_card(s, 8.9, 1.55, 3.85, 4.9, "205,271", ["complaints in MongoDB", "73,597 
 # ---------- 11. step 7 ----------
 s = content_slide("Dashboard: answering Q1 and Q2", step=7, presenter="Perla (2:00)", number=11, notes=(
     "Show the dashboard answering the two pre-declared questions, with the denominator, the partial-period label and the caution."))
-card(s, 0.6, 1.55, 5.9, 1.75, "Q1", "Which sub-products and issues grew fastest in 2021 to 2025, and how did the wallet share change?", body_size=15)
-card(s, 0.6, 3.5, 5.9, 1.75, "Q2", "How did the fraud-or-scam share change across the four core sub-products since 2018?", body_size=15)
-text(s, 0.6, 5.5, 5.9, 1.2, "Raw counts and percentages in each group. The issue is chosen by the consumer; a trend is not a forecast.",
+card(s, 0.6, 1.55, 6.4, 1.75, "Q1", "Which sub-products and issues grew fastest in 2021 to 2025, and how did the wallet share change?", body_size=15)
+card(s, 0.6, 3.5, 6.4, 1.75, "Q2", "How did the fraud-or-scam share change across the four core sub-products since 2018?", body_size=15)
+text(s, 0.6, 5.5, 6.4, 1.2, "Raw counts and percentages in each group. The issue is chosen by the consumer; a trend is not a forecast.",
      size=14, color=MUTED)
-evidence_picture(s, 6.85, 1.55, 2.9, 5.1, "dashboard_q1_wallet_share.png", (466, 60, 1190, 820), "Q1: wallet share of complaints, by month")
-evidence_picture(s, 9.85, 1.55, 2.9, 5.1, "dashboard_q2_fraud_share.png", (466, 60, 1190, 680), "Q2: fraud-or-scam share, four core sub-products")
+evidence_picture(s, 7.3, 1.3, 5.5, 2.75, "dashboard_q1_wallet_share.png", (470, 165, 1185, 565), "Q1: wallet share of complaints, by month")
+evidence_picture(s, 7.3, 4.1, 5.5, 2.75, "dashboard_q2_fraud_share.png", (470, 205, 1185, 600), "Q2: fraud-or-scam share, four core sub-products")
 
 # ---------- 12. findings ----------
 s = content_slide("What we found", presenter="Perla, Loutchiana", number=12, notes=(
