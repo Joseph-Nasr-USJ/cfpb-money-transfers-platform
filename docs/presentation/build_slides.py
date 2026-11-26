@@ -389,10 +389,17 @@ placeholder(s, 6.85, 1.55, 5.9, 5.1, "[TO COMPLETE: dashboard screenshots for Q1
 
 # ---------- 12. findings ----------
 s = content_slide("What we found", presenter="Perla, Loutchiana", number=12, notes=(
-    "Three or four findings, each with its number, denominator, period and caution. Source: docs/findings.md (ready on Tue 24 Nov)."))
-for index in range(3):
-    card(s, 0.6 + index * 4.1, 1.55, 3.9, 4.6, f"Finding {index + 1}",
-         "[TO COMPLETE from docs/findings.md: the number, the denominator, the period and the caution]", body_size=15)
+    "Three or four findings, each with its number, denominator, period and caution. Source: docs/findings.md (figures identical in the dashboard, the findings and the report)."))
+findings = [
+    ("Growth, 2021 to 2025", "Domestic money transfer: 3,069 to 57,853 complaints. Mobile or digital wallet: 6,405 to 17,149. "
+     "Whole domain: 16,746 in 2024, 84,612 in 2025. Caution: complaints are not usage or harm, and the data does not explain the 2025 jump."),
+    ("Fraud or scam share", "Virtual currency 34%, mobile or digital wallet 28%, international transfer 24%, domestic transfer 19% of each "
+     "sub-product's complaints; mobile wallets have the most in absolute terms. Caution: the category is chosen by the consumer, not verified."),
+    ("No emerging issue", "43 issue models over 24 complete months (Nov 2024 to Oct 2026): none reached the three thresholds fixed in advance "
+     "(slope +0.2 points per month, R2 0.5, 50 complaints). Caution: a share of published complaints, not a forecast."),
+]
+for index, (title, body) in enumerate(findings):
+    card(s, 0.6 + index * 4.1, 1.55, 3.9, 4.6, title, body, body_size=14)
 text(s, 0.6, 6.3, 12.1, 0.5, "Every number must be identical in the dashboard, the findings and the report.", size=14, color=MUTED)
 
 # ---------- 13. step 8 ----------
