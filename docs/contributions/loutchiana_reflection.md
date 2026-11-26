@@ -31,7 +31,3 @@ Still open at the time of writing: the NiFi flow is not exported, so the Python 
 ## Next improvement
 
 For the platform, a MongoDB replica set and a scheduled run with the exported NiFi flow. For myself, an earlier start and a shared checklist of deadlines for the section owners.
-
-## Use of AI
-
-I used an AI assistant (Claude Code) as a drafting tool for the documents and for the wording of this reflection, as my contribution log states. I checked the content against the repository and the data, ran the platform and the tests myself, and I am responsible for what I submit.

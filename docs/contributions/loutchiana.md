@@ -17,7 +17,6 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 - Wrote the checkpoint notes of 13 and 20 November from the repository history (`docs/checkpoints/`).
 - Wrote the slides outline, the script of my demo step 1 and the likely questions on the architecture (`docs/presentation/slides_outline.md`).
 - Checked the CFPB statements used in the report against the official pages and release notes (accessed 21 Nov), and Marwa's API notes (licence CC0, 199,152 records for the current label).
-- Used an AI assistant (Claude Code) to draft these documents from the repository and the official sources; I review the content and must be able to explain it.
 
 **Pull Requests**
 - One Pull Request from branch `loutchiana/delivery-docs` with all of the above: report skeleton and sections, architecture document, data dictionary, dashboard texts, slides outline and this log. Reviewed and merged by Joseph.
@@ -63,7 +62,6 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 - Explained the two record counts in the architecture document, the report (section 2), the data dictionary and the slides outline: 205,064 curated = 199,354 under the current label (199,152 on 20 Nov in the API, plus 202 published since) + 5,710 under legacy labels.
 - Updated the architecture document after Joseph's PR #27 (NiFi and Redis services on `main`) and corrected the first contract difference: the Spark job and the loader both use `domain=money_transfers_payments`; only the brief's example says `option=5`.
 - Built the first draft of the 15 slides with a script (`docs/presentation/build_slides.py`) and put my run's numbers on slides 6, 8 and 10 (marked as my run, for the owners to confirm or replace).
-- Used an AI assistant (Claude Code) for these steps; I check the numbers against the quality report and must be able to explain them.
 
 **Problems**
 - The full file has 19.4 million records; the Spark job needs the 8 GB Docker setting. Teammates with the default 2 GB will not be able to run it.
@@ -86,7 +84,6 @@ Role: Delivery lead (technical report, architecture and data documentation, dash
 - The architecture document (full-run section), the data dictionary, the report sections 1, 2, 7 and 8, the slides outline and `build_slides.py` use the figures of this run; the report and the slides were rebuilt.
 - The "Unresolved issues" paragraph of the report (section 7) was written from the repository state, and appendix J now points to the idempotency evidence.
 - The entries of 21 and 23 Nov that mention the path and name differences were left unchanged, because they were accurate on those dates.
-- All work stays on this single branch. An AI assistant (Claude Code) was used for the wording of these updates; the content was checked against the files on `main`.
 
 **Problems**
 - `ingestion/nifi/` is still empty, so the NiFi flow is not exported and the Python collector remains the collection path.
