@@ -1,3 +1,4 @@
+
 """Measure MongoDB query performance before and after the project's indexes.
 
 Runs against the REAL `complaints` collection, never fabricated records.
@@ -100,10 +101,16 @@ def representative_values(collection) -> tuple[str, str, str, date, date]:
         raise ValueError("No dated complaints with a sub-product were found")
 
     def pick(field: str) -> str:
-        row = collection.find_one({field: {"$type": "string", "$ne": ""}}, {field: 1})
-        if not row:
+        """Most frequent non-empty value, so each benchmark filter matches a realistic share of complaints."""
+        rows = list(collection.aggregate([
+            {"$match": {field: {"$type": "string", "$ne": ""}}},
+            {"$group": {"_id": f"${field}", "n": {"$sum": 1}}},
+            {"$sort": {"n": -1, "_id": 1}},
+            {"$limit": 1},
+        ]))
+        if not rows:
             raise ValueError(f"No complaints have a usable {field!r} value")
-        return row[field]
+        return rows[0]["_id"]
 
     end_date = newest["date_received"].date()
     # Twelve complete named calendar months ending with the latest data month.
@@ -111,7 +118,7 @@ def representative_values(collection) -> tuple[str, str, str, date, date]:
     start_year, month_zero = divmod(month_number - 1, 12)
     first_day = date(start_year, month_zero + 1, 1)
     last_day = date(end_date.year, end_date.month, calendar.monthrange(end_date.year, end_date.month)[1])
-    return newest["sub_product_std"], pick("state"), pick("company"), first_day, last_day
+    return pick("sub_product_std"), pick("state"), pick("company"), first_day, last_day
 
 
 def query_cases(collection) -> list[tuple[str, list[dict], str]]:
