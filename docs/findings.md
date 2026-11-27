@@ -1,6 +1,9 @@
-﻿# Findings
+# Findings
 
-This analysis covers the CFPB Money Transfers and Digital Payments domain using the curated complaint dataset loaded into MongoDB. The full historical run produced 205,500 curated complaints after filtering, validation and quality checks. The analyses are descriptive and diagnostic: they describe patterns in published CFPB complaints and should not be interpreted as measures of market size, product usage, consumer harm or causal effects.
+**Snapshot:** MongoDB on 25 Nov 2026 contained 205,500 complaints. This snapshot consists of the full load of 24 Nov plus the daily API runs collected before the analytics were executed. All counts and percentages in this findings document use this same 205,500-complaint snapshot.
+
+**Reproducibility note:** CSV analysis outputs are generated locally by make analytics and make ml and are intentionally not tracked in Git. The PNG charts listed below are the committed analytical evidence.
+This analysis covers the CFPB Money Transfers and Digital Payments domain using the curated complaint dataset loaded into MongoDB. The analytical snapshot contained 205,500 curated complaints after filtering, validation and quality checks. The analyses are descriptive and diagnostic: they describe patterns in published CFPB complaints and should not be interpreted as measures of market size, product usage, consumer harm or causal effects.
 
 ## Q1 — Growth and Emerging Issues — Demo Question
 
@@ -22,10 +25,6 @@ The Spark MLlib emerging-issues analysis examined the last 24 complete months, f
 **Charts and outputs**
 - `analytics/output/q1_monthly_growth.png`
 - `analytics/output/q1_wallet_share.png`
-- `analytics/output/q1_monthly_subproducts.csv`
-- `analytics/output/q1_wallet_share.csv`
-- `analytics/output/ml_emerging_issues.csv`
-
 **Caution:** Growth in complaints does not establish growth in product usage, market share or consumer harm. CFPB categories have changed over time, and trend results should not be interpreted as forecasts. The ML model identifies changes in the share of published complaints only.
 
 ---
@@ -49,9 +48,6 @@ These results show that the ranking changes depending on whether the comparison 
 **Charts and outputs**
 - `analytics/output/q2_fraud_monthly.png`
 - `analytics/output/q2_fraud_rolling_12m.png`
-- `analytics/output/q2_fraud_summary.csv`
-- `analytics/output/q2_fraud_monthly.csv`
-
 **Caution:** "Fraud or scam" is a category selected in the complaint process. It does not mean that fraud was independently investigated or verified.
 
 ---
@@ -78,9 +74,6 @@ Across the complete dataset, Web accounts for 191,726 complaints, or 93.30% of a
 **Charts and outputs**
 - `analytics/output/q3_channel_counts.png`
 - `analytics/output/q3_channel_shares.png`
-- `analytics/output/q3_channels_yearly.csv`
-- `analytics/output/q3_channels_summary.csv`
-
 **Caution:** Changes in CFPB submission channels may reflect operational or intake-process changes rather than changes in consumer preferences.
 
 ---
@@ -110,9 +103,6 @@ The median interval between complaint receipt and referral to the company was 0 
 - `analytics/output/q4_timely_responses.png`
 - `analytics/output/q4_response_categories.png`
 - `analytics/output/q4_processing_lag.png`
-- `analytics/output/q4_summary.csv`
-- `analytics/output/q4_timely_responses.csv`
-
 **Caution:** A timely response does not measure customer satisfaction or whether the consumer's problem was resolved. Processing lag measures the interval between CFPB receipt and referral to the company, not the company's resolution time. Complaint shares also do not provide a market-share denominator.
 
 ---
@@ -142,10 +132,6 @@ The Spark MLlib KMeans analysis clustered states according to similarities in th
 **Charts and outputs**
 - `analytics/output/q5_state_counts.png`
 - `analytics/output/q5_issue_share_heatmap.png`
-- `analytics/output/q5_state_totals.csv`
-- `analytics/output/q5_state_issue_profiles.csv`
-- `analytics/output/ml_state_clusters.csv`
-
 **Caution:** Raw state complaint counts are not normalized by population, product usage or the number of customers. Population is not the same as the user base. The KMeans groups describe similarities in published complaint profiles and should not be interpreted as geographic risk, consumer quality or company performance.
 
 ---
