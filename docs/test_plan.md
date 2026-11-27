@@ -255,3 +255,4 @@ The brief requires a known bad test record to be shown caught by the intended ch
 | Thu 12 Nov 2026 | `make test` | 26 passed | [test_results_2026-11-12.txt](evidence/test_results_2026-11-12.txt) |
 | Sat 21 Nov 2026 | `make test` | 42 passed | [test_results_2026-11-21.txt](evidence/test_results_2026-11-21.txt) |
 | Tue 24 Nov 2026 | `make test` | 159 passed, 1 skipped | [test_results_2026-11-24.txt](evidence/test_results_2026-11-24.txt) |
+| Fri 27 Nov 2026 | `make test` | 162 passed, 1 skipped | [test_results_2026-11-27.txt](evidence/test_results_2026-11-27.txt) |
