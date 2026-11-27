@@ -54,3 +54,26 @@ Role: Delivery lead (README, runbook, testing evidence, demo, presentation). Upd
 - Collect the scheduling and recovery details from Marwa and the MongoDB steps from Christopher (Mon 23 Nov).
 - Write the end-to-end test with Joseph and the dashboard checklist with Perla.
 - Clean-machine check #2 and the final demo script on Tue 24 Nov; report part 5.3 to Loutchiana on Wed 25 Nov.
+
+## Week of Mon 23 to Sun 29 Nov 2026
+
+**Date:** Fri 27 Nov 2026
+
+**What I did**
+- Reviewed Joseph's real-data rerun evidence (`docs/evidence/idempotency.md`) with Claude and linked it from the test plan.
+- Pulled and merged the latest `main`.
+- Prepared report section 5.3 (tests, deployment and recovery), with Claude's help.
+- Updated the runbook with the scheduler and collector choice, resume, high-water mark reset, MongoDB reload, Redis and the full-load time, with Claude's help.
+- Updated the demo script commands and the step 8 supporting facts.
+- Rewrote the test plan inventory with the real test names.
+
+**Pull Requests**
+- [#17](https://github.com/Joseph-Nasr-USJ/cfpb-money-transfers-platform/pull/17): README, runbook, test plan, defect log and demo script (merged).
+- Second Pull Request with the updates above: to be opened.
+
+**Problems**
+- The NiFi flow is not exported yet, so section 9 of the runbook is not verified.
+- The end-to-end test, the clean-machine check and the dashboard checklist are not done yet.
+
+**Next step**
+- Clean-machine check, dashboard checklist with Perla, rehearsals on Sat 28 and Sun 29 Nov.
