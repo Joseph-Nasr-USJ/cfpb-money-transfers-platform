@@ -2,7 +2,7 @@
 
 Owner: Charbel Mazraani. How to operate the Banking Complaints Data Platform (option 5, Money Transfers and Digital Payments): start, stop, reset, run the pipeline, find logs, check data quality, recover from failures and fix common problems.
 
-**Draft of Sat 21 Nov 2026.** Parts marked **TODO** wait for a teammate and are listed in section 14. Every command is run from the repository root. Windows commands are for PowerShell; macOS commands are in the same code block when they differ.
+**Updated Fri 27 Nov 2026.** Items still open are listed in section 14. Every command is run from the repository root. Windows commands are for PowerShell; macOS commands are in the same code block when they differ.
 
 Prerequisites and first-time setup are in the [README](../README.md). Environment variables are described in `.env.example`.
 
@@ -20,7 +20,7 @@ docker compose ps
 ```
 Open the MinIO console at http://localhost:9001 and log in with `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD` from `.env`. The bucket `cfpb-lake` must exist.
 
-Known and expected until the scheduler is merged: the `pipeline` container exits with code 1 and restarts up to 5 times with `No module named ingestion.scheduler`. This is not an error in your setup.
+The `pipeline` container runs the scheduler (section 6); check it with `docker compose logs pipeline`. If your `.env` was created before 24 Nov, compare it with `.env.example` and add the missing lines (`COLLECTOR`, `PENDING_CHECK_MINUTES`, the NiFi and Redis variables).
 
 All ports are bound to `127.0.0.1`: only your own computer can reach them.
 
@@ -51,7 +51,7 @@ The full CFPB CSV is downloaded once, stored unchanged in MinIO, processed by Sp
 make pipeline-full
 ```
 
-This runs, in order: collection (writes the raw ZIP, the CSV and `manifest.json` under `raw/cfpb/full_load/ingest_date=YYYY-MM-DD/`), the Spark job, the MongoDB load, and the high-water mark update. It prints a `run_id` such as `20261121T100000Z_full`. Keep it: the run log, quality report and quarantine are named after it.
+This runs, in order: collection (writes the raw ZIP, the CSV and `manifest.json` under `raw/cfpb/full_load/ingest_date=YYYY-MM-DD/`), the Spark job, the MongoDB load, and the high-water mark update. The measured run of 24 Nov took 9.9 minutes for 19,397,176 CSV records and 205,271 curated complaints, with `nifi` and `dashboard` stopped (see [full_load.md](evidence/full_load.md)). It prints a `run_id` such as `20261121T100000Z_full`. Keep it: the run log, quality report and quarantine are named after it.
 
 To run the steps one at a time (useful when one of them failed):
 ```
@@ -85,8 +85,12 @@ Running the same window twice does **not** create duplicates: records are dedupl
 
 ## 6. How the 24-hour schedule works
 
-- **Primary: Apache NiFi.** The NiFi flow (`ingestion/nifi/cfpb_flow.json`) calls the CFPB API every 24 hours (`SCHEDULE_HOURS=24`), writes each response to MinIO before processing it, and keeps the provenance of every run. See section 9. **TODO:** the `nifi` service is being added by Joseph and the flow by Marwa.
-- **Fallback: Python scheduler.** `python -m ingestion.scheduler` (the default command of the `pipeline` container) calls the same incremental pipeline every `SCHEDULE_HOURS`. **TODO:** confirm with Marwa how the two are selected and what happens if the computer was off at the scheduled time.
+The `pipeline` container runs `python -m ingestion.scheduler`. `COLLECTOR` in `.env` selects who collects:
+
+- **`COLLECTOR=python`:** the scheduler runs the Python collector every `SCHEDULE_HOURS` (24), then processes the run. Use this today, because the NiFi flow is not yet exported to the repository.
+- **`COLLECTOR=nifi`** (the code's default if the line is missing): NiFi collects on its own schedule, and the scheduler only processes collected runs, checking every `PENDING_CHECK_MINUTES`. Without a NiFi flow nothing is collected.
+- **Computer off at the scheduled time:** at start-up the scheduler collects at once if the last successful collection is older than `SCHEDULE_HOURS`. Missed runs are merged into one, two runs never overlap, and the window starts from the high-water mark minus `OVERLAP_DAYS`, so nothing is lost.
+- A failed run is retried by later passes, at most 3 times, then left for a person to investigate.
 - **Manual trigger** (`make pipeline-incremental`) uses the same collector and processing chain as the schedule, as the brief allows for the demo.
 - **Safety rules of every incremental run:** bounded date window, pagination, timeouts (`API_TIMEOUT_SECONDS`), bounded retries (`API_MAX_RETRIES`, never retried forever), and the high-water mark (`state/high_water_mark.json`) moves forward only after the run finished successfully. A successful empty response is recorded as such and is different from a failed request.
 
@@ -123,9 +127,9 @@ The report uses the names `freshness` and `reconciliation` since Joseph's PR #32
 
 ## 9. Apache NiFi
 
-**TODO** until Joseph adds the `nifi` service and Marwa adds the flow. The steps below are the plan and must be verified on the real setup.
+The `nifi` service is on `main`, but the collection flow is **not yet exported** to `ingestion/nifi/`. The flow steps below (start, stop, run once, provenance) have not been verified.
 
-- **Open the UI:** the address and port are in the README after Joseph's change. NiFi needs 1 to 2 minutes to start: check `docker compose logs nifi` for the started message. The browser warns about a self-signed certificate on localhost: continue to the page.
+- **Open the UI:** https://localhost:8443. NiFi needs 1 to 2 minutes to start: check `docker compose logs nifi` for the started message. The browser warns about a self-signed certificate on localhost: continue to the page.
 - **Log in** with `NIFI_USERNAME` and `NIFI_PASSWORD` from `.env` (password 12 characters or more).
 - **Start or stop the flow:** select the process group `cfpb_flow` and use Start or Stop in the operate panel.
 - **Trigger a manual run:** right-click the first processor and choose **Run once**.
@@ -154,11 +158,14 @@ Collections: `complaints`, `agg_monthly`, `agg_company_year`, `pipeline_runs`, `
 docker compose run --rm pipeline python -m database.indexes
 ```
 
-**TODO:** Christopher to confirm these steps and add how to reload MongoDB from the curated data (due Mon 23 Nov).
+**Reload MongoDB** from the curated data of a successful run (upserts, safe to repeat):
+```
+make load RUN_ID=<run_id>
+```
 
 ## 11. Redis cache
 
-**TODO** until Joseph adds the `redis` service and Perla connects the dashboard. Redis caches the dashboard queries (key = query name + filters, time-to-live `CACHE_TTL_SECONDS`, 600 seconds). Cached results can be up to 10 minutes old. To clear the cache:
+Redis (service `redis`, port 6379) caches the dashboard queries (cache-aside: key = query name + filters, time-to-live `CACHE_TTL_SECONDS`, 600 seconds). If Redis is unavailable the dashboard reads MongoDB directly. Cached results can be up to 10 minutes old. To clear the cache:
 ```
 docker compose exec redis redis-cli FLUSHDB
 ```
@@ -170,10 +177,10 @@ Our collector, unlike a tool such as Sqoop that must clean and restart a failed 
 
 | Situation | What to do |
 |---|---|
-| A run failed in collection | Read the run log (section 7), fix the cause (for example network), then run `make pipeline-incremental` again. The high-water mark did not move, so the same window is collected again. **TODO:** resume from saved pagination state, confirm with Marwa. |
+| A run failed in collection | Read the run log (section 7), fix the cause (for example network), then continue from the last saved page with `docker compose run --rm pipeline python -m ingestion.incremental --resume <run_id>` and process it with `docker compose run --rm pipeline python -m ingestion.pipeline --mode process --run-id <run_id>`. Or run `make pipeline-incremental` again: the high-water mark did not move. |
 | Spark stopped with exit code 1 (quality gate) | Open `quality/run_id=<run_id>/quality_report.json` and `quarantine/run_id=<run_id>/` to see which rule failed and which records. Nothing was published. Fix the cause, then run `make process SOURCE=<full_load or api> RUN_ID=<run_id>` again. |
 | The load into MongoDB failed | Run `make load RUN_ID=<run_id>` again. Upserts make the rerun safe. |
-| The high-water mark must be reset | **TODO:** Marwa to document the exact command for `state/high_water_mark.json` (the `ingestion.update_hwm` module). |
+| The high-water mark must be reset | Show it: `docker compose run --rm pipeline python -m ingestion.update_hwm --show`. Reset it: `docker compose run --rm pipeline python -m ingestion.update_hwm --reset YYYY-MM-DD --reason "why"`. Every change is kept in `state/hwm_history/`. |
 | Indexes are missing or slow | Rebuild them (section 10). |
 | MongoDB data was lost | Run `make load RUN_ID=<run_id>` from the curated Parquet in MinIO; if MinIO is also empty, run the historical load again (section 4). |
 | Everything is broken | `make reset`, then `make up` and the historical load. |
@@ -198,10 +205,8 @@ MongoDB runs as a single node: a failure of that container means recovery by rer
 
 ## 14. Open items for this runbook
 
-| Item | From | Due |
-|---|---|---|
-| Scheduling details, scheduler and NiFi selection, resume from pagination state, high-water mark reset | Marwa | Mon 23 Nov |
-| MongoDB inspection, index rebuild and reload steps (confirm section 10) | Christopher | Mon 23 Nov |
-| NiFi address, ports and credentials; Redis port; Spark memory advice | Joseph | with the `nifi` and `redis` Pull Request |
-| Redis cache wiring in the dashboard | Perla | with the dashboard |
-| Verify every command on a clean machine | Charbel | Tue 24 Nov |
+| Item | From |
+|---|---|
+| Export the NiFi flow to `ingestion/nifi/`, then verify section 9 | Marwa, Joseph |
+| Confirm the MongoDB steps of section 10 | Christopher |
+| Verify every command on a clean machine and record it | Charbel |
