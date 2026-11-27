@@ -6,7 +6,7 @@ Owner: Charbel Mazraani. Each test is written by the owner of its component; thi
 
 **Status values:** `passing` (on `main`, green in the last run), `failing` (on `main`, red in the last run; a defect is open in [defect_log.md](defect_log.md)), `planned` (not written yet). Test names marked *proposed* are suggestions; the owner may rename them and this file is updated when the test is merged.
 
-Last update: Tue 24 Nov 2026 (159 passed, 1 skipped with `make test` on the merged code; the V2 dimension names are in the code since PR #32).
+Last update: Fri 27 Nov 2026 (test inventory rewritten with the real test names).
 
 ## 1. Test levels required by the brief
 
@@ -21,21 +21,85 @@ Last update: Tue 24 Nov 2026 (159 passed, 1 skipped with `make test` on the merg
 
 ## 2. Test inventory
 
-The IDs C-, D-, B- and M- below are the names proposed on 21 Nov. The tests merged since then have other names; the real ones are in the files named in the Location column above. The statuses of the levels in section 1 come from the run of Tue 24 Nov (159 passed, 1 skipped).
+Test names are the ones in the test files on `main`; the statuses come from the latest recorded run (section 5).
 
-### Collector (Marwa Zeineddine)
+### Collector and processing chain (Marwa Zeineddine)
 
 | ID | Test | File | Status |
 |---|---|---|---|
-| C-01 | *proposed* `test_historical_writes_zip_csv_and_manifest` (record count and checksum in the manifest) | `tests/ingestion/test_historical.py` | planned |
-| C-02 | *proposed* `test_incremental_follows_pagination_to_last_page` (HTTP mocked with `responses`) | `tests/ingestion/test_incremental.py` | planned |
-| C-03 | *proposed* `test_retries_are_bounded` (stops after `API_MAX_RETRIES`, outcome recorded as failed) | `tests/ingestion/test_incremental.py` | planned |
-| C-04 | *proposed* `test_request_uses_timeout` (`API_TIMEOUT_SECONDS`) | `tests/ingestion/test_incremental.py` | planned |
-| C-05 | *proposed* `test_window_starts_at_high_water_mark_minus_overlap` (`OVERLAP_DAYS`) | `tests/ingestion/test_incremental.py` | planned |
-| C-06 | *proposed* `test_run_log_has_every_required_field` (run id, start and end time, endpoint, parameters, window, pagination state, HTTP status, retry count, outcome, raw path, record count, checksum, next high-water mark) | `tests/ingestion/test_run_log.py` | planned |
-| C-07 | *proposed* `test_raw_object_is_never_overwritten` | `tests/ingestion/test_incremental.py` | planned |
-| C-08 | *proposed* `test_resume_from_saved_pagination_state` | `tests/ingestion/test_incremental.py` | planned |
-| C-09 | *proposed* `test_run_id_format` (`YYYYMMDDTHHMMSSZ_<full\|api>`) | `tests/ingestion/test_run_log.py` | planned |
+| C-01 | `test_successful_load_writes_raw_files_manifest_and_log` | `tests/ingestion/test_historical.py` | passing |
+| C-02 | `test_server_error_then_success_is_retried` | `tests/ingestion/test_historical.py` | passing |
+| C-03 | `test_persistent_server_error_stops_after_max_retries` | `tests/ingestion/test_historical.py` | passing |
+| C-04 | `test_not_found_is_not_retried` | `tests/ingestion/test_historical.py` | passing |
+| C-05 | `test_timeout_is_retried_then_logged` | `tests/ingestion/test_historical.py` | passing |
+| C-06 | `test_interrupted_download_resumes_with_range` | `tests/ingestion/test_historical.py` | passing |
+| C-07 | `test_same_day_rerun_with_identical_file_uploads_nothing` | `tests/ingestion/test_historical.py` | passing |
+| C-08 | `test_same_day_rerun_with_different_file_fails_without_overwriting` | `tests/ingestion/test_historical.py` | passing |
+| C-09 | `test_main_prints_run_id_last_and_returns_exit_code` | `tests/ingestion/test_historical.py` | passing |
+| C-10 | `test_sends_the_default_requests_user_agent` | `tests/ingestion/test_historical.py` | passing |
+| C-11 | `test_connection_dropped_mid_download_resumes_and_finishes` | `tests/ingestion/test_historical.py` | passing |
+| C-12 | `test_connection_that_drops_without_progress_gives_up` | `tests/ingestion/test_historical.py` | passing |
+| C-13 | `test_same_day_rerun_completes_a_partial_upload` | `tests/ingestion/test_historical.py` | passing |
+| C-14 | `test_partial_upload_of_a_different_file_is_not_overwritten` | `tests/ingestion/test_historical.py` | passing |
+| C-15 | `test_product_filters_come_from_the_mapping_file` | `tests/ingestion/test_incremental.py` | passing |
+| C-16 | `test_window_is_high_water_mark_minus_overlap_until_today` | `tests/ingestion/test_incremental.py` | passing |
+| C-17 | `test_known_window_builds_the_right_request` | `tests/ingestion/test_incremental.py` | passing |
+| C-18 | `test_pagination_uses_search_after_and_stops_on_the_last_page` | `tests/ingestion/test_incremental.py` | passing |
+| C-19 | `test_exact_multiple_of_page_size_ends_with_an_empty_page` | `tests/ingestion/test_incremental.py` | passing |
+| C-20 | `test_raw_page_is_stored_byte_for_byte` | `tests/ingestion/test_incremental.py` | passing |
+| C-21 | `test_pagination_that_repeats_the_same_page_is_detected` | `tests/ingestion/test_incremental.py` | passing |
+| C-22 | `test_empty_window_gives_outcome_empty` | `tests/ingestion/test_incremental.py` | passing |
+| C-23 | `test_server_error_then_success_is_retried` | `tests/ingestion/test_incremental.py` | passing |
+| C-24 | `test_server_error_forever_stops_after_max_retries` | `tests/ingestion/test_incremental.py` | passing |
+| C-25 | `test_rate_limit_429_respects_retry_after` | `tests/ingestion/test_incremental.py` | passing |
+| C-26 | `test_timeout_is_retried` | `tests/ingestion/test_incremental.py` | passing |
+| C-27 | `test_client_error_is_not_retried` | `tests/ingestion/test_incremental.py` | passing |
+| C-28 | `test_failed_run_resumes_from_its_last_saved_page` | `tests/ingestion/test_incremental.py` | passing |
+| C-29 | `test_a_successful_run_cannot_be_resumed` | `tests/ingestion/test_incremental.py` | passing |
+| C-30 | `test_bootstrap_uses_the_latest_historical_manifest` | `tests/ingestion/test_incremental.py` | passing |
+| C-31 | `test_without_high_water_mark_or_historical_load_the_run_fails_clearly` | `tests/ingestion/test_incremental.py` | passing |
+| C-32 | `test_page_cut_off_mid_transfer_is_retried` | `tests/ingestion/test_incremental.py` | passing |
+| C-33 | `test_object_exists` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-34 | `test_object_exists_raises_on_other_errors` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-35 | `test_write_and_read_json_round_trip` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-36 | `test_refuses_to_overwrite_without_flag` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-37 | `test_raw_objects_are_never_overwritten` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-38 | `test_upload_and_download_file` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-39 | `test_list_keys_sorted_by_prefix` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-40 | `test_sha256_of_object_matches_the_content` | `tests/ingestion/test_minio_utils.py` | passing |
+| C-41 | `test_steps_run_in_order_spark_load_then_high_water_mark` | `tests/ingestion/test_pipeline.py` | passing |
+| C-42 | `test_full_load_run_uses_the_full_load_source` | `tests/ingestion/test_pipeline.py` | passing |
+| C-43 | `test_failed_spark_stops_the_chain_before_load_and_high_water_mark` | `tests/ingestion/test_pipeline.py` | passing |
+| C-44 | `test_failed_load_stops_before_the_high_water_mark` | `tests/ingestion/test_pipeline.py` | passing |
+| C-45 | `test_pending_processes_unprocessed_runs_oldest_first` | `tests/ingestion/test_pipeline.py` | passing |
+| C-46 | `test_same_day_identical_full_load_is_not_processed_twice` | `tests/ingestion/test_pipeline.py` | passing |
+| C-47 | `test_a_failing_run_is_retried_at_most_max_attempts` | `tests/ingestion/test_pipeline.py` | passing |
+| C-48 | `test_incremental_mode_collects_with_python_then_processes` | `tests/ingestion/test_pipeline.py` | passing |
+| C-49 | `test_failed_collection_processes_nothing` | `tests/ingestion/test_pipeline.py` | passing |
+| C-50 | `test_running_lock_blocks_a_second_chain` | `tests/ingestion/test_pipeline.py` | passing |
+| C-51 | `test_abandoned_lock_is_replaced` | `tests/ingestion/test_pipeline.py` | passing |
+| C-52 | `test_lock_is_released_even_after_a_failure` | `tests/ingestion/test_pipeline.py` | passing |
+| C-53 | `test_process_mode_requires_a_run_id` | `tests/ingestion/test_pipeline.py` | passing |
+| C-54 | `test_domain_rules_follow_product_mapping` | `tests/ingestion/test_sample.py` | passing |
+| C-55 | `test_allocation_is_proportional_with_a_floor_and_exact_total` | `tests/ingestion/test_sample.py` | passing |
+| C-56 | `test_small_domain_is_kept_whole` | `tests/ingestion/test_sample.py` | passing |
+| C-57 | `test_build_sample_filters_domain_and_spreads_years` | `tests/ingestion/test_sample.py` | passing |
+| C-58 | `test_same_seed_gives_the_same_sample` | `tests/ingestion/test_sample.py` | passing |
+| C-59 | `test_main_reads_latest_manifest_from_minio_and_writes_files` | `tests/ingestion/test_sample.py` | passing |
+| C-60 | `test_no_previous_collection_runs_now` | `tests/ingestion/test_scheduler.py` | passing |
+| C-61 | `test_missed_run_while_the_computer_was_off_runs_now` | `tests/ingestion/test_scheduler.py` | passing |
+| C-62 | `test_recent_collection_waits_until_it_is_due` | `tests/ingestion/test_scheduler.py` | passing |
+| C-63 | `test_failed_collections_do_not_count_as_done` | `tests/ingestion/test_scheduler.py` | passing |
+| C-64 | `test_nifi_mode_only_processes_collected_runs` | `tests/ingestion/test_scheduler.py` | passing |
+| C-65 | `test_python_mode_also_collects_every_schedule_hours` | `tests/ingestion/test_scheduler.py` | passing |
+| C-66 | `test_unknown_collector_is_refused` | `tests/ingestion/test_scheduler.py` | passing |
+| C-67 | `test_first_successful_run_creates_the_mark` | `tests/ingestion/test_update_hwm.py` | passing |
+| C-68 | `test_mark_moves_forward` | `tests/ingestion/test_update_hwm.py` | passing |
+| C-69 | `test_mark_never_moves_backwards` | `tests/ingestion/test_update_hwm.py` | passing |
+| C-70 | `test_unsuccessful_runs_do_not_move_the_mark` | `tests/ingestion/test_update_hwm.py` | passing |
+| C-71 | `test_same_day_full_rerun_takes_values_from_the_manifest` | `tests/ingestion/test_update_hwm.py` | passing |
+| C-72 | `test_manual_reset_is_recorded_with_its_reason` | `tests/ingestion/test_update_hwm.py` | passing |
+| C-73 | `test_reset_without_reason_is_refused` | `tests/ingestion/test_update_hwm.py` | passing |
 
 ### Transformation (Joseph Nasr)
 
@@ -95,38 +159,67 @@ Thresholds are fixed before any result is seen (uniqueness 0 nulls and 0 duplica
 
 ### Database (Christopher Al Hassrouty)
 
-Unit tests use `mongomock` (in-memory MongoDB), so they run without the `mongo` container.
+Unit tests use `mongomock` (in-memory MongoDB), so they run without the `mongo` container. Index coverage is shown by the measurement in [benchmark.md](evidence/benchmark.md), not by a unit test.
 
 | ID | Test | File | Status |
 |---|---|---|---|
-| D-01 | `test_loading_twice_does_not_create_duplicates` (upsert is idempotent; real-data proof in [idempotency.md](evidence/idempotency.md)) | `tests/database/test_upsert_idempotency.py` | passing |
-| D-01b | `test_upsert_updates_existing_complaint` | `tests/database/test_upsert_idempotency.py` | passing |
-| D-02 | *proposed* `test_id_is_complaint_id` | `tests/database/test_load.py` | planned |
-| D-03 | *proposed* `test_dates_are_stored_as_native_dates` | `tests/database/test_load.py` | planned |
-| D-04 | *proposed* `test_indexes_cover_dashboard_filters` (product, date, state, company, issue) | `tests/database/test_indexes.py` | planned |
-| D-05 | *proposed* `test_each_aggregation_returns_expected_result` (A1 to A8 on a small known dataset) | `tests/database/test_queries.py` | planned |
-| D-06 | *proposed* `test_pipeline_runs_records_loaded_count` | `tests/database/test_load.py` | planned |
+| D-01 | `test_aggregate_totals_match_complaints` | `tests/database/test_aggregate_reconciliation.py` | passing |
+| D-02 | `test_invalid_aggregate_count_is_rejected` | `tests/database/test_aggregate_reconciliation.py` | passing |
+| D-03 | `test_empty_collections_return_empty_lists` | `tests/database/test_empty_queries.py` | passing |
+| D-04 | `test_impossible_filters_return_empty_lists` | `tests/database/test_empty_queries.py` | passing |
+| D-05 | `test_dates_stored_as_bson_dates` | `tests/database/test_loader_contract.py` | passing |
+| D-06 | `test_duplicate_complaint_id_rejected` | `tests/database/test_loader_contract.py` | passing |
+| D-07 | `test_empty_collections` | `tests/database/test_ml_queries.py` | passing |
+| D-08 | `test_emerging_issues_filters` | `tests/database/test_ml_queries.py` | passing |
+| D-09 | `test_state_clusters` | `tests/database/test_ml_queries.py` | passing |
+| D-10 | `test_unsupported_filter` | `tests/database/test_ml_queries.py` | passing |
+| D-11 | `test_stopped_quality_gate_aborts_before_mongodb` | `tests/database/test_quality_gate.py` | passing |
+| D-12 | `test_allowed_quality_gates_reach_mongodb` | `tests/database/test_quality_gate.py` | passing |
+| D-13 | `test_loading_twice_does_not_create_duplicates` (real-data proof in [idempotency.md](evidence/idempotency.md)) | `tests/database/test_upsert_idempotency.py` | passing |
+| D-14 | `test_upsert_updates_existing_complaint` | `tests/database/test_upsert_idempotency.py` | passing |
 
 ### Dashboard (Perla Boustany)
 
-| ID | Test | File | Status |
-|---|---|---|---|
-| B-01 | *proposed* `test_queries_return_aggregates_not_individual_records` | `tests/dashboard/test_queries.py` | planned |
-| B-02 | *proposed* `test_empty_selection_shows_message` | `tests/dashboard/test_filters.py` | planned |
-| B-03 | *proposed* `test_invalid_date_range_is_rejected` | `tests/dashboard/test_filters.py` | planned |
-| B-04 | *proposed* `test_database_unavailable_shows_error` | `tests/dashboard/test_app.py` | planned |
-| B-05 | Manual checklist (section 4): empty selection, invalid date range, missing category, database stopped, mobile width | `docs/evidence/dashboard_checks.md` | planned |
-
-### Machine learning (Perla Boustany, Spark MLlib)
-
-The models only describe or diagnose past data; they never predict. Fixed rule for "emerging": slope of at least +0.2 points per month, R² of at least 0.5 and at least 50 complaints in the window.
+Empty selection, invalid date range and basic layout are covered by the manual checklist (section 4), which is not yet recorded.
 
 | ID | Test | File | Status |
 |---|---|---|---|
-| M-01 | *proposed* `test_rising_series_gives_positive_slope_and_emerging_flag` (rising fixture series) | `tests/analytics/test_ml_emerging_issues.py` | planned |
-| M-02 | *proposed* `test_flat_series_is_not_flagged_emerging` | `tests/analytics/test_ml_emerging_issues.py` | planned |
-| M-03 | *proposed* `test_same_seed_gives_same_clusters` (KMeans seed 42) | `tests/analytics/test_ml_state_clusters.py` | planned |
-| M-04 | *proposed* `test_states_below_100_complaints_are_listed_separately` | `tests/analytics/test_ml_state_clusters.py` | planned |
+| B-01 | `test_cache_hit` | `tests/dashboard/test_db.py` | skipped in the pipeline image (no streamlit) |
+| B-02 | `test_cache_miss` | `tests/dashboard/test_db.py` | skipped in the pipeline image (no streamlit) |
+| B-03 | `test_cache_uses_600_second_ttl` | `tests/dashboard/test_db.py` | skipped in the pipeline image (no streamlit) |
+| B-04 | `test_redis_unavailable_falls_back_to_mongo` | `tests/dashboard/test_db.py` | skipped in the pipeline image (no streamlit) |
+| B-05 | `test_monthly_totals` | `tests/dashboard/test_trends.py` | passing |
+| B-06 | `test_month_order` | `tests/dashboard/test_trends.py` | passing |
+| B-07 | `test_wallet_percentage` | `tests/dashboard/test_trends.py` | passing |
+| B-08 | `test_invalid_months_are_excluded` | `tests/dashboard/test_trends.py` | passing |
+| B-09 | `test_empty_monthly_data` | `tests/dashboard/test_trends.py` | passing |
+
+### Analytics and machine learning (Perla Boustany)
+
+The models only describe or diagnose past data; they never predict.
+
+| ID | Test | File | Status |
+|---|---|---|---|
+| M-01 | `test_percentage` | `tests/analytics/test_calculations.py` | passing |
+| M-02 | `test_percentage_zero_denominator` | `tests/analytics/test_calculations.py` | passing |
+| M-03 | `test_percentage_change` | `tests/analytics/test_calculations.py` | passing |
+| M-04 | `test_percentage_change_zero_previous` | `tests/analytics/test_calculations.py` | passing |
+| M-05 | `test_rolling_share` | `tests/analytics/test_calculations.py` | passing |
+| M-06 | `test_rolling_share_rejects_invalid_input` | `tests/analytics/test_calculations.py` | passing |
+| M-07 | `test_complete_month_excludes_current_month` | `tests/analytics/test_calculations.py` | passing |
+| M-08 | `test_complete_year` | `tests/analytics/test_calculations.py` | passing |
+| M-09 | `test_q3_channel_summary_uses_counts` | `tests/analytics/test_calculations.py` | passing |
+| M-10 | `test_q3_empty_data` | `tests/analytics/test_calculations.py` | passing |
+| M-11 | `test_q4_timely_counts_not_double_counted` | `tests/analytics/test_calculations.py` | passing |
+| M-12 | `test_q4_empty_data` | `tests/analytics/test_calculations.py` | passing |
+| M-13 | `test_q5_state_totals_not_double_counted` | `tests/analytics/test_calculations.py` | passing |
+| M-14 | `test_q5_preserves_unknown_state` | `tests/analytics/test_calculations.py` | passing |
+| M-15 | `test_ml_24_complete_month_window` | `tests/analytics/test_calculations.py` | passing |
+| M-16 | `test_ml_month_index` | `tests/analytics/test_calculations.py` | passing |
+| M-17 | `test_linear_regression_detects_increasing_share` | `tests/analytics/test_ml_models.py` | passing |
+| M-18 | `test_linear_regression_rejects_flat_share` | `tests/analytics/test_ml_models.py` | passing |
+| M-19 | `test_kmeans_selects_valid_state_clusters` | `tests/analytics/test_ml_models.py` | passing |
+| M-20 | `test_kmeans_uses_required_seed` | `tests/analytics/test_ml_models.py` | passing |
 
 ### End-to-end (Charbel Mazraani with Joseph Nasr)
 
