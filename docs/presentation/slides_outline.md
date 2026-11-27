@@ -38,7 +38,7 @@ The platform follows the course's framework from collection to visualisation, in
 
 It is a batch platform, refreshed every 24 hours, because the CFPB publishes daily and the brief rules out streaming. The analysis is descriptive and diagnostic: it says what was reported, not why, and it does not predict. Everything starts with one Docker Compose command. Now Marwa will show how the data comes in."
 
-**Facts you must be able to defend:** the number of records (check the final quality report; 199,152 for the current label on 20 Nov), the layer names, why batch, why descriptive.
+**Facts you must be able to defend:** the number of records (full load of 24 Nov: 19,397,176 raw, 205,271 curated; 199,561 of them under the current label, 199,152 on 20 Nov in the API), the layer names, why batch, why descriptive.
 
 ## 3. Questions you may be asked on the architecture
 

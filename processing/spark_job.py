@@ -10,7 +10,7 @@ Inputs (MinIO bucket from MINIO_BUCKET, default layout from the team contract):
     api:       raw/cfpb/api/ingest_date=YYYY-MM-DD/run_id=<run_id>/response_*.json
     The ingest date and the ingestion time come from the run_id (YYYYMMDDTHHMMSSZ_<full|api>).
 Outputs:
-    curated/complaints/domain=money_transfers_payments/year=YYYY/month=M/   Parquet, merged with earlier runs
+    curated/complaints/option=5/year=YYYY/month=MM/                          Parquet, merged with earlier runs
     curated/aggregates/agg_monthly/ and curated/aggregates/agg_company_year/  Parquet, rebuilt from all curated data
     quarantine/run_id=<run_id>/                                              Parquet, rejected records + reject_reason
     quality/run_id=<run_id>/quality_report.json
@@ -35,14 +35,12 @@ from pyspark.sql import DataFrame, SparkSession  # noqa: E402
 from pyspark.sql import functions as F  # noqa: E402
 
 from processing import quality  # noqa: E402
+from processing.paths import AGG_COMPANY_YEAR_DIR, AGG_MONTHLY_DIR, CURATED_DIR  # noqa: E402,F401
 from processing import schema  # noqa: E402
 from processing import transforms as t  # noqa: E402
 
 RUN_ID_PATTERN = re.compile(r"^(\d{8})T(\d{6})Z_(full|api)$")
 SOURCE_SUFFIX = {"full_load": "full", "api": "api"}
-CURATED_DIR = "curated/complaints/domain=money_transfers_payments"
-AGG_MONTHLY_DIR = "curated/aggregates/agg_monthly"
-AGG_COMPANY_YEAR_DIR = "curated/aggregates/agg_company_year"
 MAPPING_CSV = REPO_ROOT / "config" / "product_mapping.csv"
 STATE_CODES_CSV = REPO_ROOT / "config" / "state_codes.csv"
 
@@ -138,10 +136,22 @@ def merge_into_curated(spark: SparkSession, lake_root: str, run_id: str, new_cur
         merged = t.conform_to_curated(t.deduplicate(existing.unionByName(new_curated)))
 
     delete_path(spark, staging_path)
-    merged.write.mode("overwrite").partitionBy("year", "month").parquet(staging_path)
+    with_partition_folders(merged).write.mode("overwrite").partitionBy("year", "month").parquet(staging_path)
     staged = spark.read.schema(schema.CURATED_SCHEMA).option("basePath", staging_path).parquet(staging_path)
-    staged.write.mode("overwrite").partitionBy("year", "month").parquet(curated_path)
+    with_partition_folders(staged).write.mode("overwrite").partitionBy("year", "month").parquet(curated_path)
     delete_path(spark, staging_root)
+
+
+def with_partition_folders(df: DataFrame) -> DataFrame:
+    """Turn year and month into the folder text of the contract: year=2024/month=03, not month=3.
+
+    Only the folder names change. Readers that use CURATED_SCHEMA (Spark) or hive partitioning
+    (pyarrow in the MongoDB loader) read month=03 back as the integer 3.
+    """
+    return (
+        df.withColumn("year", F.lpad(F.col("year").cast("string"), 4, "0"))
+        .withColumn("month", F.lpad(F.col("month").cast("string"), 2, "0"))
+    )
 
 
 # ---------- the job ----------

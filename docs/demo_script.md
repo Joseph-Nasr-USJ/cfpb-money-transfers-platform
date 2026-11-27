@@ -110,7 +110,7 @@ Expected: `minio` and `mongo` healthy (plus `nifi` and `redis` once merged), `mi
   1. **The data is not a random sample.** Complaints are filed by people who chose to complain, so the results describe complaints, not all consumers or the whole market; we do not generalise (course Session 1, inferential analytics). It has no transactions, balances, confirmed fraud labels or resolution durations, and company figures are shares, never a quality ranking.
   2. **Single-node MongoDB and a local, batch platform.** If the database container is lost, recovery means rerunning the idempotent pipeline. There is no replication, and the data is refreshed once every 24 hours, not in real time (the brief rules streaming out).
 - **One improvement to prioritise: a MongoDB replica set** with automatic primary election (course Session 4.1), for availability, majority writes and reads from the primary. Sharding is not needed at about 200,000 documents.
-- **Say:** the three points above in your own words, plus how the tests and the defect log give confidence in what exists today (42 passing tests, known bad records caught).
+- **Say:** the three points above in your own words, plus how the tests and the defect log give confidence in what exists today (159 passing tests, known bad records caught).
 - **Backup:** `docs/evidence/test_results_2026-11-21.txt` (update it before the demo).
 
 ## After the demo: questions (5 minutes)

@@ -1,0 +1,16 @@
+Test results, Tue 24 Nov 2026
+Machine: Windows 11, Docker Desktop (engine 29.8.2, 8 GB, 4 processors)
+Code tested: branch loutchiana/delivery-docs at 51bd1f7, which includes main at 64ff2af (PR #34), inside the pipeline container (Python 3.11, Java 17, PySpark 3.5.9)
+
+Command: make test  (docker compose run --rm pipeline python -m pytest -q)
+Summary:
+159 passed, 1 skipped in 265.94s (0:04:25)
+
+The skipped test is the module tests/dashboard/test_db.py: it needs streamlit, which is not installed in the pipeline image
+(SKIPPED: could not import 'streamlit'). It is skipped by pytest.importorskip, not failing.
+
+Console output:
+........................................................................ [ 45%]
+........................................................................ [ 90%]
+...............                                                          [100%]
+159 passed, 1 skipped in 265.94s (0:04:25)

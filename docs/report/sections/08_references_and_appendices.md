@@ -34,13 +34,13 @@ Each appendix points to a file of the repository that its owner maintains. Excer
 |---|---|---|---|
 | A | Architecture document and diagram | `docs/architecture.md`, `docs/images/architecture.png` | Loutchiana |
 | B | Data dictionary, product mapping and state list | `docs/data_dictionary.md`, `config/product_mapping.csv`, `config/state_codes.csv` | Loutchiana, Joseph |
-| C | Raw manifest of the historical load and a sample run log | `docs/evidence/` [TO COMPLETE: file names once Marwa's load exists] | Marwa |
-| D | Sample quality report and the reconciliation of one run | `docs/evidence/` [TO COMPLETE] | Joseph |
-| E | Sample curated output | `docs/evidence/` [TO COMPLETE] | Joseph |
-| F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py` | Christopher |
+| C | Raw manifest of the historical load and a sample run log | `docs/images/minio_raw_full_load.png` (manifest in MinIO, run of 24 Nov); `docs/evidence/run_20261124T135857Z_full/manifest.json` and `run_log.json` | Marwa |
+| D | Sample quality report and the reconciliation of one run | `docs/images/minio_quality_report.png`; `docs/evidence/run_20261124T135857Z_full/quality_report.json` (run of 24 Nov) | Joseph |
+| E | Sample curated output | `docs/images/minio_curated_parquet.png`; `docs/evidence/curated_sample_2025-10.csv` (20 curated complaints received in October 2025, every curated field including the lineage columns) | Joseph |
+| F | MongoDB model, indexes and the aggregation queries A1 to A8 | `docs/mongodb_model.md`, `database/queries.py`, `docs/images/mongodb_collections_indexes.png` | Christopher |
 | G | Index benchmark before and after | `docs/evidence/benchmark.md` [TO COMPLETE] | Christopher |
 | H | Metric definitions and findings | `docs/metrics.md`, `docs/findings.md` | Perla |
 | I | Test plan, test results and defect log | `docs/test_plan.md`, `docs/evidence/test_results_*.txt`, `docs/defect_log.md` | Charbel |
-| J | Rerun (idempotency) evidence | `docs/evidence/idempotency.md` [TO COMPLETE] | Joseph |
+| J | Rerun (idempotency) evidence | `docs/evidence/idempotency.md` | Joseph |
 | K | Demonstration script and runbook | `docs/demo_script.md`, `docs/runbook.md` | Charbel |
 | L | Checkpoint notes and contribution logs | `docs/checkpoints/`, `docs/contributions/` | Loutchiana, everyone |
