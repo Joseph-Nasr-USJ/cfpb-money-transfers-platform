@@ -1,9 +1,9 @@
 # Findings
 
-**Snapshot:** MongoDB on 25 Nov 2026 contained 205,500 complaints. This snapshot consists of the full load of 24 Nov plus the daily API runs collected before the analytics were executed. All counts and percentages in this findings document use this same 205,500-complaint snapshot.
+**Snapshot:** The reference full load processed on 24 Nov 2026 contained 205,271 curated complaints. My analytical run used MongoDB on 25 Nov 2026, after the scheduler had added subsequent API complaints, giving an analysis snapshot of 205,500 complaints. All counts and percentages reported in this findings document were calculated from that fixed 205,500-complaint analytical snapshot.
 
 **Reproducibility note:** CSV analysis outputs are generated locally by make analytics and make ml and are intentionally not tracked in Git. The PNG charts listed below are the committed analytical evidence.
-This analysis covers the CFPB Money Transfers and Digital Payments domain using the curated complaint dataset loaded into MongoDB. The analytical snapshot contained 205,500 curated complaints after filtering, validation and quality checks. The analyses are descriptive and diagnostic: they describe patterns in published CFPB complaints and should not be interpreted as measures of market size, product usage, consumer harm or causal effects.
+This analysis covers the CFPB Money Transfers and Digital Payments domain using the curated complaint dataset loaded into MongoDB. The reference full load on 24 Nov 2026 contained 205,271 curated complaints, while the analytical MongoDB snapshot used on 25 Nov 2026 contained 205,500 complaints after subsequent API collection. The analyses are descriptive and diagnostic: they describe patterns in published CFPB complaints and should not be interpreted as measures of market size, product usage, consumer harm or causal effects.
 
 ## Q1 — Growth and Emerging Issues — Demo Question
 

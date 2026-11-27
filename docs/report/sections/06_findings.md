@@ -11,7 +11,7 @@ Run "python docs/report/build_report.py --check" to see your word count.
 
 ## 6. Findings
 
-The findings use one fixed analytical snapshot: MongoDB on 25 Nov 2026 contained 205,500 complaints, consisting of the full load of 24 Nov plus daily API runs collected before the analytics were executed. All counts and percentages therefore use the same snapshot.
+The reference full load processed on 24 Nov 2026 contained 205,271 curated complaints. The analysis presented here used a later fixed MongoDB snapshot from 25 Nov 2026 containing 205,500 complaints, after the scheduler had added subsequent API complaints. All counts and percentages reported in this section were calculated from that same 205,500-complaint analytical snapshot.
 
 Q1 examined growth in sub-products and issues from 2021 to 2025. Domestic (US) money transfer increased from 3,069 complaints to 57,853, while mobile or digital wallet increased from 6,405 to 17,149. The average mobile-wallet share of monthly domain complaints fell from 43.48% in 2021 to 35.26% in 2024, then rose to 38.71% in 2025. These are complaint trends, not measures of product usage, market share or consumer harm.
 
