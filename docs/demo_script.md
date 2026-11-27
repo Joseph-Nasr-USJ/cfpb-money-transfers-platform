@@ -34,9 +34,10 @@ git pull
 make up
 docker compose ps
 make test
+docker compose stop pipeline
 ```
 
-Expected: `minio` and `mongo` healthy (plus `nifi` and `redis` once merged), `minio-init` exited with 0, `make test` ends with `passed` and no failures. Open in browser tabs: MinIO console http://localhost:9001, NiFi (address in the README), the dashboard http://localhost:8501. Check that the saved manifest, the run to be repeated and the dashboard data exist. Clear the Redis cache only if the data changed.
+Expected: `minio` and `mongo` healthy (plus `nifi` and `redis` once merged), `minio-init` exited with 0, `make test` ends with `passed` and no failures. `docker compose stop pipeline` pauses the 24-hour scheduler so it does not process the run of step 3 on its own before step 4; every `make` command still works. Restart it after the demo (end of step 5). Open in browser tabs: MinIO console http://localhost:9001, NiFi (address in the README), the dashboard http://localhost:8501. Check that the saved manifest, the run to be repeated and the dashboard data exist. Clear the Redis cache only if the data changed.
 
 ---
 
@@ -58,7 +59,7 @@ Expected: `minio` and `mongo` healthy (plus `nifi` and `redis` once merged), `mi
 ## Step 3. Bounded incremental run (Marwa, 2:30)
 
 - **Show:** trigger one bounded run (a short date window) and inspect its raw output and run log.
-- **Command** (Python collector; NiFi is the planned scheduler, its flow is not exported yet). Collect a short window and note the `run_id` printed on the last line:
+- **Command** (Python collector; NiFi is the planned scheduler, its flow is not exported yet). Collect a short window and note the `run_id` printed on the last line. Collection only: do not use `make pipeline-incremental` here, because it also runs Spark and the load and step 4 needs the run still unprocessed:
   ```
   docker compose run --rm pipeline python -m ingestion.incremental --start 2026-10-20 --end 2026-10-21
   ```
@@ -68,20 +69,57 @@ Expected: `minio` and `mongo` healthy (plus `nifi` and `redis` once merged), `mi
 
 ## Step 4. Spark, quality checks and reconciliation (Joseph, 2:30)
 
-- **Show:** the Spark job on the run from step 3 and its quality report.
-- **Command:** `make process SOURCE=api RUN_ID=<run_id from step 3>` then open `quality/run_id=<run_id>/quality_report.json`.
-- **Say:** "Spark uses an explicit schema, standardises names, parses dates, normalises Yes and No, keeps only our domain and deduplicates by Complaint ID. Bad records go to quarantine with a reason. The quality report covers six dimensions with thresholds fixed in advance: uniqueness, completeness, validity, consistency, freshness and reconciliation. Reconciliation: raw equals curated plus quarantined plus out of domain plus duplicates removed. A failure exits with code 1 and publishes nothing."
-- **Known bad record:** show that the test fixtures (invalid date, invalid state, negative interval, missing ID) are caught: `tests/processing/test_quality.py` (defect D-005).
-- **Expected result:** `overall_status` PASS (or WARN) and a reconciliation that balances exactly.
-- **Backup:** `docs/evidence/demo/step4_quality_report.png`.
+- **Before the session (Joseph):** open one PowerShell window in the repository root for steps 4 and 5 and paste these two helper functions once. They only read data.
+
+~~~
+function Show-Counts {
+    docker compose exec mongo mongosh cfpb_money_transfers --quiet --eval "print('complaints in MongoDB:  ' + db.complaints.countDocuments()); print('agg_monthly total:      ' + db.agg_monthly.aggregate([{`$group:{_id:null,t:{`$sum:'`$complaint_count'}}}]).toArray()[0].t); print('duplicate complaint_id: ' + db.complaints.aggregate([{`$group:{_id:'`$complaint_id',n:{`$sum:1}}},{`$match:{n:{`$gt:1}}}]).toArray().length)"
+}
+function Show-Quality([string]$RunId) {
+    $py = @(
+        "import os",
+        "from ingestion import minio_utils as m",
+        "r = m.read_json('quality/run_id=' + os.environ['RUN_ID'] + '/quality_report.json')",
+        "print('overall_status:', r['overall_status'], '| quality_gate:', r['quality_gate'])",
+        "print('counts:', r['counts'])",
+        "for c in r['checks']: print(c['status'].ljust(5), c['dimension'].ljust(15), c['rule'], '| measured:', c['metric'], '| threshold:', c['threshold'])"
+    ) -join "`n"
+    $py | docker compose run --rm -T -e RUN_ID=$RunId pipeline python -
+}
+~~~
+
+- **0:00, start Spark at once** with the run_id printed in step 3 (Spark takes about 20 seconds: start talking and finish the sentence when the summary line appears). The run is still unprocessed because the scheduler was stopped before the demo, whether step 3 used NiFi or the Python collector.
+
+~~~
+$r = "<run_id from step 3>"
+make process SOURCE=api RUN_ID=$r
+~~~
+
+- **Show while Spark runs:** `tests/processing/test_quality.py`, test `test_csv_fixture_fails_the_quality_gate`.
+- **Say while Spark runs:** "This is the Spark job on the run Marwa just collected. It reads the raw API pages with an explicit schema, never an inferred one, standardises the column names, parses the dates, normalises Yes and No, maps every product and sub-product to our standard sub-products and keeps only our domain. Duplicates are removed by Complaint ID with a fixed tie-break, so every run gives the same result. A record that breaks a rule is not dropped silently: it goes to quarantine with its reason. Before anything is published, a quality gate runs six checks with thresholds we fixed before seeing the data: uniqueness, completeness, validity, consistency, freshness and reconciliation. A warning is recorded; a failure makes Spark exit with code 1 and nothing is published. This test proves it: our fixture file contains an invalid date, an invalid state, a negative processing lag and a missing ID, and the gate stops the run while the counts still reconcile."
+- **When Spark prints its summary line** (`overall_status`, `quality_gate`, `counts`, `curated_total`), **say:** "Reconciliation: raw input equals curated plus quarantined plus out of domain plus duplicates removed, exactly. On the full historical file that was 19,397,176 records: 205,271 curated, 112 quarantined, 19,191,793 outside our domain and no duplicates, identical on three machines. `curated_total` is the whole curated dataset: this run was merged into it by Complaint ID, not appended."
+- **Then show the report:** `Show-Quality $r`. **Say:** "Here are the six dimensions with the measured value and the threshold for each. The report is stored in the lake at `quality/run_id=<run_id>/quality_report.json`, next to the quarantined records. A freshness warning is normal for a window in the past."
+- **Then load:** `make load RUN_ID=$r 2>$null | Select-Object -Last 5` (the loader prints one progress line per batch for the whole curated dataset; this keeps only its last five lines). **Say:** "The loader only runs when the gate passed. MongoDB now holds exactly the curated total: the last reconciliation, curated equals MongoDB."
+- **Expected result:** `quality_gate` `passed`, `overall_status` PASS or WARN, the counts adding up exactly, and the `Load completed` number equal to `curated_total`.
+- **If Spark has not finished at 1:30:** show `docs/evidence/full_load.md` and the backup screenshot, and finish the step while it completes.
+- **Backup:** `docs/evidence/demo/step4_quality_report.png` and `docs/evidence/full_load.md`.
 
 ## Step 5. Rerun: counts not inflated (Joseph, 1:30)
 
-- **Show:** run the same window again and compare the counts before and after.
-- **Command:** repeat step 3's run (or replay the same response), after step 4 run `make load RUN_ID=<run_id>`, note `db.complaints.countDocuments({})` in `mongosh`, then run `make process SOURCE=api RUN_ID=<run_id>` and `make load RUN_ID=<run_id>` a second time and count again.
-- **Say:** "Deduplication by Complaint ID in Spark and upserts in MongoDB make the run idempotent: the curated count and the dashboard measures do not change."
-- **Expected result:** identical counts before and after.
-- **Backup:** `docs/evidence/idempotency.md` (Joseph) and `docs/evidence/demo/step5_counts.png`.
+- **0:00, counts before:** `Show-Counts`
+- **Then rerun Spark and the load on exactly the same input:**
+
+~~~
+make process SOURCE=api RUN_ID=$r 2>$null | Select-Object -Last 1; make load RUN_ID=$r 2>$null | Select-Object -Last 5
+~~~
+
+- **Say while it runs:** "Now the same run again, Spark and the load, on exactly the same input. Three things stop anything from doubling. Spark merges curated data by Complaint ID and replaces the affected partitions through a staging folder instead of appending. MongoDB writes every complaint as an upsert keyed by Complaint ID, so a second load updates the same documents. And the two aggregate collections the dashboard reads are rebuilt in staging and then swapped in, so the dashboard never sees a half-written or doubled total."
+- **Then counts after:** `Show-Counts`. **Say:** "The loader just upserted every curated row again, all of them, not only this run's, and nothing moved. Same number of complaints, same aggregate total behind the dashboard, zero duplicate IDs, and Spark printed the same `curated_total`. That is what lets the scheduler retry a failed run safely every day."
+- **Expected result:** the three lines of `Show-Counts` identical before and after, and the same `curated_total` in both Spark summaries.
+- **If the rerun has not finished at 1:10:** show the results table of `docs/evidence/idempotency.md` (the same proof recorded on real data, 468 complaints, two machines).
+- **Rehearsal of Fri 27 Nov (office PC):** run `20261127T120713Z_api`, 36 complaints; Spark about 20 seconds; the whole of step 5 about 35 seconds; `Show-Counts` 205,707, 205,707 and 0, identical before and after.
+- **Backup:** `docs/evidence/idempotency.md` and `docs/evidence/demo/step5_counts.png`.
+- **After the demo:** `docker compose start pipeline` restarts the scheduler. It will process the run of step 3 once more and move the high-water mark, which changes nothing because the run is idempotent.
 
 ## Step 6. MongoDB collections, indexes, one aggregation (Christopher, 2:00)
 
@@ -114,8 +152,8 @@ Expected: `minio` and `mongo` healthy (plus `nifi` and `redis` once merged), `mi
   - Supporting facts if asked: about 5% of complaints have no state, so geography results cover the other 95%; no complaint in the domain has a sub-issue.
   2. **Single-node MongoDB and a local, batch platform.** If the database container is lost, recovery means rerunning the idempotent pipeline. There is no replication, and the data is refreshed once every 24 hours, not in real time (the brief rules streaming out).
 - **One improvement to prioritise: a MongoDB replica set** with automatic primary election (course Session 4.1), for availability, majority writes and reads from the primary. Sharding is not needed at about 205,000 documents.
-- **Say:** the three points above in your own words, plus how the tests and the defect log give confidence in what exists today (159 passing tests, known bad records caught).
-- **Backup:** `docs/evidence/test_results_2026-11-24.txt` (update it before the demo).
+- **Say:** the three points above in your own words, plus how the tests and the defect log give confidence in what exists today (162 passing tests and 1 skipped on 27 Nov, known bad records caught).
+- **Backup:** `docs/evidence/test_results_2026-11-27.txt` (update it before the demo).
 
 ## After the demo: questions (5 minutes)
 
