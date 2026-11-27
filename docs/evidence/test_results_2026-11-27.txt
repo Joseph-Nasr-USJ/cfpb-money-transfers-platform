@@ -1,0 +1,14 @@
+﻿Test results, Fri 27 Nov 2026
+Recorded by: Charbel Mazraani
+Machine: Windows 11, Docker Desktop (engine 29.8.2)
+Code tested: branch charbel/idempotency-evidence-link at 92d1121 (includes main at 66e0e2a), inside the pipeline container
+
+Command: make test
+Summary:
+162 passed, 1 skipped in 166.23s (0:02:46)
+
+Console output:
+........................................................................ [ 44%]
+........................................................................ [ 88%]
+..................                                                       [100%]
+162 passed, 1 skipped in 166.23s (0:02:46)
