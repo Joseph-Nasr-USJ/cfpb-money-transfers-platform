@@ -37,7 +37,9 @@ def get_filter_options():
         query_options
     )
 
-
+# Provides shared filter controls for all dashboard pages.
+# Keeping filters centralized ensures consistent selections
+# when comparing trends, issues, and geographic results.
 def show_filters(options=None):
     """Display filters using Christopher's MongoDB query contract."""
 
